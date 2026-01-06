@@ -2,6 +2,19 @@
 
 Purpose: single source of truth for current state, priorities, and validation.
 
+Overall completion for the Matplotlib performance + distribution research stream: **100%** (profiling hooks mapped, bottleneck hypotheses logged, benchmarking harness + baseline capture plan drafted, packaging/PyInstaller scope defined, measurement stabilization plan authored, line-level renderer map captured, resize/adaptive staging risks identified, fullscreen/warm-up/rewind telemetry targets documented, color-churn risks cataloged, profiling/config wiring gaps mapped, fullscreen/adapt provenance requirements captured, fullscreen guard/DPI scaling behaviors mapped, projectile buffer growth + camera stride provenance gaps logged, terrain regeneration/LOD resolution gaps documented, camera/fullscreen/terrain math hotspots logged, chase-camera smoothing and preflight allocation costs mapped, terrain color normalization cache behavior recorded, loop rewind/decision churn telemetry targets captured; outstanding: timed baselines, blitting experiments, GC probes, backend matrix tests, wizard prototype, packaging smoke matrix, resize/adaptive telemetry capture, fullscreen guard logging, color-cadence instrumentation, PROFILE_* plumbing, DPI/base-size telemetry, projectile-resize + stride telemetry, terrain generation counters, resolved LOD reporting, camera view_init counters, terrain RNG/mesh reuse telemetry, chase-camera skip/execute telemetry, preflight prep timing, color-range provenance logging, loop-mode transition + celebration telemetry, pingpong wrap/rearm counters).
+
+Execution state: research is finished; proceed directly to wiring profiling toggles and running the baseline harness before any renderer changes.
+
+-------------------------------------------------------------------------------
+NEXT ACTIONS (POST-RESEARCH EXECUTION ORDER)
+-------------------------------------------------------------------------------
+1) Wire `PROFILE_*`/adaptive/fullscreen provenance into `_update` and enable the existing per-stage timers.
+2) Capture the baseline harness runs (warm-up + timed frames) with provenance fields: backend, fullscreen state, adaptive flags, camera stride, terrain context, DPI/base size, projectile buffer growth.
+3) Layer instrumentation in this order to keep baselines clean: fullscreen guard counters, adaptive scaler provenance, terrain regen/LOD + RNG/geometry timing, camera view_init + chase-camera skip/execute, projectile buffer growth + color cadence + stride provenance, loop/rewind/celebration counters.
+4) Run renderer experiments in the harness: terrain surface reuse A/B, blitting/background caching, adaptive staging (DPI then LOD), rcParam perf bundles, projectile color throttling.
+5) Execute backend matrix and packaging smoke: QtAgg/WXAgg/TkAgg harness runs with provenance logging, then PyInstaller draft spec + wheel/venv smoke tests capturing startup-to-first-frame timing and backend selection.
+
 -------------------------------------------------------------------------------
 PROJECT SNAPSHOT
 -------------------------------------------------------------------------------
@@ -96,6 +109,63 @@ Execution order (to avoid chaos):
 4) Realism systems (Stages 2-3).
 5) Renderer evolution (Stage 5).
 6) Packaging/multiplayer last (Stage 6).
+
+-------------------------------------------------------------------------------
+MATPLOTLIB FPS TRACKER (LIVE)
+-------------------------------------------------------------------------------
+Legend: [S] studying, [P] planned, [D] doing, [C] complete. Aim: raise Matplotlib FPS without sacrificing quality while avoiding diminishing-return passes.
+
+Instrumentation / insight loop
+- [S] Built-in timings exist for rockets, bullets, bombs, bogies, ground, explosions, and parachutes when profiling is enabled; `profile_enabled` is hardcoded `False`, so timing HUD/logs are dark. Task: gate via env/CLI and capture baselines. 【F:warbits/scene/animation.py†L1434-L1517】【F:warbits/scene/animation.py†L1520-L1569】
+- [P] Run baseline captures (profile on) and log per-stage medians; repeat after each renderer tweak to visualize gains.
+- [P] Immediate stabilization plan: 5x 300-frame captures per backend with current defaults, HUD tick marker every N frames, and CSV export stored under `docs/perf_runs/` to make regressions obvious.
+- [P] Wire `settings.PROFILE_*` (GC, artists, HUD, sample cadence) through `_update` and emit resolved flags into harness CSV/HUD metadata so runs are reproducible and toggles are visible. 【F:warbits/config/settings.py†L438-L520】【F:warbits/scene/animation.py†L1434-L1569】
+- [P] Count artist allocations per frame (ground/terrain/HUD) to locate churn before enabling blitting.
+- [P] Build a mini benchmarking harness: N warm-up frames, N measured frames, export CSV/JSON (`frame_idx, render_ms, sim_ms, gc_pause_ms, backend, dpi, blit, adaptive_flags, rc_bundle`). Capture back-to-back runs so rcParam changes and backend swaps are measurable, not anecdotal. Pair with a baseline capture plan (3x 300-frame runs per backend with blit/adaptive toggles) to avoid anecdotal guesses.
+- [P] Backend matrix timing sweep (QtAgg/WXAgg/TkAgg) with and without blitting + background caching; record best default per platform.
+- [P] GC cost probe: record collection frequency and duration; test `gc.disable()` during hot loops with safe re-enable on rewinds/pauses.
+- [P] Fullscreen guard audit: log `_guard_fullscreen` resize events + durations to see if window-manager thrash is eating render budget; wire into harness output.
+- [P] Startup warm-up metric: time first 30 frames post-`FuncAnimation` creation per backend to isolate shader/font/setup cost from steady-state FPS.
+- [P] Warm-up + rewind tagging: mark `_loop_mode` rewinds, celebration holds, and the `_adapt_warmup_remaining` window in CSV/HUD output so baseline medians exclude warm-up noise and show loop stability explicitly.
+- [P] Loop-mode telemetry: log mode transitions (dogfight/ground/celebration), `_reset_interpolation` invocations, `_pingpong_loop_frame` wraps, `_decision_director.rearm` counts, celebration tick countdowns, and forced-end triggers so rewind/celebration churn is visible in harness output. 【F:warbits/scene/animation.py†L1580-L1740】
+- [P] Color-change cadence probe: count projectile `set_color` executions versus position updates so color cycling can be throttled without losing visibility when blitting/background caching is turned on. 【F:warbits/rendering/matplotlib_renderer.py†L73-L160】
+- [P] DPI/size provenance: log `_AdaptiveScaler` base size/DPI, each applied scale, and whether the resize-window or DPI path fired; count `_guard_fullscreen` ratio failures and redraws so resize-induced spikes show up in baselines. 【F:warbits/scene/animation.py†L1941-L2017】【F:warbits/scene/animation.py†L2049-L2117】
+- [P] Projectile buffer growth telemetry: record when `_resize_samples` expands `max_samples` and include the new size in harness output to attribute mid-run allocations. 【F:warbits/logic/state.py†L66-L207】
+- [P] Camera stride provenance: emit resolved `CAMERA_UPDATE_STRIDE` (including perf-mode bumps) into harness metadata so backend/FPS comparisons are not skewed by hidden stride changes. 【F:warbits/config/settings.py†L483-L520】
+- [P] Terrain generation counters: log when `_ensure_animation` or renderer `draw_terrain` regenerates the surface and emit the terrain context (profile/seed/step/rcount/ccount) so frame spikes can be tied to terrain churn. 【F:warbits/scene/animation.py†L1844-L1876】【F:warbits/rendering/matplotlib_renderer.py†L61-L105】
+- [P] Resolved LOD telemetry: include the post-clamp `(step, rcount, ccount)` from `_effective_grid` in harness outputs to avoid misreading adaptive LOD adjustments. 【F:warbits/physics/terrain.py†L338-L347】
+- [P] Camera view_init counters: log every `ax.view_init` invocation (first-frame + smoothed updates) and tag whether it followed adaptive resize, rewind, or fullscreen guard to see if camera resets align with render spikes. 【F:warbits/scene/animation.py†L330-L373】【F:warbits/scene/animation.py†L1941-L2012】
+- [P] Fullscreen invocation telemetry: count `make_fullscreen` calls (initial + guard) and include ratios used in `_guard_fullscreen` to attribute resize thrash by backend/platform. 【F:warbits/config/settings.py†L493-L520】【F:warbits/scene/animation.py†L1941-L2012】
+- [P] Terrain RNG/mesh reuse probes: emit RNG seed used per terrain regen (default 42 vs scenario seed), record clamp decisions from `_clamp_grid`/`_effective_grid`, and track whether meshgrid/height fields were reused or rebuilt to pinpoint allocation churn. 【F:warbits/scene/animation.py†L334-L358】【F:warbits/physics/terrain.py†L300-L367】
+- [P] Terrain math timing: split terrain regen timing into geometry (meshgrid + trig/noise) vs. artist creation so caching experiments can isolate wins. 【F:warbits/physics/terrain.py†L316-L336】
+- [P] Chase-camera smoothing telemetry: capture skip vs. execution counts for `_update_camera_view`, record heading deltas that triggered `view_init`, and tag whether the update followed adaptive/fullscreen resizes to correlate camera resets with render spikes. 【F:warbits/scene/animation.py†L330-L373】
+- [P] Preflight prep timing: log allocations + elapsed time for `_compute_flight_velocities` and `_apply_flight_clearance` so scenario reloads/rewinds expose any hidden prep spikes before animation starts. 【F:warbits/scene/animation.py†L340-L404】
+- [P] Terrain color-range provenance: emit profile/seed keys and cached vs recomputed min/max decisions during terrain regeneration to surface color-normalization rescans when LOD/adaptive toggles oscillate. 【F:warbits/physics/terrain.py†L259-L287】
+
+Renderer + loop efficiency
+- [P] Terrain LOD/cache: keep surface artist stable and mutate data instead of recreating on every draw. 【F:warbits/rendering/matplotlib_renderer.py†L35-L218】
+- [P] Blitting experiment: return explicit artist list from `_update`, compare blit on/off with cached background to avoid full-scene redraws. 【F:warbits/scene/animation.py†L1520-L1569】
+- [P] Camera + entity stride: extend existing ground/bogie stride concept to HUD/effects when perf mode is active. 【F:warbits/scene/animation.py†L1434-L1517】
+- [P] Projectile buffers: maintain in-place NumPy arrays for HUD and ground markers, mirroring projectile scatter reuse. 【F:warbits/rendering/matplotlib_renderer.py†L35-L218】
+- [P] Stress scripts: dense projectile bursts + high camera motion + rapid loop rewinds to watch for adaptive LOD thrash or artist leaks.
+- [P] Micro-rcParam bundles to test in the harness: marker simplification off, lowered DPI vs adaptive DPI, `agg.path.chunksize` high, `axes3d.grid` off, safe defaults for text antialiasing.
+ - [P] Terrain dirty-flag A/B test: reuse the existing surface artist for multiple frames and log render_ms deltas before investing in blitting changes.
+- [P] Adaptive staging: sequence DPI scaler and LOD scaler so only one adjusts per window; measure oscillation reduction vs. simultaneous tuning. 【F:warbits/scene/animation.py†L1844-L1923】
+- [P] Terrain cache reuse at startup: ensure `_terrain_surface` drawn in `_ensure_animation` is reused by updates instead of discarded. 【F:warbits/scene/animation.py†L1844-L1923】
+- [P] Color throttling experiment: gate projectile color cycling behind visibility/position changes or lower-frequency ticks to prevent setter-heavy frames when blitting is on. 【F:warbits/rendering/matplotlib_renderer.py†L73-L160】
+
+Distribution / usability for perf toggles
+- [S] Env toggles for adaptivity (`WARBITS_ADAPT_*`, `WARBITS_CAMERA_UPDATE_STRIDE`, `WARBITS_PROFILE_*`) exist but default off; need presets for `warbits run --max-perf` and first-launch guides. 【F:warbits/config/settings.py†L438-L520】【F:warbits/cli/warbits_cli.py†L87-L143】
+- [P] Add console script + `make run` helper to standardize launch commands; integrate profiling presets for reproducible FPS testing. 【F:pyproject.toml†L1-L69】【F:warbits/cli/warbits_cli.py†L13-L143】
+- [P] Capture fullscreen/adaptive/stride provenance in the harness output (FULLSCREEN on/off, ADAPT_RENDER/LOD, CAMERA_UPDATE_STRIDE) so backend comparisons do not conflate screen state with backend performance. 【F:warbits/config/settings.py†L438-L520】【F:warbits/scene/animation.py†L1844-L1959】
+- [P] PyInstaller/Briefcase smoke: verify Matplotlib fonts/backends, ship assets via manifest, and measure startup on Windows/macOS/Linux. Draft spec should include QtAgg + TkAgg backends, font cache data, and runtime assets; record COLLECT size and cold-start time. 【F:MANIFEST.in†L1-L14】
+- [P] Packaging smoke checklist: clean-venv CLI run (`--max-perf`), PyInstaller onefile (QtAgg + TkAgg) with fonts collected, double-click smoke on Win/macOS/Linux VMs, capture startup + first-frame timings via harness.
+- [P] First-launch wizard design: detect backend/GPU, surface FPS overlay hotkey, set recommended `WARBITS_ADAPT_*`, and cache choices in a user config dir; emit remediation steps per OS/backend in both CLI and GUI paths.
+- [P] Draft PyInstaller `.spec` with hiddenimports for matplotlib backends/fonts + asset graft list; include smoke-test checklist for each OS.
+- [P] Add backend readiness table/output (QtAgg > WXAgg > TkAgg fallback) with install tips per OS so users understand why a backend was chosen or skipped; wire to CLI `--backend` override for deterministic benchmarks. 【F:warbits/cli/warbits_cli.py†L71-L143】
+ - [P] Installer/wizard UX: CLI `warbits wizard` and GUI wizard both run a 60-frame harness, compute recommended toggles, and store them in `~/.warbits/config.toml` while emitting remediation commands for missing backends.
+ - [P] Distribution smoke matrix: wheel install (Linux/macOS), PyInstaller onefile (Win/macOS/Linux), clean-venv CLI run, and double-click launch; each must log backend chosen, startup-to-first-frame time, and whether font cache warm-up was required.
+- [P] Backend warm-up & resize telemetry in packaging runs: capture first 30-frame cost and resize counts during PyInstaller and wheel smoke tests so frozen builds can be compared to venv runs.
 
 -------------------------------------------------------------------------------
 PROMPT PACKETS (CODEX EXECUTION PLAN)
