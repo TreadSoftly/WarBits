@@ -1,0 +1,5508 @@
+[
+  {
+    "horizontal_limits_deg": {
+      "max": 30.0,
+      "min": -30.0
+    },
+    "id": "a_4e_targeting_pod",
+    "name": null,
+    "nvd_resolution": null,
+    "platform_name": "A-4E",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 30.0,
+      "min": -30.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 30.0,
+      "min": -30.0
+    },
+    "id": "a_4e_ayit_early_targeting_pod",
+    "name": null,
+    "nvd_resolution": null,
+    "platform_name": "A-4E Ayit (early)",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 30.0,
+      "min": -30.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 30.0,
+      "min": -30.0
+    },
+    "id": "a_4e_ayit_late_targeting_pod",
+    "name": null,
+    "nvd_resolution": null,
+    "platform_name": "A-4E Ayit (late)",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 30.0,
+      "min": -30.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 30.0,
+      "min": -30.0
+    },
+    "id": "a_4n_ayit_targeting_pod",
+    "name": null,
+    "nvd_resolution": null,
+    "platform_name": "A-4N Ayit",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 30.0,
+      "min": -30.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 90.0,
+      "min": -90.0
+    },
+    "id": "a_6e_tram_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "A-6E TRAM",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 300,
+      "width": 500
+    },
+    "vertical_limits_deg": {
+      "max": 15.0,
+      "min": -160.0
+    },
+    "zoom_range": {
+      "max": 25.4,
+      "min": 6.15
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 30.0,
+      "min": -30.0
+    },
+    "id": "a_7d_targeting_pod",
+    "name": null,
+    "nvd_resolution": null,
+    "platform_name": "A-7D",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 30.0,
+      "min": -30.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 30.0,
+      "min": -30.0
+    },
+    "id": "a_7e_targeting_pod",
+    "name": "LANA",
+    "nvd_resolution": null,
+    "platform_name": "A-7E",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 30.0,
+      "min": -30.0
+    },
+    "zoom_range": {
+      "max": 24.56,
+      "min": 3.95
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 30.0,
+      "min": -30.0
+    },
+    "id": "b_jt_1k_a_7e_jpn_targeting_pod",
+    "name": "LANA",
+    "nvd_resolution": null,
+    "platform_name": "B.JT.1K\n(\"A-7E\") [JPN]",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 30.0,
+      "min": -30.0
+    },
+    "zoom_range": {
+      "max": 24.56,
+      "min": 3.95
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 30.0,
+      "min": -30.0
+    },
+    "id": "a_7k_targeting_pod",
+    "name": "LANA",
+    "nvd_resolution": null,
+    "platform_name": "A-7K",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 30.0,
+      "min": -30.0
+    },
+    "zoom_range": {
+      "max": 24.56,
+      "min": 3.95
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 30.0,
+      "min": -30.0
+    },
+    "id": "a_10a_early_targeting_pod",
+    "name": null,
+    "nvd_resolution": null,
+    "platform_name": "A-10A (early)",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 30.0,
+      "min": -30.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": null,
+    "id": "a_10a_late_targeting_pod",
+    "name": null,
+    "nvd_resolution": null,
+    "platform_name": "A-10A (late)",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 300,
+      "width": 500
+    },
+    "vertical_limits_deg": null,
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": null,
+    "id": "a_10c_targeting_pod",
+    "name": "LITENING II",
+    "nvd_resolution": null,
+    "platform_name": "A-10C",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 300,
+      "width": 500
+    },
+    "vertical_limits_deg": null,
+    "zoom_range": {
+      "max": 49.11,
+      "min": 4.11
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 20.0,
+      "min": -20.0
+    },
+    "id": "aj_37_targeting_pod",
+    "name": null,
+    "nvd_resolution": null,
+    "platform_name": "AJ 37",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 20.0,
+      "min": -20.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 20.0,
+      "min": -20.0
+    },
+    "id": "ajs_37_targeting_pod",
+    "name": null,
+    "nvd_resolution": null,
+    "platform_name": "AJS 37",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 20.0,
+      "min": -20.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": null,
+    "id": "a_1a_amx_a_1a_targeting_pod",
+    "name": "LITENING II",
+    "nvd_resolution": null,
+    "platform_name": "A-1A\n(\"AMX A-1A\")",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": null,
+    "zoom_range": {
+      "max": 49.11,
+      "min": 4.11
+    }
+  },
+  {
+    "horizontal_limits_deg": null,
+    "id": "a_11a_amx_targeting_pod",
+    "name": "CLDP",
+    "nvd_resolution": null,
+    "platform_name": "A-11A\n(\"AMX\")",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": null,
+    "zoom_range": {
+      "max": 49.11,
+      "min": 4.11
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 15.0,
+      "min": -15.0
+    },
+    "id": "av_8b_na_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "AV-8B NA",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 300,
+      "width": 500
+    },
+    "vertical_limits_deg": {
+      "max": 15.0,
+      "min": -15.0
+    },
+    "zoom_range": {
+      "max": 49.11,
+      "min": 4.11
+    }
+  },
+  {
+    "horizontal_limits_deg": null,
+    "id": "av_8b_na_targeting_pod",
+    "name": "LITENING II",
+    "nvd_resolution": null,
+    "platform_name": "AV-8B NA",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 300,
+      "width": 500
+    },
+    "vertical_limits_deg": null,
+    "zoom_range": {
+      "max": 49.11,
+      "min": 4.11
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 15.0,
+      "min": -15.0
+    },
+    "id": "av_8b_radar_av_8b_plus_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "AV-8B Radar\n(\"AV-8B Plus\")",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 300,
+      "width": 500
+    },
+    "vertical_limits_deg": {
+      "max": 15.0,
+      "min": -15.0
+    },
+    "zoom_range": {
+      "max": 49.11,
+      "min": 4.11
+    }
+  },
+  {
+    "horizontal_limits_deg": null,
+    "id": "av_8b_radar_av_8b_plus_targeting_pod",
+    "name": "LITENING II",
+    "nvd_resolution": null,
+    "platform_name": "AV-8B Radar\n(\"AV-8B Plus\")",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 300,
+      "width": 500
+    },
+    "vertical_limits_deg": null,
+    "zoom_range": {
+      "max": 49.11,
+      "min": 4.11
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 15.0,
+      "min": -15.0
+    },
+    "id": "av_8b_plus_ita_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "AV-8B Plus [ITA]",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 300,
+      "width": 500
+    },
+    "vertical_limits_deg": {
+      "max": 15.0,
+      "min": -15.0
+    },
+    "zoom_range": {
+      "max": 49.11,
+      "min": 4.11
+    }
+  },
+  {
+    "horizontal_limits_deg": null,
+    "id": "av_8b_plus_ita_targeting_pod",
+    "name": "LITENING II",
+    "nvd_resolution": null,
+    "platform_name": "AV-8B Plus [ITA]",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 300,
+      "width": 500
+    },
+    "vertical_limits_deg": null,
+    "zoom_range": {
+      "max": 49.11,
+      "min": 4.11
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 30.0,
+      "min": -30.0
+    },
+    "id": "buccaneer_s_mk_2b_targeting_pod",
+    "name": "Pave Spike",
+    "nvd_resolution": null,
+    "platform_name": "Buccaneer S. Mk. 2B",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 30.0,
+      "min": -30.0
+    },
+    "zoom_range": {
+      "max": 9.57,
+      "min": 3.01
+    }
+  },
+  {
+    "horizontal_limits_deg": null,
+    "id": "eurofighter_deu_targeting_pod",
+    "name": "LITENING III",
+    "nvd_resolution": null,
+    "platform_name": "Eurofighter [DEU]",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": null,
+    "zoom_range": {
+      "max": 95.66,
+      "min": 3.09
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 30.0,
+      "min": -30.0
+    },
+    "id": "f_2000a_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "F-2000A",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 300,
+      "width": 500
+    },
+    "vertical_limits_deg": {
+      "max": 30.0,
+      "min": -30.0
+    },
+    "zoom_range": {
+      "max": 95.66,
+      "min": 3.09
+    }
+  },
+  {
+    "horizontal_limits_deg": null,
+    "id": "f_2000a_targeting_pod",
+    "name": "LITENING III",
+    "nvd_resolution": null,
+    "platform_name": "F-2000A",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": null,
+    "zoom_range": {
+      "max": 95.66,
+      "min": 3.09
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 30.0,
+      "min": -30.0
+    },
+    "id": "typhoon_f_g_r_mk_4_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "Typhoon F.G.R. Mk. 4",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 300,
+      "width": 500
+    },
+    "vertical_limits_deg": {
+      "max": 30.0,
+      "min": -30.0
+    },
+    "zoom_range": {
+      "max": 95.66,
+      "min": 3.09
+    }
+  },
+  {
+    "horizontal_limits_deg": null,
+    "id": "typhoon_f_g_r_mk_4_targeting_pod",
+    "name": "LITENING III",
+    "nvd_resolution": null,
+    "platform_name": "Typhoon F.G.R. Mk. 4",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": null,
+    "zoom_range": {
+      "max": 95.66,
+      "min": 3.09
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 20.0,
+      "min": -20.0
+    },
+    "id": "f_4e_targeting_pod",
+    "name": null,
+    "nvd_resolution": null,
+    "platform_name": "F-4E",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 20.0,
+      "min": -20.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 20.0,
+      "min": -20.0
+    },
+    "id": "f_4e_kurnass_targeting_pod",
+    "name": null,
+    "nvd_resolution": null,
+    "platform_name": "F-4E Kurnass",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 20.0,
+      "min": -20.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 30.0,
+      "min": -30.0
+    },
+    "id": "f_4e_kurnass_2000_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "F-4E Kurnass 2000",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 30.0,
+      "min": -30.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": null,
+    "id": "f_4e_kurnass_2000_targeting_pod",
+    "name": "Pave Spike",
+    "nvd_resolution": null,
+    "platform_name": "F-4E Kurnass 2000",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 600,
+      "width": 800
+    },
+    "vertical_limits_deg": null,
+    "zoom_range": {
+      "max": 9.57,
+      "min": 3.01
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 20.0,
+      "min": -20.0
+    },
+    "id": "f_4f_late_targeting_pod",
+    "name": null,
+    "nvd_resolution": null,
+    "platform_name": "F-4F (late)",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 20.0,
+      "min": -20.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": null,
+    "id": "f_4f_kws_lv_targeting_pod",
+    "name": null,
+    "nvd_resolution": null,
+    "platform_name": "F-4F KWS-LV",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 512,
+      "width": 640
+    },
+    "vertical_limits_deg": null,
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 20.0,
+      "min": -20.0
+    },
+    "id": "f_5e_targeting_pod",
+    "name": null,
+    "nvd_resolution": null,
+    "platform_name": "F-5E",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 20.0,
+      "min": -20.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 20.0,
+      "min": -20.0
+    },
+    "id": "f_5e_chn_targeting_pod",
+    "name": null,
+    "nvd_resolution": null,
+    "platform_name": "F-5E [CHN]",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 20.0,
+      "min": -20.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 20.0,
+      "min": -20.0
+    },
+    "id": "b_kh_18kh_f_5e_fcu_targeting_pod",
+    "name": null,
+    "nvd_resolution": null,
+    "platform_name": "B.Kh.18Kh\n(\"F-5E FCU\")",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 20.0,
+      "min": -20.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 20.0,
+      "min": -20.0
+    },
+    "id": "b_kh_18kh_2003_f_5t_targeting_pod",
+    "name": null,
+    "nvd_resolution": null,
+    "platform_name": "B.Kh.18Kh (2003) (\"F-5T\")",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 20.0,
+      "min": -20.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 30.0,
+      "min": -30.0
+    },
+    "id": "f_14b_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "F-14B",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 30.0,
+      "min": -30.0
+    },
+    "zoom_range": {
+      "max": 10.0,
+      "min": 4.0
+    }
+  },
+  {
+    "horizontal_limits_deg": null,
+    "id": "f_14b_targeting_pod",
+    "name": "LANTIRN",
+    "nvd_resolution": null,
+    "platform_name": "F-14B",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": null,
+    "zoom_range": {
+      "max": 44.64,
+      "min": 12.55
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 30.0,
+      "min": -30.0
+    },
+    "id": "f_15a_targeting_pod",
+    "name": null,
+    "nvd_resolution": null,
+    "platform_name": "F-15A",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 30.0,
+      "min": -30.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 30.0,
+      "min": -30.0
+    },
+    "id": "f_15a_baz_targeting_pod",
+    "name": null,
+    "nvd_resolution": null,
+    "platform_name": "F-15A Baz",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 30.0,
+      "min": -30.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 30.0,
+      "min": -30.0
+    },
+    "id": "f_15c_targeting_pod",
+    "name": null,
+    "nvd_resolution": null,
+    "platform_name": "F-15C",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 30.0,
+      "min": -30.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 30.0,
+      "min": -30.0
+    },
+    "id": "f_15c_baz_mshupar_targeting_pod",
+    "name": null,
+    "nvd_resolution": null,
+    "platform_name": "F-15C Baz Mshupar",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 30.0,
+      "min": -30.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 30.0,
+      "min": -30.0
+    },
+    "id": "f_15e_targeting_pod",
+    "name": "LANTIRN",
+    "nvd_resolution": null,
+    "platform_name": "F-15E",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 300,
+      "width": 500
+    },
+    "vertical_limits_deg": {
+      "max": 30.0,
+      "min": -30.0
+    },
+    "zoom_range": {
+      "max": 44.64,
+      "min": 12.55
+    }
+  },
+  {
+    "horizontal_limits_deg": null,
+    "id": "f_15i_ra_am_targeting_pod",
+    "name": "LANTIRN",
+    "nvd_resolution": null,
+    "platform_name": "F-15I Ra'am",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 300,
+      "width": 500
+    },
+    "vertical_limits_deg": null,
+    "zoom_range": {
+      "max": 44.64,
+      "min": 12.55
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 20.0,
+      "min": -20.0
+    },
+    "id": "f_16a_10_targeting_pod",
+    "name": null,
+    "nvd_resolution": null,
+    "platform_name": "F-16A-10",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 20.0,
+      "min": -20.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 20.0,
+      "min": -20.0
+    },
+    "id": "f_16a_10_netz_targeting_pod",
+    "name": null,
+    "nvd_resolution": null,
+    "platform_name": "F-16A-10 Netz",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 20.0,
+      "min": -20.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 20.0,
+      "min": -20.0
+    },
+    "id": "f_16a_15_fra_targeting_pod",
+    "name": null,
+    "nvd_resolution": null,
+    "platform_name": "F-16A-15 [FRA]",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 20.0,
+      "min": -20.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": null,
+    "id": "b_kh_19_f_16a_15ocu_jpn_targeting_pod",
+    "name": "ATLIS II",
+    "nvd_resolution": {
+      "height": 800,
+      "width": 1200
+    },
+    "platform_name": "B.Kh.19 (\"F-16A-15OCU\") [JPN]",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 300,
+      "width": 500
+    },
+    "vertical_limits_deg": null,
+    "zoom_range": {
+      "max": 147.32,
+      "min": 12.28
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 20.0,
+      "min": -20.0
+    },
+    "id": "f_16a_20_chn_targeting_pod",
+    "name": null,
+    "nvd_resolution": null,
+    "platform_name": "F-16A-20 [CHN]",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 20.0,
+      "min": -20.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 20.0,
+      "min": -20.0
+    },
+    "id": "f_16aj_targeting_pod",
+    "name": null,
+    "nvd_resolution": null,
+    "platform_name": "F-16AJ",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 20.0,
+      "min": -20.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": null,
+    "id": "f_16am_15_targeting_pod",
+    "name": "LANTIRN",
+    "nvd_resolution": null,
+    "platform_name": "F-16AM-15",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 300,
+      "width": 500
+    },
+    "vertical_limits_deg": null,
+    "zoom_range": {
+      "max": 44.64,
+      "min": 12.55
+    }
+  },
+  {
+    "horizontal_limits_deg": null,
+    "id": "f_16c_40_barak_ii_targeting_pod",
+    "name": "LITENING II",
+    "nvd_resolution": null,
+    "platform_name": "F-16C-40 Barak II",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": null,
+    "zoom_range": {
+      "max": 49.11,
+      "min": 4.11
+    }
+  },
+  {
+    "horizontal_limits_deg": null,
+    "id": "f_16c_50_targeting_pod",
+    "name": "LITENING II",
+    "nvd_resolution": null,
+    "platform_name": "F-16C-50",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 300,
+      "width": 500
+    },
+    "vertical_limits_deg": null,
+    "zoom_range": {
+      "max": 49.11,
+      "min": 4.11
+    }
+  },
+  {
+    "horizontal_limits_deg": null,
+    "id": "f_16d_40_barak_ii_targeting_pod",
+    "name": "LITENING II",
+    "nvd_resolution": null,
+    "platform_name": "F-16D-40 Barak II",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 300,
+      "width": 500
+    },
+    "vertical_limits_deg": null,
+    "zoom_range": {
+      "max": 49.11,
+      "min": 4.11
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 20.0,
+      "min": -20.0
+    },
+    "id": "f_20a_targeting_pod",
+    "name": null,
+    "nvd_resolution": null,
+    "platform_name": "F-20A",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 20.0,
+      "min": -20.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": null,
+    "id": "f_111c_targeting_pod",
+    "name": "Pave Tack",
+    "nvd_resolution": null,
+    "platform_name": "F-111C",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": null,
+    "zoom_range": {
+      "max": 38.77,
+      "min": 7.38
+    }
+  },
+  {
+    "horizontal_limits_deg": null,
+    "id": "f_111f_targeting_pod",
+    "name": "Pave Tack",
+    "nvd_resolution": null,
+    "platform_name": "F-111F",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 300,
+      "width": 500
+    },
+    "vertical_limits_deg": null,
+    "zoom_range": {
+      "max": 38.77,
+      "min": 7.38
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 15.0,
+      "min": -15.0
+    },
+    "id": "f_117a_ocip_ii_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "F-117A OCIP II",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 300,
+      "width": 500
+    },
+    "vertical_limits_deg": {
+      "max": -5.0,
+      "min": -140.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 38.0,
+      "min": -38.0
+    },
+    "id": "harrier_g_r_mk_7_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "Harrier G.R. Mk. 7",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 300,
+      "width": 500
+    },
+    "vertical_limits_deg": {
+      "max": 38.0,
+      "min": -55.0
+    },
+    "zoom_range": {
+      "max": 30.69,
+      "min": 7.38
+    }
+  },
+  {
+    "horizontal_limits_deg": null,
+    "id": "harrier_g_r_mk_7_targeting_pod",
+    "name": "TIALD",
+    "nvd_resolution": null,
+    "platform_name": "Harrier G.R. Mk. 7",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 300,
+      "width": 500
+    },
+    "vertical_limits_deg": null,
+    "zoom_range": {
+      "max": 30.69,
+      "min": 7.38
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 20.0,
+      "min": -20.0
+    },
+    "id": "hunter_mk_58a_targeting_pod",
+    "name": null,
+    "nvd_resolution": null,
+    "platform_name": "Hunter Mk. 58A",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 20.0,
+      "min": -20.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": null,
+    "id": "j_10a_targeting_pod",
+    "name": "K/JDC03A",
+    "nvd_resolution": null,
+    "platform_name": "J-10A",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": null,
+    "zoom_range": {
+      "max": 49.11,
+      "min": 4.11
+    }
+  },
+  {
+    "horizontal_limits_deg": null,
+    "id": "jaguar_a_targeting_pod",
+    "name": "ATLIS II",
+    "nvd_resolution": {
+      "height": 500,
+      "width": 900
+    },
+    "platform_name": "Jaguar A",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": null,
+    "zoom_range": {
+      "max": 147.32,
+      "min": 12.28
+    }
+  },
+  {
+    "horizontal_limits_deg": null,
+    "id": "jaguar_e_targeting_pod",
+    "name": "ATLIS II",
+    "nvd_resolution": {
+      "height": 768,
+      "width": 1024
+    },
+    "platform_name": "Jaguar E",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": null,
+    "zoom_range": {
+      "max": 147.32,
+      "min": 12.28
+    }
+  },
+  {
+    "horizontal_limits_deg": null,
+    "id": "jaguar_g_r_mk_1a_targeting_pod",
+    "name": "TIALD",
+    "nvd_resolution": null,
+    "platform_name": "Jaguar G.R. Mk. 1A",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": null,
+    "zoom_range": {
+      "max": 30.69,
+      "min": 7.38
+    }
+  },
+  {
+    "horizontal_limits_deg": null,
+    "id": "jaguar_is_darin_ii_targeting_pod",
+    "name": "LITENING II",
+    "nvd_resolution": null,
+    "platform_name": "Jaguar IS (DARIN II)",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": null,
+    "zoom_range": {
+      "max": 49.11,
+      "min": 4.11
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 30.0,
+      "min": -30.0
+    },
+    "id": "jas_39a_targeting_pod",
+    "name": "LITENING II",
+    "nvd_resolution": null,
+    "platform_name": "JAS 39A",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 300,
+      "width": 500
+    },
+    "vertical_limits_deg": {
+      "max": 30.0,
+      "min": -30.0
+    },
+    "zoom_range": {
+      "max": 49.11,
+      "min": 4.11
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 30.0,
+      "min": -30.0
+    },
+    "id": "gripen_c_gbr_targeting_pod",
+    "name": "LITENING II",
+    "nvd_resolution": null,
+    "platform_name": "Gripen C [GBR]",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 300,
+      "width": 500
+    },
+    "vertical_limits_deg": {
+      "max": 30.0,
+      "min": -30.0
+    },
+    "zoom_range": {
+      "max": 49.11,
+      "min": 4.11
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 30.0,
+      "min": -30.0
+    },
+    "id": "jas_39c_targeting_pod",
+    "name": "LITENING II",
+    "nvd_resolution": null,
+    "platform_name": "JAS 39C",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 300,
+      "width": 500
+    },
+    "vertical_limits_deg": {
+      "max": 30.0,
+      "min": -30.0
+    },
+    "zoom_range": {
+      "max": 49.11,
+      "min": 4.11
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 30.0,
+      "min": -30.0
+    },
+    "id": "b_kh_20_jas_39c_jpn_targeting_pod",
+    "name": "LITENING II",
+    "nvd_resolution": null,
+    "platform_name": "B.Kh.20 (\"JAS 39C\") [JPN]",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 300,
+      "width": 500
+    },
+    "vertical_limits_deg": {
+      "max": 30.0,
+      "min": -30.0
+    },
+    "zoom_range": {
+      "max": 49.11,
+      "min": 4.11
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 30.0,
+      "min": -30.0
+    },
+    "id": "jas_39c_ebs_hu_targeting_pod",
+    "name": "LITENING II",
+    "nvd_resolution": null,
+    "platform_name": "JAS 39C EBS HU",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 300,
+      "width": 500
+    },
+    "vertical_limits_deg": {
+      "max": 30.0,
+      "min": -30.0
+    },
+    "zoom_range": {
+      "max": 49.11,
+      "min": 4.11
+    }
+  },
+  {
+    "horizontal_limits_deg": null,
+    "id": "jf_17_targeting_pod",
+    "name": "ASELPOD",
+    "nvd_resolution": null,
+    "platform_name": "JF-17",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": null,
+    "zoom_range": {
+      "max": 94.43,
+      "min": 3.53
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 30.0,
+      "min": -30.0
+    },
+    "id": "jh_7a_targeting_pod",
+    "name": "K/JDC03A",
+    "nvd_resolution": null,
+    "platform_name": "JH-7A",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 30.0,
+      "min": -30.0
+    },
+    "zoom_range": {
+      "max": 25.4,
+      "min": 6.15
+    }
+  },
+  {
+    "horizontal_limits_deg": null,
+    "id": "kfir_block_60_targeting_pod",
+    "name": "LITENING III",
+    "nvd_resolution": null,
+    "platform_name": "Kfir Block 60",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": null,
+    "zoom_range": {
+      "max": 95.66,
+      "min": 3.09
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 38.0,
+      "min": -38.0
+    },
+    "id": "mig_21_bison_targeting_pod",
+    "name": null,
+    "nvd_resolution": null,
+    "platform_name": "MiG-21 Bison",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 38.0,
+      "min": -55.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 0.1,
+      "min": -0.1
+    },
+    "id": "mig_21s_built_in_sight",
+    "nvd_resolution": {
+      "height": 300,
+      "width": 500
+    },
+    "platform_name": "MiG-21S",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 0.1,
+      "min": -0.1
+    },
+    "zoom_range": {
+      "max": 13.02,
+      "min": 2.0
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 35.0,
+      "min": -35.0
+    },
+    "id": "mig_27k_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "MiG-27K",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 1.0,
+      "min": -160.0
+    },
+    "zoom_range": {
+      "max": 23.02,
+      "min": 6.15
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 38.0,
+      "min": -38.0
+    },
+    "id": "mig_27k_targeting_pod",
+    "name": null,
+    "nvd_resolution": null,
+    "platform_name": "MiG-27K",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 38.0,
+      "min": -55.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 12.0,
+      "min": -12.0
+    },
+    "id": "mig_27m_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "MiG-27M",
+    "role": "built_in_sight",
+    "sensor_type": "Laser",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 6.0,
+      "min": -30.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 38.0,
+      "min": -38.0
+    },
+    "id": "mig_27m_targeting_pod",
+    "name": null,
+    "nvd_resolution": null,
+    "platform_name": "MiG-27M",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 38.0,
+      "min": -55.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 38.0,
+      "min": -38.0
+    },
+    "id": "mig_29smt_targeting_pod",
+    "name": null,
+    "nvd_resolution": null,
+    "platform_name": "MiG-29SMT",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 38.0,
+      "min": -55.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 35.0,
+      "min": -35.0
+    },
+    "id": "mirage_2000_5_f_targeting_pod",
+    "name": "DAMOCLES",
+    "nvd_resolution": null,
+    "platform_name": "Mirage 2000-5 F",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 15.0,
+      "min": -80.0
+    },
+    "zoom_range": {
+      "max": 73.66,
+      "min": 4.11
+    }
+  },
+  {
+    "horizontal_limits_deg": null,
+    "id": "mirage_2000_d_r2_targeting_pod",
+    "name": "CLDP",
+    "nvd_resolution": null,
+    "platform_name": "Mirage 2000 D R2",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": null,
+    "zoom_range": {
+      "max": 23.02,
+      "min": 6.15
+    }
+  },
+  {
+    "horizontal_limits_deg": null,
+    "id": "mirage_2000_d_rmv_targeting_pod",
+    "name": "DAMOCLES",
+    "nvd_resolution": null,
+    "platform_name": "Mirage 2000 D RMV",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 800,
+      "width": 1200
+    },
+    "vertical_limits_deg": null,
+    "zoom_range": {
+      "max": 73.66,
+      "min": 4.11
+    }
+  },
+  {
+    "horizontal_limits_deg": null,
+    "id": "mirage_4000_targeting_pod",
+    "name": "ATLIS II",
+    "nvd_resolution": {
+      "height": 500,
+      "width": 900
+    },
+    "platform_name": "Mirage 4000",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": null,
+    "zoom_range": {
+      "max": 147.32,
+      "min": 12.28
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 38.0,
+      "min": -38.0
+    },
+    "id": "q_5l_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "Q-5L",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 300,
+      "width": 500
+    },
+    "vertical_limits_deg": {
+      "max": 38.0,
+      "min": -55.0
+    },
+    "zoom_range": {
+      "max": 1.86,
+      "min": 1.51
+    }
+  },
+  {
+    "horizontal_limits_deg": null,
+    "id": "q_5l_targeting_pod",
+    "name": "K/PSZ01",
+    "nvd_resolution": null,
+    "platform_name": "Q-5L",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": null,
+    "zoom_range": {
+      "max": 23.02,
+      "min": 6.15
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 45.0,
+      "min": -45.0
+    },
+    "id": "rafale_c_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "Rafale C",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 600,
+      "width": 800
+    },
+    "vertical_limits_deg": {
+      "max": 60.0,
+      "min": -14.0
+    },
+    "zoom_range": {
+      "max": 73.66,
+      "min": 4.11
+    }
+  },
+  {
+    "horizontal_limits_deg": null,
+    "id": "rafale_c_targeting_pod",
+    "name": "DAMOCLES",
+    "nvd_resolution": null,
+    "platform_name": "Rafale C",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": null,
+    "zoom_range": {
+      "max": 73.66,
+      "min": 4.11
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 12.0,
+      "min": -12.0
+    },
+    "id": "su_17m4_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "Su-17M4",
+    "role": "built_in_sight",
+    "sensor_type": "Laser",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 6.0,
+      "min": -30.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 38.0,
+      "min": -38.0
+    },
+    "id": "su_17m4_targeting_pod",
+    "name": null,
+    "nvd_resolution": null,
+    "platform_name": "Su-17M4",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 38.0,
+      "min": -55.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 12.0,
+      "min": -12.0
+    },
+    "id": "su_22m3_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "Su-22M3",
+    "role": "built_in_sight",
+    "sensor_type": "Laser",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 6.0,
+      "min": -30.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 12.0,
+      "min": -12.0
+    },
+    "id": "su_22m3_ita_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "Su-22M3 [ITA]",
+    "role": "built_in_sight",
+    "sensor_type": "Laser",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 6.0,
+      "min": -30.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 12.0,
+      "min": -12.0
+    },
+    "id": "su_22m4_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "Su-22M4",
+    "role": "built_in_sight",
+    "sensor_type": "Laser",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 6.0,
+      "min": -30.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 38.0,
+      "min": -38.0
+    },
+    "id": "su_22m4_targeting_pod",
+    "name": null,
+    "nvd_resolution": null,
+    "platform_name": "Su-22M4",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 38.0,
+      "min": -55.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 12.0,
+      "min": -12.0
+    },
+    "id": "su_22m4_wtd_61_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "Su-22M4 (WTD 61)",
+    "role": "built_in_sight",
+    "sensor_type": "Laser",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 6.0,
+      "min": -30.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 38.0,
+      "min": -38.0
+    },
+    "id": "su_22m4_wtd_61_targeting_pod",
+    "name": null,
+    "nvd_resolution": null,
+    "platform_name": "Su-22M4 (WTD 61)",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 38.0,
+      "min": -55.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 12.0,
+      "min": -12.0
+    },
+    "id": "su_22um3k_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "Su-22UM3K",
+    "role": "built_in_sight",
+    "sensor_type": "Laser",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 6.0,
+      "min": -30.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 35.0,
+      "min": -35.0
+    },
+    "id": "su_24m2_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "Su-24M2",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 1.0,
+      "min": -160.0
+    },
+    "zoom_range": {
+      "max": 23.02,
+      "min": 6.15
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 38.0,
+      "min": -38.0
+    },
+    "id": "su_24m2_targeting_pod",
+    "name": null,
+    "nvd_resolution": null,
+    "platform_name": "Su-24M2",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 38.0,
+      "min": -55.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 12.0,
+      "min": -12.0
+    },
+    "id": "su_25_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "Su-25",
+    "role": "built_in_sight",
+    "sensor_type": "Laser",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 6.0,
+      "min": -30.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 12.0,
+      "min": -12.0
+    },
+    "id": "su_25_558_j_arz_su_25bm_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "Su-25 (558-j ARZ) (\"Su-25BM\")",
+    "role": "built_in_sight",
+    "sensor_type": "Laser",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 6.0,
+      "min": -30.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 38.0,
+      "min": -38.0
+    },
+    "id": "su_25_558_j_arz_su_25bm_targeting_pod",
+    "name": null,
+    "nvd_resolution": null,
+    "platform_name": "Su-25 (558-j ARZ) (\"Su-25BM\")",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 38.0,
+      "min": -55.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 12.0,
+      "min": -12.0
+    },
+    "id": "su_25k_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "Su-25K",
+    "role": "built_in_sight",
+    "sensor_type": "Laser",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 6.0,
+      "min": -30.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 15.0,
+      "min": -15.0
+    },
+    "id": "su_25sm3_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "Su-25SM3",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 800,
+      "width": 1200
+    },
+    "vertical_limits_deg": {
+      "max": 5.0,
+      "min": -30.0
+    },
+    "zoom_range": {
+      "max": 36.83,
+      "min": 4.92
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 38.0,
+      "min": -38.0
+    },
+    "id": "su_25sm3_targeting_pod",
+    "name": null,
+    "nvd_resolution": null,
+    "platform_name": "Su-25SM3",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 800,
+      "width": 1200
+    },
+    "vertical_limits_deg": {
+      "max": 38.0,
+      "min": -55.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 38.0,
+      "min": -38.0
+    },
+    "id": "su_25t_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "Su-25T",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 15.0,
+      "min": -80.0
+    },
+    "zoom_range": {
+      "max": 23.02,
+      "min": 6.15
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 38.0,
+      "min": -38.0
+    },
+    "id": "su_25t_targeting_pod",
+    "name": "Mercury",
+    "nvd_resolution": {
+      "height": 500,
+      "width": 900
+    },
+    "platform_name": "Su-25T",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 38.0,
+      "min": -55.0
+    },
+    "zoom_range": {
+      "max": 23.02,
+      "min": 6.15
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 38.0,
+      "min": -38.0
+    },
+    "id": "su_27sm_targeting_pod",
+    "name": null,
+    "nvd_resolution": null,
+    "platform_name": "Su-27SM",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 38.0,
+      "min": -55.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 35.0,
+      "min": -35.0
+    },
+    "id": "su_34_nvo_built_in_sight",
+    "nvd_resolution": {
+      "height": 300,
+      "width": 500
+    },
+    "platform_name": "Su-34 NVO",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 1.0,
+      "min": -160.0
+    },
+    "zoom_range": {
+      "max": 46.04,
+      "min": 6.15
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 38.0,
+      "min": -38.0
+    },
+    "id": "su_34_nvo_targeting_pod",
+    "name": null,
+    "nvd_resolution": null,
+    "platform_name": "Su-34 NVO",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 800,
+      "width": 1200
+    },
+    "vertical_limits_deg": {
+      "max": 38.0,
+      "min": -55.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 38.0,
+      "min": -38.0
+    },
+    "id": "su_25tm_su_39_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "Su-25TM (\"Su-39\")",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 15.0,
+      "min": -80.0
+    },
+    "zoom_range": {
+      "max": 23.02,
+      "min": 6.15
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 38.0,
+      "min": -38.0
+    },
+    "id": "su_25tm_su_39_targeting_pod",
+    "name": "Mercury",
+    "nvd_resolution": {
+      "height": 300,
+      "width": 500
+    },
+    "platform_name": "Su-25TM (\"Su-39\")",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 38.0,
+      "min": -55.0
+    },
+    "zoom_range": {
+      "max": 23.02,
+      "min": 6.15
+    }
+  },
+  {
+    "horizontal_limits_deg": null,
+    "id": "super_etendard_targeting_pod",
+    "name": "ATLIS II",
+    "nvd_resolution": {
+      "height": 500,
+      "width": 900
+    },
+    "platform_name": "Super \u00c9tendard",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": null,
+    "zoom_range": {
+      "max": 147.32,
+      "min": 12.28
+    }
+  },
+  {
+    "horizontal_limits_deg": null,
+    "id": "a_200a_1995_italian_ids_tornado_1995_targeting_pod",
+    "name": "CLDP",
+    "nvd_resolution": null,
+    "platform_name": "A-200A (1995) (\"Italian IDS-Tornado (1995)\")",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": null,
+    "zoom_range": {
+      "max": 23.02,
+      "min": 6.15
+    }
+  },
+  {
+    "horizontal_limits_deg": null,
+    "id": "ids_tornado_assta_1_targeting_pod",
+    "name": "LITENING II",
+    "nvd_resolution": null,
+    "platform_name": "IDS-Tornado (ASSTA 1)",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": null,
+    "zoom_range": {
+      "max": 49.11,
+      "min": 4.11
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 38.0,
+      "min": -38.0
+    },
+    "id": "tornado_g_r_mk_1_targeting_pod",
+    "name": "TIALD",
+    "nvd_resolution": null,
+    "platform_name": "Tornado G.R. Mk. 1",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 38.0,
+      "min": -55.0
+    },
+    "zoom_range": {
+      "max": 30.69,
+      "min": 7.38
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 38.0,
+      "min": -38.0
+    },
+    "id": "tornado_g_r_mk_4_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "Tornado G.R. Mk. 4",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 600,
+      "width": 800
+    },
+    "vertical_limits_deg": {
+      "max": 38.0,
+      "min": -55.0
+    },
+    "zoom_range": {
+      "max": 95.66,
+      "min": 3.09
+    }
+  },
+  {
+    "horizontal_limits_deg": null,
+    "id": "tornado_g_r_mk_4_targeting_pod",
+    "name": "LITENING III",
+    "nvd_resolution": null,
+    "platform_name": "Tornado G.R. Mk. 4",
+    "role": "targeting_pod",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 600,
+      "width": 800
+    },
+    "vertical_limits_deg": null,
+    "zoom_range": {
+      "max": 95.66,
+      "min": 3.09
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 89.0,
+      "min": -114.0
+    },
+    "id": "mrh_109a_a109_eoa_2_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "MRH-109A\n(\"A109 EOA-2\")",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 24.0,
+      "min": -49.0
+    },
+    "zoom_range": {
+      "max": 10.0,
+      "min": 2.5
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 114.0,
+      "min": -114.0
+    },
+    "id": "a129_atp_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "A129 (ATP)",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 600,
+      "width": 800
+    },
+    "vertical_limits_deg": {
+      "max": 24.0,
+      "min": -49.0
+    },
+    "zoom_range": {
+      "max": 12.0,
+      "min": 3.0
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 114.0,
+      "min": -114.0
+    },
+    "id": "ah_129c_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "AH-129C",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 600,
+      "width": 800
+    },
+    "vertical_limits_deg": {
+      "max": 24.0,
+      "min": -49.0
+    },
+    "zoom_range": {
+      "max": 12.0,
+      "min": 3.0
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 114.0,
+      "min": -114.0
+    },
+    "id": "ah_129d_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "AH-129D",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 800,
+      "width": 1200
+    },
+    "vertical_limits_deg": {
+      "max": 24.0,
+      "min": -49.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 115.0,
+      "min": -115.0
+    },
+    "id": "ah_1e_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "AH-1E",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 25.0,
+      "min": -50.0
+    },
+    "zoom_range": {
+      "max": 13.02,
+      "min": 2.0
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 115.0,
+      "min": -115.0
+    },
+    "id": "ah_1f_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "AH-1F",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 600,
+      "width": 800
+    },
+    "vertical_limits_deg": {
+      "max": 25.0,
+      "min": -50.0
+    },
+    "zoom_range": {
+      "max": 13.02,
+      "min": 2.0
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 115.0,
+      "min": -115.0
+    },
+    "id": "ah_1f_tzefa_built_in_sight",
+    "nvd_resolution": {
+      "height": 600,
+      "width": 800
+    },
+    "platform_name": "AH-1F Tzefa",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 25.0,
+      "min": -50.0
+    },
+    "zoom_range": {
+      "max": 13.02,
+      "min": 2.0
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 115.0,
+      "min": -115.0
+    },
+    "id": "ah_1q_tzefa_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "AH-1Q Tzefa",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 600,
+      "width": 800
+    },
+    "vertical_limits_deg": {
+      "max": 25.0,
+      "min": -50.0
+    },
+    "zoom_range": {
+      "max": 13.0,
+      "min": 2.0
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 115.0,
+      "min": -115.0
+    },
+    "id": "ah_1s_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "AH-1S",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 600,
+      "width": 800
+    },
+    "vertical_limits_deg": {
+      "max": 25.0,
+      "min": -50.0
+    },
+    "zoom_range": {
+      "max": 13.02,
+      "min": 2.0
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 115.0,
+      "min": -115.0
+    },
+    "id": "ah_1s_4th_athu_kisarazu_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "AH-1S (4th ATHU) \"Kisarazu\"",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 600,
+      "width": 800
+    },
+    "vertical_limits_deg": {
+      "max": 25.0,
+      "min": -50.0
+    },
+    "zoom_range": {
+      "max": 13.02,
+      "min": 2.0
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 115.0,
+      "min": -115.0
+    },
+    "id": "ah_1w_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "AH-1W",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 600,
+      "width": 800
+    },
+    "vertical_limits_deg": {
+      "max": 25.0,
+      "min": -50.0
+    },
+    "zoom_range": {
+      "max": 13.02,
+      "min": 2.0
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 115.0,
+      "min": -115.0
+    },
+    "id": "ah_1w_chn_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "AH-1W [CHN]",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 600,
+      "width": 800
+    },
+    "vertical_limits_deg": {
+      "max": 25.0,
+      "min": -50.0
+    },
+    "zoom_range": {
+      "max": 13.02,
+      "min": 2.0
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 115.0,
+      "min": -115.0
+    },
+    "id": "ah_1z_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "AH-1Z",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 800,
+      "width": 1200
+    },
+    "vertical_limits_deg": {
+      "max": 25.0,
+      "min": -50.0
+    },
+    "zoom_range": {
+      "max": 13.02,
+      "min": 2.0
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 180.0,
+      "min": -180.0
+    },
+    "id": "ah_6m_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "AH-6M",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 800,
+      "width": 1200
+    },
+    "vertical_limits_deg": {
+      "max": 90.0,
+      "min": -90.0
+    },
+    "zoom_range": {
+      "max": 19.04,
+      "min": 10.0
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 95.0,
+      "min": -95.0
+    },
+    "id": "abh_demonstrator_ah_60_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "ABH Demonstrator\n(\"AH-60\")",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 800,
+      "width": 1200
+    },
+    "vertical_limits_deg": {
+      "max": 30.0,
+      "min": -80.0
+    },
+    "zoom_range": {
+      "max": 63.5,
+      "min": 3.0
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 115.0,
+      "min": -115.0
+    },
+    "id": "ah_64a_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "AH-64A",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 600,
+      "width": 800
+    },
+    "vertical_limits_deg": {
+      "max": 25.0,
+      "min": -50.0
+    },
+    "zoom_range": {
+      "max": 63.5,
+      "min": 3.0
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 115.0,
+      "min": -115.0
+    },
+    "id": "ah_64a_grc_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "AH-64A ([GRC])",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 600,
+      "width": 800
+    },
+    "vertical_limits_deg": {
+      "max": 25.0,
+      "min": -50.0
+    },
+    "zoom_range": {
+      "max": 63.5,
+      "min": 3.0
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 115.0,
+      "min": -115.0
+    },
+    "id": "ah_64a_peten_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "AH-64A Peten",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 600,
+      "width": 800
+    },
+    "vertical_limits_deg": {
+      "max": 25.0,
+      "min": -50.0
+    },
+    "zoom_range": {
+      "max": 63.5,
+      "min": 3.0
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 115.0,
+      "min": -115.0
+    },
+    "id": "ah_64a_peten_usa_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "AH-64A Peten [USA]",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 600,
+      "width": 800
+    },
+    "vertical_limits_deg": {
+      "max": 25.0,
+      "min": -50.0
+    },
+    "zoom_range": {
+      "max": 63.5,
+      "min": 3.0
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 115.0,
+      "min": -115.0
+    },
+    "id": "ah_64a_peten_pv624_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "AH-64A Peten (PV624)",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 600,
+      "width": 800
+    },
+    "vertical_limits_deg": {
+      "max": 25.0,
+      "min": -50.0
+    },
+    "zoom_range": {
+      "max": 63.5,
+      "min": 3.0
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 115.0,
+      "min": -115.0
+    },
+    "id": "ah_64a_ahs_swe_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "AH-64A\n(\"AHS\") [SWE]",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 600,
+      "width": 800
+    },
+    "vertical_limits_deg": {
+      "max": 25.0,
+      "min": -50.0
+    },
+    "zoom_range": {
+      "max": 63.5,
+      "min": 3.0
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 115.0,
+      "min": -115.0
+    },
+    "id": "ah_64d_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "AH-64D",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 600,
+      "width": 800
+    },
+    "vertical_limits_deg": {
+      "max": 25.0,
+      "min": -50.0
+    },
+    "zoom_range": {
+      "max": 63.5,
+      "min": 3.0
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 115.0,
+      "min": -115.0
+    },
+    "id": "ah_64d_fra_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "AH-64D [FRA]",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 600,
+      "width": 800
+    },
+    "vertical_limits_deg": {
+      "max": 25.0,
+      "min": -50.0
+    },
+    "zoom_range": {
+      "max": 63.5,
+      "min": 3.0
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 115.0,
+      "min": -115.0
+    },
+    "id": "ah_64d_jpn_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "AH-64D [JPN]",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 600,
+      "width": 800
+    },
+    "vertical_limits_deg": {
+      "max": 25.0,
+      "min": -50.0
+    },
+    "zoom_range": {
+      "max": 63.5,
+      "min": 3.0
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 115.0,
+      "min": -115.0
+    },
+    "id": "ah_64d_saraph_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "AH-64D Saraph",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 600,
+      "width": 800
+    },
+    "vertical_limits_deg": {
+      "max": 25.0,
+      "min": -50.0
+    },
+    "zoom_range": {
+      "max": 63.5,
+      "min": 3.0
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 115.0,
+      "min": -115.0
+    },
+    "id": "apache_a_h_mk_1_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "Apache A.H. Mk. 1",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 600,
+      "width": 800
+    },
+    "vertical_limits_deg": {
+      "max": 25.0,
+      "min": -50.0
+    },
+    "zoom_range": {
+      "max": 63.5,
+      "min": 3.0
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 90.0,
+      "min": -115.0
+    },
+    "id": "bo_105_cb_2_helitow_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "BO 105 CB-2 (HeliTOW)",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 25.0,
+      "min": -25.0
+    },
+    "zoom_range": {
+      "max": 12.0,
+      "min": 3.0
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 90.0,
+      "min": -115.0
+    },
+    "id": "bo_105_pah_1_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "BO 105 PAH 1",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 25.0,
+      "min": -25.0
+    },
+    "zoom_range": {
+      "max": 10.81,
+      "min": 3.2
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 90.0,
+      "min": -115.0
+    },
+    "id": "bo_105_pah_1_a1_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "BO 105 PAH 1 A1",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 25.0,
+      "min": -25.0
+    },
+    "zoom_range": {
+      "max": 10.81,
+      "min": 3.2
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 89.0,
+      "min": -114.0
+    },
+    "id": "g_lynx_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "G-LYNX",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 600,
+      "width": 800
+    },
+    "vertical_limits_deg": {
+      "max": 24.0,
+      "min": -49.0
+    },
+    "zoom_range": {
+      "max": 12.0,
+      "min": 3.0
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 115.0,
+      "min": -115.0
+    },
+    "id": "ch_34a_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "CH-34A",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 25.0,
+      "min": -50.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 115.0,
+      "min": -115.0
+    },
+    "id": "h_34a_fra_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "H-34A [FRA]",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 25.0,
+      "min": -50.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 60.0,
+      "min": -60.0
+    },
+    "id": "hkp_2_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "hkp 2",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 25.0,
+      "min": -40.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 115.0,
+      "min": -115.0
+    },
+    "id": "hkp_3c_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "hkp 3C",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 25.0,
+      "min": -50.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 90.0,
+      "min": -115.0
+    },
+    "id": "hkp_9a_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "hkp 9A",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 25.0,
+      "min": -25.0
+    },
+    "zoom_range": {
+      "max": 12.0,
+      "min": 3.0
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 90.0,
+      "min": -115.0
+    },
+    "id": "hkp_9a_fc_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "hkp 9A (FC)",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 600,
+      "width": 800
+    },
+    "vertical_limits_deg": {
+      "max": 25.0,
+      "min": -25.0
+    },
+    "zoom_range": {
+      "max": 12.0,
+      "min": 3.0
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 90.0,
+      "min": -115.0
+    },
+    "id": "i_a_r_316_b_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "I.A.R.316 B",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 25.0,
+      "min": -50.0
+    },
+    "zoom_range": {
+      "max": 10.0,
+      "min": 2.5
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 50.0,
+      "min": -50.0
+    },
+    "id": "ka_29_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "Ka-29",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 20.0,
+      "min": -40.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 35.0,
+      "min": -35.0
+    },
+    "id": "ka_50_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "Ka-50",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 15.0,
+      "min": -80.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 135.0,
+      "min": -135.0
+    },
+    "id": "ka_52_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "Ka-52",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 600,
+      "width": 800
+    },
+    "vertical_limits_deg": {
+      "max": 20.0,
+      "min": -80.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 89.0,
+      "min": -114.0
+    },
+    "id": "lynx_a_h_mk_1_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "Lynx A.H. Mk. 1",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 600,
+      "width": 800
+    },
+    "vertical_limits_deg": {
+      "max": 24.0,
+      "min": -49.0
+    },
+    "zoom_range": {
+      "max": 12.0,
+      "min": 3.0
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 95.0,
+      "min": -95.0
+    },
+    "id": "md_500_orev_lahatut_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "MD 500/Orev \"Lahatut\"",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 30.0,
+      "min": -30.0
+    },
+    "zoom_range": {
+      "max": 13.02,
+      "min": 2.0
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 115.0,
+      "min": -115.0
+    },
+    "id": "mh_60l_dap_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "MH-60L DAP",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 800,
+      "width": 1200
+    },
+    "vertical_limits_deg": {
+      "max": 25.0,
+      "min": -50.0
+    },
+    "zoom_range": {
+      "max": 63.5,
+      "min": 3.0
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 30.0,
+      "min": -30.0
+    },
+    "id": "mi_4av_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "Mi-4AV",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 8.0,
+      "min": -55.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 50.0,
+      "min": -50.0
+    },
+    "id": "mi_8amtsh_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "Mi-8AMTSh",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 20.0,
+      "min": -40.0
+    },
+    "zoom_range": {
+      "max": 10.0,
+      "min": 3.3
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 180.0,
+      "min": -180.0
+    },
+    "id": "mi_8amtsh_vn_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "Mi-8AMTSh-VN",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 600,
+      "width": 800
+    },
+    "vertical_limits_deg": {
+      "max": 60.0,
+      "min": -89.0
+    },
+    "zoom_range": {
+      "max": 66.96,
+      "min": 12.28
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 30.0,
+      "min": -30.0
+    },
+    "id": "mi_8tbk_mi_8tb_deu_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "Mi-8TBK (\"Mi-8TB\") [DEU]",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 15.0,
+      "min": -55.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 30.0,
+      "min": -30.0
+    },
+    "id": "mi_8tv_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "Mi-8TV",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 15.0,
+      "min": -55.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 30.0,
+      "min": -30.0
+    },
+    "id": "mi_24a_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "Mi-24A",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 3.0,
+      "min": -55.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 50.0,
+      "min": -50.0
+    },
+    "id": "mi_24d_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "Mi-24D",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 20.0,
+      "min": -40.0
+    },
+    "zoom_range": {
+      "max": 10.0,
+      "min": 3.3
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 50.0,
+      "min": -50.0
+    },
+    "id": "mi_24d_ita_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "Mi-24D [ITA]",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 20.0,
+      "min": -40.0
+    },
+    "zoom_range": {
+      "max": 10.0,
+      "min": 3.3
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 50.0,
+      "min": -50.0
+    },
+    "id": "mi_24p_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "Mi-24P",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 20.0,
+      "min": -40.0
+    },
+    "zoom_range": {
+      "max": 10.0,
+      "min": 3.3
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 50.0,
+      "min": -50.0
+    },
+    "id": "mi_24p_deu_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "Mi-24P [DEU]",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 20.0,
+      "min": -40.0
+    },
+    "zoom_range": {
+      "max": 10.0,
+      "min": 3.3
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 50.0,
+      "min": -50.0
+    },
+    "id": "mi_24p_hfs_80_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "Mi-24P (HFS 80)",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 20.0,
+      "min": -40.0
+    },
+    "zoom_range": {
+      "max": 10.0,
+      "min": 3.3
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 50.0,
+      "min": -50.0
+    },
+    "id": "mi_24p_ita_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "Mi-24P [ITA]",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 20.0,
+      "min": -40.0
+    },
+    "zoom_range": {
+      "max": 10.0,
+      "min": 3.3
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 50.0,
+      "min": -50.0
+    },
+    "id": "mi_24v_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "Mi-24V",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 20.0,
+      "min": -40.0
+    },
+    "zoom_range": {
+      "max": 10.0,
+      "min": 3.3
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 50.0,
+      "min": -50.0
+    },
+    "id": "mi_24v_ita_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "Mi-24V [ITA]",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 20.0,
+      "min": -40.0
+    },
+    "zoom_range": {
+      "max": 10.0,
+      "min": 3.3
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 109.0,
+      "min": -109.0
+    },
+    "id": "mi_28a_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "Mi-28A",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 12.0,
+      "min": -39.0
+    },
+    "zoom_range": {
+      "max": 73.66,
+      "min": 3.7
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 109.0,
+      "min": -109.0
+    },
+    "id": "mi_28n_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "Mi-28N",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 600,
+      "width": 800
+    },
+    "vertical_limits_deg": {
+      "max": 12.0,
+      "min": -39.0
+    },
+    "zoom_range": {
+      "max": 73.66,
+      "min": 3.7
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 109.0,
+      "min": -109.0
+    },
+    "id": "mi_28nm_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "Mi-28NM",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 800,
+      "width": 1200
+    },
+    "vertical_limits_deg": {
+      "max": 12.0,
+      "min": -39.0
+    },
+    "zoom_range": {
+      "max": 73.66,
+      "min": 3.7
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 125.0,
+      "min": -125.0
+    },
+    "id": "mi_35m_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "Mi-35M",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 600,
+      "width": 800
+    },
+    "vertical_limits_deg": {
+      "max": 30.0,
+      "min": -80.0
+    },
+    "zoom_range": {
+      "max": 73.66,
+      "min": 3.7
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 125.0,
+      "min": -125.0
+    },
+    "id": "mi_35m_chn_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "Mi-35M [CHN]",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 600,
+      "width": 800
+    },
+    "vertical_limits_deg": {
+      "max": 30.0,
+      "min": -80.0
+    },
+    "zoom_range": {
+      "max": 73.66,
+      "min": 3.7
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 180.0,
+      "min": -180.0
+    },
+    "id": "oh_58d_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "OH-58D",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 800,
+      "width": 1200
+    },
+    "vertical_limits_deg": {
+      "max": 30.0,
+      "min": -30.0
+    },
+    "zoom_range": {
+      "max": 36.83,
+      "min": 9.21
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 180.0,
+      "min": -180.0
+    },
+    "id": "oh_58d_chn_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "OH-58D [CHN]",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 800,
+      "width": 1200
+    },
+    "vertical_limits_deg": {
+      "max": 30.0,
+      "min": -30.0
+    },
+    "zoom_range": {
+      "max": 36.83,
+      "min": 9.21
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 115.0,
+      "min": -115.0
+    },
+    "id": "rooivalk_mk_1_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "Rooivalk Mk. 1",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 600,
+      "width": 800
+    },
+    "vertical_limits_deg": {
+      "max": 25.0,
+      "min": -55.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 60.0,
+      "min": -60.0
+    },
+    "id": "se_313_b_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "SE 313 B",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 25.0,
+      "min": -40.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 60.0,
+      "min": -60.0
+    },
+    "id": "se_313_b_deu_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "SE 313 B [DEU]",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 25.0,
+      "min": -40.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 90.0,
+      "min": -115.0
+    },
+    "id": "sa_316_b_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "SA 316 B",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 25.0,
+      "min": -50.0
+    },
+    "zoom_range": {
+      "max": 10.0,
+      "min": 2.5
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 90.0,
+      "min": -115.0
+    },
+    "id": "sa_341_f_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "SA 341 F",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 25.0,
+      "min": -50.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 90.0,
+      "min": -115.0
+    },
+    "id": "sa_342_l1_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "SA 342 L1",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 25.0,
+      "min": -50.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 90.0,
+      "min": -115.0
+    },
+    "id": "sa_342_m_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "SA 342 M",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 600,
+      "width": 800
+    },
+    "vertical_limits_deg": {
+      "max": 25.0,
+      "min": -50.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 49.0,
+      "min": -49.0
+    },
+    "id": "scout_a_h_mk_1_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "Scout A.H. Mk. 1",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 24.0,
+      "min": -39.0
+    },
+    "zoom_range": {
+      "max": 10.0,
+      "min": 2.5
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 50.0,
+      "min": -50.0
+    },
+    "id": "superhind_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "SuperHind",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 600,
+      "width": 800
+    },
+    "vertical_limits_deg": {
+      "max": 20.0,
+      "min": -40.0
+    },
+    "zoom_range": {
+      "max": 73.66,
+      "min": 3.7
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 115.0,
+      "min": -115.0
+    },
+    "id": "t129_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "T129",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 600,
+      "width": 800
+    },
+    "vertical_limits_deg": {
+      "max": 25.0,
+      "min": -50.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 119.0,
+      "min": -119.0
+    },
+    "id": "tigre_had_f_b1_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "Tigre HAD/F B1",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 600,
+      "width": 800
+    },
+    "vertical_limits_deg": {
+      "max": 39.0,
+      "min": -24.0
+    },
+    "zoom_range": {
+      "max": 92.07,
+      "min": 3.7
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 119.0,
+      "min": -119.0
+    },
+    "id": "tigre_had_f_b2_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "Tigre HAD/F B2",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 800,
+      "width": 1200
+    },
+    "vertical_limits_deg": {
+      "max": 39.0,
+      "min": -24.0
+    },
+    "zoom_range": {
+      "max": 92.07,
+      "min": 3.7
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 119.0,
+      "min": -119.0
+    },
+    "id": "tigre_hap_f_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "Tigre HAP/F",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 600,
+      "width": 800
+    },
+    "vertical_limits_deg": {
+      "max": 39.0,
+      "min": -24.0
+    },
+    "zoom_range": {
+      "max": 92.07,
+      "min": 3.7
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 180.0,
+      "min": -180.0
+    },
+    "id": "uh_tiger_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "UH Tiger",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 600,
+      "width": 800
+    },
+    "vertical_limits_deg": {
+      "max": 24.0,
+      "min": -59.0
+    },
+    "zoom_range": {
+      "max": 92.07,
+      "min": 3.7
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 115.0,
+      "min": -115.0
+    },
+    "id": "uh_1b_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "UH-1B",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 25.0,
+      "min": -50.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 115.0,
+      "min": -115.0
+    },
+    "id": "uh_1c_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "UH-1C",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 25.0,
+      "min": -50.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 60.0,
+      "min": -60.0
+    },
+    "id": "uh_1c_xm30_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "UH-1C (XM30)",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 8.0,
+      "min": -45.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 115.0,
+      "min": -115.0
+    },
+    "id": "uh_1d_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "UH-1D",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 25.0,
+      "min": -50.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 89.0,
+      "min": -114.0
+    },
+    "id": "wasp_h_a_s_mk_1_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "Wasp H.A.S. Mk. 1",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 24.0,
+      "min": -49.0
+    },
+    "zoom_range": {
+      "max": 10.0,
+      "min": 2.5
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 75.0,
+      "min": -75.0
+    },
+    "id": "wessex_h_u_mk_5_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "Wessex H.U. Mk. 5",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 30.0,
+      "min": -25.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 115.0,
+      "min": -115.0
+    },
+    "id": "yah_64a_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "YAH-64A",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 600,
+      "width": 800
+    },
+    "vertical_limits_deg": {
+      "max": 25.0,
+      "min": -50.0
+    },
+    "zoom_range": {
+      "max": 63.5,
+      "min": 3.0
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 90.0,
+      "min": -115.0
+    },
+    "id": "z_9w_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "Z-9W",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 25.0,
+      "min": -50.0
+    },
+    "zoom_range": {
+      "max": 81.84,
+      "min": 4.11
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 115.0,
+      "min": -115.0
+    },
+    "id": "z_9wa_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "Z-9WA",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 600,
+      "width": 800
+    },
+    "vertical_limits_deg": {
+      "max": 30.0,
+      "min": -80.0
+    },
+    "zoom_range": {
+      "max": 81.84,
+      "min": 4.11
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 90.0,
+      "min": -115.0
+    },
+    "id": "z_10_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "Z-10",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 600,
+      "width": 800
+    },
+    "vertical_limits_deg": {
+      "max": 25.0,
+      "min": -50.0
+    },
+    "zoom_range": {
+      "max": 81.84,
+      "min": 4.11
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 90.0,
+      "min": -115.0
+    },
+    "id": "z_11wa_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "Z-11WA",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 600,
+      "width": 800
+    },
+    "vertical_limits_deg": {
+      "max": 25.0,
+      "min": -50.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 115.0,
+      "min": -115.0
+    },
+    "id": "z_19_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "Z-19",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 600,
+      "width": 800
+    },
+    "vertical_limits_deg": {
+      "max": 30.0,
+      "min": -80.0
+    },
+    "zoom_range": {
+      "max": 81.84,
+      "min": 4.11
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 115.0,
+      "min": -115.0
+    },
+    "id": "z_19e_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "Z-19E",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 600,
+      "width": 800
+    },
+    "vertical_limits_deg": {
+      "max": 30.0,
+      "min": -80.0
+    },
+    "zoom_range": {
+      "max": 81.84,
+      "min": 4.11
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 180.0,
+      "min": -180.0
+    },
+    "id": "mq_1a_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "MQ-1A",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 768,
+      "width": 1024
+    },
+    "vertical_limits_deg": {
+      "max": 19.0,
+      "min": -80.0
+    },
+    "zoom_range": {
+      "max": 147.32,
+      "min": 5.9
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 180.0,
+      "min": -180.0
+    },
+    "id": "orion_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "Orion",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 768,
+      "width": 1024
+    },
+    "vertical_limits_deg": {
+      "max": 19.0,
+      "min": -80.0
+    },
+    "zoom_range": {
+      "max": 147.32,
+      "min": 5.9
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 180.0,
+      "min": -180.0
+    },
+    "id": "raven_s_eye_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "Raven's Eye",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 768,
+      "width": 1024
+    },
+    "vertical_limits_deg": {
+      "max": 90.0,
+      "min": -90.0
+    },
+    "zoom_range": null
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 180.0,
+      "min": -180.0
+    },
+    "id": "yi_long_1_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "Yi Long 1",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 768,
+      "width": 1024
+    },
+    "vertical_limits_deg": {
+      "max": 19.0,
+      "min": -80.0
+    },
+    "zoom_range": {
+      "max": 147.32,
+      "min": 5.9
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 180.0,
+      "min": -180.0
+    },
+    "id": "zala_421_16em_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "ZALA 421-16EM",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": null,
+    "vertical_limits_deg": {
+      "max": 15.0,
+      "min": -80.0
+    },
+    "zoom_range": {
+      "max": 14.74,
+      "min": 2.14
+    }
+  },
+  {
+    "horizontal_limits_deg": {
+      "max": 180.0,
+      "min": -180.0
+    },
+    "id": "zala_421_16em_z_16ik35_built_in_sight",
+    "nvd_resolution": null,
+    "platform_name": "ZALA 421-16EM (Z-16IK35)",
+    "role": "built_in_sight",
+    "sensor_type": "TV",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "TGP and sights"
+      }
+    ],
+    "thermal_resolution": {
+      "height": 768,
+      "width": 1024
+    },
+    "vertical_limits_deg": {
+      "max": 15.0,
+      "min": -80.0
+    },
+    "zoom_range": {
+      "max": 14.74,
+      "min": 2.14
+    }
+  }
+]

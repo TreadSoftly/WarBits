@@ -1,0 +1,19 @@
+{
+  "counts": {
+    "sensors": 218,
+    "terrain": 4,
+    "vehicles": 282,
+    "warheads": 352,
+    "weapons": 352
+  },
+  "sources": {
+    "loadouts": "specialialdata.xlsx",
+    "sensors": "WarThunder_FactChecker1.xlsx",
+    "vehicles": "WarThunder_FactChecker2.xlsx",
+    "warheads": "WarThunder_FactChecker1.xlsx",
+    "weapons": "WarThunder_FactChecker1.xlsx"
+  },
+  "warnings": [
+    "Loadouts table is empty."
+  ]
+}

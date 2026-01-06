@@ -1,0 +1,4 @@
+[
+  {"vehicle_id": "vehicle:test_tank", "length_m": 6.0, "span_m": 3.0, "height_m": 2.0},
+  {"vehicle_id": "vehicle:missing", "length_m": 1.0, "span_m": 1.0, "height_m": 1.0}
+]

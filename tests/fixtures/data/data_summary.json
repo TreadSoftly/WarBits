@@ -1,0 +1,11 @@
+{
+  "counts": {
+    "sensors": 1,
+    "terrain": 1,
+    "vehicles": 1,
+    "warheads": 1,
+    "weapons": 1
+  },
+  "sources": {},
+  "warnings": []
+}

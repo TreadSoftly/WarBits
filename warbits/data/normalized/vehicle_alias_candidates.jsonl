@@ -1,0 +1,2 @@
+{"alias_vehicle_id": "a_10a_early", "alias_name": "A-10A early", "canonical_vehicle_id": "a_10a", "canonical_name": "A-10A", "rule": "strip early/late"}
+{"alias_vehicle_id": "a_10a_late", "alias_name": "A-10A late", "canonical_vehicle_id": "a_10a", "canonical_name": "A-10A", "rule": "strip early/late"}

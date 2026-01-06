@@ -1,0 +1,14 @@
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]
+recursive-exclude * *.nbi
+recursive-exclude * *.nbc
+recursive-exclude *.egg-info *
+prune .pytest_cache
+prune build
+prune dist
+prune warbits.egg-info
+prune warbits/lib
+prune dataraw
+prune datanormalized
+prune profiling
+exclude logs.txt

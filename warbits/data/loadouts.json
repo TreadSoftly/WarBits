@@ -1,0 +1,12 @@
+{
+  "hardpoints": [],
+  "loadout_items": [],
+  "loadouts": [],
+  "notes": "Custom loadouts sheet is irregular; defer parsing until schema is fixed.",
+  "sources": [
+    {
+      "book": "specialialdata.xlsx",
+      "sheet": "Custom Loadouts"
+    }
+  ]
+}

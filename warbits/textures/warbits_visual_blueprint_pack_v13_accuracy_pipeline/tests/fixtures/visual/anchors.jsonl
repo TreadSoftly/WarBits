@@ -1,0 +1,2 @@
+{"blueprint_id":"vehicle:test_tank","anchors":{"center":[3,1.5,1],"nose":[6,1.5,1],"tail":[0,1.5,1],"turret_pivot":[3,1.5,2]}}
+{"blueprint_id":"proc:vehicle:box","anchors":{"center":[0.5,0.5,0],"nose":[1,0.5,0],"tail":[0,0.5,0]}}

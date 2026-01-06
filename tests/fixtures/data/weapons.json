@@ -1,0 +1,13 @@
+[
+  {
+    "id": "test_missile",
+    "name": "Test Missile",
+    "weapon_type": "air_to_air_missile",
+    "warhead_id": "warhead_test_missile",
+    "sources": [
+      {
+        "book": "fixtures"
+      }
+    ]
+  }
+]

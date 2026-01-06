@@ -1,0 +1,38 @@
+[
+  {
+    "biome": "desert",
+    "friction_coefficient": 0.4,
+    "id": "desert_sand",
+    "name": "Desert sand",
+    "notes": "Seed values; replace with measured data.",
+    "roughness": 0.6,
+    "surface": "sand"
+  },
+  {
+    "biome": "urban",
+    "friction_coefficient": 0.9,
+    "id": "urban_asphalt",
+    "name": "Urban asphalt",
+    "notes": "Seed values; replace with measured data.",
+    "roughness": 0.2,
+    "surface": "asphalt"
+  },
+  {
+    "biome": "mountain",
+    "friction_coefficient": 0.7,
+    "id": "mountain_rock",
+    "name": "Mountain rock",
+    "notes": "Seed values; replace with measured data.",
+    "roughness": 0.8,
+    "surface": "rock"
+  },
+  {
+    "biome": "forest",
+    "friction_coefficient": 0.6,
+    "id": "forest_loam",
+    "name": "Forest loam",
+    "notes": "Seed values; replace with measured data.",
+    "roughness": 0.7,
+    "surface": "soil"
+  }
+]

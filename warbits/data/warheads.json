@@ -1,0 +1,6004 @@
+[
+  {
+    "attributes": {},
+    "explosive_mass_kg": 8.8,
+    "id": "warhead_a_91",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 60.8,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 0.5,
+    "proximity_fuse_range_m": 9.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (IR rear-aspect)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "a_91"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 7.616,
+    "id": "warhead_aim_9b_sidewinder",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 58.08,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 2.2,
+    "proximity_fuse_range_m": 9.144,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (IR rear-aspect)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "aim_9b_sidewinder"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 7.616,
+    "id": "warhead_aim_9b_fgw_2_sidewinder",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 58.08,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 2.2,
+    "proximity_fuse_range_m": 9.144,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (IR rear-aspect)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "aim_9b_fgw_2_sidewinder"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 4.8852,
+    "id": "warhead_aim_9d_sidewinder",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 39.713,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 1.8,
+    "proximity_fuse_range_m": 5.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (IR rear-aspect)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "aim_9d_sidewinder"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 7.616,
+    "id": "warhead_aim_9e_sidewinder",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 58.08,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 0.5,
+    "proximity_fuse_range_m": 5.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (IR rear-aspect)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "aim_9e_sidewinder"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 3.5328,
+    "id": "warhead_aim_9g_sidewinder",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 36.332,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 1.8,
+    "proximity_fuse_range_m": 5.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (IR rear-aspect)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "aim_9g_sidewinder"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 3.5328,
+    "id": "warhead_aim_9h_sidewinder",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 36.332,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 1.8,
+    "proximity_fuse_range_m": 5.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (IR rear-aspect)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "aim_9h_sidewinder"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 7.616,
+    "id": "warhead_aim_9j_sidewinder",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 58.08,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 0.5,
+    "proximity_fuse_range_m": 5.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (IR rear-aspect)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "aim_9j_sidewinder"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 7.616,
+    "id": "warhead_aim_9n_sidewinder",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 58.08,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 0.5,
+    "proximity_fuse_range_m": 5.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (IR rear-aspect)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "aim_9n_sidewinder"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 7.616,
+    "id": "warhead_aim_9p_sidewinder",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 58.08,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 0.5,
+    "proximity_fuse_range_m": 5.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (IR rear-aspect)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "aim_9p_sidewinder"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 11.200000000000001,
+    "id": "warhead_firestreak",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 63.0285714286,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 2.49,
+    "proximity_fuse_range_m": 10.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (IR rear-aspect)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "firestreak"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 7.616,
+    "id": "warhead_flz_lwf_63",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 58.08,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 2.2,
+    "proximity_fuse_range_m": 9.144,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (IR rear-aspect)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "flz_lwf_63"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 7.616,
+    "id": "warhead_flz_lwf_63_80",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 58.08,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 0.5,
+    "proximity_fuse_range_m": 5.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (IR rear-aspect)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "flz_lwf_63_80"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 8.8,
+    "id": "warhead_pl_2",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 60.8,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 0.5,
+    "proximity_fuse_range_m": 5.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (IR rear-aspect)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "pl_2"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 7.616,
+    "id": "warhead_pl_5b",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 58.08,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 0.5,
+    "proximity_fuse_range_m": 9.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (IR rear-aspect)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "pl_5b"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 9.600000000000001,
+    "id": "warhead_pl_7",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 61.6,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 1.8,
+    "proximity_fuse_range_m": 5.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (IR rear-aspect)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "pl_7"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 10.368,
+    "id": "warhead_r530e",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 62.368,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 1.5,
+    "proximity_fuse_range_m": 8.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (IR rear-aspect)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "r530e"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 9.600000000000001,
+    "id": "warhead_r550_magic_1",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 61.6,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 1.8,
+    "proximity_fuse_range_m": 5.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (IR rear-aspect)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "r550_magic_1"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 8.8,
+    "id": "warhead_r_3s",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 60.8,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 0.5,
+    "proximity_fuse_range_m": 9.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (IR rear-aspect)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "r_3s"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 5.5,
+    "id": "warhead_r_13m",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 45.0,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 0.5,
+    "proximity_fuse_range_m": 5.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (IR rear-aspect)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "r_13m"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 5.5,
+    "id": "warhead_r_13m1",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 45.0,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 0.5,
+    "proximity_fuse_range_m": 5.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (IR rear-aspect)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "r_13m1"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 1.15,
+    "id": "warhead_r_60",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 28.0,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 0.5,
+    "proximity_fuse_range_m": 3.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (IR rear-aspect)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "r_60"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 7.616,
+    "id": "warhead_rb_24",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 58.08,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 2.2,
+    "proximity_fuse_range_m": 9.144,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (IR rear-aspect)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "rb_24"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 7.616,
+    "id": "warhead_rb_24j",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 58.08,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 0.5,
+    "proximity_fuse_range_m": 5.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (IR rear-aspect)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "rb_24j"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 23.223923199999998,
+    "id": "warhead_red_top",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 64.7462747429,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 1.3,
+    "proximity_fuse_range_m": 12.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (IR rear-aspect)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "red_top"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 7.616,
+    "id": "warhead_shafrir",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 58.08,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 0.5,
+    "proximity_fuse_range_m": 5.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (IR rear-aspect)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "shafrir"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 7.616,
+    "id": "warhead_shafrir_2",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 58.08,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 0.5,
+    "proximity_fuse_range_m": 5.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (IR rear-aspect)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "shafrir_2"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 4.0,
+    "id": "warhead_sraam",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 37.5,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 0.5,
+    "proximity_fuse_range_m": 5.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (IR rear-aspect)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "sraam"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 4.864,
+    "id": "warhead_aam_3",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 39.66,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 1.5,
+    "proximity_fuse_range_m": 6.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (IR all-aspect)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "aam_3"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 4.5824,
+    "id": "warhead_aim_9l_sidewinder",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 38.956,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 1.8,
+    "proximity_fuse_range_m": 5.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (IR all-aspect)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "aim_9l_sidewinder"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 4.5824,
+    "id": "warhead_aim_9l_i_sidewinder",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 38.956,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 1.8,
+    "proximity_fuse_range_m": 5.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (IR all-aspect)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "aim_9l_i_sidewinder"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 4.5824,
+    "id": "warhead_aim_9l_i_1_sidewinder",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 38.956,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 1.8,
+    "proximity_fuse_range_m": 5.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (IR all-aspect)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "aim_9l_i_1_sidewinder"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 4.5824,
+    "id": "warhead_aim_9m_sidewinder",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 38.956,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 1.8,
+    "proximity_fuse_range_m": 5.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (IR all-aspect)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "aim_9m_sidewinder"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 7.616,
+    "id": "warhead_aim_9p_4_sidewinder",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 58.08,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 0.5,
+    "proximity_fuse_range_m": 5.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (IR all-aspect)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "aim_9p_4_sidewinder"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 7.2,
+    "id": "warhead_maa_1_piranha",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 56.0,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 0.5,
+    "proximity_fuse_range_m": 6.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (IR all-aspect)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "maa_1_piranha"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 7.616,
+    "id": "warhead_pl_5c",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 58.08,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 0.5,
+    "proximity_fuse_range_m": 9.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (IR all-aspect)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "pl_5c"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 7.616,
+    "id": "warhead_pl_5eii",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 58.08,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 0.5,
+    "proximity_fuse_range_m": 7.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (IR all-aspect)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "pl_5eii"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 8.0,
+    "id": "warhead_pl_8",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 60.0,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 0.5,
+    "proximity_fuse_range_m": 7.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (IR all-aspect)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "pl_8"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 8.4,
+    "id": "warhead_pl_9",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 60.4,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 0.5,
+    "proximity_fuse_range_m": 7.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (IR all-aspect)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "pl_9"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 8.0,
+    "id": "warhead_python_3",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 60.0,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 0.5,
+    "proximity_fuse_range_m": 7.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (IR all-aspect)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "python_3"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 8.0,
+    "id": "warhead_python_4",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 60.0,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 0.5,
+    "proximity_fuse_range_m": 7.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (IR all-aspect)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "python_4"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 20.8,
+    "id": "warhead_r_23t",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 64.4,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 1.0,
+    "proximity_fuse_range_m": 10.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (IR all-aspect)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "r_23t"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 20.8,
+    "id": "warhead_r_24t",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 64.4,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 1.0,
+    "proximity_fuse_range_m": 10.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (IR all-aspect)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "r_24t"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 24.0,
+    "id": "warhead_r_27et",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 64.8571428571,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 2.0,
+    "proximity_fuse_range_m": 8.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (IR all-aspect)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "r_27et"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 24.0,
+    "id": "warhead_r_27et1",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 64.8571428571,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 2.0,
+    "proximity_fuse_range_m": 8.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (IR all-aspect)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "r_27et1"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 24.0,
+    "id": "warhead_r_27t",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 64.8571428571,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 2.0,
+    "proximity_fuse_range_m": 8.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (IR all-aspect)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "r_27t"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 24.0,
+    "id": "warhead_r_27t1",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 64.8571428571,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 2.0,
+    "proximity_fuse_range_m": 8.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (IR all-aspect)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "r_27t1"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 1.78875,
+    "id": "warhead_r_60m",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 28.0,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 0.5,
+    "proximity_fuse_range_m": 3.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (IR all-aspect)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "r_60m"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 1.78875,
+    "id": "warhead_r_60mk",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 28.0,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 0.5,
+    "proximity_fuse_range_m": 3.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (IR all-aspect)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "r_60mk"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 6.075,
+    "id": "warhead_r_73",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 50.375,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 0.5,
+    "proximity_fuse_range_m": 6.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (IR all-aspect)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "r_73"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 6.075,
+    "id": "warhead_r_73e",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 50.375,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 0.5,
+    "proximity_fuse_range_m": 6.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (IR all-aspect)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "r_73e"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 9.600000000000001,
+    "id": "warhead_r550_magic_2",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 61.6,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 1.8,
+    "proximity_fuse_range_m": 8.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (IR all-aspect)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "r550_magic_2"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 4.5824,
+    "id": "warhead_rb_74",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 38.956,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 1.8,
+    "proximity_fuse_range_m": 5.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (IR all-aspect)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "rb_74"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 4.5824,
+    "id": "warhead_rb_74m",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 38.956,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 1.8,
+    "proximity_fuse_range_m": 5.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (IR all-aspect)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "rb_74m"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 0.53,
+    "id": "warhead_9m39v_igla_v",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 28.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (IR heli)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "9m39v_igla_v"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 0.9234,
+    "id": "warhead_9m336_verba",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 28.0,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 1.25,
+    "proximity_fuse_range_m": 1.2,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (IR heli)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "9m336_verba"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 0.9234,
+    "id": "warhead_9m342_igla_s",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 28.0,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 1.25,
+    "proximity_fuse_range_m": 1.2,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (IR heli)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "9m342_igla_s"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 0.54,
+    "id": "warhead_aim_92a_atas",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 28.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (IR heli)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "aim_92a_atas"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 1.7760000000000002,
+    "id": "warhead_mistral_satcp",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 28.0,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 2.0,
+    "proximity_fuse_range_m": 1.5,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (IR heli)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "mistral_satcp"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 1.5,
+    "id": "warhead_ty_90",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 28.0,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 0.5,
+    "proximity_fuse_range_m": 4.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (IR heli)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "ty_90"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 11.52,
+    "id": "warhead_aim_7c_sparrow",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 63.0742857143,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 2.0,
+    "proximity_fuse_range_m": 3.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (SARH) (2)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "aim_7c_sparrow"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 11.52,
+    "id": "warhead_aim_7d_sparrow",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 63.0742857143,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 1.8,
+    "proximity_fuse_range_m": 8.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (SARH) (2)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "aim_7d_sparrow"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 11.52,
+    "id": "warhead_aim_7e_sparrow",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 63.0742857143,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 1.8,
+    "proximity_fuse_range_m": 8.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (SARH) (2)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "aim_7e_sparrow"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 11.52,
+    "id": "warhead_aim_7e_2_df_sparrow",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 63.0742857143,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 0.8,
+    "proximity_fuse_range_m": 8.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (SARH) (2)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "aim_7e_2_df_sparrow"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 15.091199999999999,
+    "id": "warhead_aim_7f_sparrow",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 63.0742857143,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 1.8,
+    "proximity_fuse_range_m": 8.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (SARH) (2)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "aim_7f_sparrow"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 15.091199999999999,
+    "id": "warhead_aim_7m_sparrow",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 63.0742857143,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 1.8,
+    "proximity_fuse_range_m": 8.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (SARH) (2)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "aim_7m_sparrow"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 4.8852,
+    "id": "warhead_aim_9c_sidewinder",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 39.713,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 0.5,
+    "proximity_fuse_range_m": 5.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (SARH) (2)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "aim_9c_sidewinder"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 10.24,
+    "id": "warhead_aspide_1a",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 62.24,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 0.8,
+    "proximity_fuse_range_m": 8.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (SARH) (2)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "aspide_1a"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 10.24,
+    "id": "warhead_pl_11",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 62.24,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 0.8,
+    "proximity_fuse_range_m": 8.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (SARH) (2)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "pl_11"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 10.24,
+    "id": "warhead_r511",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 62.24,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 4.0,
+    "proximity_fuse_range_m": 8.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (SARH) (2)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "r511"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 10.368,
+    "id": "warhead_r530",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 62.368,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 4.0,
+    "proximity_fuse_range_m": 8.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (SARH) (2)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "r530"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 8.8,
+    "id": "warhead_r_3r",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 60.8,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 0.5,
+    "proximity_fuse_range_m": 5.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (SARH) (2)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "r_3r"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 20.8,
+    "id": "warhead_r_23r",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 64.4,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 1.7,
+    "proximity_fuse_range_m": 10.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (SARH) (2)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "r_23r"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 20.8,
+    "id": "warhead_r_24r",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 64.4,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 1.7,
+    "proximity_fuse_range_m": 10.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (SARH) (2)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "r_24r"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 24.0,
+    "id": "warhead_r_27er",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 64.8571428571,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 2.0,
+    "proximity_fuse_range_m": 8.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (SARH) (2)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "r_27er"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 24.0,
+    "id": "warhead_r_27er1",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 64.8571428571,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 2.0,
+    "proximity_fuse_range_m": 8.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (SARH) (2)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "r_27er1"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 24.0,
+    "id": "warhead_r_27r",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 64.8571428571,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 2.0,
+    "proximity_fuse_range_m": 8.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (SARH) (2)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "r_27r"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 24.0,
+    "id": "warhead_r_27r1",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 64.8571428571,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 2.0,
+    "proximity_fuse_range_m": 8.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (SARH) (2)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "r_27r1"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 11.52,
+    "id": "warhead_rb_71",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 63.0742857143,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 0.8,
+    "proximity_fuse_range_m": 15.25,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (SARH) (2)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "rb_71"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 46.447872,
+    "id": "warhead_sedjil",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 70.9671808,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 5.0,
+    "proximity_fuse_range_m": 20.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (SARH) (2)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "sedjil"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 11.52,
+    "id": "warhead_skyflash",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 63.0742857143,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 1.8,
+    "proximity_fuse_range_m": 15.25,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (SARH) (2)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "skyflash"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 11.52,
+    "id": "warhead_skyflash_df",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 63.0742857143,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 0.8,
+    "proximity_fuse_range_m": 15.25,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (SARH) (2)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "skyflash_df"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 11.52,
+    "id": "warhead_skyflash_supertemp",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 63.0742857143,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 0.8,
+    "proximity_fuse_range_m": 15.25,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (SARH) (2)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "skyflash_supertemp"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 10.368,
+    "id": "warhead_super_530d",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 62.368,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 2.2,
+    "proximity_fuse_range_m": 8.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (SARH) (2)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "super_530d"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 10.368,
+    "id": "warhead_super_530f",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 62.368,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 2.2,
+    "proximity_fuse_range_m": 8.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (SARH) (2)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "super_530f"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 16.1792,
+    "id": "warhead_aam_4",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 63.7398857143,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 1.8,
+    "proximity_fuse_range_m": 12.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (ARH)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "aam_4"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 60.544,
+    "id": "warhead_aim_54a_phoenix",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 73.0816,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 5.0,
+    "proximity_fuse_range_m": 20.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (ARH)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "aim_54a_phoenix"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 60.544,
+    "id": "warhead_aim_54b_phoenix",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 73.0816,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 5.0,
+    "proximity_fuse_range_m": 20.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (ARH)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "aim_54b_phoenix"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 54.640128000000004,
+    "id": "warhead_aim_54c_phoenix",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 72.1960192,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 5.0,
+    "proximity_fuse_range_m": 20.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (ARH)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "aim_54c_phoenix"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 9.81211008,
+    "id": "warhead_aim_120a_amraam",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 61.81211008,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 1.8,
+    "proximity_fuse_range_m": 12.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (ARH)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "aim_120a_amraam"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 9.81211008,
+    "id": "warhead_aim_120b_amraam",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 61.81211008,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 1.8,
+    "proximity_fuse_range_m": 12.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (ARH)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "aim_120b_amraam"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 11.031424,
+    "id": "warhead_aim_120c_5_amraam",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 63.0044891429,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 1.8,
+    "proximity_fuse_range_m": 12.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (ARH)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "aim_120c_5_amraam"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 8.0,
+    "id": "warhead_derby",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 60.0,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 1.8,
+    "proximity_fuse_range_m": 12.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (ARH)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "derby"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 46.447872,
+    "id": "warhead_fakour_90",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 70.9671808,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 5.0,
+    "proximity_fuse_range_m": 20.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (ARH)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "fakour_90"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 4.736000000000001,
+    "id": "warhead_mica_em",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 39.37,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 1.8,
+    "proximity_fuse_range_m": 12.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (ARH)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "mica_em"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 11.776,
+    "id": "warhead_pl_12",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 63.1108571429,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 1.7,
+    "proximity_fuse_range_m": 10.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (ARH)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "pl_12"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 15.56,
+    "id": "warhead_r_77",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 63.6514285714,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 1.7,
+    "proximity_fuse_range_m": 10.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (ARH)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "r_77"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 15.56,
+    "id": "warhead_r_77_1",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 63.6514285714,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 1.7,
+    "proximity_fuse_range_m": 10.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (ARH)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "r_77_1"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 8.0,
+    "id": "warhead_r_darter",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 60.0,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 1.8,
+    "proximity_fuse_range_m": 12.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (ARH)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "r_darter"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 9.81211008,
+    "id": "warhead_rb_99",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 61.81211008,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 1.8,
+    "proximity_fuse_range_m": 12.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (ARH)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "rb_99"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 15.56,
+    "id": "warhead_rvv_ae",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 63.6514285714,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 1.7,
+    "proximity_fuse_range_m": 10.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (ARH)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "rvv_ae"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 11.776,
+    "id": "warhead_sd_10a",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 63.1108571429,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 1.7,
+    "proximity_fuse_range_m": 10.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (ARH)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "sd_10a"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 10.48,
+    "id": "warhead_aa_20_nord_5103",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 62.48,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 0.5,
+    "proximity_fuse_range_m": 15.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (Manual)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "aa_20_nord_5103"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 7.0,
+    "id": "warhead_fireflash",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 55.0,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 0.5,
+    "proximity_fuse_range_m": 10.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (Manual)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "fireflash"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 1.572,
+    "id": "warhead_starstreak",
+    "impact_fuse_delay_m": 0.5,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 30.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (Manual)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "starstreak"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 0.524,
+    "id": "warhead_starstreak_dart",
+    "impact_fuse_delay_m": 0.7,
+    "impact_fuse_sensitivity_mm": 0.5,
+    "penetration_mm": 50.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (Manual)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "starstreak_dart"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 51.1948,
+    "id": "warhead_agm_65a_maverick",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 830.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (TV)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "agm_65a_maverick"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 51.1948,
+    "id": "warhead_agm_65b_maverick",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 830.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (TV)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "agm_65b_maverick"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 51.1948,
+    "id": "warhead_agm_65h_maverick",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 830.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (TV)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "agm_65h_maverick"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 49.92,
+    "id": "warhead_agm_65k_maverick",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 122.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (TV)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "agm_65k_maverick"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 578.61,
+    "id": "warhead_agm_130a",
+    "impact_fuse_delay_m": 0.1,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 117.2888,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (TV)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "agm_130a"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 88.5,
+    "id": "warhead_aj_168_martel",
+    "impact_fuse_delay_m": 0.1,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 77.275,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (TV)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "aj_168_martel"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 51.1948,
+    "id": "warhead_flz_lwf_lb_82",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 830.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (TV)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "flz_lwf_lb_82"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 186.24,
+    "id": "warhead_kh_29t",
+    "impact_fuse_delay_m": 0.1,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 87.152,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (TV)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "kh_29t"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 186.24,
+    "id": "warhead_kh_29td",
+    "impact_fuse_delay_m": 0.1,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 87.152,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (TV)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "kh_29td"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 186.24,
+    "id": "warhead_kh_29te",
+    "impact_fuse_delay_m": 0.1,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 87.152,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (TV)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "kh_29te"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 117.585,
+    "id": "warhead_pgm_500",
+    "impact_fuse_delay_m": 0.1,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 81.63775,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (TV)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "pgm_500"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 505.748,
+    "id": "warhead_pgm_2000",
+    "impact_fuse_delay_m": 0.1,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 111.45984,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (TV)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "pgm_2000"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 51.1948,
+    "id": "warhead_rb_75",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 830.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (TV)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "rb_75"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 49.92,
+    "id": "warhead_rb_75t",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 122.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (TV)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "rb_75t"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 117.585,
+    "id": "warhead_aasm_250_hammer_sbu_64",
+    "impact_fuse_delay_m": 0.1,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 81.63775,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (IR)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "aasm_250_hammer_sbu_64"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 272.43,
+    "id": "warhead_aasm_500_hammer_sbu_66",
+    "impact_fuse_delay_m": 0.1,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 93.8556666,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (IR)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "aasm_500_hammer_sbu_66"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 51.1948,
+    "id": "warhead_agm_65d_maverick",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 830.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (IR)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "agm_65d_maverick"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 49.92,
+    "id": "warhead_agm_65f_maverick",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 122.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (IR)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "agm_65f_maverick"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 49.92,
+    "id": "warhead_agm_65g_maverick",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 122.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (IR)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "agm_65g_maverick"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 58.050000000000004,
+    "id": "warhead_agm_119a_penguin",
+    "impact_fuse_delay_m": 4.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 90.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (IR)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "agm_119a_penguin"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 578.61,
+    "id": "warhead_agm_130a_12",
+    "impact_fuse_delay_m": 0.1,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 117.2888,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (IR)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "agm_130a_12"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 152.0,
+    "id": "warhead_kh_38mt",
+    "impact_fuse_delay_m": 0.1,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 84.4888,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (IR)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "kh_38mt"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 3.6959999999999997,
+    "id": "warhead_pars_3_lr",
+    "impact_fuse_delay_m": 0.4,
+    "impact_fuse_sensitivity_mm": 0.01,
+    "penetration_mm": 1000.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (IR)"
+      }
+    ],
+    "warhead_type": "Tandem HEAT",
+    "weapon_id": "pars_3_lr"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 117.585,
+    "id": "warhead_pgm_500_3",
+    "impact_fuse_delay_m": 0.1,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 81.63775,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (IR)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "pgm_500_3"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 505.748,
+    "id": "warhead_pgm_2000_3",
+    "impact_fuse_delay_m": 0.1,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 111.45984,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (IR)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "pgm_2000_3"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 3.3135,
+    "id": "warhead_spike_er",
+    "impact_fuse_delay_m": 0.4,
+    "impact_fuse_sensitivity_mm": 0.01,
+    "penetration_mm": 1000.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (IR)"
+      }
+    ],
+    "warhead_type": "Tandem HEAT",
+    "weapon_id": "spike_er"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 6.8775,
+    "id": "warhead_umtas",
+    "impact_fuse_delay_m": 0.4,
+    "impact_fuse_sensitivity_mm": 0.01,
+    "penetration_mm": 1100.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (IR)"
+      }
+    ],
+    "warhead_type": "Tandem HEAT",
+    "weapon_id": "umtas"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 117.585,
+    "id": "warhead_aasm_250_hammer_sbu_38",
+    "impact_fuse_delay_m": 0.1,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 81.63775,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (GNSS)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "aasm_250_hammer_sbu_38"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 264.0,
+    "id": "warhead_kh_36_grom_1",
+    "impact_fuse_delay_m": 0.1,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 93.2,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (GNSS)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "kh_36_grom_1"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 117.585,
+    "id": "warhead_aasm_250_hammer_sbu_54",
+    "impact_fuse_delay_m": 0.1,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 81.63775,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (SALH)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "aasm_250_hammer_sbu_54"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 272.43,
+    "id": "warhead_aasm_500_hammer_sbu_56",
+    "impact_fuse_delay_m": 0.1,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 93.856666,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (SALH)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "aasm_500_hammer_sbu_56"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 49.92,
+    "id": "warhead_agm_65e_maverick",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 122.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (SALH)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "agm_65e_maverick"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 49.92,
+    "id": "warhead_agm_65e2_maverick",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 122.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (SALH)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "agm_65e2_maverick"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 49.92,
+    "id": "warhead_agm_65l_maverick",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 122.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (SALH)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "agm_65l_maverick"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 8.020079999999998,
+    "id": "warhead_agm_114a_hellfire",
+    "impact_fuse_delay_m": 0.005,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 1100.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (SALH)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "agm_114a_hellfire"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 8.020079999999998,
+    "id": "warhead_agm_114b_hellfire",
+    "impact_fuse_delay_m": 0.005,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 1100.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (SALH)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "agm_114b_hellfire"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 8.020079999999998,
+    "id": "warhead_agm_114c_hellfire",
+    "impact_fuse_delay_m": 0.005,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 1100.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (SALH)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "agm_114c_hellfire"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 9.4271472,
+    "id": "warhead_agm_114f_hellfire",
+    "impact_fuse_delay_m": 0.4,
+    "impact_fuse_sensitivity_mm": 0.01,
+    "penetration_mm": 1200.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (SALH)"
+      }
+    ],
+    "warhead_type": "Tandem HEAT",
+    "weapon_id": "agm_114f_hellfire"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 9.4271472,
+    "id": "warhead_agm_114k_hellfire",
+    "impact_fuse_delay_m": 0.4,
+    "impact_fuse_sensitivity_mm": 0.01,
+    "penetration_mm": 1200.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (SALH)"
+      }
+    ],
+    "warhead_type": "Tandem HEAT",
+    "weapon_id": "agm_114k_hellfire"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 272.43,
+    "id": "warhead_agm_123a_skipper_ii",
+    "impact_fuse_delay_m": 0.1,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 93.8556,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (SALH)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "agm_123a_skipper_ii"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 1.3624,
+    "id": "warhead_agr_20a",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 17.91555,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (SALH)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "agr_20a"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 0.56832,
+    "id": "warhead_agr_20b",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 41.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (SALH)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "agr_20b"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 2.4599999999999995,
+    "id": "warhead_akd9",
+    "impact_fuse_delay_m": 0.4,
+    "impact_fuse_sensitivity_mm": 0.01,
+    "penetration_mm": 800.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (SALH)"
+      }
+    ],
+    "warhead_type": "Tandem HEAT",
+    "weapon_id": "akd9"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 6.252,
+    "id": "warhead_akd10",
+    "impact_fuse_delay_m": 0.4,
+    "impact_fuse_sensitivity_mm": 0.01,
+    "penetration_mm": 1400.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (SALH)"
+      }
+    ],
+    "warhead_type": "Tandem HEAT",
+    "weapon_id": "akd10"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 99.56,
+    "id": "warhead_as_30l",
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 78.934,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (SALH)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "as_30l"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 6.252,
+    "id": "warhead_ba_7",
+    "impact_fuse_delay_m": 0.4,
+    "impact_fuse_sensitivity_mm": 0.01,
+    "penetration_mm": 1400.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (SALH)"
+      }
+    ],
+    "warhead_type": "Tandem HEAT",
+    "weapon_id": "ba_7"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 2.4599999999999995,
+    "id": "warhead_ba_9",
+    "impact_fuse_delay_m": 0.4,
+    "impact_fuse_sensitivity_mm": 0.01,
+    "penetration_mm": 800.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (SALH)"
+      }
+    ],
+    "warhead_type": "Tandem HEAT",
+    "weapon_id": "ba_9"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 9.42719232,
+    "id": "warhead_brimstone",
+    "impact_fuse_delay_m": 0.4,
+    "impact_fuse_sensitivity_mm": 0.01,
+    "penetration_mm": 1200.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (SALH)"
+      }
+    ],
+    "warhead_type": "Tandem HEAT",
+    "weapon_id": "brimstone"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 1.1921000000000002,
+    "id": "warhead_brm1",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 283.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (SALH)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "brm1"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 1.1921000000000002,
+    "id": "warhead_cirit",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 290.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (SALH)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "cirit"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 0.56832,
+    "id": "warhead_gatr",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 41.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (SALH)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "gatr"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 119.04,
+    "id": "warhead_kh_25",
+    "impact_fuse_delay_m": 0.1,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 81.856,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (SALH)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "kh_25"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 119.04,
+    "id": "warhead_kh_25ml",
+    "impact_fuse_delay_m": 0.1,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 81.856,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (SALH)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "kh_25ml"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 186.24,
+    "id": "warhead_kh_29l",
+    "impact_fuse_delay_m": 0.1,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 87.152,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (SALH)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "kh_29l"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 152.0,
+    "id": "warhead_kh_38ml",
+    "impact_fuse_delay_m": 0.1,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 84.488888,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (SALH)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "kh_38ml"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 6.8775,
+    "id": "warhead_l_umtas",
+    "impact_fuse_delay_m": 0.4,
+    "impact_fuse_sensitivity_mm": 0.01,
+    "penetration_mm": 1100.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (SALH)"
+      }
+    ],
+    "warhead_type": "Tandem HEAT",
+    "weapon_id": "l_umtas"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 20.0,
+    "id": "warhead_s_25l",
+    "impact_fuse_delay_m": 0.1,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 64.2857,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (SALH)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "s_25l"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 20.0,
+    "id": "warhead_s_25ld",
+    "impact_fuse_delay_m": 0.1,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 64.285714,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (SALH)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "s_25ld"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 5.3709999999999996,
+    "id": "warhead_zt_6_mokopa",
+    "impact_fuse_delay_m": 0.4,
+    "impact_fuse_sensitivity_mm": 0.01,
+    "penetration_mm": 1350.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (SALH)"
+      }
+    ],
+    "warhead_type": "Tandem HEAT",
+    "weapon_id": "zt_6_mokopa"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 4.5684000000000005,
+    "id": "warhead_9m120_1_ataka",
+    "impact_fuse_delay_m": 0.4,
+    "impact_fuse_sensitivity_mm": 0.01,
+    "penetration_mm": 800.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (LOSBR)"
+      }
+    ],
+    "warhead_type": "Tandem HEAT",
+    "weapon_id": "9m120_1_ataka"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 6.16,
+    "id": "warhead_9m123m_khrizantema_vm",
+    "impact_fuse_delay_m": 0.4,
+    "impact_fuse_sensitivity_mm": 0.01,
+    "penetration_mm": 1200.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (LOSBR)"
+      }
+    ],
+    "warhead_type": "Tandem HEAT",
+    "weapon_id": "9m123m_khrizantema_vm"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 6.8714,
+    "id": "warhead_9m127_vikhr",
+    "impact_fuse_delay_m": 0.4,
+    "impact_fuse_sensitivity_mm": 0.01,
+    "penetration_mm": 800.0,
+    "proximity_fuse": true,
+    "proximity_fuse_range_m": 2.5,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (LOSBR)"
+      }
+    ],
+    "warhead_type": "Tandem HEAT",
+    "weapon_id": "9m127_vikhr"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 6.8714,
+    "id": "warhead_9m127_1_vikhr",
+    "impact_fuse_delay_m": 0.4,
+    "impact_fuse_sensitivity_mm": 0.01,
+    "penetration_mm": 800.0,
+    "proximity_fuse": true,
+    "proximity_fuse_range_m": 2.5,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (LOSBR)"
+      }
+    ],
+    "warhead_type": "Tandem HEAT",
+    "weapon_id": "9m127_1_vikhr"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 6.48,
+    "id": "warhead_9m133m_2_kornet_m",
+    "impact_fuse_delay_m": 0.4,
+    "impact_fuse_sensitivity_mm": 0.01,
+    "penetration_mm": 1200.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (LOSBR)"
+      }
+    ],
+    "warhead_type": "Tandem HEAT",
+    "weapon_id": "9m133m_2_kornet_m"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 9.24,
+    "id": "warhead_9m133fm_3_kornet_m",
+    "impact_fuse_delay_m": 0.05,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 61.24,
+    "proximity_fuse": true,
+    "proximity_fuse_range_m": 4.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (LOSBR)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "9m133fm_3_kornet_m"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 3.5839999999999996,
+    "id": "warhead_zt3a2_ingwe",
+    "impact_fuse_delay_m": 0.4,
+    "impact_fuse_sensitivity_mm": 0.01,
+    "penetration_mm": 1000.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (LOSBR)"
+      }
+    ],
+    "warhead_type": "Tandem HEAT",
+    "weapon_id": "zt3a2_ingwe"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 3.25,
+    "id": "warhead_9m14_2_malyutka",
+    "impact_fuse_delay_m": 0.05,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 800.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (SACLOS)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "9m14_2_malyutka"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 3.25,
+    "id": "warhead_9m14m_malyutka",
+    "impact_fuse_delay_m": 0.05,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 650.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (SACLOS)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "9m14m_malyutka"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 7.199999999999999,
+    "id": "warhead_9m17_fleyta",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 650.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (SACLOS)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "9m17_fleyta"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 4.32,
+    "id": "warhead_9m17m_fleyta",
+    "impact_fuse_delay_m": 0.05,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 650.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (SACLOS)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "9m17m_fleyta"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 4.32,
+    "id": "warhead_9m17p_fleyta",
+    "impact_fuse_delay_m": 0.05,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 650.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (SACLOS)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "9m17p_fleyta"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 4.0014,
+    "id": "warhead_9m114_kokon",
+    "impact_fuse_delay_m": 0.05,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 560.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (SACLOS)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "9m114_kokon"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 4.5684000000000005,
+    "id": "warhead_9m120_ataka",
+    "impact_fuse_delay_m": 0.4,
+    "impact_fuse_sensitivity_mm": 0.01,
+    "penetration_mm": 800.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (SACLOS)"
+      }
+    ],
+    "warhead_type": "Tandem HEAT",
+    "weapon_id": "9m120_ataka"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 58.050000000000004,
+    "id": "warhead_agm_12b_bullpup_heli",
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 72.7075,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (SACLOS)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "agm_12b_bullpup_heli"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 2.0043,
+    "id": "warhead_agm_22",
+    "impact_fuse_delay_m": 0.05,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 600.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (SACLOS)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "agm_22"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 2.0043,
+    "id": "warhead_as_11_nord_5210",
+    "impact_fuse_delay_m": 0.05,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 600.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (SACLOS)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "as_11_nord_5210"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 5.24,
+    "id": "warhead_as_12_nord_5220",
+    "impact_fuse_delay_m": 0.05,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 1000.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (SACLOS)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "as_12_nord_5220"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 2.8764,
+    "id": "warhead_bgm_71c_itow",
+    "impact_fuse_delay_m": 0.05,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 630.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (SACLOS)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "bgm_71c_itow"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 4.4133,
+    "id": "warhead_bgm_71d_tow_2",
+    "impact_fuse_delay_m": 0.05,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 800.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (SACLOS)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "bgm_71d_tow_2"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 1.9565,
+    "id": "warhead_hj_8a",
+    "impact_fuse_delay_m": 0.05,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 480.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (SACLOS)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "hj_8a"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 2.015,
+    "id": "warhead_hj_8c",
+    "impact_fuse_delay_m": 0.4,
+    "impact_fuse_sensitivity_mm": 0.01,
+    "penetration_mm": 590.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (SACLOS)"
+      }
+    ],
+    "warhead_type": "Tandem HEAT",
+    "weapon_id": "hj_8c"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 2.015,
+    "id": "warhead_hj_8e",
+    "impact_fuse_delay_m": 0.4,
+    "impact_fuse_sensitivity_mm": 0.01,
+    "penetration_mm": 590.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (SACLOS)"
+      }
+    ],
+    "warhead_type": "Tandem HEAT",
+    "weapon_id": "hj_8e"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 2.795,
+    "id": "warhead_hj_8h",
+    "impact_fuse_delay_m": 0.4,
+    "impact_fuse_sensitivity_mm": 0.01,
+    "penetration_mm": 750.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (SACLOS)"
+      }
+    ],
+    "warhead_type": "Tandem HEAT",
+    "weapon_id": "hj_8h"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 2.795,
+    "id": "warhead_hj_8l",
+    "impact_fuse_delay_m": 0.4,
+    "impact_fuse_sensitivity_mm": 0.01,
+    "penetration_mm": 750.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (SACLOS)"
+      }
+    ],
+    "warhead_type": "Tandem HEAT",
+    "weapon_id": "hj_8l"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 4.03,
+    "id": "warhead_hj_9",
+    "impact_fuse_delay_m": 0.4,
+    "impact_fuse_sensitivity_mm": 0.01,
+    "penetration_mm": 1200.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (SACLOS)"
+      }
+    ],
+    "warhead_type": "Tandem HEAT",
+    "weapon_id": "hj_9"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 3.799,
+    "id": "warhead_hot_1",
+    "impact_fuse_delay_m": 0.05,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 700.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (SACLOS)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "hot_1"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 6.4554,
+    "id": "warhead_hot_2",
+    "impact_fuse_delay_m": 0.05,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 900.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (SACLOS)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "hot_2"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 6.4554,
+    "id": "warhead_hot_3",
+    "impact_fuse_delay_m": 0.4,
+    "impact_fuse_sensitivity_mm": 0.01,
+    "penetration_mm": 1250.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (SACLOS)"
+      }
+    ],
+    "warhead_type": "Tandem HEAT",
+    "weapon_id": "hot_3"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 65.28,
+    "id": "warhead_kh_66",
+    "impact_fuse_delay_m": 0.1,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 73.792,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (SACLOS)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "kh_66"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 2.0043,
+    "id": "warhead_rb_52",
+    "impact_fuse_delay_m": 0.05,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 600.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (SACLOS)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "rb_52"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 1.4933999999999998,
+    "id": "warhead_rb_53",
+    "impact_fuse_delay_m": 0.05,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 500.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (SACLOS)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "rb_53"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 2.8764,
+    "id": "warhead_rb_55b",
+    "impact_fuse_delay_m": 0.05,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 630.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (SACLOS)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "rb_55b"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 4.4133,
+    "id": "warhead_rb_55c",
+    "impact_fuse_delay_m": 0.05,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 800.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (SACLOS)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "rb_55c"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 58.050000000000004,
+    "id": "warhead_agm_12b_bullpup",
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 72.7075,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (MCLOS)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "agm_12b_bullpup"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 136.5,
+    "id": "warhead_agm_12c_bullpup",
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 83.2833333,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (MCLOS)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "agm_12c_bullpup"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 15.851,
+    "id": "warhead_as_20_5110",
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 63.693,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (MCLOS)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "as_20_5110"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 99.56,
+    "id": "warhead_as_30_5401",
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 78.934,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (MCLOS)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "as_30_5401"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 96.0,
+    "id": "warhead_kh_23m",
+    "impact_fuse_delay_m": 0.1,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 78.4,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (MCLOS)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "kh_23m"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 119.04,
+    "id": "warhead_kh_25mr",
+    "impact_fuse_delay_m": 0.1,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 81.856,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (MCLOS)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "kh_25mr"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 143.0,
+    "id": "warhead_ki_148",
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 400.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (MCLOS)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "ki_148"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 76.80000000000001,
+    "id": "warhead_rb_05a",
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 75.52,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 3.0,
+    "proximity_fuse_range_m": 6.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AGM (MCLOS)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "rb_05a"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 264.358,
+    "id": "warhead_agm_62a_walleye_i",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 93.2274444,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "GBU (TV)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "agm_62a_walleye_i"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 264.358,
+    "id": "warhead_agm_62a_walleye_i_er",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 93.2274444,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "GBU (TV)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "agm_62a_walleye_i_er"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 578.61,
+    "id": "warhead_gbu_8_b",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 117.2888,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "GBU (TV)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "gbu_8_b"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 578.61,
+    "id": "warhead_gbu_15_v_1_b",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 117.2888,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "GBU (TV)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "gbu_15_v_1_b"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 578.61,
+    "id": "warhead_gbu_15_v_21_b",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 117.2888,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "GBU (TV)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "gbu_15_v_21_b"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 24.0,
+    "id": "warhead_kab_50tv",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 64.85714,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "GBU (TV)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "kab_50tv"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 160.0,
+    "id": "warhead_kab_500kr",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 85.1111111,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "GBU (TV)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "kab_500kr"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 160.0,
+    "id": "warhead_kab_500kr_e",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 85.1111111,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "GBU (TV)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "kab_500kr_e"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 160.0,
+    "id": "warhead_kab_500kr_m",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 85.1111111,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "GBU (TV)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "kab_500kr_m"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 704.0,
+    "id": "warhead_kab_1500kr",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 127.32,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "GBU (TV)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "kab_1500kr"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 578.61,
+    "id": "warhead_gbu_15_v_2_b",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 117.2888,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "GBU (IR)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "gbu_15_v_2_b"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 578.61,
+    "id": "warhead_gbu_15_v_22_b",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 117.2888,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "GBU (IR)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "gbu_15_v_22_b"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 206.618,
+    "id": "warhead_jm117_gcs_1",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 88.7369555,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "GBU (IR)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "jm117_gcs_1"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 117.585,
+    "id": "warhead_mk_82_gcs_1",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 81.63775,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "GBU (IR)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "mk_82_gcs_1"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 2219.2000000000003,
+    "id": "warhead_fab_3000_s_umpk",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 237.3884,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "GBU (GNSS)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "fab_3000_s_umpk"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 578.61,
+    "id": "warhead_gbu_31_v_1_b_jdam",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 117.2888,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "GBU (GNSS)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "gbu_31_v_1_b_jdam"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 578.61,
+    "id": "warhead_gbu_31_v_2_b_jdam",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 117.2888,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "GBU (GNSS)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "gbu_31_v_2_b_jdam"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 272.43,
+    "id": "warhead_gbu_32_v_1_b_jdam",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 93.8566666666,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "GBU (GNSS)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "gbu_32_v_1_b_jdam"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 117.585,
+    "id": "warhead_gbu_38_v_1_b_jdam",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 81.63775,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "GBU (GNSS)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "gbu_38_v_1_b_jdam"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 111.488,
+    "id": "warhead_gbu_38_v_2_b_jdam",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 80.7232,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "GBU (GNSS)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "gbu_38_v_2_b_jdam"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 26.453466000000002,
+    "id": "warhead_gbu_39a_b_sdb",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 65.48448866666,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "GBU (GNSS)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "gbu_39a_b_sdb"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 24.0,
+    "id": "warhead_kab_50s",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 64.85714,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "GBU (GNSS)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "kab_50s"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 312.0,
+    "id": "warhead_kab_500s",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 96.9,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "GBU (GNSS)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "kab_500s"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 416.0,
+    "id": "warhead_kh_36_grom_2",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 104.7,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "GBU (GNSS)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "kh_36_grom_2"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 91.4,
+    "id": "warhead_ls_6_250",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 77.71,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "GBU (GNSS)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "ls_6_250"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 220.0,
+    "id": "warhead_ls_6_500",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 89.77777777777,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "GBU (GNSS)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "ls_6_500"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 296.0,
+    "id": "warhead_upab_500b",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 95.6888888888,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "GBU (GNSS)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "upab_500b"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 704.0,
+    "id": "warhead_upab_1500b",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 127.32,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "GBU (GNSS)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "upab_1500b"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 117.585,
+    "id": "warhead_bafg_230_lizard_2",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 81.63775,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "GBU (SALH)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "bafg_230_lizard_2"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 167.0,
+    "id": "warhead_bgl_400",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 85.655555555,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "GBU (SALH)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "bgl_400"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 500.0,
+    "id": "warhead_bgl_1000",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 111.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "GBU (SALH)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "bgl_1000"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 91.0,
+    "id": "warhead_gb_250_gb3",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 7.65,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "GBU (SALH)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "gb_250_gb3"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 220.0,
+    "id": "warhead_gb_500_gb1",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 89.77777777,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "GBU (SALH)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "gb_500_gb1"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 537.6,
+    "id": "warhead_gb_1000_gb5",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 114.008,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "GBU (SALH)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "gb_1000_gb5"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 578.61,
+    "id": "warhead_gbu_10c_b_paveway_ii",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 117.2888,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "GBU (SALH)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "gbu_10c_b_paveway_ii"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 117.585,
+    "id": "warhead_gbu_12_b_paveway_ii",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 81.63775,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "GBU (SALH)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "gbu_12_b_paveway_ii"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 272.43,
+    "id": "warhead_gbu_16_b_paveway_ii",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 93.855666666,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "GBU (SALH)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "gbu_16_b_paveway_ii"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 117.585,
+    "id": "warhead_gbu_22_b_paveway_iii",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 81.63775,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "GBU (SALH)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "gbu_22_b_paveway_iii"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 578.61,
+    "id": "warhead_gbu_24_b_paveway_iii",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 117.2888,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "GBU (SALH)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "gbu_24_b_paveway_iii"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 578.61,
+    "id": "warhead_gbu_24e_b_paveway_iii",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 117.2888,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "GBU (SALH)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "gbu_24e_b_paveway_iii"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 286.38599999999997,
+    "id": "warhead_gbu_27_b_paveway_iii",
+    "impact_fuse_delay_m": 5.0,
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 94.9411333333,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "GBU (SALH)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "gbu_27_b_paveway_iii"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 272.43,
+    "id": "warhead_gbu_48_v_1_b_paveway_ii",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 93.8556666666,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "GBU (SALH)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "gbu_48_v_1_b_paveway_ii"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 117.585,
+    "id": "warhead_gbu_49_v_1_b_paveway_ii",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 81.63775,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "GBU (SALH)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "gbu_49_v_1_b_paveway_ii"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 578.61,
+    "id": "warhead_gbu_50_b_paveway_ii",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 117.2888,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "GBU (SALH)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "gbu_50_b_paveway_ii"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 117.585,
+    "id": "warhead_gbu_54_v_1_b_ljdam",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 81.63775,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "GBU (SALH)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "gbu_54_v_1_b_ljdam"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 44.550000000000004,
+    "id": "warhead_gbu_58_b_paveway_ii",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 70.6825,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "GBU (SALH)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "gbu_58_b_paveway_ii"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 24.0,
+    "id": "warhead_kab_50l",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 64.85714,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "GBU (SALH)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "kab_50l"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 153.60000000000002,
+    "id": "warhead_kab_250lg",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 84.613333333,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "GBU (SALH)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "kab_250lg"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 312.0,
+    "id": "warhead_kab_500l_f_e",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 96.9,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "GBU (SALH)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "kab_500l_f_e"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 312.0,
+    "id": "warhead_kab_500lg",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 96.9,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "GBU (SALH)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "kab_500lg"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 704.0,
+    "id": "warhead_kab_1500l",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 127.32,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "GBU (SALH)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "kab_1500l"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 704.0,
+    "id": "warhead_kab_1500lg",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 127.32,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "GBU (SALH)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "kab_1500lg"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 296.48,
+    "id": "warhead_mk_13_lgb_paveway",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 95.7262222222,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "GBU (SALH)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "mk_13_lgb_paveway"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 294.40000000000003,
+    "id": "warhead_mk_18_lgb_paveway",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 95.56444444,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "GBU (SALH)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "mk_18_lgb_paveway"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 117.585,
+    "id": "warhead_paveway_iv",
+    "impact_fuse_sensitivity_mm": 1e-05,
+    "penetration_mm": 81.36775,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "GBU (SALH)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "paveway_iv"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 0.53,
+    "id": "warhead_9m39_igla",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 28.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "SAM (IR)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "9m39_igla"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 5.8059824,
+    "id": "warhead_c_1",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 48.059824,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 1.8,
+    "proximity_fuse_range_m": 5.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "SAM (IR)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "c_1"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 0.54,
+    "id": "warhead_fim_92e_stinger",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 28.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "SAM (IR)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "fim_92e_stinger"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 0.54,
+    "id": "warhead_fim_92k_stinger",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 28.0,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 0.7,
+    "proximity_fuse_range_m": 0.5,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "SAM (IR)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "fim_92k_stinger"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 0.9239999999999999,
+    "id": "warhead_hn_6",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 28.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "SAM (IR)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "hn_6"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 4.3056,
+    "id": "warhead_mim_72c_improved_chaparral",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.3,
+    "penetration_mm": 38.264,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 1.8,
+    "proximity_fuse_range_m": 5.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "SAM (IR)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "mim_72c_improved_chaparral"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 4.3056,
+    "id": "warhead_mim_72e_improved_chaparral",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.3,
+    "penetration_mm": 38.264,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 1.8,
+    "proximity_fuse_range_m": 5.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "SAM (IR)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "mim_72e_improved_chaparral"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 4.3056,
+    "id": "warhead_mim_72g_improved_chaparral",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.3,
+    "penetration_mm": 38.264,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 1.8,
+    "proximity_fuse_range_m": 5.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "SAM (IR)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "mim_72g_improved_chaparral"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 1.6940000000000002,
+    "id": "warhead_9m37m",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.3,
+    "penetration_mm": 28.0,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 1.3,
+    "proximity_fuse_range_m": 4.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "SAM (IROPTICAL)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "9m37m"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 5.3999999999999995,
+    "id": "warhead_type_81c_sam_1c",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 44.0,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 1.5,
+    "proximity_fuse_range_m": 7.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "SAM (IROPTICAL)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "type_81c_sam_1c"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 0.648,
+    "id": "warhead_type_91_sam_3",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 28.0,
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 0.7,
+    "proximity_fuse_range_m": 0.5,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "SAM (IROPTICAL)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "type_91_sam_3"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 1.4410000000000003,
+    "id": "warhead_bolide",
+    "impact_fuse_delay_m": 0.05,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 200.0,
+    "proximity_fuse": true,
+    "proximity_fuse_range_m": 3.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "SAM (LOSBR)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "bolide"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 7.86,
+    "id": "warhead_mim_146a_adats",
+    "impact_fuse_delay_m": 0.05,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 900.0,
+    "proximity_fuse": true,
+    "proximity_fuse_range_m": 6.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "SAM (LOSBR)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "mim_146a_adats"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 1.4410000000000003,
+    "id": "warhead_rb_70_mk_1",
+    "impact_fuse_delay_m": 0.05,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 18.78888,
+    "proximity_fuse": true,
+    "proximity_fuse_range_m": 3.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "SAM (LOSBR)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "rb_70_mk_1"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 1.4410000000000003,
+    "id": "warhead_rb_70_mk_2",
+    "impact_fuse_delay_m": 0.05,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 200.0,
+    "proximity_fuse": true,
+    "proximity_fuse_range_m": 3.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "SAM (LOSBR)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "rb_70_mk_2"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 1.572,
+    "id": "warhead_starstreak_hvm",
+    "impact_fuse_delay_m": 0.5,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 30.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "SAM (LOSBR)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "starstreak_hvm"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 0.524,
+    "id": "warhead_starstreak_hvm_dart",
+    "impact_fuse_delay_m": 0.7,
+    "impact_fuse_sensitivity_mm": 0.5,
+    "penetration_mm": 50.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "SAM (LOSBR)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "starstreak_hvm_dart"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 8.2852,
+    "id": "warhead_9m33m3",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 60.2852,
+    "proximity_fuse": true,
+    "proximity_fuse_range_m": 12.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "SAM (SACLOS)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "9m33m3"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 6.16,
+    "id": "warhead_9m220o",
+    "impact_fuse_delay_m": 0.05,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 50.8,
+    "proximity_fuse": true,
+    "proximity_fuse_range_m": 4.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "SAM (SACLOS)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "9m220o"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 4.62,
+    "id": "warhead_9m311_treugolnik",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.3,
+    "penetration_mm": 39.05,
+    "proximity_fuse": true,
+    "proximity_fuse_range_m": 5.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "SAM (SACLOS)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "9m311_treugolnik"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 4.62,
+    "id": "warhead_9m311_1m_treugolnik",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.3,
+    "penetration_mm": 39.05,
+    "proximity_fuse": true,
+    "proximity_fuse_range_m": 5.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "SAM (SACLOS)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "9m311_1m_treugolnik"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 8.161999999999999,
+    "id": "warhead_9m331",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.3,
+    "penetration_mm": 60.162,
+    "proximity_fuse": true,
+    "proximity_fuse_range_m": 8.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "SAM (SACLOS)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "9m331"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 8.47,
+    "id": "warhead_57e6",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.3,
+    "penetration_mm": 60.47,
+    "proximity_fuse": true,
+    "proximity_fuse_range_m": 9.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "SAM (SACLOS)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "57e6"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 8.161999999999999,
+    "id": "warhead_hq_17",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.3,
+    "penetration_mm": 60.162,
+    "proximity_fuse": true,
+    "proximity_fuse_range_m": 8.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "SAM (SACLOS)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "hq_17"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 4.585,
+    "id": "warhead_roland_1",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 38.9625,
+    "proximity_fuse": true,
+    "proximity_fuse_range_m": 6.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "SAM (SACLOS)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "roland_1"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 4.585,
+    "id": "warhead_roland_2",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 38.9625,
+    "proximity_fuse": true,
+    "proximity_fuse_range_m": 6.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "SAM (SACLOS)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "roland_2"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 6.812,
+    "id": "warhead_roland_3",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 54.06,
+    "proximity_fuse": true,
+    "proximity_fuse_range_m": 6.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "SAM (SACLOS)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "roland_3"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 7.86,
+    "id": "warhead_vt1",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.3,
+    "penetration_mm": 59.3,
+    "proximity_fuse": true,
+    "proximity_fuse_range_m": 8.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "SAM (SACLOS)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "vt1"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 1.3860000000000001,
+    "id": "warhead_qn502c",
+    "impact_fuse_delay_m": 0.4,
+    "impact_fuse_sensitivity_mm": 0.01,
+    "penetration_mm": 900.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "ATGM (IR)"
+      }
+    ],
+    "warhead_type": "Tandem HEAT",
+    "weapon_id": "qn502c"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 1.269,
+    "id": "warhead_spike_lr2",
+    "impact_fuse_delay_m": 0.4,
+    "impact_fuse_sensitivity_mm": 0.01,
+    "penetration_mm": 900.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "ATGM (IR)"
+      }
+    ],
+    "warhead_type": "Tandem HEAT",
+    "weapon_id": "spike_lr2"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 4.86,
+    "id": "warhead_9m117_bastion_3ubk10_1_3",
+    "impact_fuse_delay_m": 0.05,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 600.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "ATGM (LOSBR)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "9m117_bastion_3ubk10_1_3"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 4.86,
+    "id": "warhead_9m117_bastion_3ubk10_2",
+    "impact_fuse_delay_m": 0.05,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 600.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "ATGM (LOSBR)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "9m117_bastion_3ubk10_2"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 4.86,
+    "id": "warhead_9m117m1_arkan",
+    "impact_fuse_delay_m": 0.4,
+    "impact_fuse_sensitivity_mm": 0.01,
+    "penetration_mm": 750.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "ATGM (LOSBR)"
+      }
+    ],
+    "warhead_type": "Tandem HEAT",
+    "weapon_id": "9m117m1_arkan"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 5.832000000000001,
+    "id": "warhead_9m119_refleks",
+    "impact_fuse_delay_m": 0.05,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 700.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "ATGM (LOSBR)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "9m119_refleks"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 5.832000000000001,
+    "id": "warhead_9m119m1_invar_m",
+    "impact_fuse_delay_m": 0.4,
+    "impact_fuse_sensitivity_mm": 0.01,
+    "penetration_mm": 850.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "ATGM (LOSBR)"
+      }
+    ],
+    "warhead_type": "Tandem HEAT",
+    "weapon_id": "9m119m1_invar_m"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 9.24,
+    "id": "warhead_9m123f_khrizantema",
+    "impact_fuse_delay_m": 0.05,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 61.24,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "ATGM (LOSBR)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "9m123f_khrizantema"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 6.16,
+    "id": "warhead_9m123m_khrizantema_m",
+    "impact_fuse_delay_m": 0.4,
+    "impact_fuse_sensitivity_mm": 0.01,
+    "penetration_mm": 1200.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "ATGM (LOSBR)"
+      }
+    ],
+    "warhead_type": "Tandem HEAT",
+    "weapon_id": "9m123m_khrizantema_m"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 6.48,
+    "id": "warhead_9m133_kornet_m",
+    "impact_fuse_delay_m": 0.4,
+    "impact_fuse_sensitivity_mm": 0.01,
+    "penetration_mm": 1200.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "ATGM (LOSBR)"
+      }
+    ],
+    "warhead_type": "Tandem HEAT",
+    "weapon_id": "9m133_kornet_m"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 3.2750000000000004,
+    "id": "warhead_acra",
+    "impact_fuse_delay_m": 0.05,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 700.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "ATGM (LOSBR)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "acra"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 4.86,
+    "id": "warhead_aps03_100",
+    "impact_fuse_delay_m": 0.4,
+    "impact_fuse_sensitivity_mm": 0.01,
+    "penetration_mm": 600.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "ATGM (LOSBR)"
+      }
+    ],
+    "warhead_type": "Tandem HEAT",
+    "weapon_id": "aps03_100"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 4.86,
+    "id": "warhead_aps04_105",
+    "impact_fuse_delay_m": 0.4,
+    "impact_fuse_sensitivity_mm": 0.01,
+    "penetration_mm": 750.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "ATGM (LOSBR)"
+      }
+    ],
+    "warhead_type": "Tandem HEAT",
+    "weapon_id": "aps04_105"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 5.184000000000001,
+    "id": "warhead_falarick_105",
+    "impact_fuse_delay_m": 0.4,
+    "impact_fuse_sensitivity_mm": 0.01,
+    "penetration_mm": 550.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "ATGM (LOSBR)"
+      }
+    ],
+    "warhead_type": "Tandem HEAT",
+    "weapon_id": "falarick_105"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 5.832000000000001,
+    "id": "warhead_gp125",
+    "impact_fuse_delay_m": 0.4,
+    "impact_fuse_sensitivity_mm": 0.01,
+    "penetration_mm": 850.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "ATGM (LOSBR)"
+      }
+    ],
+    "warhead_type": "Tandem HEAT",
+    "weapon_id": "gp125"
+  },
+  {
+    "attributes": {},
+    "id": "warhead_mgm_166a_losat",
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "ATGM (LOSBR)"
+      }
+    ],
+    "warhead_type": "APFSDS",
+    "weapon_id": "mgm_166a_losat"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 3.5839999999999996,
+    "id": "warhead_zt3a1_swift",
+    "impact_fuse_delay_m": 0.05,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 650.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "ATGM (LOSBR)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "zt3a1_swift"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 3.15,
+    "id": "warhead_3m7_drakon",
+    "impact_fuse_delay_m": 0.05,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 500.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "ATGM (SACLOS)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "3m7_drakon"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 5.832000000000001,
+    "id": "warhead_9m112_kobra",
+    "impact_fuse_delay_m": 0.05,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 650.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "ATGM (SACLOS)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "9m112_kobra"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 4.455,
+    "id": "warhead_9m113_konkurs",
+    "impact_fuse_delay_m": 0.05,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 500.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "ATGM (SACLOS)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "9m113_konkurs"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 4.0014,
+    "id": "warhead_9m114_shturm",
+    "impact_fuse_delay_m": 0.05,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 560.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "ATGM (SACLOS)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "9m114_shturm"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 6.93,
+    "id": "warhead_9m120f_1_ataka",
+    "impact_fuse_delay_m": 0.05,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 54.65,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "ATGM (SACLOS)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "9m120f_1_ataka"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 1.9565,
+    "id": "warhead_302",
+    "impact_fuse_delay_m": 0.05,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 480.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "ATGM (SACLOS)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "302"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 1.8339999999999999,
+    "id": "warhead_aft07e_hj_73e",
+    "impact_fuse_delay_m": 0.4,
+    "impact_fuse_sensitivity_mm": 0.01,
+    "penetration_mm": 800.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "ATGM (SACLOS)"
+      }
+    ],
+    "warhead_type": "Tandem HEAT",
+    "weapon_id": "aft07e_hj_73e"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 4.03,
+    "id": "warhead_aft09_hj_9",
+    "impact_fuse_delay_m": 0.4,
+    "impact_fuse_sensitivity_mm": 0.01,
+    "penetration_mm": 1200.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "ATGM (SACLOS)"
+      }
+    ],
+    "warhead_type": "Tandem HEAT",
+    "weapon_id": "aft09_hj_9"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 3.7524,
+    "id": "warhead_bgm_71a_tow",
+    "impact_fuse_delay_m": 0.05,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 430.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "ATGM (SACLOS)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "bgm_71a_tow"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 4.512,
+    "id": "warhead_bgm_71e_tow_2a",
+    "impact_fuse_delay_m": 0.4,
+    "impact_fuse_sensitivity_mm": 0.01,
+    "penetration_mm": 800.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "ATGM (SACLOS)"
+      }
+    ],
+    "warhead_type": "Tandem HEAT",
+    "weapon_id": "bgm_71e_tow_2a"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 3.384,
+    "id": "warhead_bgm_71f_tow_2b",
+    "impact_fuse_delay_m": 0.05,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 100.0,
+    "proximity_fuse": true,
+    "proximity_fuse_range_m": 3.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "ATGM (SACLOS)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "bgm_71f_tow_2b"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 3.799,
+    "id": "warhead_hot",
+    "impact_fuse_delay_m": 0.05,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 700.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "ATGM (SACLOS)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "hot"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 5.724,
+    "id": "warhead_mgm_51b_shillelagh",
+    "impact_fuse_delay_m": 0.05,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 431.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "ATGM (SACLOS)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "mgm_51b_shillelagh"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 5.724,
+    "id": "warhead_mgm_51c_shillelagh",
+    "impact_fuse_delay_m": 0.05,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 431.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "ATGM (SACLOS)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "mgm_51c_shillelagh"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 1.8339999999999999,
+    "id": "warhead_milan",
+    "impact_fuse_delay_m": 0.05,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 530.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "ATGM (SACLOS)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "milan"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 2.358,
+    "id": "warhead_milan_2",
+    "impact_fuse_delay_m": 0.05,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 730.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "ATGM (SACLOS)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "milan_2"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 0.75,
+    "id": "warhead_qn201",
+    "impact_fuse_delay_m": 0.05,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 200.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "ATGM (SACLOS)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "qn201"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 2.7248,
+    "id": "warhead_rb_56_bill_ii",
+    "impact_fuse_delay_m": 0.05,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 510.0,
+    "proximity_fuse": true,
+    "proximity_fuse_range_m": 2.5,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "ATGM (SACLOS)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "rb_56_bill_ii"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 4.3740000000000006,
+    "id": "warhead_rubin",
+    "impact_fuse_delay_m": 0.05,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 500.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "ATGM (SACLOS)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "rubin"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 2.0043,
+    "id": "warhead_ss_11b",
+    "impact_fuse_delay_m": 0.05,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 600.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "ATGM (SACLOS)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "ss_11b"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 4.5457,
+    "id": "warhead_swingfire",
+    "impact_fuse_delay_m": 0.05,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 535.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "ATGM (SACLOS)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "swingfire"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 4.5457,
+    "id": "warhead_swingfire_mk_2",
+    "impact_fuse_delay_m": 0.05,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 700.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "ATGM (SACLOS)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "swingfire_mk_2"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 5.502000000000001,
+    "id": "warhead_type_79",
+    "impact_fuse_delay_m": 0.05,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 700.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "ATGM (SACLOS)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "type_79"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 3.013,
+    "id": "warhead_type_79_asm",
+    "impact_fuse_delay_m": 0.05,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 35.0325,
+    "proximity_fuse": true,
+    "proximity_fuse_range_m": 2.5,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "ATGM (SACLOS)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "type_79_asm"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 3.25,
+    "id": "warhead_9m14_malyutka",
+    "impact_fuse_delay_m": 0.05,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 400.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "ATGM (MCLOS)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "9m14_malyutka"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 3.25,
+    "id": "warhead_aft07_hj_73",
+    "impact_fuse_delay_m": 0.05,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 400.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "ATGM (MCLOS)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "aft07_hj_73"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 4.5457,
+    "id": "warhead_atm_1_type_64",
+    "impact_fuse_delay_m": 0.05,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 500.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "ATGM (MCLOS)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "atm_1_type_64"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 2.0043,
+    "id": "warhead_ss_11",
+    "impact_fuse_delay_m": 0.05,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 600.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "ATGM (MCLOS)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "ss_11"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 73.36,
+    "id": "warhead_as_34_kormoran",
+    "impact_fuse_delay_m": 5.0,
+    "impact_fuse_sensitivity_mm": 0.5,
+    "penetration_mm": 75.004,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AShM (ARH)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "as_34_kormoran"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 104.80000000000001,
+    "id": "warhead_exocet",
+    "impact_fuse_delay_m": 5.0,
+    "impact_fuse_sensitivity_mm": 0.5,
+    "penetration_mm": 79.72,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AShM (ARH)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "exocet"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 9.600000000000001,
+    "id": "warhead_nettuno_mk_1",
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 61.6,
+    "proximity_fuse": true,
+    "proximity_fuse_range_m": 5.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AShM (SACLOS)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "nettuno_mk_1"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 3.47,
+    "id": "warhead_otomat_mk_1",
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 600.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AShM (SACLOS)"
+      }
+    ],
+    "warhead_type": "HEAT",
+    "weapon_id": "otomat_mk_1"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 225.0,
+    "id": "warhead_ssm_1b",
+    "penetration_mm": 90.1666666666,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AShM (SACLOS)"
+      }
+    ],
+    "warhead_type": "HE",
+    "weapon_id": "ssm_1b"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 0.5698,
+    "id": "warhead_9m32m",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 28.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "SAM (IR) (naval)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "9m32m"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 0.77,
+    "id": "warhead_9m36",
+    "impact_fuse_delay_m": 1.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 28.0,
+    "proximity_fuse": false,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "SAM (IR) (naval)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "9m36"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 49.28,
+    "id": "warhead_rim_24a_tartar",
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 71.392,
+    "proximity_fuse": true,
+    "proximity_fuse_range_m": 25.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "SAM (SACLOS) (naval)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "rim_24a_tartar"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 42.24,
+    "id": "warhead_v_601",
+    "impact_fuse_delay_m": 3.0,
+    "impact_fuse_sensitivity_mm": 0.1,
+    "penetration_mm": 70.336,
+    "proximity_fuse": true,
+    "proximity_fuse_range_m": 35.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "SAM (SACLOS) (naval)"
+      }
+    ],
+    "warhead_type": "SAPHE",
+    "weapon_id": "v_601"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 11.52,
+    "id": "warhead_aim_7c",
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 2.0,
+    "proximity_fuse_range_m": 3.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (SARH)"
+      }
+    ],
+    "weapon_id": "aim_7c"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 11.52,
+    "id": "warhead_aim_7d",
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 1.8,
+    "proximity_fuse_range_m": 8.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (SARH)"
+      }
+    ],
+    "weapon_id": "aim_7d"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 11.52,
+    "id": "warhead_aim_7e",
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 1.8,
+    "proximity_fuse_range_m": 8.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (SARH)"
+      }
+    ],
+    "weapon_id": "aim_7e"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 11.52,
+    "id": "warhead_aim_7e_2_dogfight",
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 0.8,
+    "proximity_fuse_range_m": 8.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (SARH)"
+      }
+    ],
+    "weapon_id": "aim_7e_2_dogfight"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 15.091199999999999,
+    "id": "warhead_aim_7f",
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 1.8,
+    "proximity_fuse_range_m": 8.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (SARH)"
+      }
+    ],
+    "weapon_id": "aim_7f"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 15.091199999999999,
+    "id": "warhead_aim_7m",
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 1.8,
+    "proximity_fuse_range_m": 8.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (SARH)"
+      }
+    ],
+    "weapon_id": "aim_7m"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 4.8852,
+    "id": "warhead_aim_9c",
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 0.5,
+    "proximity_fuse_range_m": 5.0,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (SARH)"
+      }
+    ],
+    "weapon_id": "aim_9c"
+  },
+  {
+    "attributes": {},
+    "explosive_mass_kg": 11.52,
+    "id": "warhead_skyflash_dogfight",
+    "proximity_fuse": true,
+    "proximity_fuse_delay_s": 0.8,
+    "proximity_fuse_range_m": 15.25,
+    "sources": [
+      {
+        "book": "WarThunder_FactChecker1.xlsx",
+        "sheet": "AAM (SARH)"
+      }
+    ],
+    "weapon_id": "skyflash_dogfight"
+  }
+]

@@ -1,0 +1,7 @@
+{
+  "version": 1,
+  "bindings": {
+    "vehicle:test_tank": {"kind": "mesh", "blueprint_id": "vehicle:test_tank"},
+    "vehicle:missing": {"kind": "procedural", "template_id": "proc:vehicle:box"}
+  }
+}

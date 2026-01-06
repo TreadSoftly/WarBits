@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+*.pyo
+*.nbi
+*.nbc
+*.egg-info/
+.eggs/
+build/
+dist/
+.pytest_cache/
+.vscode/
+profiling/
+logs/

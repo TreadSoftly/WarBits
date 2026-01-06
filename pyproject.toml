@@ -1,0 +1,12 @@
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+norecursedirs = [
+  "warbits/lib",
+  "warbits/lib/*",
+  "warbits/lib/**",
+  "warbits/lib/warbits_smartlib_pack_*",
+]
+
+[tool.setuptools.packages.find]
+include = ["warbits*"]
+exclude = ["warbits.lib", "warbits.lib.*"]

@@ -1,0 +1,11 @@
+[
+  {
+    "id": "test_sensor",
+    "platform_name": "Test Plane",
+    "sources": [
+      {
+        "book": "fixtures"
+      }
+    ]
+  }
+]

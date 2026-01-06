@@ -1,0 +1,12 @@
+[
+  {
+    "id": "test_plane",
+    "name": "Test Plane",
+    "vehicle_type": "aircraft",
+    "sources": [
+      {
+        "book": "fixtures"
+      }
+    ]
+  }
+]

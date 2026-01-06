@@ -1,0 +1,13 @@
+[
+  {
+    "id": "warhead_test_missile",
+    "weapon_id": "test_missile",
+    "warhead_type": "he",
+    "explosive_mass_kg": 1.0,
+    "sources": [
+      {
+        "book": "fixtures"
+      }
+    ]
+  }
+]

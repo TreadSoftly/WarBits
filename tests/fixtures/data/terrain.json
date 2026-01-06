@@ -1,0 +1,12 @@
+[
+  {
+    "id": "test_terrain",
+    "name": "Test Terrain",
+    "biome": "test",
+    "sources": [
+      {
+        "book": "fixtures"
+      }
+    ]
+  }
+]
