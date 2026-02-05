@@ -12,11 +12,11 @@ The output is NDC coordinates in [-1,+1].
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Optional, Tuple
+from typing import Optional
 
 import numpy as np
 
-from .types import CameraInfo, NDC, Vec3
+from .types import NDC, CameraInfo, Vec3
 
 
 class ScreenProjector:

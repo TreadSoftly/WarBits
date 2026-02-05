@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import dataclasses
 import hashlib
-from typing import Any, Iterable, Optional, Sequence, Tuple, Union
+from typing import Any, Optional, Sequence, Tuple, Union, cast
 
 import numpy as np
 
@@ -90,7 +90,8 @@ class DeterministicRNG:
         return self._gen().normal(loc=mean, scale=std, size=size)
 
     def integers(self, low: int, high: Optional[int] = None, size: Optional[Union[int, Tuple[int, ...]]] = None):
-        return self._gen().integers(low=low, high=high, size=size)
+        gen = cast(Any, self._gen())
+        return gen.integers(low=low, high=high, size=size)
 
     def choice(
         self,

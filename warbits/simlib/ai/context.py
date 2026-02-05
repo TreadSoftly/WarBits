@@ -1,9 +1,10 @@
 from __future__ import annotations
 
 import dataclasses
-from typing import Any, Callable, Dict, Optional, Protocol
+from typing import Any, Dict, Optional, Protocol, TypeAlias, cast
 
 import numpy as np
+from numpy.typing import NDArray
 
 from .blackboard import Blackboard
 from .rng import DeterministicRNG
@@ -19,8 +20,11 @@ class WorldView(Protocol):
     def dt_s(self) -> float: ...
 
     # Entity queries (IDs are intentionally opaque strings)
-    def get_pos_m(self, entity_id: str) -> np.ndarray: ...
-    def get_vel_mps(self, entity_id: str) -> np.ndarray: ...
+    def get_pos_m(self, entity_id: str) -> "Vec3": ...
+    def get_vel_mps(self, entity_id: str) -> "Vec3": ...
+
+    Vec3: TypeAlias = NDArray[np.float64]
+
     def is_alive(self, entity_id: str) -> bool: ...
     def list_entities(self, team: Optional[str] = None) -> list[str]: ...
 
@@ -36,7 +40,7 @@ class AIContext:
     dt_s: float = 0.0
 
     # Optional scratchpad for per-tick computed values (avoid recomputation).
-    cache: Dict[str, Any] = dataclasses.field(default_factory=dict)
+    cache: Dict[str, Any] = dataclasses.field(default_factory=lambda: cast(Dict[str, Any], {}))
 
     def fork(self, *key_parts: Any) -> "AIContext":
         """Create a deterministic sub-context with an RNG fork."""

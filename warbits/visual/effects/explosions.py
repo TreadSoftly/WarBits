@@ -4,9 +4,10 @@ from dataclasses import dataclass
 from typing import Optional, Tuple
 
 import numpy as np
+from numpy.typing import NDArray
 
 
-def make_unit_sphere_segments(lat_steps: int = 6, lon_steps: int = 12) -> np.ndarray:
+def make_unit_sphere_segments(lat_steps: int = 6, lon_steps: int = 12) -> NDArray[np.float_]:
     """Precompute wireframe sphere segments on a unit sphere.
 
     Returns
@@ -23,7 +24,7 @@ def make_unit_sphere_segments(lat_steps: int = 6, lon_steps: int = 12) -> np.nda
     lat_steps = max(3, int(lat_steps))
     lon_steps = max(6, int(lon_steps))
 
-    segs = []
+    segs: list[list[NDArray[np.float_]]] = []
 
     # Latitude circles excluding the poles.
     for i in range(1, lat_steps):
@@ -99,7 +100,7 @@ class ExplosionPool:
 
     def spawn(
         self,
-        center_xyz_m: np.ndarray,
+        center_xyz_m: NDArray[np.float_],
         *,
         frame_idx: int,
         max_radius_m: Optional[float] = None,
@@ -122,7 +123,7 @@ class ExplosionPool:
         else:
             self._life[slot] = int(self.params.lifetime_frames)
 
-    def build_segments(self, *, frame_idx: int) -> Tuple[np.ndarray, np.ndarray]:
+    def build_segments(self, *, frame_idx: int) -> Tuple[NDArray[np.float_], NDArray[np.float_]]:
         """Build segments for all active explosions at this frame."""
         alive = np.nonzero(self._alive)[0]
         if len(alive) == 0:

@@ -11,23 +11,81 @@ This module does NOT depend on your sim core.
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Dict, List, Optional, Sequence, Tuple
+from typing import TYPE_CHECKING, Any, Optional, Tuple
 
-import numpy as np
+from ..hud.types import HudBox, HudCircle, HudDrawList, HudLine
 
-try:
-    import matplotlib.pyplot as plt
-    from matplotlib.lines import Line2D
-    from matplotlib.patches import Circle
-except Exception:  # pragma: no cover
+
+class _MplLine2D:
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        pass
+
+    def set_zorder(self, level: float) -> None:
+        pass
+
+    def set_data(self, xs: list[float], ys: list[float]) -> None:
+        pass
+
+    def set_color(self, rgba: Tuple[float, float, float, float]) -> None:
+        pass
+
+    def set_alpha(self, alpha: float) -> None:
+        pass
+
+    def set_linewidth(self, width: float) -> None:
+        pass
+
+    def set_linestyle(self, style: str) -> None:
+        pass
+
+    def set_visible(self, visible: bool) -> None:
+        pass
+
+
+class _MplCircle:
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        pass
+
+    def set_zorder(self, level: float) -> None:
+        pass
+
+    def set_edgecolor(self, rgba: Tuple[float, float, float, float]) -> None:
+        pass
+
+    def set_alpha(self, alpha: float) -> None:
+        pass
+
+    def set_linewidth(self, width: float) -> None:
+        pass
+
+    def set_fill(self, fill: bool) -> None:
+        pass
+
+    def set_linestyle(self, style: str) -> None:
+        pass
+
+    def set_visible(self, visible: bool) -> None:
+        pass
+
+
+plt: Any | None
+
+if TYPE_CHECKING:
+    Line2D = _MplLine2D
+    Circle = _MplCircle
     plt = None
-    Line2D = None
-    Circle = None
+else:
+    try:
+        import matplotlib.pyplot as plt
+        from matplotlib.lines import Line2D
+        from matplotlib.patches import Circle
+    except Exception:  # pragma: no cover
+        plt = None
+        Line2D = _MplLine2D
+        Circle = _MplCircle
 
-from ..hud.types import HudBox, HudCircle, HudDrawList, HudLine, HudText, HudTheme
 
-
-def default_color_map() -> Dict[str, Tuple[float, float, float, float]]:
+def default_color_map() -> dict[str, Tuple[float, float, float, float]]:
     # Neon-ish defaults
     return {
         "ui": (0.22, 1.0, 0.25, 1.0),
@@ -40,29 +98,29 @@ def default_color_map() -> Dict[str, Tuple[float, float, float, float]]:
 
 @dataclass
 class MplHudOverlay:
-    fig: any
+    fig: Any
     zorder: int = 50
-    color_map: Dict[str, Tuple[float, float, float, float]] = None
+    color_map: Optional[dict[str, Tuple[float, float, float, float]]] = None
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         if plt is None:
             raise RuntimeError("Matplotlib not available; cannot use MplHudOverlay")
         if self.color_map is None:
             self.color_map = default_color_map()
 
         # Create a full-figure overlay axis in NDC [-1,+1]
-        self.ax = self.fig.add_axes([0.0, 0.0, 1.0, 1.0], frameon=False)
+        self.ax: Any = self.fig.add_axes([0.0, 0.0, 1.0, 1.0], frameon=False)
         self.ax.set_xlim(-1, 1)
         self.ax.set_ylim(-1, 1)
         self.ax.set_axis_off()
         self.ax.set_zorder(self.zorder)
 
         # Pools
-        self._lines: List[Line2D] = []
-        self._circles: List[Circle] = []
-        self._texts: List[any] = []
+        self._lines: list[Any] = []
+        self._circles: list[Any] = []
+        self._texts: list[Any] = []
 
-    def update(self, drawlist: HudDrawList):
+    def update(self, drawlist: HudDrawList) -> list[Any]:
         """Update artists to match drawlist."""
         # Mark all hidden first
         for ln in self._lines:
@@ -118,7 +176,7 @@ class MplHudOverlay:
                     ln.set_linewidth(prim.width_px)
                     ln.set_linestyle("-")
                     ln.set_visible(True)
-            elif isinstance(prim, HudText):
+            else:
                 t = self._get_text(text_i)
                 text_i += 1
                 rgba = self._rgba(prim.color_key)
@@ -135,13 +193,15 @@ class MplHudOverlay:
         return self.artists
 
     @property
-    def artists(self):
+    def artists(self) -> list[Any]:
         return [*self._lines, *self._circles, *self._texts]
 
-    def _rgba(self, key: str):
-        return self.color_map.get(key, self.color_map.get("ui"))
+    def _rgba(self, key: str) -> Tuple[float, float, float, float]:
+        assert self.color_map is not None
+        default_rgba = self.color_map.get("ui", (1.0, 1.0, 1.0, 1.0))
+        return self.color_map.get(key, default_rgba)
 
-    def _get_line(self, idx: int) -> Line2D:
+    def _get_line(self, idx: int) -> Any:
         while idx >= len(self._lines):
             ln = Line2D([0, 0], [0, 0])
             ln.set_zorder(self.zorder)
@@ -149,7 +209,7 @@ class MplHudOverlay:
             self._lines.append(ln)
         return self._lines[idx]
 
-    def _get_circle(self, idx: int) -> Circle:
+    def _get_circle(self, idx: int) -> Any:
         while idx >= len(self._circles):
             c = Circle((0, 0), radius=0.1, fill=False)
             c.set_zorder(self.zorder)
@@ -157,9 +217,11 @@ class MplHudOverlay:
             self._circles.append(c)
         return self._circles[idx]
 
-    def _get_text(self, idx: int):
+    def _get_text(self, idx: int) -> Any:
         while idx >= len(self._texts):
             t = self.ax.text(0, 0, "", transform=self.ax.transData)
             t.set_zorder(self.zorder)
             self._texts.append(t)
+        return self._texts[idx]
+        return self._texts[idx]
         return self._texts[idx]

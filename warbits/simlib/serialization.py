@@ -14,7 +14,7 @@ import base64
 import dataclasses
 import json
 from pathlib import Path
-from typing import Any, Mapping, Sequence
+from typing import Any, Mapping, cast
 
 try:
     import numpy as np  # type: ignore
@@ -28,7 +28,7 @@ def to_jsonable(obj: Any) -> Any:
         return None
 
     # Dataclasses
-    if dataclasses.is_dataclass(obj):
+    if dataclasses.is_dataclass(obj) and not isinstance(obj, type):
         return {k: to_jsonable(v) for k, v in dataclasses.asdict(obj).items()}
 
     # pathlib
@@ -44,17 +44,18 @@ def to_jsonable(obj: Any) -> Any:
         if isinstance(obj, np.ndarray):
             return obj.tolist()
         if isinstance(obj, (np.floating,)):
-            return float(obj)
+            return float(obj.item())
         if isinstance(obj, (np.integer,)):
-            return int(obj)
+            return int(obj.item())
         if isinstance(obj, (np.bool_,)):
             return bool(obj)
 
     # Mappings / sequences
     if isinstance(obj, Mapping):
-        return {str(k): to_jsonable(v) for k, v in obj.items()}
+        obj_map = cast(Mapping[Any, Any], obj)
+        return {str(k): to_jsonable(v) for k, v in obj_map.items()}
     if isinstance(obj, (list, tuple)):
-        return [to_jsonable(v) for v in obj]
+        return [to_jsonable(v) for v in cast(list[Any], obj)]
 
     # Primitives
     if isinstance(obj, (str, int, float, bool)):

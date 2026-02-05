@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple, Union
+from typing import Any, Dict, Optional, Sequence, Tuple, Union, cast
 
 PathLike = Union[str, Path]
 
@@ -42,17 +42,21 @@ def load_provenance(path: PathLike) -> Dict[str, ProvenanceRecord]:
     obj = json.loads(text)
     if isinstance(obj, dict):
         out: Dict[str, ProvenanceRecord] = {}
-        for k, v in obj.items():
-            if isinstance(v, dict) and "blueprint_id" not in v:
-                v = dict(v)
-                v["blueprint_id"] = str(k)
-            rec = _coerce_record(v, None)
+        obj_map = cast(Dict[str, Any], obj)
+        for k, v in obj_map.items():
+            v_map: Dict[str, Any] | None = None
+            if isinstance(v, dict):
+                v_map = dict(cast(Dict[str, Any], v))
+                if "blueprint_id" not in v_map:
+                    v_map["blueprint_id"] = str(k)
+            rec = _coerce_record(v_map or v, None)
             out[rec.blueprint_id] = rec
         return out
 
     if isinstance(obj, list):
         out = {}
-        for item in obj:
+        items = cast(list[object], obj)
+        for item in items:
             rec = _coerce_record(item, None)
             out[rec.blueprint_id] = rec
         return out
@@ -63,11 +67,12 @@ def load_provenance(path: PathLike) -> Dict[str, ProvenanceRecord]:
 def _coerce_record(obj: Any, ln: Optional[int]) -> ProvenanceRecord:
     if not isinstance(obj, dict):
         raise TypeError(f"Provenance record must be an object at line {ln}")
-    bid = str(obj.get("blueprint_id") or obj.get("id") or "").strip()
+    obj_map = cast(Dict[str, Any], obj)
+    bid = str(obj_map.get("blueprint_id") or obj_map.get("id") or "").strip()
     if not bid:
         raise ValueError(f"Provenance record missing blueprint_id at line {ln}")
-    source = str(obj.get("source") or obj.get("origin") or "").strip()
-    lic = str(obj.get("license") or obj.get("licence") or "").strip()
+    source = str(obj_map.get("source") or obj_map.get("origin") or "").strip()
+    lic = str(obj_map.get("license") or obj_map.get("licence") or "").strip()
     if not source:
         source = "UNKNOWN"
     if not lic:
@@ -76,22 +81,22 @@ def _coerce_record(obj: Any, ln: Optional[int]) -> ProvenanceRecord:
         blueprint_id=bid,
         source=source,
         license=lic,
-        attribution=(str(obj["attribution"]).strip() if obj.get("attribution") else None),
-        notes=(str(obj["notes"]).strip() if obj.get("notes") else None),
+        attribution=(str(obj_map["attribution"]).strip() if obj_map.get("attribution") else None),
+        notes=(str(obj_map["notes"]).strip() if obj_map.get("notes") else None),
     )
 
 
-def _check_provenance_ids(
+def _check_provenance_ids(  # pyright: ignore[reportUnusedFunction]
     blueprint_ids: Sequence[str],
     provenance: Dict[str, ProvenanceRecord],
     *,
     strict: bool,
-    treat_prefixes_as_generated: Sequence[str] = ("proc:", "procedural:")
-) -> Tuple[List[str], List[str]]:
+    treat_prefixes_as_generated: Sequence[str] = ("proc:", "procedural:"),
+) -> Tuple[list[str], list[str]]:
     """Return (errors, warnings) for provenance coverage."""
 
-    errors: List[str] = []
-    warnings: List[str] = []
+    errors: list[str] = []
+    warnings: list[str] = []
 
     for bid in blueprint_ids:
         is_generated = any(bid.startswith(p) for p in treat_prefixes_as_generated)
@@ -116,8 +121,8 @@ class ProvenanceReport:
     total_blueprints: int
     mesh_blueprints: int
     records_found: int
-    missing_ids: List[str]
-    errors: List[str]
+    missing_ids: list[str]
+    errors: list[str]
 
     @property
     def ok(self) -> bool:
@@ -147,8 +152,8 @@ def check_provenance(
     blueprints_jsonl_path = Path(blueprints_jsonl_path)
     provenance_path = Path(provenance_path)
 
-    ids_all: List[str] = []
-    ids_mesh: List[str] = []
+    ids_all: list[str] = []
+    ids_mesh: list[str] = []
 
     with blueprints_jsonl_path.open("r", encoding="utf-8") as f:
         for line in f:
@@ -159,12 +164,15 @@ def check_provenance(
                 obj = json.loads(line)
             except json.JSONDecodeError:
                 continue
-            bid = str(obj.get("blueprint_id") or obj.get("id") or "").strip()
+            if not isinstance(obj, dict):
+                continue
+            obj_map = cast(Dict[str, Any], obj)
+            bid = str(obj_map.get("blueprint_id") or obj_map.get("id") or "").strip()
             if not bid:
                 continue
             ids_all.append(bid)
             is_proc = any(bid.startswith(p) for p in procedural_prefixes)
-            if allow_generated_flag and bool(obj.get("generated") is True):
+            if allow_generated_flag and bool(obj_map.get("generated") is True):
                 is_proc = True
             if not is_proc:
                 ids_mesh.append(bid)
@@ -172,12 +180,9 @@ def check_provenance(
     records = load_provenance_records(provenance_path)
     missing = sorted([bid for bid in ids_mesh if bid not in records])
 
-    errors: List[str] = []
+    errors: list[str] = []
     if missing:
-        msg = (
-            f"Missing provenance records for {len(missing)} mesh blueprints. "
-            f"Example(s): {missing[:10]}"
-        )
+        msg = f"Missing provenance records for {len(missing)} mesh blueprints. " f"Example(s): {missing[:10]}"
         errors.append(msg)
 
     # strict doesn't change the current error list (we always treat missing as errors),
@@ -192,6 +197,6 @@ def check_provenance(
         errors=errors,
     )
 
+
 # Back-compat alias
 load_provenance_records = load_provenance
-

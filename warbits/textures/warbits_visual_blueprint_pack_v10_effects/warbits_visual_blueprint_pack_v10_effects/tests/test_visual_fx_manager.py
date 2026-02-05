@@ -6,12 +6,12 @@ from warbits.visual.effects.manager import FxManager
 
 def test_fx_manager_builds_layers():
     cfg = FxConfig(
-        max_tracer_objects=8,
-        max_contrail_objects=4,
+        tracer_max_objects=8,
+        contrail_max_objects=4,
         max_tracer_segments=64,
         max_contrail_segments=64,
-        max_explosion_instances=4,
-        max_impact_instances=4,
+        max_explosions=4,
+        max_impacts=4,
     )
 
     fx = FxManager(cfg)
@@ -20,10 +20,12 @@ def test_fx_manager_builds_layers():
     bullet_id = np.array([123], dtype=np.int64)
     for frame in range(3):
         p = np.array([[float(frame), 0.0, 0.0]], dtype=np.float32)
-        fx.update_tracers(bullet_id, p, frame_idx=frame)
+        fx.update_trail("tracers", bullet_id, p, frame_idx=frame)
 
-    fx.spawn_explosion(center=(0, 0, 0), frame_idx=2)
-    fx.spawn_impact(center=(1, 0, 0), normal=(0, 0, 1), frame_idx=2)
+    fx.spawn_explosion(np.array([0.0, 0.0, 0.0], dtype=np.float32), frame_idx=2)
+    fx.spawn_impact_burst(
+        np.array([1.0, 0.0, 0.0], dtype=np.float32), normal_xyz=np.array([0.0, 0.0, 1.0], dtype=np.float32), frame_idx=2
+    )
 
     frame = fx.build_frame(frame_idx=2)
     assert "tracers" in frame.layers
@@ -38,7 +40,7 @@ def test_fx_manager_builds_layers():
 def test_fx_manager_ingest_event_dicts():
     fx = FxManager(FxConfig())
 
-    events = [
+    events: list[dict[str, object]] = [
         {"type": "explosion", "pos": (0, 0, 0), "radius": 10.0},
         {"type": "impact", "pos": (1, 2, 3), "normal": (0, 0, 1)},
     ]

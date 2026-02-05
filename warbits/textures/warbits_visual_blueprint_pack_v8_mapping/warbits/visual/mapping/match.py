@@ -11,7 +11,7 @@ Humans remain the authority: you can accept, override, or ignore suggestions.
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Iterable, Sequence
+from typing import Sequence
 
 from .normalize import NameKey, iter_best_matches, normalize_text
 
@@ -61,6 +61,7 @@ def suggest_bindings(
 
     out.sort(key=lambda m: (-m.score, m.entity_id, m.blueprint_id))
     return out
+
 
 # Backwards/CLI-friendly aliases
 Suggestion = MatchSuggestion

@@ -1,14 +1,17 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Any, Dict, List, Mapping, Optional, Sequence, Tuple
+from typing import Any, List, Mapping, Optional, Sequence
 
 import math
 import numpy as np
+from numpy.typing import NDArray
 
-from ..blueprint_schema import Blueprint
+from warbits.visual.blueprint_schema import Blueprint
 from .dimensions import Dimensions, dims_from_mapping
-from .primitives import Edge, box, cone, cylinder, merge
+from .primitives import Edge, cone, cylinder, merge
+
+NDArrayFloat = NDArray[np.float64]
 
 
 @dataclass(frozen=True)
@@ -149,7 +152,7 @@ def build_jet_blueprint(
     nose_len = 0.10 * L
     fuse_center = (0.0, 0.0, 0.35 * r)
 
-    parts: List[tuple[np.ndarray, List[Edge]]] = []
+    parts: List[tuple[NDArrayFloat, List[Edge]]] = []
     V_fuse, E_fuse = cylinder(fuse_center, radius=r, length=fuse_len, axis="x", segments=segq, caps=True)
     # Nose base at +fuse_len/2; cone points forward.
     nose_base = (0.5 * fuse_len, 0.0, 0.35 * r)
@@ -235,14 +238,14 @@ def build_jet_blueprint(
     # base y offset for twin tail
     vt_y_off = 0.45 * r if params.twin_tail else 0.0
 
-    def _vtail(y_sign: float) -> tuple[np.ndarray, List[Edge]]:
+    def _vtail(y_sign: float) -> tuple[NDArrayFloat, List[Edge]]:
         base = np.array([vt_base_x, y_sign * vt_y_off, vt_base_z], dtype=float)
         tip = base + np.array([-0.12 * L, y_sign * math.sin(cant) * 0.65 * r, tail_height], dtype=float)
         # small trailing edge point
         back = base + np.array([-0.05 * L, y_sign * 0.10 * r, 0.25 * tail_height], dtype=float)
         V = np.vstack([base, tip, back])
         E = [(0, 1), (1, 2), (2, 0)]
-        return V, E
+        return np.asarray(V, dtype=float), E
 
     if params.twin_tail:
         parts.append(_vtail(+1.0))
@@ -272,7 +275,7 @@ def build_jet_blueprint(
     # Compute LOD edges. We want "silhouette" to be mostly the major outlines.
     # We'll include: fuselage centerline, wing outlines, tail outlines.
     # The easiest stable approximation is: choose the longest edges.
-    lengths = []
+    lengths: List[tuple[int, float]] = []
     for i, (a, b) in enumerate(E):
         pa = V[a]
         pb = V[b]
@@ -296,9 +299,12 @@ def build_jet_blueprint(
         blueprint_id=blueprint_id,
         kind="aircraft",
         tags=sorted(t),
-        vertices_m=V,
-        edges=E,
-        lod_edges={"low": E_low, "silhouette": E_sil},
+        vertices_m=[(float(x), float(y), float(z)) for x, y, z in V],
+        edges=[(int(a), int(b)) for a, b in E],
+        lod_edges={
+            "low": tuple((int(a), int(b)) for a, b in E_low),
+            "silhouette": tuple((int(a), int(b)) for a, b in E_sil),
+        },
         meta={
             "source": "procedural",
             "generator": "build_jet_blueprint",

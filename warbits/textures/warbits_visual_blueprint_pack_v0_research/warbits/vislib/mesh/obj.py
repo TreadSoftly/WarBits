@@ -1,14 +1,13 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import List, Tuple, Optional, Iterable
 
-import math
 
 @dataclass
 class ObjMesh:
-    vertices: List[Tuple[float, float, float]]
-    faces: List[Tuple[int, ...]]  # 0-based vertex indices
+    vertices: list[tuple[float, float, float]]
+    faces: list[tuple[int, ...]]  # 0-based vertex indices
+
 
 def _parse_face_vertex(token: str) -> int:
     # token can be: "v", "v/vt", "v//vn", "v/vt/vn"
@@ -20,6 +19,7 @@ def _parse_face_vertex(token: str) -> int:
     # OBJ indices are 1-based; negative indices are relative to end
     return idx
 
+
 def load_obj(path: str, *, triangulate: bool = True) -> ObjMesh:
     """Minimal OBJ loader (positions + faces).
 
@@ -29,8 +29,8 @@ def load_obj(path: str, *, triangulate: bool = True) -> ObjMesh:
 
     This is intentionally tiny: no materials, no normals, no UVs.
     """
-    verts: List[Tuple[float, float, float]] = []
-    faces: List[Tuple[int, ...]] = []
+    verts: list[tuple[float, float, float]] = []
+    faces: list[tuple[int, ...]] = []
 
     with open(path, "r", encoding="utf-8", errors="replace") as f:
         for line in f:
@@ -38,11 +38,11 @@ def load_obj(path: str, *, triangulate: bool = True) -> ObjMesh:
             if not line or line.startswith("#"):
                 continue
             if line.startswith("v "):
-                _, xs, ys, zs, *rest = line.split()
+                _, xs, ys, zs, *_rest = line.split()
                 verts.append((float(xs), float(ys), float(zs)))
             elif line.startswith("f "):
                 parts = line.split()[1:]
-                idxs: List[int] = []
+                idxs: list[int] = []
                 for p in parts:
                     raw = _parse_face_vertex(p)
                     if raw < 0:
@@ -59,4 +59,6 @@ def load_obj(path: str, *, triangulate: bool = True) -> ObjMesh:
                     faces.append(tuple(idxs))
     if not verts:
         raise ValueError(f"No vertices found in OBJ: {path}")
+    return ObjMesh(vertices=verts, faces=faces)
+    return ObjMesh(vertices=verts, faces=faces)
     return ObjMesh(vertices=verts, faces=faces)

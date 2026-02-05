@@ -3,7 +3,12 @@ from __future__ import annotations
 import json
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Dict, Iterable, List, Optional, Set, Tuple, Union
+from typing import Any, Optional, Set, Tuple, Union, cast
+
+
+def _empty_bucket_dict() -> dict[str, "CoverageBucket"]:
+    return {}
+
 
 PathLike = Union[str, Path]
 
@@ -14,7 +19,7 @@ class CoverageBucket:
     mapped_mesh: int = 0
     mapped_procedural: int = 0
     missing: int = 0
-    missing_ids: List[str] = field(default_factory=list)
+    missing_ids: list[str] = field(default_factory=lambda: cast(list[str], []))
 
     @property
     def mapped_any(self) -> int:
@@ -26,18 +31,18 @@ class CoverageReport:
     data_dir: str
     blueprint_db: Optional[str]
     visual_map: Optional[str]
-    buckets: Dict[str, CoverageBucket] = field(default_factory=dict)
+    buckets: dict[str, CoverageBucket] = field(default_factory=_empty_bucket_dict)
 
     @property
     def overall_total(self) -> int:
         return sum(b.total for b in self.buckets.values())
 
     @property
-    def kinds(self) -> Dict[str, CoverageBucket]:
+    def kinds(self) -> dict[str, CoverageBucket]:
         """Back-compat alias: some callers refer to per-kind buckets as `kinds`."""
         return self.buckets
 
-    def to_json(self) -> Dict[str, Any]:
+    def to_json(self) -> dict[str, Any]:
         return {
             "data_dir": self.data_dir,
             "blueprint_db": self.blueprint_db,
@@ -60,42 +65,45 @@ def _load_json(path: Path) -> Any:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
-def _collect_ids_from_json(obj: Any, id_fields: Tuple[str, ...]) -> List[str]:
-    ids: List[str] = []
+def _collect_ids_from_json(obj: Any, id_fields: Tuple[str, ...]) -> list[str]:
+    ids: list[str] = []
     if isinstance(obj, list):
-        for item in obj:
+        items = cast(list[object], obj)
+        for item in items:
             if isinstance(item, dict):
+                item_map = cast(dict[str, Any], item)
                 for f in id_fields:
-                    if f in item and isinstance(item[f], str):
-                        ids.append(item[f])
+                    if f in item_map and isinstance(item_map[f], str):
+                        ids.append(item_map[f])
                         break
     elif isinstance(obj, dict):
         # Accept dict-of-records or dict keyed by id.
-        if all(isinstance(k, str) for k in obj.keys()):
-            # If values are dict records, prefer their explicit fields.
-            for k, v in obj.items():
-                if isinstance(v, dict):
-                    found = False
-                    for f in id_fields:
-                        if f in v and isinstance(v[f], str):
-                            ids.append(v[f])
-                            found = True
-                            break
-                    if not found:
-                        ids.append(k)
-                else:
-                    ids.append(k)
+        obj_map = cast(dict[str, Any], obj)
+        # If values are dict records, prefer their explicit fields.
+        for k, v in obj_map.items():
+            if isinstance(v, dict):
+                v_map = cast(dict[str, Any], v)
+                found = False
+                for f in id_fields:
+                    if f in v_map and isinstance(v_map[f], str):
+                        ids.append(v_map[f])
+                        found = True
+                        break
+                if not found:
+                    ids.append(str(k))
+            else:
+                ids.append(str(k))
     return ids
 
 
-def _collect_entity_ids(data_dir: Path) -> Dict[str, List[str]]:
+def _collect_entity_ids(data_dir: Path) -> dict[str, list[str]]:
     """Collect entity ids from normalized JSON files.
 
     This is intentionally tolerant: it uses best-effort heuristics and never throws
     just because a file is missing.
     """
 
-    out: Dict[str, List[str]] = {}
+    out: dict[str, list[str]] = {}
     candidates = {
         "vehicle": ("vehicles.json", ("vehicle_id", "id", "name")),
         "weapon": ("weapons.json", ("weapon_id", "id", "name")),
@@ -137,7 +145,7 @@ def _load_blueprint_ids(blueprints_jsonl: Optional[Path]) -> Set[str]:
     return ids
 
 
-def _load_visual_bindings(map_path: Optional[Path]) -> Dict[str, Dict[str, Any]]:
+def _load_visual_bindings(map_path: Optional[Path]) -> dict[str, dict[str, Any]]:
     if map_path is None or not map_path.exists():
         return {}
 
@@ -148,19 +156,23 @@ def _load_visual_bindings(map_path: Optional[Path]) -> Dict[str, Dict[str, Any]]
 
     # Common format: {"bindings": {entity_id: {kind, blueprint_id/template_id}}}
     if isinstance(obj, dict):
-        b = obj.get("bindings")
+        obj_map = cast(dict[str, Any], obj)
+        b = obj_map.get("bindings")
         if isinstance(b, dict):
-            return {k: v for k, v in b.items() if isinstance(k, str) and isinstance(v, dict)}
+            b_map = cast(dict[str, Any], b)
+            return {str(k): cast(dict[str, Any], v) for k, v in b_map.items() if isinstance(v, dict)}
 
     # Alternate format: list of bindings
     if isinstance(obj, list):
-        out: Dict[str, Dict[str, Any]] = {}
-        for item in obj:
+        out: dict[str, dict[str, Any]] = {}
+        items = cast(list[object], obj)
+        for item in items:
             if not isinstance(item, dict):
                 continue
-            eid = item.get("entity_id") or item.get("id")
+            item_map = cast(dict[str, Any], item)
+            eid = item_map.get("entity_id") or item_map.get("id")
             if isinstance(eid, str):
-                out[eid] = item
+                out[eid] = item_map
         return out
 
     return {}
@@ -183,7 +195,7 @@ def build_coverage_report(
 
     entities_by_kind = _collect_entity_ids(data_dir_p)
 
-    buckets: Dict[str, CoverageBucket] = {k: CoverageBucket() for k in entities_by_kind.keys()}
+    buckets: dict[str, CoverageBucket] = {k: CoverageBucket() for k in entities_by_kind.keys()}
 
     for kind, ids in entities_by_kind.items():
         bucket = buckets.setdefault(kind, CoverageBucket())

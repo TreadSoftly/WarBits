@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import dataclasses
-from typing import Callable, List, Optional, Sequence, Tuple
+from typing import List, Sequence, Tuple, cast
 
 from .directives import MissionDirective
 from .types import WorldView
@@ -17,7 +17,7 @@ class TimelineItem:
 class Timeline:
     """A deterministic timeline of directives."""
 
-    items: List[TimelineItem] = dataclasses.field(default_factory=list)
+    items: List[TimelineItem] = dataclasses.field(default_factory=lambda: cast(List[TimelineItem], []))
     _idx: int = 0
 
     def add(self, time_s: float, directives: Sequence[MissionDirective]) -> None:

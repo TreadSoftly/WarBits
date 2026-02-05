@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-from typing import Iterable, Iterator, List
+from typing import Iterable, List
 
 from .blueprint_schema import BlueprintRecord
 

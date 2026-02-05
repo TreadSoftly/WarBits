@@ -15,12 +15,17 @@ Coordinate conventions:
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import Dict, Iterable, List, Literal, Optional, Sequence, Tuple
+from typing import Literal, Optional, Sequence, Tuple
 
 import numpy as np
+from numpy.typing import NDArray
 
 NDC = Tuple[float, float]
-Vec3 = np.ndarray  # shape (3,)
+Vec3 = NDArray[np.float_]
+
+
+def _empty_str_dict() -> dict[str, str]:
+    return {}
 
 
 @dataclass(frozen=True)
@@ -95,7 +100,7 @@ class HudContext:
     weapon: WeaponInfo = field(default_factory=WeaponInfo)
 
     # Arbitrary extras (for debug text)
-    debug: Dict[str, str] = field(default_factory=dict)
+    debug: dict[str, str] = field(default_factory=_empty_str_dict)
 
 
 # -------------------------

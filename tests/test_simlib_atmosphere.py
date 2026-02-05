@@ -1,5 +1,4 @@
 import unittest
-import numpy as np
 
 from warbits.simlib.atmosphere import isa_density_kg_m3, isa_temperature_k
 

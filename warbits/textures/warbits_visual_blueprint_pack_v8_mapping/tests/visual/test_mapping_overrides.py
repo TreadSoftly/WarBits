@@ -1,5 +1,6 @@
 import json
 from pathlib import Path
+from typing import Any
 
 from warbits.visual.mapping.overrides import apply_overrides, load_overrides
 from warbits.visual.mapping.types import VisualBinding, VisualMap
@@ -25,7 +26,7 @@ def test_apply_overrides():
     vm.set("vehicle", "F-15C", VisualBinding(blueprint_id="proc:aircraft"))
     vm.set("weapon", "AIM-9L", VisualBinding(blueprint_id="proc:missile"))
 
-    overrides = {
+    overrides: dict[str, Any] = {
         "vehicle": {"F-15C": {"blueprint_id": "mesh:f15c", "scale": 1.3}},
         "weapon": {},
     }

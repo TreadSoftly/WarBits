@@ -13,8 +13,7 @@ Human override always wins.
 
 from __future__ import annotations
 
-from dataclasses import replace
-from typing import Any, Mapping, Optional, Sequence, TYPE_CHECKING
+from typing import TYPE_CHECKING, Any, Mapping, Optional, cast
 
 if TYPE_CHECKING:  # pragma: no cover
     from warbits.visual.blueprint_db import BlueprintDB
@@ -62,17 +61,20 @@ def resolve_visual_binding(
             ov = overrides[override_key]
         else:
             ov_kind = overrides.get(entity_kind)
-            if isinstance(ov_kind, dict) and entity_id in ov_kind:
-                ov = ov_kind[entity_id]
+            if isinstance(ov_kind, dict):
+                ov_kind_map = cast(Mapping[str, Any], ov_kind)
+                if entity_id in ov_kind_map:
+                    ov = ov_kind_map[entity_id]
 
         if isinstance(ov, dict):
+            ov_map = cast(Mapping[str, Any], ov)
             b = VisualBinding(
-                blueprint_id=str(ov.get("blueprint_id") or ov.get("blueprint") or ""),
-                source=str(ov.get("source") or "override"),
-                params=dict(ov.get("params") or {}),
-                scale=float(ov.get("scale") or 1.0),
-                style=str(ov.get("style") or default_style),
-                lod=dict(ov.get("lod") or {}),
+                blueprint_id=str(ov_map.get("blueprint_id") or ov_map.get("blueprint") or ""),
+                source=str(ov_map.get("source") or "override"),
+                params=dict(ov_map.get("params") or {}),
+                scale=float(ov_map.get("scale") or 1.0),
+                style=str(ov_map.get("style") or default_style),
+                lod=dict(ov_map.get("lod") or {}),
                 meta={"override": True},
             )
             if b.blueprint_id:

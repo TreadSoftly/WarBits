@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import dataclasses
-from typing import Any, Dict, Iterable, Iterator, Mapping, MutableMapping, Optional, Tuple
+from typing import Any, Dict, Tuple, cast
 
 
 @dataclasses.dataclass
@@ -16,9 +16,11 @@ class Blackboard:
     This deliberately stays small: it's a dict with a few guardrails.
     """
 
-    data: Dict[str, Any] = dataclasses.field(default_factory=dict)
+    data: Dict[str, Any] = dataclasses.field(default_factory=lambda: cast(Dict[str, Any], {}))
     enable_history: bool = False
-    _history: list[Tuple[str, Any]] = dataclasses.field(default_factory=list, init=False, repr=False)
+    _history: list[Tuple[str, Any]] = dataclasses.field(
+        default_factory=lambda: cast(list[Tuple[str, Any]], []), init=False, repr=False
+    )
 
     def get(self, key: str, default: Any = None) -> Any:
         return self.data.get(key, default)
@@ -62,6 +64,7 @@ class BlackboardView:
         combat = bb.prefix("combat")
         combat.set("target_id", "bogie-1")  # stores at "combat.target_id"
     """
+
     bb: Blackboard
     namespace: str
 

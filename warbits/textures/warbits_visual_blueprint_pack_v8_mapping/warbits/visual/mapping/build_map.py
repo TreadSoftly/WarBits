@@ -16,13 +16,13 @@ from __future__ import annotations
 import json
 from dataclasses import asdict
 from pathlib import Path
-from typing import Any, Dict, Iterable, Mapping, Optional, TYPE_CHECKING
+from typing import TYPE_CHECKING, Any, Dict, Iterable, Mapping, Optional, cast
 
 if TYPE_CHECKING:  # pragma: no cover
     from warbits.visual.blueprint_db import BlueprintDB
 
 from warbits.visual.mapping.rules import resolve_visual_binding
-from warbits.visual.mapping.types import VisualBinding, VisualMap
+from warbits.visual.mapping.types import VisualMap
 
 
 def _maybe_call(obj: Any, name: str, *args: Any, **kwargs: Any) -> Any:
@@ -32,9 +32,9 @@ def _maybe_call(obj: Any, name: str, *args: Any, **kwargs: Any) -> Any:
     return None
 
 
-def _get_store_dict(store: Any, attr: str) -> Optional[dict]:
+def _get_store_dict(store: Any, attr: str) -> Optional[Dict[str, Any]]:
     v = getattr(store, attr, None)
-    return v if isinstance(v, dict) else None
+    return cast(Dict[str, Any], v) if isinstance(v, dict) else None
 
 
 def iter_entity_ids(store: Any) -> Dict[str, list[str]]:
@@ -67,13 +67,13 @@ def _get_spec(store: Any, kind: str, entity_id: str) -> Mapping[str, Any]:
     # Prefer accessor methods.
     spec = _maybe_call(store, f"get_{kind}", entity_id)
     if spec is not None:
-        return spec if isinstance(spec, Mapping) else asdict(spec)
+        return cast(Mapping[str, Any], spec) if isinstance(spec, Mapping) else asdict(spec)
 
     # Fall back to dict attributes.
     d = _get_store_dict(store, f"{kind}s")
     if d is not None and entity_id in d:
         v = d[entity_id]
-        return v if isinstance(v, Mapping) else asdict(v)
+        return cast(Mapping[str, Any], v) if isinstance(v, Mapping) else asdict(v)
 
     return {"id": entity_id}
 
@@ -85,14 +85,13 @@ def build_visual_map(
     overrides: Optional[Mapping[str, Any]] = None,
     default_style: str = "holo_green",
 ) -> VisualMap:
-    mapping: Dict[str, Dict[str, VisualBinding]] = {}
+    vmap = VisualMap()
     ids_by_kind = iter_entity_ids(store)
 
     for kind, ids in ids_by_kind.items():
-        mapping[kind] = {}
         for entity_id in ids:
             spec = _get_spec(store, kind, entity_id)
-            mapping[kind][entity_id] = resolve_visual_binding(
+            binding = resolve_visual_binding(
                 entity_kind=kind,
                 entity_id=entity_id,
                 spec=spec,
@@ -101,7 +100,9 @@ def build_visual_map(
                 default_style=default_style,
             )
 
-    return VisualMap(mapping=mapping)
+            vmap.set(kind, entity_id, binding)
+
+    return vmap
 
 
 def write_visual_map_json(path: str | Path, vmap: VisualMap) -> None:
@@ -116,18 +117,16 @@ def write_visual_map_jsonl(path: str | Path, vmap: VisualMap) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
 
     lines: list[str] = []
-    for kind in sorted(vmap.mapping.keys()):
-        for entity_id in sorted(vmap.mapping[kind].keys()):
-            b = vmap.mapping[kind][entity_id]
-            lines.append(
-                json.dumps(
-                    {
-                        "entity_kind": kind,
-                        "entity_id": entity_id,
-                        "binding": b.to_dict(),
-                    },
-                    sort_keys=True,
-                )
+    for (kind, entity_id), binding in sorted(vmap.bindings.items(), key=lambda kv: (kv[0][0], kv[0][1])):
+        lines.append(
+            json.dumps(
+                {
+                    "entity_kind": kind,
+                    "entity_id": entity_id,
+                    "binding": binding.to_dict(),
+                },
+                sort_keys=True,
             )
+        )
 
     path.write_text("\n".join(lines) + ("\n" if lines else ""), encoding="utf-8")

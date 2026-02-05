@@ -1,9 +1,12 @@
 from __future__ import annotations
 
 import dataclasses
-from typing import Any, Dict, Optional, Tuple
+from typing import Any, Dict, Tuple, TypeAlias, cast
 
 import numpy as np
+from numpy.typing import NDArray
+
+FloatArray: TypeAlias = NDArray[np.float64]
 
 
 @dataclasses.dataclass(frozen=True)
@@ -46,8 +49,8 @@ class SpawnDirective(MissionDirective):
     entity_type: str
     entity_id: str
     team: str
-    pos_m: np.ndarray
-    vel_mps: np.ndarray
+    pos_m: FloatArray
+    vel_mps: FloatArray
     tags: Tuple[str, ...] = ()
 
     def __init__(
@@ -55,18 +58,21 @@ class SpawnDirective(MissionDirective):
         entity_type: str,
         entity_id: str,
         team: str,
-        pos_m: np.ndarray,
-        vel_mps: np.ndarray,
+        pos_m: FloatArray,
+        vel_mps: FloatArray,
         tags: Tuple[str, ...] = (),
     ):
-        payload = {
-            "entity_type": entity_type,
-            "entity_id": entity_id,
-            "team": team,
-            "pos_m": np.asarray(pos_m, dtype=np.float64).reshape(3).tolist(),
-            "vel_mps": np.asarray(vel_mps, dtype=np.float64).reshape(3).tolist(),
-            "tags": list(tags),
-        }
+        payload = cast(
+            Dict[str, Any],
+            {
+                "entity_type": entity_type,
+                "entity_id": entity_id,
+                "team": team,
+                "pos_m": np.asarray(pos_m, dtype=np.float64).reshape(3).tolist(),
+                "vel_mps": np.asarray(vel_mps, dtype=np.float64).reshape(3).tolist(),
+                "tags": list(tags),
+            },
+        )
         super().__init__(kind="spawn", payload=payload)
         object.__setattr__(self, "entity_type", entity_type)
         object.__setattr__(self, "entity_id", entity_id)

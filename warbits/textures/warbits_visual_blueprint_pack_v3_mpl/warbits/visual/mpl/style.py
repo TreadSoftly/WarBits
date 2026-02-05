@@ -1,10 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Dict, Tuple
-
-import numpy as np
-
+from typing import Any, Tuple
 
 RGBA = Tuple[float, float, float, float]
 
@@ -100,7 +97,9 @@ class WireframeStyle:
             return 1.0
         return 1.0 / (1.0 + (d / fd) ** 2)
 
-    def resolve_pass(self, role: str, distance_m: float, *, pixel_mode: bool, detail: bool) -> Tuple[RGBA, float, float, bool]:
+    def resolve_pass(
+        self, role: str, distance_m: float, *, pixel_mode: bool, detail: bool
+    ) -> Tuple[RGBA, float, float, bool]:
         """Return (rgba, lw, alpha, glow) for a pass."""
         base_rgba = self.palette.color_for_role(role)
         fade = self.alpha_fade(distance_m)
@@ -170,7 +169,7 @@ def thermal_style() -> WireframeStyle:
     return WireframeStyle(palette=pal, outline_lw=2.0, detail_alpha=0.4, glow_enabled=False)
 
 
-def apply_mpl_dark_theme(fig, ax) -> None:
+def apply_mpl_dark_theme(fig: Any, ax: Any) -> None:
     """Apply a consistent dark theme to a Matplotlib figure+3D axis."""
     fig.patch.set_facecolor("black")
     ax.set_facecolor("black")

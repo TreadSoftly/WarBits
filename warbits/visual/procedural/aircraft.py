@@ -1,14 +1,15 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Any, Dict, List, Mapping, Optional, Sequence, Tuple
-
 import math
-import numpy as np
+from dataclasses import dataclass
+from typing import Any, Mapping, Optional, Sequence, cast
 
-from ..blueprint_schema import Blueprint
+import numpy as np
+from numpy.typing import NDArray
+
+from ..blueprint_schema import Blueprint, Vec3
 from .dimensions import Dimensions, dims_from_mapping
-from .primitives import Edge, box, cone, cylinder, merge
+from .primitives import Edge, cone, cylinder, merge
 
 
 @dataclass(frozen=True)
@@ -20,6 +21,7 @@ class JetParams:
       - +y = left
       - +z = up
     """
+
     length_m: float = 15.0
     wingspan_m: float = 10.0
     height_m: float = 4.0
@@ -27,8 +29,8 @@ class JetParams:
     fuselage_radius_m: Optional[float] = None  # if None, derived
 
     # Wing shape: these are fractions of length/span to keep everything stable.
-    wing_x_center_frac: float = 0.05   # where wings attach relative to center (0 = mid)
-    wing_root_chord_frac: float = 0.28 # chord length relative to overall length
+    wing_x_center_frac: float = 0.05  # where wings attach relative to center (0 = mid)
+    wing_root_chord_frac: float = 0.28  # chord length relative to overall length
     wing_tip_chord_frac: float = 0.16
     wing_sweep_deg: float = 26.0
 
@@ -62,12 +64,15 @@ def jet_params_from_spec(spec: Mapping[str, Any], *, defaults: JetParams = JetPa
     Returns:
         JetParams usable for procedural blueprint generation.
     """
-    dims = dims_from_mapping(spec, defaults=Dimensions(
-        length_m=defaults.length_m,
-        width_m=max(1.5, defaults.wingspan_m),   # for aircraft, width is ambiguous; keep sane
-        height_m=defaults.height_m,
-        wingspan_m=defaults.wingspan_m,
-    ))
+    dims = dims_from_mapping(
+        spec,
+        defaults=Dimensions(
+            length_m=defaults.length_m,
+            width_m=max(1.5, defaults.wingspan_m),  # for aircraft, width is ambiguous; keep sane
+            height_m=defaults.height_m,
+            wingspan_m=defaults.wingspan_m,
+        ),
+    )
 
     length = dims.length_m
     wingspan = dims.wingspan_m
@@ -149,7 +154,7 @@ def build_jet_blueprint(
     nose_len = 0.10 * L
     fuse_center = (0.0, 0.0, 0.35 * r)
 
-    parts: List[tuple[np.ndarray, List[Edge]]] = []
+    parts: list[tuple[NDArray[np.float_], list[Edge]]] = []
     V_fuse, E_fuse = cylinder(fuse_center, radius=r, length=fuse_len, axis="x", segments=segq, caps=True)
     # Nose base at +fuse_len/2; cone points forward.
     nose_base = (0.5 * fuse_len, 0.0, 0.35 * r)
@@ -179,12 +184,15 @@ def build_jet_blueprint(
     x_tip_te = x_tip_le - tip_chord
 
     # Create vertices (root LE/TE, tip LE/TE)
-    V_wl = np.array([
-        [x_root_le,  0.18 * r, wing_z],
-        [x_root_te,  0.18 * r, wing_z],
-        [x_tip_te,   half_span, wing_z],
-        [x_tip_le,   half_span, wing_z],
-    ], dtype=float)
+    V_wl = np.array(
+        [
+            [x_root_le, 0.18 * r, wing_z],
+            [x_root_te, 0.18 * r, wing_z],
+            [x_tip_te, half_span, wing_z],
+            [x_tip_le, half_span, wing_z],
+        ],
+        dtype=float,
+    )
     # Mirror to right wing
     V_wr = V_wl.copy()
     V_wr[:, 1] *= -1.0
@@ -193,7 +201,7 @@ def build_jet_blueprint(
     E_wing = [(0, 3), (3, 2), (2, 1), (1, 0)]  # loop
 
     # Add ribs as sparse internal structure
-    E_wing_detail: List[Edge] = []
+    E_wing_detail: list[Edge] = []
     # Rib lines from root to tip across chord
     for t in np.linspace(0.25, 0.75, int(max(0, params.ribs))):
         # interpolate between leading and trailing edges
@@ -216,11 +224,14 @@ def build_jet_blueprint(
     hchord = 0.18 * L
     tail_x = -0.45 * fuse_len
     h_z = 0.40 * r
-    V_hl = np.array([
-        [tail_x + 0.45 * hchord,  0.15 * r, h_z],
-        [tail_x - 0.55 * hchord,  0.15 * r, h_z],
-        [tail_x - 0.15 * hchord,  hspan,    h_z],
-    ], dtype=float)
+    V_hl = np.array(
+        [
+            [tail_x + 0.45 * hchord, 0.15 * r, h_z],
+            [tail_x - 0.55 * hchord, 0.15 * r, h_z],
+            [tail_x - 0.15 * hchord, hspan, h_z],
+        ],
+        dtype=float,
+    )
     V_hr = V_hl.copy()
     V_hr[:, 1] *= -1.0
     E_h = [(0, 2), (2, 1), (1, 0)]
@@ -235,12 +246,12 @@ def build_jet_blueprint(
     # base y offset for twin tail
     vt_y_off = 0.45 * r if params.twin_tail else 0.0
 
-    def _vtail(y_sign: float) -> tuple[np.ndarray, List[Edge]]:
+    def _vtail(y_sign: float) -> tuple[NDArray[np.float_], list[Edge]]:
         base = np.array([vt_base_x, y_sign * vt_y_off, vt_base_z], dtype=float)
         tip = base + np.array([-0.12 * L, y_sign * math.sin(cant) * 0.65 * r, tail_height], dtype=float)
         # small trailing edge point
         back = base + np.array([-0.05 * L, y_sign * 0.10 * r, 0.25 * tail_height], dtype=float)
-        V = np.vstack([base, tip, back])
+        V = np.vstack([base, tip, back]).astype(float)
         E = [(0, 1), (1, 2), (2, 0)]
         return V, E
 
@@ -256,14 +267,17 @@ def build_jet_blueprint(
         cx = 0.18 * L
         cz = vt_base_z + 0.75 * r
         cy = 0.0
-        canopy = np.array([
-            [cx + 0.06 * L, cy,           cz + 0.06 * r],
-            [cx + 0.02 * L, cy + 0.8 * r, cz + 0.02 * r],
-            [cx - 0.08 * L, cy + 0.75 * r, cz - 0.02 * r],
-            [cx - 0.12 * L, cy,           cz + 0.00 * r],
-            [cx - 0.08 * L, cy - 0.75 * r, cz - 0.02 * r],
-            [cx + 0.02 * L, cy - 0.8 * r, cz + 0.02 * r],
-        ], dtype=float)
+        canopy = np.array(
+            [
+                [cx + 0.06 * L, cy, cz + 0.06 * r],
+                [cx + 0.02 * L, cy + 0.8 * r, cz + 0.02 * r],
+                [cx - 0.08 * L, cy + 0.75 * r, cz - 0.02 * r],
+                [cx - 0.12 * L, cy, cz + 0.00 * r],
+                [cx - 0.08 * L, cy - 0.75 * r, cz - 0.02 * r],
+                [cx + 0.02 * L, cy - 0.8 * r, cz + 0.02 * r],
+            ],
+            dtype=float,
+        )
         E_can = [(0, 1), (1, 2), (2, 3), (3, 4), (4, 5), (5, 0)]
         parts.append((canopy, E_can))
 
@@ -272,7 +286,7 @@ def build_jet_blueprint(
     # Compute LOD edges. We want "silhouette" to be mostly the major outlines.
     # We'll include: fuselage centerline, wing outlines, tail outlines.
     # The easiest stable approximation is: choose the longest edges.
-    lengths = []
+    lengths: list[tuple[int, float]] = []
     for i, (a, b) in enumerate(E):
         pa = V[a]
         pb = V[b]
@@ -281,8 +295,8 @@ def build_jet_blueprint(
     # silhouette: top N edges
     sil_n = min(120, max(40, int(0.35 * len(E))))
     low_n = min(220, max(80, int(0.60 * len(E))))
-    E_sil = [E[i] for i, _ in lengths[:sil_n]]
-    E_low = [E[i] for i, _ in lengths[:low_n]]
+    E_sil = tuple(E[i] for i, _ in lengths[:sil_n])
+    E_low = tuple(E[i] for i, _ in lengths[:low_n])
 
     # Tags
     t = set(tags or [])
@@ -296,7 +310,7 @@ def build_jet_blueprint(
         blueprint_id=blueprint_id,
         kind="aircraft",
         tags=sorted(t),
-        vertices_m=V,
+        vertices_m=cast(Sequence[Vec3], V),
         edges=E,
         lod_edges={"low": E_low, "silhouette": E_sil},
         meta={

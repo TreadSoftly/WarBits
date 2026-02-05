@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Iterable, List
+from typing import List
 
 from .stages import VisualStage
 from .stats import VisualFrameTimings
@@ -67,3 +67,6 @@ class VisualBudget:
         if v:
             msg = "\n".join(v)
             raise AssertionError(f"Visual budget violated:\n{msg}")
+
+
+BudgetViolation = AssertionError

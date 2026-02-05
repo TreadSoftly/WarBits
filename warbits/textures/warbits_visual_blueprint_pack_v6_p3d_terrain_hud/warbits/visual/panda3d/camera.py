@@ -13,11 +13,14 @@ This module is safe to import without Panda3D installed.
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Optional, Tuple
+from typing import Any, Optional, TypeAlias
 
 import numpy as np
+from numpy.typing import NDArray
 
 from .imports import require_panda3d
+
+FloatArray: TypeAlias = NDArray[np.float32]
 
 
 @dataclass(frozen=True)
@@ -38,7 +41,7 @@ class ChaseCameraConfig:
     min_speed_for_forward: float = 2.0
 
 
-def _safe_unit(v: np.ndarray, eps: float = 1e-9, fallback: np.ndarray | None = None) -> np.ndarray:
+def _safe_unit(v: FloatArray, eps: float = 1e-9, fallback: FloatArray | None = None) -> FloatArray:
     n = float(np.linalg.norm(v))
     if n < eps:
         return (fallback if fallback is not None else np.array([1.0, 0.0, 0.0], dtype=np.float32)).astype(np.float32)
@@ -46,12 +49,12 @@ def _safe_unit(v: np.ndarray, eps: float = 1e-9, fallback: np.ndarray | None = N
 
 
 def compute_chase_camera_pose(
-    target_pos: np.ndarray,
-    target_vel: np.ndarray,
+    target_pos: FloatArray,
+    target_vel: FloatArray,
     *,
-    up: np.ndarray = np.array([0.0, 0.0, 1.0], dtype=np.float32),
+    up: FloatArray = np.array([0.0, 0.0, 1.0], dtype=np.float32),
     cfg: ChaseCameraConfig = ChaseCameraConfig(),
-) -> tuple[np.ndarray, np.ndarray]:
+) -> tuple[FloatArray, FloatArray]:
     """Compute desired camera position + look-at point (pure math).
 
     Returns (cam_pos, look_at), both float32 vectors length-3.
@@ -85,26 +88,24 @@ class ChaseCameraController:
     - No scene graph allocations inside update().
     """
 
-    def __init__(self, camera_np, cfg: ChaseCameraConfig = ChaseCameraConfig()):
+    def __init__(self, camera_np: Any, cfg: ChaseCameraConfig = ChaseCameraConfig()):
         self.camera_np = camera_np
         self.cfg = cfg
 
         # Cached current position for faster smoothing without getPos() calls.
-        self._pos = None  # type: Optional[np.ndarray]
+        self._pos: Optional[FloatArray] = None
 
     def update(
         self,
         dt: float,
-        target_pos: np.ndarray,
-        target_vel: np.ndarray,
+        target_pos: FloatArray,
+        target_vel: FloatArray,
         *,
-        up: np.ndarray = np.array([0.0, 0.0, 1.0], dtype=np.float32),
+        up: FloatArray = np.array([0.0, 0.0, 1.0], dtype=np.float32),
     ) -> None:
-        p3d = require_panda3d()
+        _ = require_panda3d()
 
-        desired_pos, desired_look = compute_chase_camera_pose(
-            target_pos, target_vel, up=up, cfg=self.cfg
-        )
+        desired_pos, desired_look = compute_chase_camera_pose(target_pos, target_vel, up=up, cfg=self.cfg)
 
         if self._pos is None:
             # Initialize from current camera position.

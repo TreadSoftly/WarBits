@@ -4,7 +4,7 @@ import sys
 from pathlib import Path
 
 
-def test_pipeline_validate_runs(tmp_path):
+def test_pipeline_validate_runs(tmp_path: Path) -> None:
     base = Path(__file__).parent / "fixtures" / "visual"
     artifacts = tmp_path / "artifacts"
     cmd = [

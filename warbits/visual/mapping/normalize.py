@@ -9,7 +9,7 @@ from __future__ import annotations
 
 import re
 from dataclasses import dataclass
-from typing import Iterable, Iterator, Sequence
+from typing import Iterator, Sequence
 
 _RE_NON_ALNUM = re.compile(r"[^a-z0-9]+")
 _RE_WS = re.compile(r"\s+")

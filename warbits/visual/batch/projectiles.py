@@ -4,6 +4,7 @@ from dataclasses import dataclass
 from typing import Optional
 
 import numpy as np
+from numpy.typing import NDArray
 
 
 @dataclass
@@ -23,21 +24,21 @@ class ProjectileSegmentBatch:
     max_segments: int
 
     def __post_init__(self) -> None:
-        self._segments: np.ndarray = np.zeros((self.max_segments, 2, 3), dtype=np.float32)
+        self._segments: NDArray[np.float_] = np.zeros((self.max_segments, 2, 3), dtype=np.float32)
         self.count: int = 0
 
     @property
-    def buffer(self) -> np.ndarray:
+    def buffer(self) -> NDArray[np.float_]:
         """The full preallocated segment buffer (do not slice-write beyond `count`)."""
         return self._segments
 
     def update(
         self,
-        prev_pos_m: np.ndarray,
-        curr_pos_m: np.ndarray,
+        prev_pos_m: NDArray[np.float_],
+        curr_pos_m: NDArray[np.float_],
         *,
         max_copy: Optional[int] = None,
-    ) -> np.ndarray:
+    ) -> NDArray[np.float_]:
         """Update the batch segments.
 
         Args:

@@ -21,11 +21,14 @@ class FxConfig:
     tracer_max_objects: int = 800
     tracer_history: int = 4  # points per object; segments ~ history-1
     tracer_fade_power: float = 1.8
+    max_tracer_segments: int = 2400
 
     # Contrails/smoke: longer aircraft trails.
     contrail_max_objects: int = 64
     contrail_history: int = 18
     contrail_fade_power: float = 1.4
+    max_contrail_segments: int = 1200
+    max_smoke_segments: int = 1200
 
     # Explosions: wireframe spheres.
     max_explosions: int = 96

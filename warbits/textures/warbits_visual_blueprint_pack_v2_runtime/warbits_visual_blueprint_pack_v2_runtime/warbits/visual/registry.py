@@ -2,20 +2,24 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Dict, Iterable, List, Mapping, Optional, Sequence, Tuple
+from typing import Dict, Optional, Sequence, Tuple, TypeAlias
 
 import numpy as np
+from numpy.typing import NDArray
 
 from .blueprint_db import BlueprintDB
 from .blueprint_schema import Blueprint
 from .lod import LODPolicy
 
+FloatArray: TypeAlias = NDArray[np.float64]
+IntArray: TypeAlias = NDArray[np.int32]
+
 
 @dataclass
 class CachedGeometry:
     blueprint_id: str
-    vertices_m: np.ndarray  # (N,3) float64
-    edges_by_lod: Dict[str, np.ndarray]  # lod_name -> (M,2) int32
+    vertices_m: FloatArray  # (N,3) float64
+    edges_by_lod: Dict[str, IntArray]  # lod_name -> (M,2) int32
 
 
 class VisualRegistry:
@@ -72,7 +76,7 @@ class VisualRegistry:
 
         # Build numpy cache
         v = np.asarray(bp.vertices_m, dtype=np.float64)
-        edges_by_lod: Dict[str, np.ndarray] = {}
+        edges_by_lod: Dict[str, IntArray] = {}
 
         # base edges treated as lod0 if not present
         edges_by_lod["base"] = np.asarray(bp.edges, dtype=np.int32)
@@ -96,7 +100,7 @@ class VisualRegistry:
             return "lod0"
         return None
 
-    def edges_for_distance(self, blueprint_id: str, distance_m: float) -> Optional[np.ndarray]:
+    def edges_for_distance(self, blueprint_id: str, distance_m: float) -> Optional[IntArray]:
         geom = self.geometry(blueprint_id)
         if geom is None:
             return None

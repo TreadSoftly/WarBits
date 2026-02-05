@@ -1,18 +1,21 @@
-import numpy as np
+from typing import Any, cast
 
 import pytest
 
 try:
-    import trimesh
+    import trimesh  # type: ignore
 except Exception:
     trimesh = None  # type: ignore
 
 from warbits.visual.wireframe_extract import LODSpec, extract_lod_edge_sets
 
 
-@pytest.mark.skipif(trimesh is None, reason="trimesh not installed")
 def test_extract_lod_edges_monotonic():
-    mesh = trimesh.creation.box(extents=(2.0, 1.0, 0.5))
+    if trimesh is None:
+        pytest.skip("trimesh not installed")
+    assert trimesh is not None
+    tm = cast(Any, trimesh)
+    mesh = tm.creation.box(extents=(2.0, 1.0, 0.5))
 
     lods = (
         LODSpec(name="lod0", feature_angle_deg=5.0, max_edges=10000, sample_rate=1.0, include_boundary=True),
@@ -21,7 +24,7 @@ def test_extract_lod_edges_monotonic():
     )
 
     out = extract_lod_edge_sets(mesh, lods, rng_seed=1234)
-    assert set(out.keys()) == {"lod0","lod1","lod2"}
+    assert set(out.keys()) == {"lod0", "lod1", "lod2"}
 
     n0 = len(out["lod0"])
     n1 = len(out["lod1"])
@@ -29,5 +32,7 @@ def test_extract_lod_edges_monotonic():
 
     assert n0 > 0
     assert n1 > 0
+    assert n2 > 0
+    assert n0 >= n1 >= n2
     assert n2 > 0
     assert n0 >= n1 >= n2

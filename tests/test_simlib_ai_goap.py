@@ -1,7 +1,7 @@
 import unittest
 
 from warbits.simlib.ai import DeterministicRNG
-from warbits.simlib.ai.goap import GoapAction, GoapPlanner, state_set
+from warbits.simlib.ai.goap import GoapAction, GoapPlanner
 
 
 class TestGoap(unittest.TestCase):
@@ -17,6 +17,7 @@ class TestGoap(unittest.TestCase):
         goal = {"engaging": True}
         plan = planner.plan(start, goal)
         self.assertIsNotNone(plan)
+        assert plan is not None
         self.assertEqual([a.name for a in plan], ["get_weapon", "find_target", "engage"])
 
 

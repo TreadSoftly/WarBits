@@ -1,12 +1,15 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Optional, Tuple
+from typing import Optional, Tuple, TypeAlias
 
 import numpy as np
+from numpy.typing import NDArray
+
+FloatArray: TypeAlias = NDArray[np.float32]
 
 
-def make_unit_starburst_segments(rays: int = 12) -> np.ndarray:
+def make_unit_starburst_segments(rays: int = 12) -> FloatArray:
     """Create unit-length starburst segments in the XY plane.
 
     Returns
@@ -42,8 +45,8 @@ class BurstPool:
         if params.max_bursts <= 0:
             raise ValueError("max_bursts must be > 0")
         self.params = params
-        self._unit = make_unit_starburst_segments(params.rays)
-        self._segs_per = self._unit.shape[0]
+        self._unit: FloatArray = make_unit_starburst_segments(params.rays)
+        self._segs_per = int(self._unit.shape[0])
 
         self._centers = np.zeros((params.max_bursts, 3), dtype=np.float32)
         self._start = np.full((params.max_bursts,), -1, dtype=np.int32)
@@ -60,7 +63,7 @@ class BurstPool:
 
     def spawn(
         self,
-        center_xyz_m: np.ndarray,
+        center_xyz_m: FloatArray,
         *,
         frame_idx: int,
         radius_m: Optional[float] = None,
@@ -77,7 +80,7 @@ class BurstPool:
         if lifetime_frames is not None:
             self._life[slot] = int(lifetime_frames)
 
-    def build_segments(self, *, frame_idx: int) -> Tuple[np.ndarray, np.ndarray]:
+    def build_segments(self, *, frame_idx: int) -> Tuple[FloatArray, FloatArray]:
         alive = np.nonzero(self._alive)[0]
         if len(alive) == 0:
             return (

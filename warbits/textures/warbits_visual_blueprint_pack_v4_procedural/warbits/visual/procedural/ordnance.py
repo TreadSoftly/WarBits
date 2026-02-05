@@ -1,13 +1,16 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Any, Mapping, Optional, Sequence, List
+from typing import Optional, Sequence
 
 import numpy as np
+from numpy.typing import NDArray
 
-from ..blueprint_schema import Blueprint
-from .dimensions import Dimensions, dims_from_mapping
-from .primitives import Edge, cone, cylinder, merge
+from warbits.visual.blueprint_schema import Blueprint
+
+from .primitives import cone, cylinder, merge
+
+NDArrayFloat = NDArray[np.float64]
 
 
 @dataclass(frozen=True)
@@ -34,21 +37,6 @@ class BombParams:
     segments: int = 10
 
 
-def _dims_to_length_diam(spec: Mapping[str, Any], *, default_len: float, default_diam: float) -> tuple[float, float]:
-    dims = dims_from_mapping(spec, defaults=Dimensions(
-        length_m=default_len,
-        width_m=default_diam,
-        height_m=default_diam,
-        diameter_m=default_diam,
-    ))
-    length = float(max(0.15, dims.length_m))
-    diam = float(max(0.02, dims.diameter_m or default_diam))
-    # Heuristic: if width looks like a diameter, use it.
-    if dims.diameter_m is None and 0.02 < dims.width_m < 1.2:
-        diam = float(dims.width_m)
-    return length, diam
-
-
 def build_missile_blueprint(
     blueprint_id: str,
     params: MissileParams,
@@ -71,20 +59,23 @@ def build_missile_blueprint(
     # Simple fins at the rear
     fin_span = float(params.fin_span_m)
     fin_x = -0.5 * body_len + 0.10 * L
-    fin = np.array([
-        [fin_x, 0.0, 0.0],
-        [fin_x - 0.12 * L, 0.5 * fin_span, 0.0],
-        [fin_x - 0.08 * L, 0.0, 0.5 * fin_span],
-        [fin_x - 0.12 * L, -0.5 * fin_span, 0.0],
-        [fin_x - 0.08 * L, 0.0, -0.5 * fin_span],
-    ], dtype=float)
+    fin = np.array(
+        [
+            [fin_x, 0.0, 0.0],
+            [fin_x - 0.12 * L, 0.5 * fin_span, 0.0],
+            [fin_x - 0.08 * L, 0.0, 0.5 * fin_span],
+            [fin_x - 0.12 * L, -0.5 * fin_span, 0.0],
+            [fin_x - 0.08 * L, 0.0, -0.5 * fin_span],
+        ],
+        dtype=float,
+    )
     E_fin = [(0, 1), (0, 2), (0, 3), (0, 4), (1, 2), (2, 3), (3, 4), (4, 1)]
 
     V, E = merge([(V_body, E_body), (V_nose, E_nose), (fin, E_fin)])
 
     # LOD edges: keep body + nose outlines only
     # Choose by length: works well for ordnance.
-    lengths = []
+    lengths: list[tuple[int, float]] = []
     for i, (a, b) in enumerate(E):
         lengths.append((i, float(np.linalg.norm(V[b] - V[a]))))
     lengths.sort(key=lambda t: t[1], reverse=True)
@@ -100,10 +91,17 @@ def build_missile_blueprint(
         blueprint_id=blueprint_id,
         kind="ordnance",
         tags=sorted(t),
-        vertices_m=V,
-        edges=E,
-        lod_edges={"low": E_low, "silhouette": E_sil},
-        meta={"source": "procedural", "generator": "build_missile_blueprint", "params": {"length_m": L, "diameter_m": d}},
+        vertices_m=[(float(x), float(y), float(z)) for x, y, z in V],
+        edges=[(int(a), int(b)) for a, b in E],
+        lod_edges={
+            "low": tuple((int(a), int(b)) for a, b in E_low),
+            "silhouette": tuple((int(a), int(b)) for a, b in E_sil),
+        },
+        meta={
+            "source": "procedural",
+            "generator": "build_missile_blueprint",
+            "params": {"length_m": L, "diameter_m": d},
+        },
     )
 
 
@@ -160,19 +158,22 @@ def build_bomb_blueprint(
     # Tail: simple fin cross
     tail_span = float(params.tail_span_m)
     tx = -0.5 * body_len - 0.02 * L
-    tail = np.array([
-        [tx, 0.0, 0.0],
-        [tx - tail_len, 0.5 * tail_span, 0.0],
-        [tx - tail_len, -0.5 * tail_span, 0.0],
-        [tx - tail_len, 0.0, 0.5 * tail_span],
-        [tx - tail_len, 0.0, -0.5 * tail_span],
-    ], dtype=float)
+    tail = np.array(
+        [
+            [tx, 0.0, 0.0],
+            [tx - tail_len, 0.5 * tail_span, 0.0],
+            [tx - tail_len, -0.5 * tail_span, 0.0],
+            [tx - tail_len, 0.0, 0.5 * tail_span],
+            [tx - tail_len, 0.0, -0.5 * tail_span],
+        ],
+        dtype=float,
+    )
     E_tail = [(0, 1), (0, 2), (0, 3), (0, 4), (1, 3), (3, 2), (2, 4), (4, 1)]
 
     V, E = merge([(V_body, E_body), (V_nose, E_nose), (tail, E_tail)])
 
     # LOD: prefer outlines
-    lengths = []
+    lengths: list[tuple[int, float]] = []
     for i, (a, b) in enumerate(E):
         lengths.append((i, float(np.linalg.norm(V[b] - V[a]))))
     lengths.sort(key=lambda t: t[1], reverse=True)
@@ -188,8 +189,11 @@ def build_bomb_blueprint(
         blueprint_id=blueprint_id,
         kind="ordnance",
         tags=sorted(t),
-        vertices_m=V,
-        edges=E,
-        lod_edges={"low": E_low, "silhouette": E_sil},
+        vertices_m=[(float(x), float(y), float(z)) for x, y, z in V],
+        edges=[(int(a), int(b)) for a, b in E],
+        lod_edges={
+            "low": tuple((int(a), int(b)) for a, b in E_low),
+            "silhouette": tuple((int(a), int(b)) for a, b in E_sil),
+        },
         meta={"source": "procedural", "generator": "build_bomb_blueprint", "params": {"length_m": L, "diameter_m": d}},
     )

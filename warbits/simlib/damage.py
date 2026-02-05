@@ -19,10 +19,12 @@ Core concept:
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import Dict, Iterable, List, Optional, Tuple
+from typing import Dict, Iterable, TypeAlias
 
-import math
 import numpy as np
+from numpy.typing import NDArray
+
+FloatArray: TypeAlias = NDArray[np.float64]
 
 
 @dataclass(frozen=True)
@@ -98,7 +100,9 @@ def scaled_distance_m_per_kg_cuberoot(distance_m: float, explosive_mass_kg: floa
     return R / (W ** (1.0 / 3.0))
 
 
-def blast_damage_fraction(distance_m: float, explosive_mass_kg: float, *, params: BlastModelParams = BlastModelParams()) -> float:
+def blast_damage_fraction(
+    distance_m: float, explosive_mass_kg: float, *, params: BlastModelParams = BlastModelParams()
+) -> float:
     """Compute a 0..1 damage fraction based on distance and explosive mass.
 
     This is a *starter* model:
@@ -124,8 +128,8 @@ def blast_damage_fraction(distance_m: float, explosive_mass_kg: float, *, params
 def apply_blast_to_platform(
     damage_state: PlatformDamageState,
     *,
-    platform_pos: np.ndarray,
-    explosion_pos: np.ndarray,
+    platform_pos: FloatArray,
+    explosion_pos: FloatArray,
     explosive_mass_kg: float,
     params: BlastModelParams = BlastModelParams(),
 ) -> Dict[str, float]:

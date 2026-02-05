@@ -1,5 +1,4 @@
 import unittest
-import numpy as np
 
 from warbits.simlib.ai.rng import DeterministicRNG, stable_hash64
 

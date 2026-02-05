@@ -1,9 +1,12 @@
 from __future__ import annotations
 
 import dataclasses
-from typing import Any, Dict, List, Optional, Protocol, Sequence, Tuple
+from typing import List, Optional, Protocol, Sequence, Tuple, TypeAlias
 
 import numpy as np
+from numpy.typing import NDArray
+
+FloatArray: TypeAlias = NDArray[np.float64]
 
 
 Team = str
@@ -11,8 +14,8 @@ Team = str
 
 @dataclasses.dataclass(frozen=True)
 class Pose:
-    pos_m: np.ndarray  # (3,)
-    vel_mps: np.ndarray  # (3,)
+    pos_m: FloatArray  # (3,)
+    vel_mps: FloatArray  # (3,)
 
     @staticmethod
     def from_arrays(pos_m: Sequence[float], vel_mps: Sequence[float]) -> "Pose":

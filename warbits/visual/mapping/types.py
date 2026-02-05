@@ -15,10 +15,28 @@ Design constraints:
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
 import json
+from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Dict, Iterable, Iterator, List, Mapping, Optional, Tuple
+from typing import Any, Iterable, List, Mapping, Optional, Tuple, cast
+
+
+def _dict_or_empty(value: Any) -> dict[str, Any]:
+    if isinstance(value, Mapping):
+        return dict(cast(Mapping[str, Any], value))
+    return {}
+
+
+def _empty_str_any_dict() -> dict[str, Any]:
+    return {}
+
+
+def _empty_binding_dict() -> dict[Tuple[str, str], "VisualBinding"]:
+    return {}
+
+
+def _empty_default_dict() -> dict[str, "VisualBinding"]:
+    return {}
 
 
 @dataclass(frozen=True)
@@ -56,13 +74,13 @@ class VisualBinding:
 
     blueprint_id: str
     source: str = "unknown"
-    params: Dict[str, Any] = field(default_factory=dict)
+    params: dict[str, Any] = field(default_factory=_empty_str_any_dict)
     scale: float = 1.0
     style: str = "holo_green"
-    lod: Dict[str, Any] = field(default_factory=dict)
-    meta: Dict[str, Any] = field(default_factory=dict)
+    lod: dict[str, Any] = field(default_factory=_empty_str_any_dict)
+    meta: dict[str, Any] = field(default_factory=_empty_str_any_dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         # Stable key order for deterministic JSON.
         return {
             "blueprint_id": self.blueprint_id,
@@ -79,11 +97,11 @@ class VisualBinding:
         return VisualBinding(
             blueprint_id=str(d.get("blueprint_id", "")),
             source=str(d.get("source", "unknown")),
-            params=dict(d.get("params", {})),
+            params=_dict_or_empty(d.get("params")),
             scale=float(d.get("scale", 1.0)),
             style=str(d.get("style", "holo_green")),
-            lod=dict(d.get("lod", {})),
-            meta=dict(d.get("meta", {})),
+            lod=_dict_or_empty(d.get("lod")),
+            meta=_dict_or_empty(d.get("meta")),
         )
 
 
@@ -99,8 +117,8 @@ class VisualMap:
       - "effect" (optional)
     """
 
-    bindings: Dict[Tuple[str, str], VisualBinding] = field(default_factory=dict)
-    defaults: Dict[str, VisualBinding] = field(default_factory=dict)
+    bindings: dict[Tuple[str, str], VisualBinding] = field(default_factory=_empty_binding_dict)
+    defaults: dict[str, VisualBinding] = field(default_factory=_empty_default_dict)
     version: str = "1"
 
     def set(self, kind: str, entity_id: str, binding: VisualBinding) -> None:
@@ -125,9 +143,9 @@ class VisualMap:
     def __len__(self) -> int:
         return len(self.bindings)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         # Emit as list to keep deterministic ordering and allow duplicate checks.
-        items: List[Dict[str, Any]] = []
+        items: List[dict[str, Any]] = []
         for (kind, eid), bind in sorted(self.bindings.items(), key=lambda kv: (kv[0][0], kv[0][1])):
             items.append({
                 "kind": kind,
@@ -135,7 +153,7 @@ class VisualMap:
                 "binding": bind.to_dict(),
             })
 
-        defaults: Dict[str, Any] = {}
+        defaults: dict[str, Any] = {}
         for kind in sorted(self.defaults.keys()):
             defaults[kind] = self.defaults[kind].to_dict()
 
@@ -169,14 +187,25 @@ class VisualMap:
     @staticmethod
     def from_dict(d: Mapping[str, Any]) -> "VisualMap":
         vm = VisualMap(version=str(d.get("version", "1")))
-        defaults = d.get("defaults", {}) or {}
-        for kind, bd in dict(defaults).items():
-            vm.defaults[str(kind)] = VisualBinding.from_dict(bd)
+        defaults_raw = d.get("defaults")
+        if isinstance(defaults_raw, Mapping):
+            defaults_map = cast(Mapping[str, Any], defaults_raw)
+            for kind, bd in defaults_map.items():
+                if isinstance(bd, Mapping):
+                    vm.defaults[str(kind)] = VisualBinding.from_dict(cast(Mapping[str, Any], bd))
 
-        for it in d.get("items", []) or []:
-            kind = str(it.get("kind", ""))
-            eid = str(it.get("id", ""))
-            bind = VisualBinding.from_dict(it.get("binding", {}))
-            if kind and eid:
-                vm.set(kind, eid, bind)
+        items_raw = d.get("items")
+        if isinstance(items_raw, list):
+            items_list = cast(list[Mapping[str, Any]], items_raw)
+            for item_map in items_list:
+                kind = str(item_map.get("kind", ""))
+                eid = str(item_map.get("id", ""))
+                bind_raw = item_map.get("binding")
+                bind = (
+                    VisualBinding.from_dict(cast(Mapping[str, Any], bind_raw))
+                    if isinstance(bind_raw, Mapping)
+                    else VisualBinding.from_dict({})
+                )
+                if kind and eid:
+                    vm.set(kind, eid, bind)
         return vm

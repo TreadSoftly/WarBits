@@ -1,20 +1,24 @@
 from __future__ import annotations
 
 import dataclasses
-from typing import Dict, List, Optional, Sequence, Tuple
+from typing import Dict, List, Optional, TypeAlias, cast
 
 import numpy as np
+from numpy.typing import NDArray
 
 from .filters import AlphaBetaFilter
 from .rng import DeterministicRNG, stable_hash64
+
+Vec3: TypeAlias = NDArray[np.float64]
 
 
 @dataclasses.dataclass(frozen=True)
 class Observation:
     """A generic observation in world coordinates (SI units)."""
+
     time_s: float
     sensor_id: str
-    pos_m: np.ndarray  # shape (3,)
+    pos_m: Vec3  # shape (3,)
     # Optional quality/confidence: [0,1]
     quality: float = 1.0
     # Optional: who observed this (entity id), if relevant
@@ -27,14 +31,14 @@ class Track:
     filter: AlphaBetaFilter
     last_update_s: float
     confidence: float = 0.2
-    sensor_ids: set[str] = dataclasses.field(default_factory=set)
+    sensor_ids: set[str] = dataclasses.field(default_factory=lambda: cast(set[str], set()))
 
     @property
-    def pos_m(self) -> np.ndarray:
+    def pos_m(self) -> Vec3:
         return self.filter.x_m
 
     @property
-    def vel_mps(self) -> np.ndarray:
+    def vel_mps(self) -> Vec3:
         return self.filter.v_mps
 
 
@@ -64,7 +68,7 @@ class TrackManager:
     confidence_gain: float = 0.25
     confidence_decay_per_s: float = 0.15
 
-    _tracks: Dict[str, Track] = dataclasses.field(default_factory=dict, init=False)
+    _tracks: Dict[str, Track] = dataclasses.field(default_factory=lambda: cast(Dict[str, Track], {}), init=False)
 
     def tracks(self) -> List[Track]:
         # stable ordering
@@ -75,7 +79,7 @@ class TrackManager:
         h = stable_hash64(self.rng.seed_u64, obs.sensor_id, float(obs.time_s), n, obs.observer_id)
         return f"trk-{h:016x}"
 
-    def _distance(self, a: np.ndarray, b: np.ndarray) -> float:
+    def _distance(self, a: Vec3, b: Vec3) -> float:
         d = np.asarray(a, dtype=np.float64).reshape(3) - np.asarray(b, dtype=np.float64).reshape(3)
         return float(np.linalg.norm(d))
 

@@ -1,16 +1,15 @@
 import unittest
 
 from warbits.simlib.ai import (
-    AIContext,
-    Blackboard,
-    DeterministicRNG,
-    Status,
     Action,
-    Condition,
-    Sequence,
-    Selector,
+    AIContext,
     BehaviorTree,
+    Blackboard,
     Cooldown,
+    DeterministicRNG,
+    Selector,
+    Sequence,
+    Status,
 )
 
 
@@ -19,11 +18,11 @@ class TestBehaviorTree(unittest.TestCase):
         bb = Blackboard()
         ctx = AIContext(rng=DeterministicRNG(1), bb=bb, now_s=0.0, dt_s=0.1)
 
-        def set_a(ctx):
+        def set_a(ctx: AIContext):
             ctx.bb.set("a", True)
             return Status.SUCCESS
 
-        def set_b(ctx):
+        def set_b(ctx: AIContext):
             ctx.bb.set("b", True)
             return Status.SUCCESS
 
@@ -37,10 +36,10 @@ class TestBehaviorTree(unittest.TestCase):
         bb = Blackboard()
         ctx = AIContext(rng=DeterministicRNG(2), bb=bb, now_s=0.0, dt_s=0.1)
 
-        def fail(ctx):
+        def fail(ctx: AIContext):
             return Status.FAILURE
 
-        def succeed(ctx):
+        def succeed(ctx: AIContext):
             ctx.bb.set("ok", 1)
             return Status.SUCCESS
 
@@ -53,7 +52,7 @@ class TestBehaviorTree(unittest.TestCase):
         bb = Blackboard()
         ctx = AIContext(rng=DeterministicRNG(3), bb=bb, now_s=0.0, dt_s=0.1)
 
-        def fire(ctx):
+        def fire(ctx: AIContext):
             ctx.bb.set("fires", int(ctx.bb.get("fires", 0)) + 1)
             return Status.SUCCESS
 

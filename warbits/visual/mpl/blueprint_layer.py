@@ -1,17 +1,18 @@
 from __future__ import annotations
 
+import importlib
 from dataclasses import dataclass
-from typing import Dict, List, Optional, Sequence, Tuple
+from typing import Any, Dict, List, Optional, Sequence, Tuple, cast
 
 import numpy as np
-from mpl_toolkits.mplot3d.art3d import Line3DCollection
+from numpy.typing import NDArray
 
-from ..registry import BlueprintRegistry
 from ..lod import LODPolicy
+from ..registry import CachedGeometry, VisualRegistry
 from .style import WireframeStyle, neon_green_style
 
 
-def rot_from_yaw_pitch_roll(yaw: float, pitch: float, roll: float) -> np.ndarray:
+def rot_from_yaw_pitch_roll(yaw: float, pitch: float, roll: float) -> NDArray[np.float_]:
     """Return a 3x3 rotation matrix from yaw/pitch/roll (radians).
 
     Convention:
@@ -29,24 +30,18 @@ def rot_from_yaw_pitch_roll(yaw: float, pitch: float, roll: float) -> np.ndarray
     cr, sr = np.cos(roll), np.sin(roll)
 
     Rz = np.array(
-        [[cy, -sy, 0.0],
-         [sy,  cy, 0.0],
-         [0.0, 0.0, 1.0]],
+        [[cy, -sy, 0.0], [sy, cy, 0.0], [0.0, 0.0, 1.0]],
         dtype=float,
     )
     Ry = np.array(
-        [[ cp, 0.0, sp],
-         [0.0, 1.0, 0.0],
-         [-sp, 0.0, cp]],
+        [[cp, 0.0, sp], [0.0, 1.0, 0.0], [-sp, 0.0, cp]],
         dtype=float,
     )
     Rx = np.array(
-        [[1.0, 0.0, 0.0],
-         [0.0,  cr, -sr],
-         [0.0,  sr,  cr]],
+        [[1.0, 0.0, 0.0], [0.0, cr, -sr], [0.0, sr, cr]],
         dtype=float,
     )
-    return (Rz @ Ry @ Rx)
+    return cast(NDArray[np.float_], (Rz @ Ry @ Rx).astype(float))
 
 
 @dataclass(frozen=True)
@@ -57,7 +52,7 @@ class BlueprintInstance:
 
     # world transform
     position_m: Tuple[float, float, float] = (0.0, 0.0, 0.0)
-    rotation_mat: Optional[np.ndarray] = None  # (3,3) world-from-local
+    rotation_mat: Optional[NDArray[np.float_]] = None  # (3,3) world-from-local
     scale: float = 1.0
 
     # semantic style
@@ -66,7 +61,7 @@ class BlueprintInstance:
     # Optional: override chosen LOD name; if None, LODPolicy decides
     lod_override: Optional[str] = None
 
-    def R(self) -> np.ndarray:
+    def R(self) -> NDArray[np.float_]:
         if self.rotation_mat is None:
             return np.eye(3, dtype=float)
         r = np.asarray(self.rotation_mat, dtype=float)
@@ -79,9 +74,9 @@ class _SegmentBuffer:
     """Reusable numpy buffer to reduce per-frame allocations."""
 
     def __init__(self) -> None:
-        self._buf: Optional[np.ndarray] = None
+        self._buf: Optional[NDArray[np.float_]] = None
 
-    def ensure(self, n: int) -> np.ndarray:
+    def ensure(self, n: int) -> NDArray[np.float_]:
         if n <= 0:
             self._buf = np.empty((0, 2, 3), dtype=float)
             return self._buf
@@ -121,28 +116,39 @@ class MPLBlueprintLayer:
 
     def __init__(
         self,
-        ax,
-        registry: BlueprintRegistry,
+        ax: Any,
+        registry: VisualRegistry,
         *,
         style: Optional[WireframeStyle] = None,
         lod_policy: Optional[LODPolicy] = None,
         pixel_mode: bool = False,
         enable_detail: bool = True,
     ) -> None:
+        try:
+            Line3DCollection = importlib.import_module("mpl_toolkits.mplot3d.art3d").Line3DCollection
+        except Exception as exc:  # pragma: no cover
+            raise RuntimeError(
+                "Matplotlib 3D is required for MPLBlueprintLayer. "
+                "Install matplotlib and ensure a 3D backend is available."
+            ) from exc
+
+        self._Line3DCollection: Any = Line3DCollection
         self.ax = ax
-        self.registry = registry
+        self.registry: VisualRegistry = registry
         self.style: WireframeStyle = style if style is not None else neon_green_style()
         self.lod_policy = lod_policy if lod_policy is not None else registry.lod_policy
         self.pixel_mode = bool(pixel_mode)
         self.enable_detail = bool(enable_detail)
 
         # Artists: role -> dict(pass_name -> Line3DCollection)
-        self._artists: Dict[str, Dict[str, Line3DCollection]] = {}
+        self._artists: Dict[str, Dict[str, Any]] = {}
 
         # Buffers: role -> pass -> SegmentBuffer
         self._buffers: Dict[str, Dict[str, _SegmentBuffer]] = {}
 
-    def _get_artist(self, role: str, pass_name: str, *, rgba, lw: float, alpha: float) -> Line3DCollection:
+    def _get_artist(
+        self, role: str, pass_name: str, *, rgba: Tuple[float, float, float, float], lw: float, alpha: float
+    ) -> Any:
         role_key = (role or "neutral").lower()
         if role_key not in self._artists:
             self._artists[role_key] = {}
@@ -151,7 +157,7 @@ class MPLBlueprintLayer:
             return self._artists[role_key][pass_name]
 
         # Create artist once, then mutate segments each frame.
-        lc = Line3DCollection([], linewidths=lw, colors=[rgba], alpha=alpha)
+        lc = self._Line3DCollection([], linewidths=lw, colors=[rgba], alpha=alpha)
         self.ax.add_collection3d(lc)
         self._artists[role_key][pass_name] = lc
         self._buffers[role_key][pass_name] = _SegmentBuffer()
@@ -206,7 +212,7 @@ class MPLBlueprintLayer:
             else:
                 self._sync_pass(role, "detail", np.empty((0, 2, 3), dtype=float), detail=True, glow=False)
 
-    def _sync_pass(self, role: str, pass_name: str, segments: np.ndarray, *, detail: bool, glow: bool) -> None:
+    def _sync_pass(self, role: str, pass_name: str, segments: NDArray[np.float_], *, detail: bool, glow: bool) -> None:
         # Choose distance proxy for fade: estimate from first segment midpoint
         if segments.shape[0] > 0:
             mid = 0.5 * (segments[0, 0] + segments[0, 1])
@@ -229,13 +235,15 @@ class MPLBlueprintLayer:
         lc.set_alpha(alpha)
         lc.set_segments(segments)
 
-    def _build_segments(self, instances: Sequence[BlueprintInstance], cam: np.ndarray, *, detail: bool) -> np.ndarray:
+    def _build_segments(
+        self, instances: Sequence[BlueprintInstance], cam: NDArray[np.float_], *, detail: bool
+    ) -> NDArray[np.float_]:
         if not instances:
             return np.empty((0, 2, 3), dtype=float)
 
         # 1) Count edges to allocate one big segments array.
         total_edges = 0
-        geom_cache = []
+        geom_cache: list[tuple[BlueprintInstance, CachedGeometry, NDArray[np.int_]]] = []
         for inst in instances:
             try:
                 geom = self.registry.get_cached(inst.blueprint_id)
@@ -246,8 +254,10 @@ class MPLBlueprintLayer:
             dist = float(np.linalg.norm(pos - cam))
 
             if detail:
-                lod_name = inst.lod_override or self.lod_policy.pick(dist)
-                edges = geom.edges_by_lod.get(lod_name, None)
+                lod_name = inst.lod_override or self.lod_policy.pick(dist) or "base"
+                edges = geom.edges_by_lod.get(lod_name)
+                if edges is None:
+                    edges = geom.edges_by_lod.get("base")
                 if edges is None or edges.size == 0:
                     continue
             else:
@@ -280,8 +290,8 @@ class MPLBlueprintLayer:
             b = edges[:, 1]
             n = int(edges.shape[0])
 
-            segments[offset:offset + n, 0, :] = Vw[a]
-            segments[offset:offset + n, 1, :] = Vw[b]
+            segments[offset : offset + n, 0, :] = Vw[a]
+            segments[offset : offset + n, 1, :] = Vw[b]
             offset += n
 
         return segments[:offset]

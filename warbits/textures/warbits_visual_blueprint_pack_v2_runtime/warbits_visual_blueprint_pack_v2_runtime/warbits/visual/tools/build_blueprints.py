@@ -1,10 +1,9 @@
 from __future__ import annotations
 
 import argparse
-import json
 import re
 from pathlib import Path
-from typing import Dict, Iterable, List, Optional, Sequence, Tuple
+from typing import Any, Iterable, List, Tuple, cast
 
 import numpy as np
 
@@ -66,16 +65,17 @@ def build_blueprints_from_assets(
 
     for asset_path in _iter_assets(assets_dir):
         obj = load_any_mesh(asset_path, force_scene=True)
+        obj_any = cast(Any, obj)
 
-        if hasattr(obj, "geometry") and split_scene:
+        if hasattr(obj_any, "geometry") and split_scene:
             # Scene: one blueprint per geometry
-            for geom_name, geom in iter_scene_meshes(obj):
+            for geom_name, geom in iter_scene_meshes(obj_any):
                 bp_id = _slug(f"{id_prefix}{asset_path.stem}:{geom_name}")
                 v = np.asarray(geom.vertices, dtype=np.float64)
                 if center:
                     v = center_vertices(v)
 
-                lod_edges = extract_lod_edge_sets(geom, lod_specs, rng_seed=rng_seed)
+                lod_edges = extract_lod_edge_sets(cast(Any, geom), lod_specs, rng_seed=rng_seed)
                 # Base edges = lod0 for convenience
                 edges0 = lod_edges.get("lod0", np.zeros((0, 2), dtype=np.int32))
 
@@ -85,7 +85,7 @@ def build_blueprints_from_assets(
                     repr="wire3d",
                     vertices_m=[(float(x), float(y), float(z)) for x, y, z in v],
                     edges=[(int(a), int(b)) for a, b in edges0],
-                    lod_edges={k: [(int(a), int(b)) for a, b in e] for k, e in lod_edges.items()},
+                    lod_edges={k: tuple((int(a), int(b)) for a, b in e) for k, e in lod_edges.items()},
                     tags=[_slug(asset_path.stem)],
                     meta={
                         "source_path": str(asset_path),
@@ -97,9 +97,9 @@ def build_blueprints_from_assets(
                 blueprints.append(bp)
         else:
             # Single mesh / merged scene
-            mesh = obj
-            if hasattr(obj, "geometry") and not hasattr(obj, "faces"):
-                mesh = scene_to_merged_mesh(obj)
+            mesh: Any = obj_any
+            if hasattr(obj_any, "geometry") and not hasattr(obj_any, "faces"):
+                mesh = scene_to_merged_mesh(obj_any)
 
             v = np.asarray(mesh.vertices, dtype=np.float64)
             if center:
@@ -115,7 +115,7 @@ def build_blueprints_from_assets(
                 repr="wire3d",
                 vertices_m=[(float(x), float(y), float(z)) for x, y, z in v],
                 edges=[(int(a), int(b)) for a, b in edges0],
-                lod_edges={k: [(int(a), int(b)) for a, b in e] for k, e in lod_edges.items()},
+                lod_edges={k: tuple((int(a), int(b)) for a, b in e) for k, e in lod_edges.items()},
                 tags=[_slug(asset_path.stem)],
                 meta={
                     "source_path": str(asset_path),

@@ -1,17 +1,19 @@
 from __future__ import annotations
 
-from typing import Iterable, Optional, Tuple
+from typing import Optional, TypeAlias
 
 import numpy as np
+from numpy.typing import NDArray
 
-from .blueprint_schema import Edge, Vec3
+FloatArray: TypeAlias = NDArray[np.float64]
+IntArray: TypeAlias = NDArray[np.int32]
 
 
 def transform_vertices(
-    vertices_m: np.ndarray,
-    rotation_m: Optional[np.ndarray] = None,
-    translation_m: Optional[np.ndarray] = None,
-) -> np.ndarray:
+    vertices_m: FloatArray,
+    rotation_m: Optional[FloatArray] = None,
+    translation_m: Optional[FloatArray] = None,
+) -> FloatArray:
     """Transform vertices by rotation + translation.
 
     Parameters
@@ -42,11 +44,11 @@ def transform_vertices(
 
 
 def build_segments(
-    vertices_m: np.ndarray,
-    edges: np.ndarray,
-    rotation_m: Optional[np.ndarray] = None,
-    translation_m: Optional[np.ndarray] = None,
-) -> np.ndarray:
+    vertices_m: FloatArray,
+    edges: IntArray,
+    rotation_m: Optional[FloatArray] = None,
+    translation_m: Optional[FloatArray] = None,
+) -> FloatArray:
     """Build transformed line segments.
 
     Parameters

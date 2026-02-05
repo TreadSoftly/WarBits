@@ -1,13 +1,16 @@
 import matplotlib
+
 matplotlib.use("Agg")  # headless
 
-import numpy as np
+from typing import Any, cast
+
 import matplotlib.pyplot as plt
+import numpy as np
 
 from warbits.visual.blueprint_db import BlueprintDB
 from warbits.visual.blueprint_schema import Blueprint
+from warbits.visual.mpl.blueprint_layer import BlueprintInstance, MPLBlueprintLayer
 from warbits.visual.registry import BlueprintRegistry
-from warbits.visual.mpl.blueprint_layer import MPLBlueprintLayer, BlueprintInstance
 
 
 def _db_put(db: BlueprintDB, bp: Blueprint) -> None:
@@ -20,16 +23,20 @@ def _db_put(db: BlueprintDB, bp: Blueprint) -> None:
 
 def test_mpl_blueprint_layer_renders_one_instance():
     # Simple tetrahedron wireframe
-    verts = np.array([
-        [0.0, 0.0, 0.0],
-        [1.0, 0.0, 0.0],
-        [0.5, 1.0, 0.0],
-        [0.5, 0.5, 1.0],
-    ], dtype=float)
+    verts = (
+        (0.0, 0.0, 0.0),
+        (1.0, 0.0, 0.0),
+        (0.5, 1.0, 0.0),
+        (0.5, 0.5, 1.0),
+    )
 
     edges = [
-        (0, 1), (1, 2), (2, 0),  # base triangle
-        (0, 3), (1, 3), (2, 3),  # sides
+        (0, 1),
+        (1, 2),
+        (2, 0),  # base triangle
+        (0, 3),
+        (1, 3),
+        (2, 3),  # sides
     ]
 
     bp = Blueprint(
@@ -38,7 +45,7 @@ def test_mpl_blueprint_layer_renders_one_instance():
         tags=["test", "wireframe"],
         vertices_m=verts,
         edges=edges,
-        lod_edges={"silhouette": edges},
+        lod_edges={"silhouette": tuple(edges)},
         meta={"source": "unit_test"},
     )
 
@@ -46,7 +53,8 @@ def test_mpl_blueprint_layer_renders_one_instance():
     _db_put(db, bp)
 
     registry = BlueprintRegistry(db)
-    fig = plt.figure(figsize=(4, 3))
+    plt_any = cast(Any, plt)
+    fig = plt_any.figure(figsize=(4, 3))
     ax = fig.add_subplot(111, projection="3d")
 
     layer = MPLBlueprintLayer(ax=ax, registry=registry)
@@ -61,8 +69,12 @@ def test_mpl_blueprint_layer_renders_one_instance():
 
     layer.update([inst], camera_pos=(0.0, 0.0, 10.0))
 
-    assert "neutral" in layer._artists
-    assert len(layer._artists["neutral"]) > 0
+    assert "neutral" in layer._artists  # type: ignore[reportPrivateUsage]
+    assert len(layer._artists["neutral"]) > 0  # type: ignore[reportPrivateUsage]
 
     # Clear should not error
+    layer.clear()
+
+    # Clear should not error
+    layer.clear()
     layer.clear()

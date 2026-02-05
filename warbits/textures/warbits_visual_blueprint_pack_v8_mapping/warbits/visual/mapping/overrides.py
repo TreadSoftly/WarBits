@@ -22,7 +22,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-from typing import Any, Dict, Mapping
+from typing import Any, Dict, Mapping, cast
 
 from warbits.visual.mapping.types import VisualBinding, VisualMap
 
@@ -51,36 +51,44 @@ def load_overrides(path: str | Path) -> Dict[str, Dict[str, Any]]:
             binding = row.get("binding")
             if not kind or not entity_id or not isinstance(binding, Mapping):
                 continue
-            out.setdefault(kind, {})[entity_id] = dict(binding)
+            binding_map = cast(Mapping[str, Any], binding)
+            out.setdefault(kind, {})[entity_id] = dict(binding_map)
         return out
 
     # Otherwise treat as JSON dict.
     payload = json.loads(text)
     if not isinstance(payload, Mapping):
         raise ValueError(f"Overrides JSON must be a dict; got {type(payload)}")
-
+    payload_map = cast(Mapping[object, object], payload)
     out2: Dict[str, Dict[str, Any]] = {}
-    for kind, by_id in payload.items():
+    for kind, by_id in payload_map.items():
         if not isinstance(by_id, Mapping):
             continue
-        out2[str(kind)] = {str(k): dict(v) for k, v in by_id.items() if isinstance(v, Mapping)}
+        by_id_map = cast(Mapping[object, object], by_id)
+        out2[str(kind)] = {
+            str(k): dict(cast(Mapping[str, Any], v)) for k, v in by_id_map.items() if isinstance(v, Mapping)
+        }
     return out2
 
 
 def apply_overrides(vmap: VisualMap, overrides: Mapping[str, Any]) -> VisualMap:
     """Return a new VisualMap with overrides merged in."""
 
-    merged = VisualMap(mapping={k: dict(v) for k, v in vmap.mapping.items()})
+    merged = VisualMap(
+        bindings=dict(vmap.bindings),
+        defaults=dict(vmap.defaults),
+        version=str(vmap.version),
+    )
 
     for kind, by_id in overrides.items():
         if not isinstance(by_id, Mapping):
             continue
         kind = str(kind)
-        if kind not in merged.mapping:
-            merged.mapping[kind] = {}
-        for entity_id, binding_dict in by_id.items():
+        by_id_map = cast(Mapping[object, object], by_id)
+        for entity_id, binding_dict in by_id_map.items():
             if not isinstance(binding_dict, Mapping):
                 continue
-            merged.mapping[kind][str(entity_id)] = VisualBinding.from_dict(dict(binding_dict))
+            binding_map = cast(Mapping[str, Any], binding_dict)
+            merged.set(kind, str(entity_id), VisualBinding.from_dict(binding_map))
 
     return merged

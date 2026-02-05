@@ -1,9 +1,12 @@
 from __future__ import annotations
 
 import dataclasses
-from typing import Optional
+from typing import TypeAlias
 
 import numpy as np
+from numpy.typing import NDArray
+
+Vec3: TypeAlias = NDArray[np.float64]
 
 
 @dataclasses.dataclass
@@ -28,8 +31,8 @@ class AlphaBetaFilter:
 
     alpha: float = 0.7
     beta: float = 0.1
-    x_m: np.ndarray = dataclasses.field(default_factory=lambda: np.zeros(3, dtype=np.float64))
-    v_mps: np.ndarray = dataclasses.field(default_factory=lambda: np.zeros(3, dtype=np.float64))
+    x_m: Vec3 = dataclasses.field(default_factory=lambda: np.zeros(3, dtype=np.float64))
+    v_mps: Vec3 = dataclasses.field(default_factory=lambda: np.zeros(3, dtype=np.float64))
     initialized: bool = False
 
     def reset(self) -> None:
@@ -43,7 +46,7 @@ class AlphaBetaFilter:
             return
         self.x_m = self.x_m + self.v_mps * dt
 
-    def update(self, z_m: np.ndarray, dt_s: float) -> None:
+    def update(self, z_m: Vec3, dt_s: float) -> None:
         z = np.asarray(z_m, dtype=np.float64).reshape(3)
         dt = float(dt_s)
         if dt <= 1e-9:

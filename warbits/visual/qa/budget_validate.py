@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Sequence, Tuple, Union
+from typing import Any, Dict, Optional, Union, cast
 
 PathLike = Union[str, Path]
 
@@ -33,7 +33,7 @@ class BudgetSpec:
         obj = json.loads(p.read_text(encoding="utf-8"))
         if not isinstance(obj, dict):
             raise ValueError(f"Budget JSON must be an object, got: {type(obj)}")
-        return cls.from_dict(obj)
+        return cls.from_dict(cast(Dict[str, Any], obj))
 
     def to_dict(self) -> Dict[str, Any]:
         return {"max_edges_by_lod": dict(self.max_edges_by_lod)}
@@ -53,8 +53,8 @@ class BudgetSpec:
 @dataclass
 class BudgetValidationResult:
     path: str
-    errors: List[str] = field(default_factory=list)
-    warnings: List[str] = field(default_factory=list)
+    errors: list[str] = field(default_factory=lambda: cast(list[str], []))
+    warnings: list[str] = field(default_factory=lambda: cast(list[str], []))
     total_records: int = 0
     violated_records: int = 0
 
@@ -101,12 +101,16 @@ def validate_blueprints_budgets(
         edges = obj.get("edges")
         lod_edges = obj.get("lod_edges")
         if isinstance(lod_edges, dict):
-            counts = {k: len(v) if isinstance(v, list) else 0 for k, v in lod_edges.items()}
+            lod_edges_map = cast(Dict[str, Any], lod_edges)
+            counts = {
+                str(k): len(cast(list[object], v)) if isinstance(v, list) else 0
+                for k, v in lod_edges_map.items()
+            }
         else:
             counts = {}
 
         if isinstance(edges, list):
-            counts.setdefault("lod0", len(edges))
+            counts.setdefault("lod0", len(cast(list[object], edges)))
 
         violated = False
         for lod, max_edges in spec.max_edges_by_lod.items():
@@ -130,4 +134,4 @@ def validate_blueprint_edge_budgets(
     blueprints_jsonl_path: PathLike,
     budget: BudgetSpec,
 ) -> BudgetValidationResult:
-    return validate_blueprints_budgets(blueprints_jsonl_path=blueprints_jsonl_path, budget=budget)
+    return validate_blueprints_budgets(blueprints_jsonl=blueprints_jsonl_path, spec=budget)

@@ -15,16 +15,16 @@ We intentionally render via 2D projection (top/side/front/iso) so the atlas is:
 
 from __future__ import annotations
 
+import math
 from dataclasses import dataclass
 from pathlib import Path
-from typing import List, Optional, Sequence, Tuple
-
-import math
+from typing import Any, List, Optional, Sequence, Tuple, cast
 
 import numpy as np
+from numpy.typing import NDArray
 
-from ..blueprint_schema import Blueprint, Vec3
 from ..blueprint_db import read_blueprints_jsonl
+from ..blueprint_schema import Blueprint
 from ..budgets import normalize_lod_name, select_edges_for_lod
 
 
@@ -40,17 +40,17 @@ class AtlasRenderStyle:
     label_size: int = 6
 
 
-def _rot_x(angle_rad: float) -> np.ndarray:
+def _rot_x(angle_rad: float) -> NDArray[np.float_]:
     c, s = math.cos(angle_rad), math.sin(angle_rad)
     return np.array([[1, 0, 0], [0, c, -s], [0, s, c]], dtype=float)
 
 
-def _rot_z(angle_rad: float) -> np.ndarray:
+def _rot_z(angle_rad: float) -> NDArray[np.float_]:
     c, s = math.cos(angle_rad), math.sin(angle_rad)
     return np.array([[c, -s, 0], [s, c, 0], [0, 0, 1]], dtype=float)
 
 
-def project(points3: np.ndarray, view: str) -> np.ndarray:
+def project(points3: NDArray[np.float_], view: str) -> NDArray[np.float_]:
     """Project 3D points to 2D for atlas display."""
     view = view.lower().strip()
     if view == "top":
@@ -67,7 +67,7 @@ def project(points3: np.ndarray, view: str) -> np.ndarray:
     raise ValueError(f"Unknown view: {view!r} (expected top|side|front|iso)")
 
 
-def _segments_2d(points2: np.ndarray, edges: Sequence[Tuple[int, int]]) -> np.ndarray:
+def _segments_2d(points2: NDArray[np.float_], edges: Sequence[Tuple[int, int]]) -> NDArray[np.float_]:
     segs = np.zeros((len(edges), 2, 2), dtype=float)
     for i, (a, b) in enumerate(edges):
         segs[i, 0, :] = points2[a]
@@ -85,16 +85,12 @@ def load_blueprints(db_path: str | Path) -> List[Blueprint]:
 
 def blueprint_label(bp: Blueprint, max_len: int = 42) -> str:
     # prefer a human-readable hint if provided
-    label = (
-        (bp.meta or {}).get("name")
-        or (bp.meta or {}).get("display_name")
-        or bp.blueprint_id
-    )
+    label = (bp.meta or {}).get("name") or (bp.meta or {}).get("display_name") or bp.blueprint_id
     label = str(label)
     if len(label) <= max_len:
         return label
     # keep suffix (often contains the most specific identifier)
-    return "…" + label[-(max_len - 1):]
+    return "…" + label[-(max_len - 1) :]
 
 
 def render_atlas(
@@ -128,7 +124,8 @@ def render_atlas(
     fig_w = max(6.0, cols * 1.1)
     fig_h = max(4.0, rows * 1.1)
 
-    fig, axes = plt.subplots(rows, cols, figsize=(fig_w, fig_h), dpi=220)
+    plt_any = cast(Any, plt)
+    fig, axes = plt_any.subplots(rows, cols, figsize=(fig_w, fig_h), dpi=220)
     fig.patch.set_facecolor(style.background)
 
     # axes may be a single Axes or a 2D array
@@ -162,7 +159,7 @@ def render_atlas(
         edges = select_edges_for_lod(bp, lod)
 
         segs = _segments_2d(pts2, edges)
-        lc = LineCollection(segs, colors=style.line_color, linewidths=style.line_width, alpha=style.alpha)
+        lc = LineCollection(cast(Any, segs), colors=style.line_color, linewidths=style.line_width, alpha=style.alpha)
         ax.add_collection(lc)
 
         # tight bounds with margin
@@ -185,16 +182,16 @@ def render_atlas(
                 va="bottom",
             )
 
-    plt.tight_layout(pad=0.4)
+    plt_any.tight_layout(pad=0.4)
     fig.savefig(out_path, facecolor=style.background)
-    plt.close(fig)
+    plt_any.close(fig)
     return out_path
 
 
 def main(argv: Optional[Sequence[str]] = None) -> int:
     import argparse
 
-    p = argparse.ArgumentParser(description="Generate a blueprint atlas image (grid preview).")    
+    p = argparse.ArgumentParser(description="Generate a blueprint atlas image (grid preview).")
     p.add_argument("--db", required=True, help="Path to blueprints.jsonl")
     p.add_argument("--out", required=True, help="Output PNG path")
     p.add_argument("--view", default="iso", choices=["top", "side", "front", "iso"])

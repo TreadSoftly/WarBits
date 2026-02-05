@@ -4,7 +4,7 @@ import json
 import math
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple, Union
+from typing import Any, Dict, Iterable, Optional, Sequence, Tuple, Union, cast
 
 Number = Union[int, float]
 PathLike = Union[str, Path]
@@ -17,8 +17,8 @@ class SchemaValidationResult:
     path: str
     total_records: int = 0
     valid_records: int = 0
-    errors: List[str] = field(default_factory=list)
-    warnings: List[str] = field(default_factory=list)
+    errors: list[str] = field(default_factory=lambda: cast(list[str], []))
+    warnings: list[str] = field(default_factory=lambda: cast(list[str], []))
 
     @property
     def ok(self) -> bool:
@@ -29,30 +29,44 @@ def _is_finite_number(x: Any) -> bool:
     return isinstance(x, (int, float)) and math.isfinite(float(x))
 
 
-def _as_vec3_list(v: Any) -> Optional[List[List[float]]]:
-    if not isinstance(v, list) or len(v) == 0:
+def _as_vec3_list(v: Any) -> Optional[list[list[float]]]:
+    if not isinstance(v, list):
         return None
-    out: List[List[float]] = []
-    for row in v:
-        if not isinstance(row, (list, tuple)) or len(row) != 3:
+    out: list[list[float]] = []
+    rows = cast(Sequence[object], v)
+    if len(rows) == 0:
+        return None
+    for row in rows:
+        if not isinstance(row, (list, tuple)):
             return None
-        if not all(_is_finite_number(n) for n in row):
+        row_seq = cast(Sequence[object], row)
+        if len(row_seq) != 3:
             return None
-        out.append([float(row[0]), float(row[1]), float(row[2])])
+        if not all(_is_finite_number(n) for n in row_seq):
+            return None
+        out.append([
+            float(cast(Any, row_seq[0])),
+            float(cast(Any, row_seq[1])),
+            float(cast(Any, row_seq[2])),
+        ])
     return out
 
 
-def _as_edge_list(v: Any) -> Optional[List[List[int]]]:
+def _as_edge_list(v: Any) -> Optional[list[list[int]]]:
     if not isinstance(v, list):
         return None
-    out: List[List[int]] = []
-    for e in v:
-        if not isinstance(e, (list, tuple)) or len(e) != 2:
+    out: list[list[int]] = []
+    edges = cast(Sequence[object], v)
+    for e in edges:
+        if not isinstance(e, (list, tuple)):
             return None
-        a, b = e
+        pair = cast(Sequence[object], e)
+        if len(pair) != 2:
+            return None
+        a, b = pair
         if not isinstance(a, int) or not isinstance(b, int):
             return None
-        out.append([int(a), int(b)])
+        out.append([int(cast(Any, a)), int(cast(Any, b))])
     return out
 
 
@@ -180,7 +194,8 @@ def validate_blueprints_jsonl(
                         f"{blueprints_jsonl}:{lineno} ({blueprint_id}): lod_edges must be a dict of lod_name -> edges list."
                     )
                     continue
-                for lod_name, lod_edges_raw in lods_raw.items():
+                lods_map = cast(Dict[object, object], lods_raw)
+                for lod_name, lod_edges_raw in lods_map.items():
                     if not isinstance(lod_name, str):
                         res.errors.append(
                             f"{blueprints_jsonl}:{lineno} ({blueprint_id}): lod_edges key must be str, got {type(lod_name)}."
@@ -210,15 +225,25 @@ def validate_blueprints_jsonl(
                         f"{blueprints_jsonl}:{lineno} ({blueprint_id}): anchors must be dict[str, [x,y,z]]."
                     )
                     continue
-                for name, vec in anchors.items():
+                anchors_map = cast(Dict[object, object], anchors)
+                for name, vec in anchors_map.items():
                     if not isinstance(name, str) or not name:
                         res.errors.append(
                             f"{blueprints_jsonl}:{lineno} ({blueprint_id}): anchor name must be non-empty string."
                         )
                         continue
-                    if not isinstance(vec, (list, tuple)) or len(vec) != 3 or not all(
-                        _is_finite_number(n) for n in vec
-                    ):
+                    if not isinstance(vec, (list, tuple)):
+                        res.errors.append(
+                            f"{blueprints_jsonl}:{lineno} ({blueprint_id}): anchor '{name}' invalid vec3."
+                        )
+                        continue
+                    vec_seq = cast(Sequence[object], vec)
+                    if len(vec_seq) != 3:
+                        res.errors.append(
+                            f"{blueprints_jsonl}:{lineno} ({blueprint_id}): anchor '{name}' invalid vec3."
+                        )
+                        continue
+                    if not all(_is_finite_number(n) for n in vec_seq):
                         res.errors.append(
                             f"{blueprints_jsonl}:{lineno} ({blueprint_id}): anchor '{name}' invalid vec3."
                         )

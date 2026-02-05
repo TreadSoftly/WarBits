@@ -1,11 +1,12 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Any, Mapping, Optional, Sequence, Tuple, List
+from typing import Any, Mapping, Optional, Sequence, cast
 
 import numpy as np
+from numpy.typing import NDArray
 
-from ..blueprint_schema import Blueprint
+from ..blueprint_schema import Blueprint, Vec3
 from .dimensions import Dimensions, dims_from_mapping
 from .primitives import Edge, box, cylinder, merge
 
@@ -82,7 +83,7 @@ def build_tank_blueprint(
     track_r = track.copy()
     track_r[:, 1] *= -1.0
 
-    parts = [
+    parts: list[tuple[NDArray[np.float_], list[Edge]]] = [
         (V_hull, E_hull),
         (V_tur, E_tur),
         (V_bar, E_bar),
@@ -92,15 +93,16 @@ def build_tank_blueprint(
     V, E = merge(parts)
 
     # LOD edges by length
-    lengths = []
+    lengths: list[tuple[int, float]] = []
     for i, (a, b) in enumerate(E):
-        pa = V[a]; pb = V[b]
+        pa = V[a]
+        pb = V[b]
         lengths.append((i, float(np.linalg.norm(pb - pa))))
     lengths.sort(key=lambda t: t[1], reverse=True)
     sil_n = min(90, max(30, int(0.40 * len(E))))
     low_n = min(150, max(60, int(0.65 * len(E))))
-    E_sil = [E[i] for i, _ in lengths[:sil_n]]
-    E_low = [E[i] for i, _ in lengths[:low_n]]
+    E_sil = tuple(E[i] for i, _ in lengths[:sil_n])
+    E_low = tuple(E[i] for i, _ in lengths[:low_n])
 
     t = set(tags or [])
     t.update(["ground", "armored", "wireframe"])
@@ -109,7 +111,7 @@ def build_tank_blueprint(
         blueprint_id=blueprint_id,
         kind="ground",
         tags=sorted(t),
-        vertices_m=V,
+        vertices_m=cast(Sequence[Vec3], V),
         edges=E,
         lod_edges={"low": E_low, "silhouette": E_sil},
         meta={

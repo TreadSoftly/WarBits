@@ -1,13 +1,12 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import Any, Dict, Literal, Mapping, Optional, Sequence, Tuple
-
+from typing import Any, Literal, Mapping, Optional, Sequence, Tuple, cast
 
 Vec3 = Tuple[float, float, float]
 Vec2 = Tuple[float, float]
 Edge = Tuple[int, int]
-AnchorMap = Mapping[str, Vec3]
+AnchorMap = dict[str, Vec3]
 
 BlueprintKind = Literal["vehicle", "weapon", "sensor", "effect"]
 
@@ -20,13 +19,14 @@ class Outline2D:
     - points are in an arbitrary 2D coordinate system (usually SVG pixels or a normalized unit square).
     - renderers decide how to place this in 3D (billboard, extrusion, etc.).
     """
+
     points: Tuple[Vec2, ...]
     edges: Tuple[Edge, ...]
     view: str = "unknown"  # e.g., "side", "top", "front"
-    units: str = "px"      # "px" | "norm" | other
-    meta: Mapping[str, Any] = field(default_factory=dict)
+    units: str = "px"  # "px" | "norm" | other
+    meta: dict[str, Any] = field(default_factory=lambda: cast(dict[str, Any], {}))
 
-    def to_json_obj(self) -> Dict[str, Any]:
+    def to_json_obj(self) -> dict[str, Any]:
         return {
             "points": [list(p) for p in self.points],
             "edges": [list(e) for e in self.edges],
@@ -35,7 +35,7 @@ class Outline2D:
             "meta": dict(self.meta),
         }
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         # Back-compat alias
         return self.to_json_obj()
 
@@ -78,8 +78,8 @@ class Blueprint:
     # Wire3D representation
     vertices_m: Sequence[Vec3] = ()
     edges: Sequence[Edge] = ()
-    lod_edges: Mapping[str, Sequence[Edge]] = field(default_factory=dict)
-    anchors: AnchorMap = field(default_factory=dict)
+    lod_edges: dict[str, Tuple[Edge, ...]] = field(default_factory=lambda: cast(dict[str, Tuple[Edge, ...]], {}))
+    anchors: AnchorMap = field(default_factory=lambda: cast(dict[str, Vec3], {}))
     source: Optional[str] = None
     units: str = "m"
 
@@ -87,7 +87,7 @@ class Blueprint:
     outline2d: Optional[Outline2D] = None
 
     tags: Sequence[str] = ()
-    meta: Mapping[str, Any] = field(default_factory=dict)
+    meta: dict[str, Any] = field(default_factory=lambda: cast(dict[str, Any], {}))
 
     # ---------------------------------------------------------------------
     # Validation / helpers
@@ -116,9 +116,7 @@ class Blueprint:
                     float(vec[1])
                     float(vec[2])
                 except (TypeError, ValueError) as exc:
-                    raise ValueError(
-                        f"{self.blueprint_id}: anchor '{name}' must contain numeric values"
-                    ) from exc
+                    raise ValueError(f"{self.blueprint_id}: anchor '{name}' must contain numeric values") from exc
 
         elif self.repr == "outline2d":
             if self.outline2d is None:
@@ -129,11 +127,13 @@ class Blueprint:
     def available_lods(self) -> Tuple[str, ...]:
         if not self.lod_edges:
             return ()
+
         # stable ordering: lod0, lod1, lod2..., then anything else alphabetically
         def _key(name: str) -> Tuple[int, str]:
             if name.startswith("lod") and name[3:].isdigit():
                 return (0, f"{int(name[3:]):06d}")
             return (1, name)
+
         return tuple(sorted(self.lod_edges.keys(), key=_key))
 
     def select_edges(self, lod: Optional[str] = None) -> Tuple[Edge, ...]:
@@ -147,7 +147,7 @@ class Blueprint:
     @property
     def edges_by_lod(self) -> Mapping[str, Sequence[Edge]]:
         """Compatibility: return {"base": edges, **lod_edges}."""
-        combined: Dict[str, Sequence[Edge]] = {}
+        combined: dict[str, Sequence[Edge]] = {}
         if self.edges:
             combined["base"] = self.edges
         for name, edges in (self.lod_edges or {}).items():
@@ -162,8 +162,8 @@ class Blueprint:
     # ---------------------------------------------------------------------
     # JSON (stable)
     # ---------------------------------------------------------------------
-    def to_json_obj(self) -> Dict[str, Any]:
-        obj: Dict[str, Any] = {
+    def to_json_obj(self) -> dict[str, Any]:
+        obj: dict[str, Any] = {
             "id": self.blueprint_id,
             "kind": self.kind,
             "repr": self.repr,
@@ -185,11 +185,11 @@ class Blueprint:
             obj["outline2d"] = self.outline2d.to_json_obj() if self.outline2d else None
         return obj
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         # Back-compat alias (v1 used to_dict/from_dict)
         return self.to_json_obj()
 
-    def to_json(self) -> Dict[str, Any]:
+    def to_json(self) -> dict[str, Any]:
         # Back-compat alias used in older tooling.
         return self.to_json_obj()
 
@@ -241,7 +241,11 @@ class Blueprint:
 
         if repr_ == "outline2d":
             outline_obj = obj.get("outline2d", None)
-            outline = Outline2D.from_json_obj(outline_obj) if isinstance(outline_obj, Mapping) else None
+            outline = (
+                Outline2D.from_json_obj(cast(Mapping[str, Any], outline_obj))
+                if isinstance(outline_obj, Mapping)
+                else None
+            )
             bp = Blueprint(
                 blueprint_id=blueprint_id,
                 kind=kind,
@@ -277,22 +281,21 @@ def _validate_edges(blueprint_id: str, edges: Sequence[Edge], n_vertices: int, l
             raise ValueError(f"{blueprint_id}: {label}[{i}] is not an edge pair: {e!r}")
         a, b = int(e[0]), int(e[1])
         if a < 0 or a >= n_vertices or b < 0 or b >= n_vertices:
-            raise ValueError(
-                f"{blueprint_id}: {label}[{i}] out of range (n={n_vertices}): ({a},{b})"
-            )
+            raise ValueError(f"{blueprint_id}: {label}[{i}] out of range (n={n_vertices}): ({a},{b})")
         if a == b:
             raise ValueError(f"{blueprint_id}: {label}[{i}] is a self-edge: ({a},{b})")
 
 
 def _coerce_tags(raw: object) -> Tuple[str, ...]:
     if isinstance(raw, (list, tuple)):
-        return tuple(str(item) for item in raw)
+        raw_seq = cast(Sequence[object], raw)
+        return tuple(str(item) for item in raw_seq)
     return ()
 
 
-def _coerce_meta(raw: object) -> Dict[str, Any]:
+def _coerce_meta(raw: object) -> dict[str, Any]:
     if isinstance(raw, Mapping):
-        return dict(raw)
+        return dict(cast(Mapping[str, Any], raw))
     return {}
 
 
@@ -300,11 +303,21 @@ def _coerce_vec3_list(raw: object) -> Tuple[Vec3, ...]:
     if not isinstance(raw, list):
         return ()
     out: list[Vec3] = []
-    for row in raw:
-        if not isinstance(row, (list, tuple)) or len(row) != 3:
+    raw_rows = cast(Sequence[object], raw)
+    for row in raw_rows:
+        if not isinstance(row, (list, tuple)):
+            continue
+        row_seq = cast(Sequence[object], row)
+        if len(row_seq) != 3:
             continue
         try:
-            out.append((float(row[0]), float(row[1]), float(row[2])))
+            out.append(
+                (
+                    float(cast(Any, row_seq[0])),
+                    float(cast(Any, row_seq[1])),
+                    float(cast(Any, row_seq[2])),
+                )
+            )
         except (TypeError, ValueError):
             continue
     return tuple(out)
@@ -314,11 +327,15 @@ def _coerce_edge_list(raw: object) -> Tuple[Edge, ...]:
     if not isinstance(raw, list):
         return ()
     out: list[Edge] = []
-    for row in raw:
-        if not isinstance(row, (list, tuple)) or len(row) != 2:
+    raw_rows = cast(Sequence[object], raw)
+    for row in raw_rows:
+        if not isinstance(row, (list, tuple)):
+            continue
+        row_seq = cast(Sequence[object], row)
+        if len(row_seq) != 2:
             continue
         try:
-            out.append((int(row[0]), int(row[1])))
+            out.append((int(cast(Any, row_seq[0])), int(cast(Any, row_seq[1]))))
         except (TypeError, ValueError):
             continue
     return tuple(out)
@@ -327,12 +344,13 @@ def _coerce_edge_list(raw: object) -> Tuple[Edge, ...]:
 def _coerce_lod_edges(
     raw: object,
     base_edges: Tuple[Edge, ...],
-) -> Tuple[Dict[str, Tuple[Edge, ...]], Tuple[Edge, ...]]:
+) -> Tuple[dict[str, Tuple[Edge, ...]], Tuple[Edge, ...]]:
     if not isinstance(raw, Mapping):
         return {}, base_edges
-    lod_edges: Dict[str, Tuple[Edge, ...]] = {}
+    lod_edges: dict[str, Tuple[Edge, ...]] = {}
     edges = base_edges
-    for key, value in raw.items():
+    raw_map = cast(Mapping[object, object], raw)
+    for key, value in raw_map.items():
         name = str(key)
         if name == "base":
             if not edges:
@@ -342,15 +360,23 @@ def _coerce_lod_edges(
     return lod_edges, edges
 
 
-def _coerce_anchor_map(raw: object) -> Dict[str, Vec3]:
+def _coerce_anchor_map(raw: object) -> dict[str, Vec3]:
     if not isinstance(raw, Mapping):
         return {}
-    anchors: Dict[str, Vec3] = {}
-    for key, value in raw.items():
+    anchors: dict[str, Vec3] = {}
+    raw_map = cast(Mapping[object, object], raw)
+    for key, value in raw_map.items():
         name = str(key)
-        if isinstance(value, (list, tuple)) and len(value) == 3:
+        if not isinstance(value, (list, tuple)):
+            continue
+        value_seq = cast(Sequence[object], value)
+        if len(value_seq) == 3:
             try:
-                anchors[name] = (float(value[0]), float(value[1]), float(value[2]))
+                anchors[name] = (
+                    float(cast(Any, value_seq[0])),
+                    float(cast(Any, value_seq[1])),
+                    float(cast(Any, value_seq[2])),
+                )
             except (TypeError, ValueError):
                 continue
     return anchors

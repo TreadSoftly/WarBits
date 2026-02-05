@@ -1,11 +1,8 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, Tuple
-
 import time
-
-import numpy as np
+from dataclasses import dataclass
+from typing import Any, Optional, Tuple
 
 
 @dataclass
@@ -28,7 +25,14 @@ def update_fps(hud: HUDState, *, now: Optional[float] = None, smooth: float = 0.
     return hud.fps_smooth
 
 
-def draw_hud_text(ax, text: str, *, xy: Tuple[float, float] = (0.02, 0.98), color=(0.22, 1.0, 0.08, 1.0), fontsize: int = 10):
+def draw_hud_text(
+    ax: Any,
+    text: str,
+    *,
+    xy: Tuple[float, float] = (0.02, 0.98),
+    color: Tuple[float, float, float, float] = (0.22, 1.0, 0.08, 1.0),
+    fontsize: int = 10,
+) -> Any:
     """Draw overlay text in axes-normalized coordinates.
 
     Matplotlib 3D has no true HUD layer; `text2D` is the cleanest option.

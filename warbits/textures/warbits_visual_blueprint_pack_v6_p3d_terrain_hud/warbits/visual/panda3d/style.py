@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Optional, Tuple
+from typing import Tuple
 
 
 @dataclass(frozen=True)
@@ -30,4 +30,3 @@ class WireframeP3DStyle:
 
 
 NEON_GREEN = WireframeP3DStyle(color=(0.2, 1.0, 0.2, 1.0), line_thickness=1.0, additive_blend=True, unlit=True)
-

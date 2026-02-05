@@ -3,9 +3,12 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 import numpy as np
+from numpy.typing import NDArray
 
 from .imports import require_panda3d
-from .style import WireframeP3DStyle, NEON_GREEN
+from .style import NEON_GREEN, WireframeP3DStyle
+
+NDArrayFloat = NDArray[np.float32]
 
 
 @dataclass
@@ -90,7 +93,7 @@ class DynamicLineBatch:
     # Update API
     # ---------------------------------------------------------------------
 
-    def begin(self) -> np.ndarray:
+    def begin(self) -> NDArrayFloat:
         """Return the internal staging buffer (shape: (max_vertices,3)).
 
         Fill the first N rows with your line endpoints, then call commit(active_segments).
@@ -116,7 +119,7 @@ class DynamicLineBatch:
         self.stats.active_segments = nseg
         self.stats.last_upload_bytes = len(raw)
 
-    def update_segments(self, segments_world: np.ndarray) -> None:
+    def update_segments(self, segments_world: NDArrayFloat) -> None:
         """Convenience: update from segments shaped (N,2,3)."""
         seg = np.asarray(segments_world, dtype=np.float32)
         if seg.ndim != 3 or seg.shape[1:] != (2, 3):
@@ -132,4 +135,3 @@ class DynamicLineBatch:
     def remove(self) -> None:
         """Detach from scene graph."""
         self.nodepath.removeNode()
-

@@ -2,17 +2,16 @@ from __future__ import annotations
 
 import argparse
 import json
-import sys
 from dataclasses import asdict, is_dataclass
 from pathlib import Path
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Optional, cast
 
 from warbits.visual.qa.anchors_validate import validate_anchors_jsonl
 from warbits.visual.qa.budget_validate import BudgetSpec, validate_blueprints_budgets
 from warbits.visual.qa.coverage import build_coverage_report
 from warbits.visual.qa.provenance import check_provenance
 from warbits.visual.qa.schema_validate import validate_blueprints_jsonl
-from warbits.visual.qa.scale_validate import validate_blueprints_scale
+from warbits.visual.qa.scale_validate import ScaleValidationResult, validate_blueprints_scale
 from warbits.visual.qa.perf_scenes import run_default_perfreg
 
 
@@ -21,7 +20,7 @@ def _jsonable(obj: Any) -> Any:
         return None
     if hasattr(obj, "to_json") and callable(getattr(obj, "to_json")):
         return obj.to_json()
-    if is_dataclass(obj):
+    if is_dataclass(obj) and not isinstance(obj, type):
         return asdict(obj)
     return obj
 
@@ -34,23 +33,22 @@ def cmd_validate(args: argparse.Namespace) -> int:
     artifacts_dir = Path(args.artifacts)
     _ensure_dir(artifacts_dir)
 
-    schema_res = validate_blueprints_jsonl(args.blueprints, max_records=args.max_records, strict=args.strict)
+    schema_res = cast(Any, validate_blueprints_jsonl(args.blueprints, max_records=args.max_records, strict=args.strict))
     anchors_res = None
     if args.anchors:
-        anchors_res = validate_anchors_jsonl(args.anchors, blueprints_jsonl_path=args.blueprints)
+        anchors_res = cast(Any, validate_anchors_jsonl(args.anchors, blueprints_jsonl_path=args.blueprints))
 
     budget_spec = BudgetSpec.default()
     if args.budget:
         budget_spec = BudgetSpec.from_json(args.budget)
-    budgets_res = validate_blueprints_budgets(args.blueprints, budget_spec)
+    budgets_res = cast(Any, validate_blueprints_budgets(args.blueprints, budget_spec))
 
-    scale_res = None
+    scale_res: Optional[ScaleValidationResult] = None
     if args.data_dir:
         scale_res = validate_blueprints_scale(
-            blueprints_jsonl_path=args.blueprints,
+            blueprints_jsonl=args.blueprints,
             data_dir=args.data_dir,
-            tolerance_frac=args.scale_tol,
-            max_examples=args.max_examples,
+            tol_rel=args.scale_tol,
         )
 
     ok = schema_res.ok and (anchors_res is None or anchors_res.ok) and budgets_res.ok and (scale_res is None or scale_res.ok)

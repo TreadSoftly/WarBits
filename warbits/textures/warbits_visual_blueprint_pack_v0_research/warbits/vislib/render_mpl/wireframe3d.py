@@ -1,19 +1,33 @@
 from __future__ import annotations
 
-from typing import Iterable, List, Tuple, Optional
-
-from mpl_toolkits.mplot3d.art3d import Line3DCollection
+from typing import TYPE_CHECKING, Any, List, Tuple
 
 from ..blueprints.schema import WireframeMesh
 from ..style.wireframe import WireframeStyle
 
-def _segments(vertices: List[Tuple[float, float, float]], edges: List[Tuple[int, int]]):
-    segs = []
+
+class _Line3DCollection:
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        pass
+
+
+if TYPE_CHECKING:
+    Line3DCollection = _Line3DCollection
+else:
+    from mpl_toolkits.mplot3d.art3d import Line3DCollection  # type: ignore[reportMissingTypeStubs]
+
+
+def _segments(
+    vertices: List[Tuple[float, float, float]],
+    edges: List[Tuple[int, int]],
+) -> List[List[Tuple[float, float, float]]]:
+    segs: List[List[Tuple[float, float, float]]] = []
     for a, b in edges:
         segs.append([vertices[a], vertices[b]])
     return segs
 
-def add_wireframe3d(ax, mesh: WireframeMesh, style: WireframeStyle) -> List[Line3DCollection]:
+
+def add_wireframe3d(ax: Any, mesh: WireframeMesh, style: WireframeStyle) -> List[Line3DCollection]:
     """Add a wireframe mesh to a Matplotlib 3D axis.
 
     Returns the created Line3DCollection objects (for later updates/removal).
@@ -45,4 +59,5 @@ def add_wireframe3d(ax, mesh: WireframeMesh, style: WireframeStyle) -> List[Line
     ax.add_collection3d(lc_main)
     artists.append(lc_main)
 
+    return artists
     return artists

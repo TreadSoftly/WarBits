@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Dict, Iterable, List, Optional, Set, Tuple, Union
+from typing import Any, Dict, List, Optional, Set, Tuple, Union, cast
 
 PathLike = Union[str, Path]
 
@@ -14,7 +14,7 @@ class CoverageBucket:
     mapped_mesh: int = 0
     mapped_procedural: int = 0
     missing: int = 0
-    missing_ids: List[str] = field(default_factory=list)
+    missing_ids: list[str] = field(default_factory=lambda: cast(list[str], []))
 
     @property
     def mapped_any(self) -> int:
@@ -26,7 +26,7 @@ class CoverageReport:
     data_dir: str
     blueprint_db: Optional[str]
     visual_map: Optional[str]
-    buckets: Dict[str, CoverageBucket] = field(default_factory=dict)
+    buckets: dict[str, CoverageBucket] = field(default_factory=lambda: cast(dict[str, CoverageBucket], {}))
 
     @property
     def overall_total(self) -> int:
@@ -63,28 +63,32 @@ def _load_json(path: Path) -> Any:
 def _collect_ids_from_json(obj: Any, id_fields: Tuple[str, ...]) -> List[str]:
     ids: List[str] = []
     if isinstance(obj, list):
-        for item in obj:
+        items = cast(list[object], obj)
+        for item in items:
             if isinstance(item, dict):
+                item_map = cast(Dict[str, Any], item)
                 for f in id_fields:
-                    if f in item and isinstance(item[f], str):
-                        ids.append(item[f])
+                    if f in item_map and isinstance(item_map[f], str):
+                        ids.append(item_map[f])
                         break
     elif isinstance(obj, dict):
         # Accept dict-of-records or dict keyed by id.
-        if all(isinstance(k, str) for k in obj.keys()):
+        obj_map = cast(Dict[object, object], obj)
+        if all(isinstance(k, str) for k in obj_map.keys()):
             # If values are dict records, prefer their explicit fields.
-            for k, v in obj.items():
+            for k, v in obj_map.items():
                 if isinstance(v, dict):
                     found = False
+                    v_map = cast(Dict[str, Any], v)
                     for f in id_fields:
-                        if f in v and isinstance(v[f], str):
-                            ids.append(v[f])
+                        if f in v_map and isinstance(v_map[f], str):
+                            ids.append(v_map[f])
                             found = True
                             break
                     if not found:
-                        ids.append(k)
+                        ids.append(str(k))
                 else:
-                    ids.append(k)
+                    ids.append(str(k))
     return ids
 
 
@@ -131,7 +135,10 @@ def _load_blueprint_ids(blueprints_jsonl: Optional[Path]) -> Set[str]:
             obj = json.loads(line)
         except Exception:
             continue
-        bid = obj.get("blueprint_id")
+        if not isinstance(obj, dict):
+            continue
+        obj_map = cast(Dict[str, Any], obj)
+        bid = obj_map.get("blueprint_id")
         if isinstance(bid, str):
             ids.add(bid)
     return ids
@@ -148,19 +155,23 @@ def _load_visual_bindings(map_path: Optional[Path]) -> Dict[str, Dict[str, Any]]
 
     # Common format: {"bindings": {entity_id: {kind, blueprint_id/template_id}}}
     if isinstance(obj, dict):
-        b = obj.get("bindings")
+        obj_map = cast(Dict[str, Any], obj)
+        b = obj_map.get("bindings")
         if isinstance(b, dict):
-            return {k: v for k, v in b.items() if isinstance(k, str) and isinstance(v, dict)}
+            b_map = cast(Dict[object, object], b)
+            return {str(k): v for k, v in b_map.items() if isinstance(k, str) and isinstance(v, dict)}
 
     # Alternate format: list of bindings
     if isinstance(obj, list):
         out: Dict[str, Dict[str, Any]] = {}
-        for item in obj:
+        items = cast(list[object], obj)
+        for item in items:
             if not isinstance(item, dict):
                 continue
-            eid = item.get("entity_id") or item.get("id")
+            item_map = cast(Dict[str, Any], item)
+            eid = item_map.get("entity_id") or item_map.get("id")
             if isinstance(eid, str):
-                out[eid] = item
+                out[eid] = item_map
         return out
 
     return {}

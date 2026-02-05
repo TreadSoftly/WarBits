@@ -7,20 +7,20 @@ We keep imports optional to avoid hard dependencies during library development.
 
 from __future__ import annotations
 
-from typing import Any, Optional, Sequence
+from typing import Any, Optional, cast
 
 import numpy as np
 
-from .types import CameraInfo, HudContext, TargetTrack, WeaponInfo
+from .types import CameraInfo, HudContext, TargetTrack, Vec3, WeaponInfo
 
 
 def build_context_from_warbits_state(
     state: Any,
     *,
     time_s: float,
-    camera_pos_m: np.ndarray,
-    camera_forward: np.ndarray,
-    camera_up: np.ndarray,
+    camera_pos_m: Vec3,
+    camera_forward: Vec3,
+    camera_up: Vec3,
     fov_y_deg: float,
     aspect: float,
     selected_track_id: Optional[str] = None,
@@ -36,8 +36,8 @@ def build_context_from_warbits_state(
     This function is intentionally defensive: missing fields degrade gracefully.
     """
 
-    own_pos = _get_vec3(state, "flight.plane_pos", default=np.zeros(3))
-    own_vel = _get_vec3(state, "flight.plane_vel", default=np.zeros(3))
+    own_pos = _get_vec3(state, "flight.plane_pos", default=np.zeros(3, dtype=float))
+    own_vel = _get_vec3(state, "flight.plane_vel", default=np.zeros(3, dtype=float))
 
     speed = float(np.linalg.norm(own_vel))
     alt = float(own_pos[2])
@@ -69,7 +69,7 @@ def build_context_from_warbits_state(
     )
 
 
-def _heading_from_vel(v: np.ndarray) -> float:
+def _heading_from_vel(v: Vec3) -> float:
     if float(np.linalg.norm(v[:2])) < 1e-9:
         return 0.0
     ang = np.degrees(np.arctan2(v[1], v[0]))
@@ -78,8 +78,8 @@ def _heading_from_vel(v: np.ndarray) -> float:
     return float(ang)
 
 
-def _extract_tracks(state: Any) -> Sequence[TargetTrack]:
-    tracks = []
+def _extract_tracks(state: Any) -> list[TargetTrack]:
+    tracks: list[TargetTrack] = []
 
     # Enemy ground system
     for key in ("enemy_ground", "ground", "ground_units"):
@@ -92,7 +92,9 @@ def _extract_tracks(state: Any) -> Sequence[TargetTrack]:
             if pos is None:
                 continue
             vel = _maybe_vec3(getattr(u, "vel", None)) or np.zeros(3)
-            tracks.append(TargetTrack(track_id=f"G{i}", position_m=pos, velocity_mps=vel, classification="ground", hostile=True))
+            tracks.append(
+                TargetTrack(track_id=f"G{i}", position_m=pos, velocity_mps=vel, classification="ground", hostile=True)
+            )
 
     # Enemy bogies system
     for key in ("enemy_bogies", "bogies", "air_units"):
@@ -104,22 +106,32 @@ def _extract_tracks(state: Any) -> Sequence[TargetTrack]:
             if pos is None:
                 continue
             vel = _maybe_vec3(getattr(u, "vel", None)) or np.zeros(3)
-            tracks.append(TargetTrack(track_id=f"A{i}", position_m=pos, velocity_mps=vel, classification="air", hostile=True))
+            tracks.append(
+                TargetTrack(track_id=f"A{i}", position_m=pos, velocity_mps=vel, classification="air", hostile=True)
+            )
 
     # Fallback: if state has enemies list of dicts
     enemies = getattr(state, "enemies", None)
     if enemies is not None:
         for i, e in enumerate(_iterable_or_empty(enemies)):
-            pos = _maybe_vec3(e.get("pos") if isinstance(e, dict) else getattr(e, "pos", None))
+            if isinstance(e, dict):
+                e_dict = cast(dict[str, Any], e)
+                pos = _maybe_vec3(e_dict.get("pos"))
+                vel = _maybe_vec3(e_dict.get("vel"))
+            else:
+                pos = _maybe_vec3(getattr(e, "pos", None))
+                vel = _maybe_vec3(getattr(e, "vel", None))
             if pos is None:
                 continue
-            vel = _maybe_vec3(e.get("vel") if isinstance(e, dict) else getattr(e, "vel", None)) or np.zeros(3)
-            tracks.append(TargetTrack(track_id=f"T{i}", position_m=pos, velocity_mps=vel, classification="unknown", hostile=True))
+            vel = vel or np.zeros(3, dtype=float)
+            tracks.append(
+                TargetTrack(track_id=f"T{i}", position_m=pos, velocity_mps=vel, classification="unknown", hostile=True)
+            )
 
     return tracks
 
 
-def _get_vec3(obj: Any, dotted: str, default: np.ndarray) -> np.ndarray:
+def _get_vec3(obj: Any, dotted: str, default: Vec3) -> Vec3:
     cur = obj
     for part in dotted.split("."):
         cur = getattr(cur, part, None)
@@ -129,7 +141,7 @@ def _get_vec3(obj: Any, dotted: str, default: np.ndarray) -> np.ndarray:
     return v if v is not None else default.astype(float)
 
 
-def _maybe_vec3(v: Any):
+def _maybe_vec3(v: Any) -> Optional[Vec3]:
     if v is None:
         return None
     arr = np.asarray(v, dtype=float).reshape(-1)
@@ -138,7 +150,7 @@ def _maybe_vec3(v: Any):
     return arr[:3].astype(float)
 
 
-def _iterable_or_empty(x: Any):
+def _iterable_or_empty(x: Any) -> list[Any]:
     try:
         return list(x)
     except Exception:

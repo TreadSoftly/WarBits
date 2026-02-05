@@ -1,12 +1,15 @@
 from __future__ import annotations
 
 import dataclasses
-from typing import Callable, Dict, List, Optional, Sequence, Tuple
+from typing import Dict, List, Sequence, TypeAlias, cast
 
 import numpy as np
+from numpy.typing import NDArray
 
-from .directives import HUDMessageDirective, MissionDirective, SetFlagDirective
-from .types import Pose, WorldView
+from .directives import HUDMessageDirective, MissionDirective
+from .types import WorldView
+
+FloatArray: TypeAlias = NDArray[np.float64]
 
 
 @dataclasses.dataclass
@@ -47,7 +50,9 @@ class TimeTrigger(Trigger):
 
     def fire(self, world: WorldView, sim_events: Sequence[object], flags: Dict[str, object]) -> List[MissionDirective]:
         super().fire(world, sim_events, flags)
-        return [HUDMessageDirective(f"Trigger {self.id} fired at t={world.snapshot().time_s:.1f}s", level="info", ttl_s=3.0)]
+        return [
+            HUDMessageDirective(f"Trigger {self.id} fired at t={world.snapshot().time_s:.1f}s", level="info", ttl_s=3.0)
+        ]
 
 
 @dataclasses.dataclass
@@ -69,6 +74,7 @@ class EventCountTrigger(Trigger):
 
     Example: count impacts.
     """
+
     event_attr: str = "kind"  # attribute name or dict key
     event_value: object = "impact"
     threshold: int = 1
@@ -76,11 +82,12 @@ class EventCountTrigger(Trigger):
     def check(self, world: WorldView, sim_events: Sequence[object], flags: Dict[str, object]) -> bool:
         c = 0
         for ev in sim_events:
-            v = None
+            v: object | None = None
             if hasattr(ev, self.event_attr):
                 v = getattr(ev, self.event_attr)
             elif isinstance(ev, dict) and self.event_attr in ev:
-                v = ev[self.event_attr]
+                ev_map = cast(Dict[str, object], ev)
+                v = ev_map.get(self.event_attr)
             if v == self.event_value:
                 c += 1
             if c >= int(self.threshold):
@@ -89,13 +96,17 @@ class EventCountTrigger(Trigger):
 
     def fire(self, world: WorldView, sim_events: Sequence[object], flags: Dict[str, object]) -> List[MissionDirective]:
         super().fire(world, sim_events, flags)
-        return [HUDMessageDirective(f"EventCountTrigger fired: {self.threshold}x {self.event_value}", level="info", ttl_s=4.0)]
+        return [
+            HUDMessageDirective(
+                f"EventCountTrigger fired: {self.threshold}x {self.event_value}", level="info", ttl_s=4.0
+            )
+        ]
 
 
 @dataclasses.dataclass
 class EnterZoneTrigger(Trigger):
     entity_id: str = ""
-    center_m: np.ndarray = dataclasses.field(default_factory=lambda: np.zeros(3, dtype=np.float64))
+    center_m: FloatArray = dataclasses.field(default_factory=lambda: np.zeros(3, dtype=np.float64))
     radius_m: float = 500.0
 
     def check(self, world: WorldView, sim_events: Sequence[object], flags: Dict[str, object]) -> bool:

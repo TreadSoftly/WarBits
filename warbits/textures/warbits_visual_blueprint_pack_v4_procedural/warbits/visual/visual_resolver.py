@@ -3,14 +3,15 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Any, Iterable, Mapping, Optional, Sequence, Set
 
-from .blueprint_db import BlueprintDB
-from .blueprint_schema import Blueprint
-from .procedural.aircraft import build_jet_blueprint, jet_params_from_spec
-from .procedural.ground import build_tank_blueprint, tank_params_from_spec
-from .procedural.ordnance import (
-    MissileParams, RocketParams, BombParams,
-    build_missile_blueprint, build_rocket_blueprint, build_bomb_blueprint,
-)
+from warbits.visual.blueprint_db import BlueprintDB
+from warbits.visual.blueprint_schema import Blueprint
+
+from .procedural.aircraft import build_jet_blueprint, jet_params_from_spec  # type: ignore[reportUnknownVariableType]
+from .procedural.ground import build_tank_blueprint, tank_params_from_spec  # type: ignore[reportUnknownVariableType]
+from .procedural.ordnance import build_bomb_blueprint  # type: ignore[reportUnknownVariableType]
+from .procedural.ordnance import build_missile_blueprint  # type: ignore[reportUnknownVariableType]
+from .procedural.ordnance import build_rocket_blueprint  # type: ignore[reportUnknownVariableType]
+from .procedural.ordnance import BombParams, MissileParams, RocketParams
 
 
 def _norm_str(x: Any) -> str:
@@ -23,8 +24,17 @@ def _norm_str(x: Any) -> str:
 def _has_dims(spec: Mapping[str, Any]) -> bool:
     """Return True if the spec contains any numeric dimension hints."""
     for k in (
-        "length_m", "wingspan_m", "width_m", "height_m", "diameter_m",
-        "length", "wingspan", "width", "height", "diameter", "caliber",
+        "length_m",
+        "wingspan_m",
+        "width_m",
+        "height_m",
+        "diameter_m",
+        "length",
+        "wingspan",
+        "width",
+        "height",
+        "diameter",
+        "caliber",
     ):
         if k in spec and spec[k] is not None:
             try:
@@ -56,15 +66,17 @@ def infer_kind(spec: Mapping[str, Any], *, hint: Optional[str] = None) -> str:
             if k in ("aircraft", "ground", "ordnance"):
                 return k
 
-    blob = " ".join([
-        _norm_str(spec.get("type")),
-        _norm_str(spec.get("class")),
-        _norm_str(spec.get("category")),
-        _norm_str(spec.get("role")),
-        _norm_str(spec.get("name")),
-        _norm_str(spec.get("vehicle")),
-        _norm_str(spec.get("weapon")),
-    ])
+    blob = " ".join(
+        [
+            _norm_str(spec.get("type")),
+            _norm_str(spec.get("class")),
+            _norm_str(spec.get("category")),
+            _norm_str(spec.get("role")),
+            _norm_str(spec.get("name")),
+            _norm_str(spec.get("vehicle")),
+            _norm_str(spec.get("weapon")),
+        ]
+    )
 
     if any(w in blob for w in ("aircraft", "plane", "jet", "fighter", "bomber", "helicopter", "heli")):
         return "aircraft"
@@ -77,11 +89,13 @@ def infer_kind(spec: Mapping[str, Any], *, hint: Optional[str] = None) -> str:
 
 
 def infer_ordnance_subkind(spec: Mapping[str, Any]) -> str:
-    blob = " ".join([
-        _norm_str(spec.get("type")),
-        _norm_str(spec.get("category")),
-        _norm_str(spec.get("name")),
-    ])
+    blob = " ".join(
+        [
+            _norm_str(spec.get("type")),
+            _norm_str(spec.get("category")),
+            _norm_str(spec.get("name")),
+        ]
+    )
     if "bomb" in blob:
         return "bomb"
     if "rocket" in blob:
@@ -102,7 +116,7 @@ def _db_put(db: BlueprintDB, bp: Blueprint) -> None:
     db.by_id[bp.blueprint_id] = bp
 
 
-def _db_iter(db: BlueprintDB) -> Iterable[Blueprint]:
+def _db_iter(db: BlueprintDB) -> Iterable[Optional[Blueprint]]:
     if hasattr(db, "by_id"):
         return db.by_id.values()
     if hasattr(db, "ids"):
@@ -145,6 +159,7 @@ class VisualResolver:
       2) prototype match (when dimensions are missing)
       3) procedural generation (coverage + dimension-respecting)
     """
+
     db: BlueprintDB
     allow_generate: bool = True
 
@@ -204,6 +219,17 @@ class VisualResolver:
             _db_put(self.db, bp)
             return bp
 
+        # Unknown -> ground proxy (boxy silhouette)
+        p = tank_params_from_spec(spec)
+        bp = build_tank_blueprint(out_id, p, tags=(list(tags or []) + ["unknown"]))
+        _db_put(self.db, bp)
+        return bp
+
+        # Unknown -> ground proxy (boxy silhouette)
+        p = tank_params_from_spec(spec)
+        bp = build_tank_blueprint(out_id, p, tags=(list(tags or []) + ["unknown"]))
+        _db_put(self.db, bp)
+        return bp
         # Unknown -> ground proxy (boxy silhouette)
         p = tank_params_from_spec(spec)
         bp = build_tank_blueprint(out_id, p, tags=(list(tags or []) + ["unknown"]))

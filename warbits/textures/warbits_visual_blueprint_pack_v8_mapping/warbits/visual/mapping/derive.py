@@ -37,7 +37,7 @@ def _float_or_none(v: Any) -> float | None:
         return None
 
 
-def _derive_dims_aircraft(spec: Mapping[str, Any]) -> dict:
+def _derive_dims_aircraft(spec: Mapping[str, Any]) -> dict[str, float | None]:
     # Prefer explicit meters fields if present.
     length = _float_or_none(_get(spec, "length_m", "length", "len_m"))
     wingspan = _float_or_none(_get(spec, "wingspan_m", "span_m", "wingspan"))
@@ -70,7 +70,7 @@ def _derive_dims_aircraft(spec: Mapping[str, Any]) -> dict:
     }
 
 
-def _derive_dims_ground(spec: Mapping[str, Any]) -> dict:
+def _derive_dims_ground(spec: Mapping[str, Any]) -> dict[str, float | None]:
     length = _float_or_none(_get(spec, "length_m", "length", "len_m"))
     width = _float_or_none(_get(spec, "width_m", "width"))
     height = _float_or_none(_get(spec, "height_m", "height"))
@@ -100,7 +100,7 @@ def _derive_dims_ground(spec: Mapping[str, Any]) -> dict:
     }
 
 
-def _derive_dims_missile(spec: Mapping[str, Any]) -> dict:
+def _derive_dims_missile(spec: Mapping[str, Any]) -> dict[str, float | None]:
     length = _float_or_none(_get(spec, "length_m", "length", "len_m"))
     diameter = _float_or_none(_get(spec, "diameter_m", "diameter"))
 
@@ -169,7 +169,7 @@ def infer_ordnance_kind(spec: Mapping[str, Any]) -> str:
     return "missile"
 
 
-def derive_procedural_binding(spec: Mapping[str, Any]) -> Tuple[str, dict]:
+def derive_procedural_binding(spec: Mapping[str, Any]) -> Tuple[str, dict[str, Any]]:
     """Return (template_key, params_dict) for a procedural blueprint."""
 
     domain = infer_domain(spec)
@@ -239,5 +239,7 @@ def derive_procedural_binding(spec: Mapping[str, Any]) -> Tuple[str, dict]:
         "width_m": dims.get("width_m"),
         "height_m": dims.get("height_m"),
     }
+    params = tank_params_from_spec(spec, defaults=defaults)  # type: ignore[arg-type]
+    return "proc:tank", asdict(params)
     params = tank_params_from_spec(spec, defaults=defaults)  # type: ignore[arg-type]
     return "proc:tank", asdict(params)

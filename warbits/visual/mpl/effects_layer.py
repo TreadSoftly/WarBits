@@ -1,11 +1,13 @@
 from __future__ import annotations
 
+import importlib
 from dataclasses import dataclass
-from typing import Dict, Optional, Tuple
+from typing import Any, Dict, Optional, Tuple
 
 import numpy as np
+from numpy.typing import NDArray
 
-from warbits.visual.effects.types import FxFrameData, FxLayerBatch
+from warbits.visual.effects.types import FxFrameData
 
 
 @dataclass(frozen=True)
@@ -37,7 +39,7 @@ class MplFxLayer:
 
     def __init__(
         self,
-        ax,
+        ax: Any,
         *,
         colors: MplFxColors | None = None,
         enable_glow: bool = True,
@@ -45,15 +47,15 @@ class MplFxLayer:
         max_segments: Optional[Dict[str, int]] = None,
     ) -> None:
         try:
-            from mpl_toolkits.mplot3d.art3d import Line3DCollection  # noqa: WPS433
+            Line3DCollection = importlib.import_module("mpl_toolkits.mplot3d.art3d").Line3DCollection
         except Exception as exc:  # pragma: no cover
             raise RuntimeError(
                 "Matplotlib 3D is required for MplFxLayer. "
                 "Install matplotlib and ensure a 3D backend is available."
             ) from exc
 
-        self._Line3DCollection = Line3DCollection
-        self._ax = ax
+        self._Line3DCollection: Any = Line3DCollection
+        self._ax: Any = ax
         self._colors = colors or MplFxColors()
         self._enable_glow = bool(enable_glow)
         self._glow_scale = float(glow_scale)
@@ -61,16 +63,16 @@ class MplFxLayer:
         self._max_segments = dict(max_segments or {})
 
         # Layer -> (collection, glow_collection_or_none)
-        self._layers: Dict[str, Tuple[object, Optional[object]]] = {}
-        self._color_buf: Dict[str, np.ndarray] = {}
+        self._layers: Dict[str, Tuple[Any, Optional[Any]]] = {}
+        self._color_buf: Dict[str, NDArray[np.float_]] = {}
 
         for layer in ("tracers", "contrails", "explosions", "impacts"):
             self._init_layer(layer)
 
-    def artists(self) -> list:
+    def artists(self) -> list[Any]:
         """Return all Matplotlib artists owned by this layer."""
 
-        arts = []
+        arts: list[Any] = []
         for core, glow in self._layers.values():
             arts.append(core)
             if glow is not None:
@@ -78,7 +80,7 @@ class MplFxLayer:
         return arts
 
     def _init_layer(self, layer: str) -> None:
-        base_rgba = np.array(getattr(self._colors, layer), dtype=np.float32)
+        base_rgba = tuple(float(x) for x in getattr(self._colors, layer))
         max_n = int(self._max_segments.get(layer, 0))
         if max_n <= 0:
             # Default: allow modest sizes without forcing user config.
@@ -88,15 +90,14 @@ class MplFxLayer:
         self._color_buf[layer] = np.zeros((max_n, 4), dtype=np.float32)
 
         core = self._Line3DCollection([], linewidths=1.0)
-        core.set_color(base_rgba)
+        core.set_color([base_rgba])
         self._ax.add_collection3d(core)
 
         glow = None
         if self._enable_glow:
             glow = self._Line3DCollection([], linewidths=1.0 * self._glow_scale)
-            glow_rgba = base_rgba.copy()
-            glow_rgba[3] = min(1.0, glow_rgba[3] * 0.25)
-            glow.set_color(glow_rgba)
+            glow_rgba = (base_rgba[0], base_rgba[1], base_rgba[2], min(1.0, base_rgba[3] * 0.25))
+            glow.set_color([glow_rgba])
             self._ax.add_collection3d(glow)
 
         self._layers[layer] = (core, glow)
@@ -112,8 +113,8 @@ class MplFxLayer:
                     glow.set_segments([])
                 continue
 
-            segments = batch.segments
-            alpha = batch.alpha
+            segments: NDArray[np.float_] = np.asarray(batch.segments, dtype=np.float32)
+            alpha: NDArray[np.float_] = np.asarray(batch.alpha, dtype=np.float32)
 
             # Clamp to buffer capacity.
             buf = self._color_buf[layer_name]
@@ -124,7 +125,7 @@ class MplFxLayer:
                     glow.set_segments([])
                 continue
 
-            base_rgba = np.array(getattr(self._colors, layer_name), dtype=np.float32)
+            base_rgba = tuple(float(x) for x in getattr(self._colors, layer_name))
 
             buf_view = buf[:n]
             # Fill RGB constant, alpha scaled per segment.
@@ -135,8 +136,7 @@ class MplFxLayer:
             buf_view[:, 3] = base_rgba[3] * alpha[:n]
 
             core.set_segments(segments[:n])
-            core.set_color(buf_view)
+            core.set_color(buf_view.tolist())
 
             if glow is not None:
                 glow.set_segments(segments[:n])
-

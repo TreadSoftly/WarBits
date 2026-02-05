@@ -10,11 +10,9 @@ This is not a full unit algebra system (by design).
 from __future__ import annotations
 
 import math
-from dataclasses import dataclass
-from typing import Any, Iterable, Optional
+from typing import Iterable
 
 from .errors import DeterminismError
-
 
 # Length
 FT_TO_M: float = 0.3048

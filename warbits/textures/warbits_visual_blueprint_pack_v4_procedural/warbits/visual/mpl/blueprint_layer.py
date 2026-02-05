@@ -1,17 +1,21 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Dict, List, Optional, Sequence, Tuple
+from typing import Any, Dict, List, Optional, Sequence, Tuple, cast
 
 import numpy as np
-from mpl_toolkits.mplot3d.art3d import Line3DCollection
+from mpl_toolkits.mplot3d.art3d import Line3DCollection  # type: ignore[import-not-found]
+from numpy.typing import NDArray
 
-from ..registry import BlueprintRegistry
-from ..lod import LODPolicy
-from .style import WireframeStyle, neon_green_style
+from warbits.visual.lod import LODPolicy
+from warbits.visual.mpl.style import WireframeStyle, neon_green_style
+
+NDArrayFloat = NDArray[np.float64]
+NDArrayInt = NDArray[np.int32]
+RGBA = Tuple[float, float, float, float]
 
 
-def rot_from_yaw_pitch_roll(yaw: float, pitch: float, roll: float) -> np.ndarray:
+def rot_from_yaw_pitch_roll(yaw: float, pitch: float, roll: float) -> NDArrayFloat:
     """Return a 3x3 rotation matrix from yaw/pitch/roll (radians).
 
     Convention:
@@ -29,24 +33,18 @@ def rot_from_yaw_pitch_roll(yaw: float, pitch: float, roll: float) -> np.ndarray
     cr, sr = np.cos(roll), np.sin(roll)
 
     Rz = np.array(
-        [[cy, -sy, 0.0],
-         [sy,  cy, 0.0],
-         [0.0, 0.0, 1.0]],
+        [[cy, -sy, 0.0], [sy, cy, 0.0], [0.0, 0.0, 1.0]],
         dtype=float,
     )
     Ry = np.array(
-        [[ cp, 0.0, sp],
-         [0.0, 1.0, 0.0],
-         [-sp, 0.0, cp]],
+        [[cp, 0.0, sp], [0.0, 1.0, 0.0], [-sp, 0.0, cp]],
         dtype=float,
     )
     Rx = np.array(
-        [[1.0, 0.0, 0.0],
-         [0.0,  cr, -sr],
-         [0.0,  sr,  cr]],
+        [[1.0, 0.0, 0.0], [0.0, cr, -sr], [0.0, sr, cr]],
         dtype=float,
     )
-    return (Rz @ Ry @ Rx)
+    return (Rz @ Ry @ Rx).astype(float)
 
 
 @dataclass(frozen=True)
@@ -57,7 +55,7 @@ class BlueprintInstance:
 
     # world transform
     position_m: Tuple[float, float, float] = (0.0, 0.0, 0.0)
-    rotation_mat: Optional[np.ndarray] = None  # (3,3) world-from-local
+    rotation_mat: Optional[NDArrayFloat] = None  # (3,3) world-from-local
     scale: float = 1.0
 
     # semantic style
@@ -66,7 +64,7 @@ class BlueprintInstance:
     # Optional: override chosen LOD name; if None, LODPolicy decides
     lod_override: Optional[str] = None
 
-    def R(self) -> np.ndarray:
+    def R(self) -> NDArrayFloat:
         if self.rotation_mat is None:
             return np.eye(3, dtype=float)
         r = np.asarray(self.rotation_mat, dtype=float)
@@ -79,9 +77,9 @@ class _SegmentBuffer:
     """Reusable numpy buffer to reduce per-frame allocations."""
 
     def __init__(self) -> None:
-        self._buf: Optional[np.ndarray] = None
+        self._buf: Optional[NDArrayFloat] = None
 
-    def ensure(self, n: int) -> np.ndarray:
+    def ensure(self, n: int) -> NDArrayFloat:
         if n <= 0:
             self._buf = np.empty((0, 2, 3), dtype=float)
             return self._buf
@@ -108,11 +106,11 @@ class MPLBlueprintLayer:
     Basic usage:
 
         from warbits.visual.blueprint_db import BlueprintDB
-        from warbits.visual.registry import BlueprintRegistry
+        from warbits.visual.registry import VisualRegistry
         from warbits.visual.mpl.blueprint_layer import MPLBlueprintLayer
 
         db = BlueprintDB.load_jsonl("data/visual_blueprints.jsonl")
-        registry = BlueprintRegistry(db)
+        registry = VisualRegistry(db)
         layer = MPLBlueprintLayer(ax, registry)
 
         # per frame:
@@ -121,8 +119,8 @@ class MPLBlueprintLayer:
 
     def __init__(
         self,
-        ax,
-        registry: BlueprintRegistry,
+        ax: Any,
+        registry: Any,
         *,
         style: Optional[WireframeStyle] = None,
         lod_policy: Optional[LODPolicy] = None,
@@ -130,7 +128,7 @@ class MPLBlueprintLayer:
         enable_detail: bool = True,
     ) -> None:
         self.ax = ax
-        self.registry = registry
+        self.registry: Any = registry
         self.style: WireframeStyle = style if style is not None else neon_green_style()
         self.lod_policy = lod_policy if lod_policy is not None else registry.lod_policy
         self.pixel_mode = bool(pixel_mode)
@@ -142,7 +140,7 @@ class MPLBlueprintLayer:
         # Buffers: role -> pass -> SegmentBuffer
         self._buffers: Dict[str, Dict[str, _SegmentBuffer]] = {}
 
-    def _get_artist(self, role: str, pass_name: str, *, rgba, lw: float, alpha: float) -> Line3DCollection:
+    def _get_artist(self, role: str, pass_name: str, *, rgba: RGBA, lw: float, alpha: float) -> Line3DCollection:
         role_key = (role or "neutral").lower()
         if role_key not in self._artists:
             self._artists[role_key] = {}
@@ -206,7 +204,7 @@ class MPLBlueprintLayer:
             else:
                 self._sync_pass(role, "detail", np.empty((0, 2, 3), dtype=float), detail=True, glow=False)
 
-    def _sync_pass(self, role: str, pass_name: str, segments: np.ndarray, *, detail: bool, glow: bool) -> None:
+    def _sync_pass(self, role: str, pass_name: str, segments: NDArrayFloat, *, detail: bool, glow: bool) -> None:
         # Choose distance proxy for fade: estimate from first segment midpoint
         if segments.shape[0] > 0:
             mid = 0.5 * (segments[0, 0] + segments[0, 1])
@@ -227,19 +225,24 @@ class MPLBlueprintLayer:
         lc.set_linewidth(lw)
         lc.set_color([rgba])
         lc.set_alpha(alpha)
-        lc.set_segments(segments)
+        lc.set_segments(segments.tolist())
 
-    def _build_segments(self, instances: Sequence[BlueprintInstance], cam: np.ndarray, *, detail: bool) -> np.ndarray:
+    def _build_segments(
+        self, instances: Sequence[BlueprintInstance], cam: NDArrayFloat, *, detail: bool
+    ) -> NDArrayFloat:
         if not instances:
             return np.empty((0, 2, 3), dtype=float)
 
         # 1) Count edges to allocate one big segments array.
         total_edges = 0
-        geom_cache = []
+        geom_cache: list[tuple[BlueprintInstance, Any, NDArrayInt]] = []
         for inst in instances:
             try:
                 geom = self.registry.geometry(inst.blueprint_id)
             except KeyError:
+                continue
+
+            if geom is None:
                 continue
 
             pos = np.asarray(inst.position_m, dtype=float).reshape(3)
@@ -256,6 +259,7 @@ class MPLBlueprintLayer:
             if edges is None or edges.size == 0:
                 continue
 
+            edges = cast(NDArrayInt, edges)
             total_edges += int(edges.shape[0])
             geom_cache.append((inst, geom, edges))
 
@@ -267,7 +271,7 @@ class MPLBlueprintLayer:
         offset = 0
 
         for inst, geom, edges in geom_cache:
-            V = geom.vertices_m  # (N,3)
+            V = cast(NDArrayFloat, geom.vertices_m)  # (N,3)
             pos = np.asarray(inst.position_m, dtype=float).reshape(3)
             R = inst.R()
             s = float(inst.scale)
@@ -280,8 +284,9 @@ class MPLBlueprintLayer:
             b = edges[:, 1]
             n = int(edges.shape[0])
 
-            segments[offset:offset + n, 0, :] = Vw[a]
-            segments[offset:offset + n, 1, :] = Vw[b]
+            segments[offset : offset + n, 0, :] = Vw[a]
+            segments[offset : offset + n, 1, :] = Vw[b]
             offset += n
 
+        return segments[:offset]
         return segments[:offset]

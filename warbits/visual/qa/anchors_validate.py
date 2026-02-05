@@ -4,7 +4,7 @@ import json
 import math
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple, Union
+from typing import Any, Dict, Iterable, Optional, Sequence, Tuple, Union, cast
 
 PathLike = Union[str, Path]
 
@@ -14,8 +14,8 @@ class AnchorsValidationResult:
     path: str
     total_records: int = 0
     valid_records: int = 0
-    errors: List[str] = field(default_factory=list)
-    warnings: List[str] = field(default_factory=list)
+    errors: list[str] = field(default_factory=lambda: cast(list[str], []))
+    warnings: list[str] = field(default_factory=lambda: cast(list[str], []))
 
     @property
     def ok(self) -> bool:
@@ -33,9 +33,12 @@ def _read_jsonl(path: PathLike) -> Iterable[Tuple[int, Dict[str, Any]]]:
 
 
 def _is_finite3(v: Any) -> bool:
-    if not isinstance(v, (list, tuple)) or len(v) != 3:
+    if not isinstance(v, (list, tuple)):
         return False
-    for x in v:
+    v_seq = cast(Sequence[object], v)
+    if len(v_seq) != 3:
+        return False
+    for x in v_seq:
         if not isinstance(x, (int, float)):
             return False
         if not math.isfinite(float(x)):
@@ -56,13 +59,19 @@ def _load_bounds(blueprints_jsonl_path: PathLike) -> Dict[str, Tuple[Tuple[float
         verts = rec.get("vertices_m") if "vertices_m" in rec else rec.get("vertices")
         if not isinstance(verts, list) or not verts:
             continue
-        xs, ys, zs = [], [], []
+        xs: list[float] = []
+        ys: list[float] = []
+        zs: list[float] = []
         ok = True
-        for v in verts:
+        verts_list = cast(list[object], verts)
+        for v in verts_list:
             if not _is_finite3(v):
                 ok = False
                 break
-            xs.append(float(v[0])); ys.append(float(v[1])); zs.append(float(v[2]))
+            v_seq = cast(Sequence[object], v)
+            xs.append(float(cast(Any, v_seq[0])))
+            ys.append(float(cast(Any, v_seq[1])))
+            zs.append(float(cast(Any, v_seq[2])))
         if not ok:
             continue
         bounds[bid] = ((min(xs), min(ys), min(zs)), (max(xs), max(ys), max(zs)))
@@ -106,6 +115,7 @@ def validate_anchors_jsonl(
         if not isinstance(anchors, dict):
             res.errors.append(f"{anchors_jsonl_path}:{lineno}: anchors must be an object")
             continue
+        anchors_map = cast(Dict[str, Any], anchors)
 
         # Minimum requirements (optional)
         if require_minimum:
@@ -117,8 +127,8 @@ def validate_anchors_jsonl(
                 continue
 
         ok = True
-        for name, val in anchors.items():
-            if not isinstance(name, str) or not name:
+        for name, val in anchors_map.items():
+            if not name:
                 res.errors.append(f"{anchors_jsonl_path}:{lineno}: blueprint_id={bid}: invalid anchor name")
                 ok = False
                 break
@@ -135,8 +145,13 @@ def validate_anchors_jsonl(
         # Bounds sanity (warn only)
         if bid in bounds:
             (mn, mx) = bounds[bid]
-            for name, val in anchors.items():
-                x, y, z = float(val[0]), float(val[1]), float(val[2])
+            for name, val in anchors_map.items():
+                val_seq = cast(Sequence[object], val)
+                x, y, z = (
+                    float(cast(Any, val_seq[0])),
+                    float(cast(Any, val_seq[1])),
+                    float(cast(Any, val_seq[2])),
+                )
                 if x < mn[0] - 1e-3 or x > mx[0] + 1e-3 or y < mn[1] - 1e-3 or y > mx[1] + 1e-3 or z < mn[2] - 1e-3 or z > mx[2] + 1e-3:
                     res.warnings.append(
                         f"{anchors_jsonl_path}:{lineno}: blueprint_id={bid}: anchor '{name}' outside bounds (ok if intentional)"

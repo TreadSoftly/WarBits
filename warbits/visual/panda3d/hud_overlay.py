@@ -8,27 +8,30 @@ Lines are drawn with a dynamic Geom in aspect2d.
 
 from __future__ import annotations
 
+import importlib
 from dataclasses import dataclass
-from typing import Dict, List, Optional, Sequence, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 
 import numpy as np
 
 try:
-    from panda3d.core import (
-        Geom,
-        GeomLines,
-        GeomNode,
-        GeomVertexData,
-        GeomVertexFormat,
-        GeomVertexWriter,
-        NodePath,
-        TransparencyAttrib,
-    )
-    from direct.gui.OnscreenText import OnscreenText
+    p3d: Any = importlib.import_module("panda3d.core")
+    Geom = p3d.Geom
+    GeomLines = p3d.GeomLines
+    GeomNode = p3d.GeomNode
+    GeomVertexData = p3d.GeomVertexData
+    GeomVertexFormat = p3d.GeomVertexFormat
+    GeomVertexWriter = p3d.GeomVertexWriter
+    NodePath = p3d.NodePath
+    TransparencyAttrib = p3d.TransparencyAttrib
+    OnscreenText = importlib.import_module("direct.gui.OnscreenText").OnscreenText
 except Exception as e:  # pragma: no cover
     raise ImportError("Panda3D not installed; cannot import hud_overlay") from e
 
 from ..hud.types import HudBox, HudCircle, HudDrawList, HudLine, HudText
+
+RGBA = Tuple[float, float, float, float]
+Segment2D = Tuple[Tuple[float, float], Tuple[float, float], RGBA]
 
 
 def default_color_map() -> Dict[str, Tuple[float, float, float, float]]:
@@ -42,14 +45,14 @@ def default_color_map() -> Dict[str, Tuple[float, float, float, float]]:
 
 
 class _DynamicLines2D:
-    def __init__(self, parent: NodePath, max_segments: int = 256):
+    def __init__(self, parent: Any, max_segments: int = 256):
         self.max_segments = int(max_segments)
         fmt = GeomVertexFormat.get_v3c4()
-        self.vdata = GeomVertexData("hud_lines", fmt, Geom.UHDynamic)
+        self.vdata: Any = GeomVertexData("hud_lines", fmt, Geom.UHDynamic)
         self.vdata.set_num_rows(self.max_segments * 2)
 
-        self._vw = GeomVertexWriter(self.vdata, "vertex")
-        self._cw = GeomVertexWriter(self.vdata, "color")
+        self._vw: Any = GeomVertexWriter(self.vdata, "vertex")
+        self._cw: Any = GeomVertexWriter(self.vdata, "color")
 
         prim = GeomLines(Geom.UHDynamic)
         # Pre-allocate all indices
@@ -63,10 +66,10 @@ class _DynamicLines2D:
         node = GeomNode("hud_lines")
         node.add_geom(geom)
 
-        self.np = parent.attach_new_node(node)
+        self.np: Any = parent.attach_new_node(node)
         self.np.set_transparency(TransparencyAttrib.M_alpha)
 
-    def update(self, segments: List[Tuple[Tuple[float, float], Tuple[float, float], Tuple[float, float, float, float]]]):
+    def update(self, segments: List[Segment2D]) -> None:
         # Clamp
         n = min(len(segments), self.max_segments)
         self._vw.set_row(0)
@@ -88,18 +91,18 @@ class _DynamicLines2D:
 
 @dataclass
 class P3DHudOverlay:
-    parent_2d: NodePath
-    color_map: Dict[str, Tuple[float, float, float, float]] = None
+    parent_2d: Any
+    color_map: Optional[Dict[str, RGBA]] = None
     max_segments: int = 256
 
     def __post_init__(self):
         if self.color_map is None:
             self.color_map = default_color_map()
         self._lines = _DynamicLines2D(self.parent_2d, max_segments=self.max_segments)
-        self._texts: List[OnscreenText] = []
+        self._texts: List[Any] = []
 
     def update(self, drawlist: HudDrawList):
-        segments = []
+        segments: List[Segment2D] = []
         # Convert primitives to line segments; circles approximated by polyline (cheap)
         for prim in drawlist:
             if isinstance(prim, HudLine):
@@ -140,11 +143,14 @@ class P3DHudOverlay:
             t.setScale(0.05 * (prim.size_px / 12.0))
             t.show()
 
-    def _rgba(self, key: str, alpha: float):
-        r, g, b, a = self.color_map.get(key, self.color_map.get("ui"))
+    def _rgba(self, key: str, alpha: float) -> RGBA:
+        if self.color_map is None:
+            self.color_map = default_color_map()
+        fallback = self.color_map.get("ui", (0.22, 1.0, 0.25, 1.0))
+        r, g, b, a = self.color_map.get(key, fallback)
         return (r, g, b, float(a * alpha))
 
-    def _get_text(self, idx: int) -> OnscreenText:
+    def _get_text(self, idx: int) -> Any:
         while idx >= len(self._texts):
             t = OnscreenText(text="", pos=(0, 0), scale=0.05, fg=(1, 1, 1, 1), mayChange=True)
             t.reparentTo(self.parent_2d)
@@ -152,9 +158,14 @@ class P3DHudOverlay:
         return self._texts[idx]
 
 
-def _circle_segments(center, radius, rgba, steps=24):
+def _circle_segments(
+    center: Tuple[float, float],
+    radius: float,
+    rgba: RGBA,
+    steps: int = 24,
+) -> List[Segment2D]:
     cx, cy = center
-    out = []
+    out: List[Segment2D] = []
     for i in range(steps):
         a0 = 2 * np.pi * i / steps
         a1 = 2 * np.pi * (i + 1) / steps

@@ -1,11 +1,17 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Dict, Optional, Tuple
+from typing import TYPE_CHECKING, Any, Dict, Optional, Tuple, cast
 
 import numpy as np
+from numpy.typing import NDArray
 
 from warbits.visual.effects.types import FxFrameData
+
+if TYPE_CHECKING:
+    from warbits.visual.panda3d.line_batch import LineBatch
+else:
+    LineBatch = Any  # type: ignore[assignment]
 
 
 @dataclass(frozen=True)
@@ -23,7 +29,7 @@ class P3DFxLayer:
 
     def __init__(
         self,
-        parent_np,
+        parent_np: Any,
         *,
         colors: P3DFxColors | None = None,
         enable_glow: bool = True,
@@ -32,7 +38,8 @@ class P3DFxLayer:
         thickness: float = 1.0,
     ) -> None:
         try:
-            from warbits.visual.panda3d.line_batch import LineBatch  # noqa: WPS433
+            from warbits.visual.panda3d.line_batch import \
+                LineBatch  # noqa: WPS433
         except Exception as exc:  # pragma: no cover
             raise RuntimeError(
                 "Panda3D is required for P3DFxLayer. Install panda3d and the WarBits Panda3D visual pack."
@@ -48,7 +55,7 @@ class P3DFxLayer:
 
         # Layer -> (core_batch, glow_batch_or_none)
         self._layers: Dict[str, Tuple[LineBatch, Optional[LineBatch]]] = {}
-        self._color_buf: Dict[str, np.ndarray] = {}
+        self._color_buf: Dict[str, NDArray[np.float_]] = {}
 
         for layer in ("tracers", "contrails", "explosions", "impacts"):
             self._init_layer(layer)
@@ -61,7 +68,7 @@ class P3DFxLayer:
         # Panda3D colors are per-vertex; we store (2N,4) because each segment has two vertices.
         self._color_buf[layer] = np.zeros((max_n * 2, 4), dtype=np.float32)
 
-        core = self._LineBatch(name=f"fx_{layer}")
+        core = self._LineBatch(name=f"fx_{layer}", max_segments=max_n)
         core_np = core.attach_to(self._parent)
         # Thickness is not guaranteed on all backends, but safe to request.
         try:
@@ -71,7 +78,7 @@ class P3DFxLayer:
 
         glow = None
         if self._enable_glow:
-            glow = self._LineBatch(name=f"fx_{layer}_glow")
+            glow = self._LineBatch(name=f"fx_{layer}_glow", max_segments=max_n)
             glow_np = glow.attach_to(self._parent)
             try:
                 glow_np.setRenderModeThickness(self._thickness * self._glow_scale)
@@ -83,14 +90,20 @@ class P3DFxLayer:
     def update(self, frame: FxFrameData) -> None:
         for layer_name, (core, glow) in self._layers.items():
             batch = frame.layers.get(layer_name)
-            if batch is None or batch.segments.size == 0:
+            if batch is None:
                 core.set_segments(np.zeros((0, 2, 3), dtype=np.float32))
                 if glow is not None:
                     glow.set_segments(np.zeros((0, 2, 3), dtype=np.float32))
                 continue
 
-            segments = batch.segments
-            alpha = batch.alpha
+            segments = cast(NDArray[np.float_], np.asarray(batch.segments, dtype=np.float32))
+            if segments.size == 0:
+                core.set_segments(np.zeros((0, 2, 3), dtype=np.float32))
+                if glow is not None:
+                    glow.set_segments(np.zeros((0, 2, 3), dtype=np.float32))
+                continue
+
+            alpha = cast(NDArray[np.float_], np.asarray(batch.alpha, dtype=np.float32))
 
             max_n = len(self._color_buf[layer_name]) // 2
             n = int(min(len(alpha), max_n))
@@ -114,4 +127,3 @@ class P3DFxLayer:
             core.set_segments(segments[:n], colors=buf_view)
             if glow is not None:
                 glow.set_segments(segments[:n])
-

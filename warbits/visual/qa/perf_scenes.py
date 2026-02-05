@@ -4,9 +4,10 @@ import json
 import time
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Tuple, Union
+from typing import Any, Dict, Optional, Tuple, Union, cast
 
 import numpy as np
+from numpy.typing import NDArray
 
 PathLike = Union[str, Path]
 
@@ -21,7 +22,7 @@ class PerfSceneResult:
     hash64: str
 
 
-def _hash64(arr: np.ndarray) -> str:
+def _hash64(arr: NDArray[np.float_]) -> str:
     """Deterministic hash for perf-regression output.
 
     This is NOT cryptographically secure. It is only used to prove
@@ -55,14 +56,19 @@ def load_blueprints_jsonl(path: PathLike) -> Dict[str, Dict[str, Any]]:
     return out
 
 
-def _as_np_geometry(rec: Dict[str, Any], lod: str) -> Tuple[np.ndarray, np.ndarray]:
+def _as_np_geometry(rec: Dict[str, Any], lod: str) -> Tuple[NDArray[np.float32], NDArray[np.int32]]:
     verts = rec.get("vertices_m") or rec.get("vertices")
     edges = rec.get("edges")
-    lod_edges = rec.get("lod_edges") or rec.get("lod") or {}
-    if isinstance(lod_edges, dict) and lod in lod_edges:
+    lod_edges_raw: object = rec.get("lod_edges")
+    if lod_edges_raw is None:
+        lod_edges_raw = rec.get("lod")
+    if lod_edges_raw is None:
+        lod_edges_raw = {}
+    lod_edges = cast(Dict[str, Any], lod_edges_raw) if isinstance(lod_edges_raw, dict) else {}
+    if lod in lod_edges:
         edges = lod_edges[lod]
-    V = np.asarray(verts, dtype=np.float32)
-    E = np.asarray(edges, dtype=np.int32)
+    V: NDArray[np.float32] = np.asarray(verts, dtype=np.float32)
+    E: NDArray[np.int32] = np.asarray(edges, dtype=np.int32)
     if V.ndim != 2 or V.shape[1] != 3:
         raise ValueError("bad vertices")
     if E.ndim != 2 or E.shape[1] != 2:
@@ -80,7 +86,7 @@ def _select_lod(distance_m: float) -> str:
     return "lod3"
 
 
-def _random_rot(rng: np.random.Generator) -> np.ndarray:
+def _random_rot(rng: np.random.Generator) -> NDArray[np.float32]:
     # Random yaw/pitch/roll (small pitch/roll)
     yaw = float(rng.uniform(-np.pi, np.pi))
     pitch = float(rng.uniform(-0.25, 0.25))
@@ -115,12 +121,12 @@ def run_perf_scene(
     pos = rng.normal(size=(instances, 3)).astype(np.float32)
     pos[:, 2] = np.abs(pos[:, 2]) * 200.0 + 50.0
     pos *= 800.0
-    rots = np.stack([_random_rot(rng) for _ in range(instances)], axis=0)
+    rots: NDArray[np.float32] = np.stack([_random_rot(rng) for _ in range(instances)], axis=0)
     scales = (0.85 + 0.3 * rng.random(instances)).astype(np.float32)
 
     # Cache geometry per LOD.
     rec = blueprints[blueprint_id]
-    geom_by_lod: Dict[str, Tuple[np.ndarray, np.ndarray]] = {}
+    geom_by_lod: Dict[str, Tuple[NDArray[np.float32], NDArray[np.int32]]] = {}
     for lod in ["lod0", "lod1", "lod2", "lod3"]:
         try:
             geom_by_lod[lod] = _as_np_geometry(rec, lod)
@@ -136,6 +142,7 @@ def run_perf_scene(
     t0 = time.perf_counter_ns()
     seg_total = 0
 
+    cursor = 0
     for fi in range(frames):
         # Move camera in a circle to exercise LOD switching.
         cam = np.array([
@@ -197,7 +204,7 @@ def run_default_perfreg(
         raise ValueError("No blueprints found")
 
     # Choose a stable default blueprint: prefer a 'proc:' fallback if present, else first.
-    candidates = [k for k in db.keys() if isinstance(k, str)]
+    candidates = list(db.keys())
     pick = next((k for k in candidates if k.startswith("proc:")), candidates[0])
 
     scene_a = run_perf_scene(
@@ -217,7 +224,7 @@ def run_default_perfreg(
         seed=seed + 1,
     )
 
-    report = {
+    report: Dict[str, Any] = {
         "blueprints_jsonl": str(blueprints_jsonl),
         "picked_blueprint": pick,
         "frames": int(frames),
@@ -247,7 +254,7 @@ def run_perf_regression(blueprints_jsonl: PathLike, frames: int = 200, seed: int
     if not db:
         raise ValueError('No blueprints found')
 
-    candidates = [k for k in db.keys() if isinstance(k, str)]
+    candidates = list(db.keys())
     pick = next((k for k in candidates if k.startswith('proc:')), candidates[0])
 
     scene_a = run_perf_scene(

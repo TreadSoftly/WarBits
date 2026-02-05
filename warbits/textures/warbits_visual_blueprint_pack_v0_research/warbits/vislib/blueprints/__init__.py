@@ -1,2 +1,9 @@
-from .schema import VisualBlueprint, BlueprintSource, WireframeMesh
 from .registry import VisualRegistry
+from .schema import BlueprintSource, VisualBlueprint, WireframeMesh
+
+__all__ = [
+    "BlueprintSource",
+    "VisualBlueprint",
+    "VisualRegistry",
+    "WireframeMesh",
+]

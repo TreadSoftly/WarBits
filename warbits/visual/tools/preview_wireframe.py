@@ -1,8 +1,7 @@
 from __future__ import annotations
 
 import argparse
-from pathlib import Path
-from typing import Optional
+from typing import Any, cast
 
 import numpy as np
 
@@ -49,9 +48,10 @@ def main() -> int:
     seg = verts[edges]  # (M,2,3)
 
     import matplotlib.pyplot as plt
-    from mpl_toolkits.mplot3d.art3d import Line3DCollection
+    from mpl_toolkits.mplot3d.art3d import Line3DCollection  # type: ignore[import-not-found]
 
-    fig = plt.figure(figsize=(10, 7))
+    plt_any = cast(Any, plt)
+    fig = plt_any.figure(figsize=(10, 7))
     ax = fig.add_subplot(111, projection="3d")
     fig.patch.set_facecolor("black")
     ax.set_facecolor("black")
@@ -75,9 +75,9 @@ def main() -> int:
     ax.set_axis_off()
 
     title_lod = args.lod or f"auto@{args.distance:.1f}m"
-    plt.title(f"{args.id} ({title_lod})", color="white")
-    plt.tight_layout()
-    plt.show()
+    plt_any.title(f"{args.id} ({title_lod})", color="white")
+    plt_any.tight_layout()
+    plt_any.show()
     return 0
 
 

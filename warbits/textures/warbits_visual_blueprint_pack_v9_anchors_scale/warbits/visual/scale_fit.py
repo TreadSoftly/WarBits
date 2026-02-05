@@ -1,9 +1,10 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Optional, Sequence, Mapping, Dict, Any, Tuple, List
+from typing import Dict, List, Optional, Tuple
 
 import numpy as np
+from numpy.typing import NDArray
 
 
 @dataclass(frozen=True)
@@ -13,9 +14,10 @@ class TargetDims:
 
     Any field can be None if unknown.
     """
-    length_m: Optional[float] = None   # x extent
-    span_m: Optional[float] = None     # y extent (wingspan / track width)
-    height_m: Optional[float] = None   # z extent
+
+    length_m: Optional[float] = None  # x extent
+    span_m: Optional[float] = None  # y extent (wingspan / track width)
+    height_m: Optional[float] = None  # z extent
 
     def as_dict(self) -> Dict[str, float]:
         out: Dict[str, float] = {}
@@ -28,19 +30,19 @@ class TargetDims:
         return out
 
 
-def bounds_from_vertices(vertices_m: np.ndarray) -> Tuple[np.ndarray, np.ndarray]:
+def bounds_from_vertices(vertices_m: NDArray[np.float_]) -> Tuple[NDArray[np.float_], NDArray[np.float_]]:
     V = np.asarray(vertices_m, dtype=float)
     if V.ndim != 2 or V.shape[1] != 3 or V.shape[0] < 2:
         raise ValueError("vertices_m must be (N,3) with N>=2")
     return V.min(axis=0), V.max(axis=0)
 
 
-def dims_from_vertices(vertices_m: np.ndarray) -> np.ndarray:
+def dims_from_vertices(vertices_m: NDArray[np.float_]) -> NDArray[np.float_]:
     vmin, vmax = bounds_from_vertices(vertices_m)
     return vmax - vmin
 
 
-def compute_uniform_scale(vertices_m: np.ndarray, target: TargetDims) -> float:
+def compute_uniform_scale(vertices_m: NDArray[np.float_], target: TargetDims) -> float:
     """
     Compute a single scalar scale factor that best matches any provided target dims.
 
@@ -70,7 +72,7 @@ def compute_uniform_scale(vertices_m: np.ndarray, target: TargetDims) -> float:
     return 0.5 * (ratios_sorted[mid - 1] + ratios_sorted[mid])
 
 
-def compute_nonuniform_scale(vertices_m: np.ndarray, target: TargetDims) -> np.ndarray:
+def compute_nonuniform_scale(vertices_m: NDArray[np.float_], target: TargetDims) -> NDArray[np.float_]:
     """
     Compute per-axis scale factors [sx, sy, sz].
 
@@ -94,9 +96,11 @@ def compute_nonuniform_scale(vertices_m: np.ndarray, target: TargetDims) -> np.n
     return s
 
 
-def apply_scale(vertices_m: np.ndarray, scale: float | np.ndarray) -> np.ndarray:
+def apply_scale(vertices_m: NDArray[np.float_], scale: float | NDArray[np.float_]) -> NDArray[np.float_]:
     V = np.asarray(vertices_m, dtype=float)
     if isinstance(scale, np.ndarray):
-        s = np.asarray(scale, dtype=float).reshape(3,)
-        return V * s
-    return V * float(scale)
+        s = np.asarray(scale, dtype=float).reshape(
+            3,
+        )
+        return np.asarray(V * s, dtype=float)
+    return np.asarray(V * float(scale), dtype=float)

@@ -1,16 +1,16 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Dict, Iterable, List, Optional, Tuple
+from typing import Dict, Iterable, Tuple, TypeAlias
 
 import numpy as np
-
-from .line_batch import DynamicLineBatch
-from .style import WireframeP3DStyle, NEON_GREEN
+from numpy.typing import NDArray
 
 # Runtime registry from previous packs
 from warbits.visual.registry import VisualRegistry
 
+from .line_batch import DynamicLineBatch
+from .style import NEON_GREEN, WireframeP3DStyle
 
 # ---------------------------------------------------------------------------
 # Coordinate mapping
@@ -30,6 +30,8 @@ from warbits.visual.registry import VisualRegistry
 #   panda_y =  sim_x
 #   panda_z =  sim_z
 #
+FloatArray: TypeAlias = NDArray[np.float32]
+
 SIM_TO_P3D = np.array(
     [
         [0.0, -1.0, 0.0],  # panda_x = -sim_y
@@ -40,7 +42,7 @@ SIM_TO_P3D = np.array(
 )
 
 
-def sim_to_p3d_points(points_sim: np.ndarray) -> np.ndarray:
+def sim_to_p3d_points(points_sim: FloatArray) -> FloatArray:
     """Map Nx3 points from sim coordinates to Panda3D coordinates."""
     pts = np.asarray(points_sim, dtype=np.float32)
     if pts.ndim != 2 or pts.shape[1] != 3:
@@ -48,7 +50,7 @@ def sim_to_p3d_points(points_sim: np.ndarray) -> np.ndarray:
     return pts @ SIM_TO_P3D.T
 
 
-def sim_to_p3d_vec(vec_sim: np.ndarray) -> np.ndarray:
+def sim_to_p3d_vec(vec_sim: FloatArray) -> FloatArray:
     v = np.asarray(vec_sim, dtype=np.float32).reshape(1, 3)
     return (v @ SIM_TO_P3D.T).reshape(3)
 
@@ -91,15 +93,15 @@ class BlueprintP3DLayer:
         self.nodepath = self.batch.nodepath
 
         # Cache: (blueprint_id, lod_name) -> flat local endpoints shaped (E*2,3)
-        self._flat_cache: Dict[Tuple[str, str], np.ndarray] = {}
+        self._flat_cache: Dict[Tuple[str, str], FloatArray] = {}
 
-    def _flat_local(self, blueprint_id: str, lod_name: str) -> np.ndarray:
+    def _flat_local(self, blueprint_id: str, lod_name: str) -> FloatArray:
         key = (blueprint_id, lod_name)
         hit = self._flat_cache.get(key)
         if hit is not None:
             return hit
 
-        geom = self.registry.geometry(blueprint_id)
+        geom = self.registry.get_cached(blueprint_id)
         edges = geom.edges_by_lod[lod_name]  # (E,2) int
         verts = geom.vertices_m.astype(np.float32, copy=False)  # (V,3)
         idx = edges.reshape(-1)  # (E*2,)
@@ -122,12 +124,10 @@ class BlueprintP3DLayer:
             rot = np.asarray(inst.rotation_m, dtype=np.float32).reshape(3, 3)
 
             dist = float(np.linalg.norm(pos - cam))
-            lod = self.registry.pick_lod_name(inst.blueprint_id, dist)
+            lod = self.registry.pick_lod_name(inst.blueprint_id, dist) or "base"
 
             flat_local = self._flat_local(inst.blueprint_id, lod)
             nverts = int(flat_local.shape[0])
-            nseg = nverts // 2
-
             if cursor + nverts > buf.shape[0]:
                 # Not enough space; stop adding more.
                 break
@@ -150,4 +150,3 @@ class BlueprintP3DLayer:
 
         active_segments = cursor // 2
         self.batch.commit(active_segments=active_segments)
-

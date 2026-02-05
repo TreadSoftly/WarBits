@@ -13,13 +13,13 @@ Example:
 
 from __future__ import annotations
 
-from typing import Optional, Sequence
+from typing import Any, Optional, Sequence, cast
 
 
-def cmd_atlas(args) -> int:
-    from .atlas import load_blueprints, render_atlas
+def cmd_atlas(args: Any) -> int:
+    from .atlas import load_blueprints, render_atlas  # type: ignore[reportUnknownVariableType]
 
-    bps = load_blueprints(args.db)
+    bps = cast(list[Any], load_blueprints(args.db))
     render_atlas(
         bps,
         args.out,
@@ -33,29 +33,30 @@ def cmd_atlas(args) -> int:
     return 0
 
 
-def cmd_report(args) -> int:
+def cmd_report(args: Any) -> int:
     from .report import build_report, write_report
 
     rep = build_report(args.db, lod=args.lod)
     write_report(rep, args.out)
 
-    summary = rep["summary"]
+    summary = cast(dict[str, Any], rep["summary"])
     print("Report written:", args.out)
     print("Total blueprints:", summary["blueprints_total"])
     print("Budget failures:", summary["budget_failures"])
     return 0
 
 
-def cmd_validate(args) -> int:
-    from ..blueprint_db import read_blueprints_jsonl
-    from ..budgets import DEFAULT_BUDGETS, check_budget, normalize_lod_name
+def cmd_validate(args: Any) -> int:
+    from warbits.visual.blueprint_db import read_blueprints_jsonl
+
+    from ..budgets import DEFAULT_BUDGETS, check_budget, normalize_lod_name  # type: ignore[reportUnknownVariableType]
     from ..metrics import compute_metrics
 
     lod = normalize_lod_name(args.lod)
 
     bps = read_blueprints_jsonl(args.db)
 
-    failures = []
+    failures: list[tuple[Any, Any, Any]] = []
     for bp in bps:
         chk = check_budget(bp, lod=lod, budgets=DEFAULT_BUDGETS)
         if not chk.ok:
@@ -114,4 +115,8 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
 
 
 if __name__ == "__main__":
+    raise SystemExit(main())
+
+if __name__ == "__main__":
+    raise SystemExit(main())
     raise SystemExit(main())

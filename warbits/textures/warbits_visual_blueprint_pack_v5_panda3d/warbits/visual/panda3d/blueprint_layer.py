@@ -1,15 +1,18 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Dict, Iterable, List, Optional, Tuple
+from typing import Dict, Iterable, Tuple
 
 import numpy as np
-
-from .line_batch import DynamicLineBatch
-from .style import WireframeP3DStyle, NEON_GREEN
+from numpy.typing import NDArray
 
 # Runtime registry from previous packs
 from warbits.visual.registry import VisualRegistry
+
+from .line_batch import DynamicLineBatch
+from .style import NEON_GREEN, WireframeP3DStyle
+
+NDArrayFloat = NDArray[np.float32]
 
 
 # ---------------------------------------------------------------------------
@@ -33,14 +36,14 @@ from warbits.visual.registry import VisualRegistry
 SIM_TO_P3D = np.array(
     [
         [0.0, -1.0, 0.0],  # panda_x = -sim_y
-        [1.0,  0.0, 0.0],  # panda_y =  sim_x
-        [0.0,  0.0, 1.0],  # panda_z =  sim_z
+        [1.0, 0.0, 0.0],  # panda_y =  sim_x
+        [0.0, 0.0, 1.0],  # panda_z =  sim_z
     ],
     dtype=np.float32,
 )
 
 
-def sim_to_p3d_points(points_sim: np.ndarray) -> np.ndarray:
+def sim_to_p3d_points(points_sim: NDArrayFloat) -> NDArrayFloat:
     """Map Nx3 points from sim coordinates to Panda3D coordinates."""
     pts = np.asarray(points_sim, dtype=np.float32)
     if pts.ndim != 2 or pts.shape[1] != 3:
@@ -48,7 +51,7 @@ def sim_to_p3d_points(points_sim: np.ndarray) -> np.ndarray:
     return pts @ SIM_TO_P3D.T
 
 
-def sim_to_p3d_vec(vec_sim: np.ndarray) -> np.ndarray:
+def sim_to_p3d_vec(vec_sim: NDArrayFloat) -> NDArrayFloat:
     v = np.asarray(vec_sim, dtype=np.float32).reshape(1, 3)
     return (v @ SIM_TO_P3D.T).reshape(3)
 
@@ -56,6 +59,7 @@ def sim_to_p3d_vec(vec_sim: np.ndarray) -> np.ndarray:
 # ---------------------------------------------------------------------------
 # Public API: instances
 # ---------------------------------------------------------------------------
+
 
 @dataclass(frozen=True)
 class BlueprintInstance:
@@ -72,6 +76,7 @@ class BlueprintInstance:
 # ---------------------------------------------------------------------------
 # Layer: batch blueprints into one dynamic line batch
 # ---------------------------------------------------------------------------
+
 
 class BlueprintP3DLayer:
     """Render wireframe blueprints in Panda3D using a single dynamic line batch.
@@ -91,16 +96,26 @@ class BlueprintP3DLayer:
         self.nodepath = self.batch.nodepath
 
         # Cache: (blueprint_id, lod_name) -> flat local endpoints shaped (E*2,3)
-        self._flat_cache: Dict[Tuple[str, str], np.ndarray] = {}
+        self._flat_cache: Dict[Tuple[str, str], NDArrayFloat] = {}
 
-    def _flat_local(self, blueprint_id: str, lod_name: str) -> np.ndarray:
+    def _flat_local(self, blueprint_id: str, lod_name: str) -> NDArrayFloat:
         key = (blueprint_id, lod_name)
         hit = self._flat_cache.get(key)
         if hit is not None:
             return hit
 
         geom = self.registry.geometry(blueprint_id)
-        edges = geom.edges_by_lod[lod_name]  # (E,2) int
+        if geom is None:
+            empty = np.zeros((0, 3), dtype=np.float32)
+            self._flat_cache[key] = empty
+            return empty
+
+        edges = geom.edges_by_lod.get(lod_name) or geom.edges_by_lod.get("base")
+        if edges is None:
+            empty = np.zeros((0, 3), dtype=np.float32)
+            self._flat_cache[key] = empty
+            return empty
+
         verts = geom.vertices_m.astype(np.float32, copy=False)  # (V,3)
         idx = edges.reshape(-1)  # (E*2,)
         flat = verts[idx]  # (E*2,3)
@@ -122,12 +137,10 @@ class BlueprintP3DLayer:
             rot = np.asarray(inst.rotation_m, dtype=np.float32).reshape(3, 3)
 
             dist = float(np.linalg.norm(pos - cam))
-            lod = self.registry.pick_lod_name(inst.blueprint_id, dist)
+            lod = self.registry.pick_lod_name(inst.blueprint_id, dist) or "lod0"
 
             flat_local = self._flat_local(inst.blueprint_id, lod)
             nverts = int(flat_local.shape[0])
-            nseg = nverts // 2
-
             if cursor + nverts > buf.shape[0]:
                 # Not enough space; stop adding more.
                 break
@@ -144,10 +157,9 @@ class BlueprintP3DLayer:
             np.matmul(flat_local, mat, out=out)
             if inst.scale != 1.0:
                 out *= float(inst.scale)
-            out += (pos @ SIM_TO_P3D.T)
+            out += pos @ SIM_TO_P3D.T
 
             cursor += nverts
 
         active_segments = cursor // 2
         self.batch.commit(active_segments=active_segments)
-

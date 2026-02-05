@@ -1,11 +1,12 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Any, Mapping, Optional, Sequence, List
+from typing import Any, Mapping, Optional, Sequence, cast
 
 import numpy as np
+from numpy.typing import NDArray
 
-from ..blueprint_schema import Blueprint
+from ..blueprint_schema import Blueprint, Vec3
 from .dimensions import Dimensions, dims_from_mapping
 from .primitives import Edge, cone, cylinder, merge
 
@@ -34,6 +35,7 @@ class BombParams:
     segments: int = 10
 
 
+# pyright: ignore[reportUnusedFunction]
 def _dims_to_length_diam(spec: Mapping[str, Any], *, default_len: float, default_diam: float) -> tuple[float, float]:
     dims = dims_from_mapping(spec, defaults=Dimensions(
         length_m=default_len,
@@ -47,6 +49,78 @@ def _dims_to_length_diam(spec: Mapping[str, Any], *, default_len: float, default
     if dims.diameter_m is None and 0.02 < dims.width_m < 1.2:
         diam = float(dims.width_m)
     return length, diam
+
+
+def _float_from_spec(spec: Mapping[str, Any], *keys: str) -> float | None:
+    for k in keys:
+        if k not in spec or spec[k] is None:
+            continue
+        try:
+            return float(spec[k])
+        except (TypeError, ValueError):
+            continue
+    return None
+
+
+def _segments_from_spec(spec: Mapping[str, Any], default_segments: int) -> int:
+    seg = _float_from_spec(spec, "segments", "segment_quality")
+    if seg is None:
+        return int(default_segments)
+    return int(max(4, round(seg)))
+
+
+def missile_params_from_spec(
+    spec: Mapping[str, Any],
+    *,
+    defaults: MissileParams = MissileParams(),
+) -> MissileParams:
+    length, diam = _dims_to_length_diam(spec, default_len=defaults.length_m, default_diam=defaults.diameter_m)
+    fin_span = _float_from_spec(spec, "fin_span_m", "fin_span")
+    if fin_span is None:
+        fin_span = defaults.fin_span_m
+    segments = _segments_from_spec(spec, defaults.segments)
+    return MissileParams(
+        length_m=length,
+        diameter_m=diam,
+        fin_span_m=fin_span,
+        segments=segments,
+    )
+
+
+def rocket_params_from_spec(
+    spec: Mapping[str, Any],
+    *,
+    defaults: RocketParams = RocketParams(),
+) -> RocketParams:
+    length, diam = _dims_to_length_diam(spec, default_len=defaults.length_m, default_diam=defaults.diameter_m)
+    fin_span = _float_from_spec(spec, "fin_span_m", "fin_span")
+    if fin_span is None:
+        fin_span = defaults.fin_span_m
+    segments = _segments_from_spec(spec, defaults.segments)
+    return RocketParams(
+        length_m=length,
+        diameter_m=diam,
+        fin_span_m=fin_span,
+        segments=segments,
+    )
+
+
+def bomb_params_from_spec(
+    spec: Mapping[str, Any],
+    *,
+    defaults: BombParams = BombParams(),
+) -> BombParams:
+    length, diam = _dims_to_length_diam(spec, default_len=defaults.length_m, default_diam=defaults.diameter_m)
+    tail_span = _float_from_spec(spec, "tail_span_m", "tail_span")
+    if tail_span is None:
+        tail_span = defaults.tail_span_m
+    segments = _segments_from_spec(spec, defaults.segments)
+    return BombParams(
+        length_m=length,
+        diameter_m=diam,
+        tail_span_m=tail_span,
+        segments=segments,
+    )
 
 
 def build_missile_blueprint(
@@ -80,18 +154,19 @@ def build_missile_blueprint(
     ], dtype=float)
     E_fin = [(0, 1), (0, 2), (0, 3), (0, 4), (1, 2), (2, 3), (3, 4), (4, 1)]
 
-    V, E = merge([(V_body, E_body), (V_nose, E_nose), (fin, E_fin)])
+    parts: list[tuple[NDArray[np.float_], list[Edge]]] = [(V_body, E_body), (V_nose, E_nose), (fin, E_fin)]
+    V, E = merge(parts)
 
     # LOD edges: keep body + nose outlines only
     # Choose by length: works well for ordnance.
-    lengths = []
+    lengths: list[tuple[int, float]] = []
     for i, (a, b) in enumerate(E):
         lengths.append((i, float(np.linalg.norm(V[b] - V[a]))))
     lengths.sort(key=lambda t: t[1], reverse=True)
     sil_n = min(70, max(18, int(0.45 * len(E))))
     low_n = min(110, max(28, int(0.70 * len(E))))
-    E_sil = [E[i] for i, _ in lengths[:sil_n]]
-    E_low = [E[i] for i, _ in lengths[:low_n]]
+    E_sil = tuple(E[i] for i, _ in lengths[:sil_n])
+    E_low = tuple(E[i] for i, _ in lengths[:low_n])
 
     t = set(tags or [])
     t.update(["ordnance", "missile", "wireframe"])
@@ -100,7 +175,7 @@ def build_missile_blueprint(
         blueprint_id=blueprint_id,
         kind="ordnance",
         tags=sorted(t),
-        vertices_m=V,
+        vertices_m=cast(Sequence[Vec3], V),
         edges=E,
         lod_edges={"low": E_low, "silhouette": E_sil},
         meta={"source": "procedural", "generator": "build_missile_blueprint", "params": {"length_m": L, "diameter_m": d}},
@@ -169,17 +244,18 @@ def build_bomb_blueprint(
     ], dtype=float)
     E_tail = [(0, 1), (0, 2), (0, 3), (0, 4), (1, 3), (3, 2), (2, 4), (4, 1)]
 
-    V, E = merge([(V_body, E_body), (V_nose, E_nose), (tail, E_tail)])
+    parts: list[tuple[NDArray[np.float_], list[Edge]]] = [(V_body, E_body), (V_nose, E_nose), (tail, E_tail)]
+    V, E = merge(parts)
 
     # LOD: prefer outlines
-    lengths = []
+    lengths: list[tuple[int, float]] = []
     for i, (a, b) in enumerate(E):
         lengths.append((i, float(np.linalg.norm(V[b] - V[a]))))
     lengths.sort(key=lambda t: t[1], reverse=True)
     sil_n = min(70, max(18, int(0.45 * len(E))))
     low_n = min(110, max(28, int(0.70 * len(E))))
-    E_sil = [E[i] for i, _ in lengths[:sil_n]]
-    E_low = [E[i] for i, _ in lengths[:low_n]]
+    E_sil = tuple(E[i] for i, _ in lengths[:sil_n])
+    E_low = tuple(E[i] for i, _ in lengths[:low_n])
 
     t = set(tags or [])
     t.update(["ordnance", "bomb", "wireframe"])
@@ -188,8 +264,12 @@ def build_bomb_blueprint(
         blueprint_id=blueprint_id,
         kind="ordnance",
         tags=sorted(t),
-        vertices_m=V,
+        vertices_m=cast(Sequence[Vec3], V),
         edges=E,
         lod_edges={"low": E_low, "silhouette": E_sil},
         meta={"source": "procedural", "generator": "build_bomb_blueprint", "params": {"length_m": L, "diameter_m": d}},
     )
+
+
+if False:  # pragma: no cover
+    _dims_to_length_diam({}, default_len=0.0, default_diam=0.0)

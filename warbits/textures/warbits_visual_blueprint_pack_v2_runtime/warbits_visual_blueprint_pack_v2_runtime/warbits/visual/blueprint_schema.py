@@ -1,14 +1,21 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import Any, Dict, List, Literal, Mapping, Optional, Sequence, Tuple
-
+from typing import Any, Dict, Literal, Mapping, Optional, Sequence, Tuple, cast
 
 Vec3 = Tuple[float, float, float]
 Vec2 = Tuple[float, float]
 Edge = Tuple[int, int]
 
 BlueprintKind = Literal["vehicle", "weapon", "sensor", "effect"]
+
+
+def _empty_str_any_dict() -> Dict[str, Any]:
+    return cast(Dict[str, Any], {})
+
+
+def _empty_lod_edges_dict() -> Dict[str, Sequence[Edge]]:
+    return cast(Dict[str, Sequence[Edge]], {})
 
 
 @dataclass(frozen=True)
@@ -19,11 +26,12 @@ class Outline2D:
     - points are in an arbitrary 2D coordinate system (usually SVG pixels or a normalized unit square).
     - renderers decide how to place this in 3D (billboard, extrusion, etc.).
     """
+
     points: Tuple[Vec2, ...]
     edges: Tuple[Edge, ...]
     view: str = "unknown"  # e.g., "side", "top", "front"
-    units: str = "px"      # "px" | "norm" | other
-    meta: Mapping[str, Any] = field(default_factory=dict)
+    units: str = "px"  # "px" | "norm" | other
+    meta: Mapping[str, Any] = field(default_factory=_empty_str_any_dict)
 
     def to_json_obj(self) -> Dict[str, Any]:
         return {
@@ -77,13 +85,13 @@ class Blueprint:
     # Wire3D representation
     vertices_m: Sequence[Vec3] = ()
     edges: Sequence[Edge] = ()
-    lod_edges: Mapping[str, Sequence[Edge]] = field(default_factory=dict)
+    lod_edges: Mapping[str, Sequence[Edge]] = field(default_factory=_empty_lod_edges_dict)
 
     # Outline2D representation
     outline2d: Optional[Outline2D] = None
 
     tags: Sequence[str] = ()
-    meta: Mapping[str, Any] = field(default_factory=dict)
+    meta: Mapping[str, Any] = field(default_factory=_empty_str_any_dict)
 
     # ---------------------------------------------------------------------
     # Validation / helpers
@@ -111,11 +119,13 @@ class Blueprint:
     def available_lods(self) -> Tuple[str, ...]:
         if not self.lod_edges:
             return ()
+
         # stable ordering: lod0, lod1, lod2..., then anything else alphabetically
         def _key(name: str) -> Tuple[int, str]:
             if name.startswith("lod") and name[3:].isdigit():
                 return (0, f"{int(name[3:]):06d}")
             return (1, name)
+
         return tuple(sorted(self.lod_edges.keys(), key=_key))
 
     def select_edges(self, lod: Optional[str] = None) -> Tuple[Edge, ...]:
@@ -155,13 +165,25 @@ class Blueprint:
         blueprint_id = str(obj.get("id", ""))
         kind = str(obj.get("kind", "unknown"))
         repr_ = str(obj.get("repr", "wire3d"))
-        tags = tuple(str(t) for t in obj.get("tags", []) or [])
-        meta = dict(obj.get("meta", {}) or {})
+        tags_raw = obj.get("tags")
+        tags_list = cast(list[Any], tags_raw) if isinstance(tags_raw, list) else []
+        tags = tuple(str(t) for t in tags_list)
+        meta_raw = obj.get("meta")
+        meta = dict(cast(Mapping[str, Any], meta_raw)) if isinstance(meta_raw, Mapping) else {}
 
         if repr_ == "wire3d":
-            vertices_m = tuple((float(v[0]), float(v[1]), float(v[2])) for v in obj.get("vertices_m", []) or [])
-            edges = tuple((int(e[0]), int(e[1])) for e in obj.get("edges", []) or [])
-            lod_obj = obj.get("lod_edges", {}) or {}
+            vertices_raw = obj.get("vertices_m")
+            edges_raw = obj.get("edges")
+            lod_raw = obj.get("lod_edges")
+            vertices_list = cast(list[Sequence[float]], vertices_raw) if isinstance(vertices_raw, list) else []
+            edges_list = cast(list[Sequence[int]], edges_raw) if isinstance(edges_raw, list) else []
+            lod_obj: Mapping[str, list[Sequence[int]]] = (
+                cast(Mapping[str, list[Sequence[int]]], lod_raw)
+                if isinstance(lod_raw, Mapping)
+                else cast(Mapping[str, list[Sequence[int]]], {})
+            )
+            vertices_m = tuple((float(v[0]), float(v[1]), float(v[2])) for v in vertices_list)
+            edges = tuple((int(e[0]), int(e[1])) for e in edges_list)
             lod_edges = {str(k): tuple((int(e[0]), int(e[1])) for e in v) for k, v in lod_obj.items()}
             bp = Blueprint(
                 blueprint_id=blueprint_id,
@@ -177,7 +199,11 @@ class Blueprint:
 
         if repr_ == "outline2d":
             outline_obj = obj.get("outline2d", None)
-            outline = Outline2D.from_json_obj(outline_obj) if isinstance(outline_obj, Mapping) else None
+            outline = (
+                Outline2D.from_json_obj(cast(Mapping[str, Any], outline_obj))
+                if isinstance(outline_obj, Mapping)
+                else None
+            )
             bp = Blueprint(
                 blueprint_id=blueprint_id,
                 kind=kind,
@@ -213,8 +239,6 @@ def _validate_edges(blueprint_id: str, edges: Sequence[Edge], n_vertices: int, l
             raise ValueError(f"{blueprint_id}: {label}[{i}] is not an edge pair: {e!r}")
         a, b = int(e[0]), int(e[1])
         if a < 0 or a >= n_vertices or b < 0 or b >= n_vertices:
-            raise ValueError(
-                f"{blueprint_id}: {label}[{i}] out of range (n={n_vertices}): ({a},{b})"
-            )
+            raise ValueError(f"{blueprint_id}: {label}[{i}] out of range (n={n_vertices}): ({a},{b})")
         if a == b:
             raise ValueError(f"{blueprint_id}: {label}[{i}] is a self-edge: ({a},{b})")

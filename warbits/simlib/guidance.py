@@ -14,27 +14,32 @@ protection. This module gives you the pieces.
 
 from __future__ import annotations
 
+from typing import TypeAlias
+
 import numpy as np
+from numpy.typing import NDArray
 
 from .constants import EPS_NORM
 from .math3d import clamp_vec_norm, safe_unit
 
+FloatArray: TypeAlias = NDArray[np.float64]
 
-def pure_pursuit_direction(own_pos: np.ndarray, target_pos: np.ndarray, *, eps: float = EPS_NORM) -> np.ndarray:
+
+def pure_pursuit_direction(own_pos: FloatArray, target_pos: FloatArray, *, eps: float = EPS_NORM) -> FloatArray:
     """Return unit vector from own -> target."""
     return safe_unit(np.asarray(target_pos, dtype=float) - np.asarray(own_pos, dtype=float), eps=eps)
 
 
 def proportional_navigation_accel(
-    own_pos: np.ndarray,
-    own_vel: np.ndarray,
-    target_pos: np.ndarray,
-    target_vel: np.ndarray,
+    own_pos: FloatArray,
+    own_vel: FloatArray,
+    target_pos: FloatArray,
+    target_vel: FloatArray,
     *,
     nav_constant: float = 3.0,
     max_accel_mps2: float | None = None,
     eps: float = EPS_NORM,
-) -> np.ndarray:
+) -> FloatArray:
     """3D proportional navigation acceleration command.
 
     Basic PN:
@@ -68,14 +73,14 @@ def proportional_navigation_accel(
 
 
 def lead_pursuit_direction(
-    own_pos: np.ndarray,
+    own_pos: FloatArray,
     own_speed_mps: float,
-    target_pos: np.ndarray,
-    target_vel: np.ndarray,
+    target_pos: FloatArray,
+    target_vel: FloatArray,
     *,
     eps: float = EPS_NORM,
     max_time_s: float = 30.0,
-) -> np.ndarray:
+) -> FloatArray:
     """Return a pursuit direction that leads the target.
 
     This solves a simple intercept approximation assuming:
@@ -126,4 +131,5 @@ def lead_pursuit_direction(
         return safe_unit(r, eps=eps)
 
     aim_point = tp + tv * float(t)
+    return safe_unit(aim_point - p, eps=eps)
     return safe_unit(aim_point - p, eps=eps)

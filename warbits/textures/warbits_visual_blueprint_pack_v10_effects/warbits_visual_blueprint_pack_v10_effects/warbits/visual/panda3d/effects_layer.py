@@ -1,9 +1,10 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Dict, Optional, Tuple
+from typing import Any, Dict, Optional, Tuple
 
 import numpy as np
+from numpy.typing import NDArray
 
 from warbits.visual.effects.types import FxFrameData
 
@@ -23,7 +24,7 @@ class P3DFxLayer:
 
     def __init__(
         self,
-        parent_np,
+        parent_np: Any,
         *,
         colors: P3DFxColors | None = None,
         enable_glow: bool = True,
@@ -38,7 +39,7 @@ class P3DFxLayer:
                 "Panda3D is required for P3DFxLayer. Install panda3d and the WarBits Panda3D visual pack."
             ) from exc
 
-        self._parent = parent_np
+        self._parent: Any = parent_np
         self._LineBatch = LineBatch
         self._colors = colors or P3DFxColors()
         self._enable_glow = bool(enable_glow)
@@ -48,7 +49,7 @@ class P3DFxLayer:
 
         # Layer -> (core_batch, glow_batch_or_none)
         self._layers: Dict[str, Tuple[LineBatch, Optional[LineBatch]]] = {}
-        self._color_buf: Dict[str, np.ndarray] = {}
+        self._color_buf: Dict[str, NDArray[np.float_]] = {}
 
         for layer in ("tracers", "contrails", "explosions", "impacts"):
             self._init_layer(layer)
@@ -114,4 +115,3 @@ class P3DFxLayer:
             core.set_segments(segments[:n], colors=buf_view)
             if glow is not None:
                 glow.set_segments(segments[:n])
-

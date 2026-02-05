@@ -1,18 +1,23 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Any, Mapping, Optional, Sequence, Tuple, List
+from typing import Any, Mapping, Optional, Sequence, TypeAlias
 
 import numpy as np
+from numpy.typing import NDArray
 
-from ..blueprint_schema import Blueprint
+from warbits.visual.blueprint_schema import Blueprint
+
 from .dimensions import Dimensions, dims_from_mapping
 from .primitives import Edge, box, cylinder, merge
+
+FloatArray: TypeAlias = NDArray[np.float64]
 
 
 @dataclass(frozen=True)
 class TankParams:
     """High-level parameters for a tank/APC-ish ground unit."""
+
     length_m: float = 7.5
     width_m: float = 3.5
     height_m: float = 2.6
@@ -30,11 +35,14 @@ class TankParams:
 
 
 def tank_params_from_spec(spec: Mapping[str, Any], *, defaults: TankParams = TankParams()) -> TankParams:
-    dims = dims_from_mapping(spec, defaults=Dimensions(
-        length_m=defaults.length_m,
-        width_m=defaults.width_m,
-        height_m=defaults.height_m,
-    ))
+    dims = dims_from_mapping(
+        spec,
+        defaults=Dimensions(
+            length_m=defaults.length_m,
+            width_m=defaults.width_m,
+            height_m=defaults.height_m,
+        ),
+    )
     L = float(min(max(dims.length_m, 2.5), 20.0))
     W = float(min(max(dims.width_m, 1.2), 8.0))
     H = float(min(max(dims.height_m, 1.0), 5.0))
@@ -72,17 +80,20 @@ def build_tank_blueprint(
     # Tracks hints: lines along sides near ground
     z_track = 0.15 * H
     y_track = 0.5 * W * 0.92
-    track = np.array([
-        [ 0.48 * L,  y_track, z_track],
-        [-0.48 * L,  y_track, z_track],
-        [-0.48 * L,  y_track, z_track + 0.15 * H],
-        [ 0.48 * L,  y_track, z_track + 0.15 * H],
-    ], dtype=float)
+    track = np.array(
+        [
+            [0.48 * L, y_track, z_track],
+            [-0.48 * L, y_track, z_track],
+            [-0.48 * L, y_track, z_track + 0.15 * H],
+            [0.48 * L, y_track, z_track + 0.15 * H],
+        ],
+        dtype=float,
+    )
     E_track = [(0, 1), (1, 2), (2, 3), (3, 0)]
     track_r = track.copy()
     track_r[:, 1] *= -1.0
 
-    parts = [
+    parts: list[tuple[FloatArray, list[Edge]]] = [
         (V_hull, E_hull),
         (V_tur, E_tur),
         (V_bar, E_bar),
@@ -92,26 +103,34 @@ def build_tank_blueprint(
     V, E = merge(parts)
 
     # LOD edges by length
-    lengths = []
+    lengths: list[tuple[int, float]] = []
     for i, (a, b) in enumerate(E):
-        pa = V[a]; pb = V[b]
+        pa = V[a]
+        pb = V[b]
         lengths.append((i, float(np.linalg.norm(pb - pa))))
     lengths.sort(key=lambda t: t[1], reverse=True)
     sil_n = min(90, max(30, int(0.40 * len(E))))
     low_n = min(150, max(60, int(0.65 * len(E))))
-    E_sil = [E[i] for i, _ in lengths[:sil_n]]
-    E_low = [E[i] for i, _ in lengths[:low_n]]
+    E_sil: list[Edge] = [E[i] for i, _ in lengths[:sil_n]]
+    E_low: list[Edge] = [E[i] for i, _ in lengths[:low_n]]
 
     t = set(tags or [])
     t.update(["ground", "armored", "wireframe"])
+
+    vertices_m = tuple((float(row[0]), float(row[1]), float(row[2])) for row in V)
+    edges = tuple((int(a), int(b)) for a, b in E)
+    lod_edges = {
+        "low": tuple(E_low),
+        "silhouette": tuple(E_sil),
+    }
 
     return Blueprint(
         blueprint_id=blueprint_id,
         kind="ground",
         tags=sorted(t),
-        vertices_m=V,
-        edges=E,
-        lod_edges={"low": E_low, "silhouette": E_sil},
+        vertices_m=vertices_m,
+        edges=edges,
+        lod_edges=lod_edges,
         meta={
             "source": "procedural",
             "generator": "build_tank_blueprint",

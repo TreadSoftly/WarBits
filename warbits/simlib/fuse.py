@@ -14,9 +14,12 @@ Typical lifecycle:
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Optional
+from typing import Optional, TypeAlias
 
 import numpy as np
+from numpy.typing import NDArray
+
+FloatArray: TypeAlias = NDArray[np.float64]
 
 
 @dataclass(frozen=True)
@@ -59,8 +62,8 @@ def update_fuse(
     state: FuseState,
     *,
     time_s: float,
-    projectile_pos: np.ndarray,
-    target_pos: Optional[np.ndarray] = None,
+    projectile_pos: FloatArray,
+    target_pos: Optional[FloatArray] = None,
     impact: bool = False,
 ) -> bool:
     """Update fuse state and return True if detonation should occur."""

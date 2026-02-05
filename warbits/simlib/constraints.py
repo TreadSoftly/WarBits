@@ -13,11 +13,15 @@ from __future__ import annotations
 
 import math
 from dataclasses import dataclass
+from typing import TypeAlias
 
 import numpy as np
+from numpy.typing import NDArray
 
 from .constants import G0_MPS2
 from .math3d import clamp, clamp_vec_norm, safe_unit
+
+FloatArray: TypeAlias = NDArray[np.float64]
 
 
 def max_turn_rate_rad_s(speed_mps: float, *, g_limit: float = 9.0, min_speed_mps: float = 1.0) -> float:
@@ -40,18 +44,18 @@ def clamp_turn_rate(desired_rate_rad_s: float, speed_mps: float, *, g_limit: flo
     return clamp(float(desired_rate_rad_s), -wmax, wmax)
 
 
-def clamp_accel_vector(accel_mps2: np.ndarray, *, max_accel_mps2: float) -> np.ndarray:
+def clamp_accel_vector(accel_mps2: FloatArray, *, max_accel_mps2: float) -> FloatArray:
     return clamp_vec_norm(np.asarray(accel_mps2, dtype=float), float(max_accel_mps2))
 
 
 def rotate_towards(
-    current_dir: np.ndarray,
-    desired_dir: np.ndarray,
+    current_dir: FloatArray,
+    desired_dir: FloatArray,
     *,
     max_turn_rate_rad_s: float,
     dt: float,
     eps: float = 1e-9,
-) -> np.ndarray:
+) -> FloatArray:
     """Rotate a direction vector towards another, limited by turn rate.
 
     This is a *direction-only* helper (no roll). It's useful for simplified AI steering,

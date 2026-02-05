@@ -11,7 +11,7 @@ Humans remain the authority: you can accept, override, or ignore suggestions.
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Iterable, Sequence
+from typing import Sequence
 
 from .normalize import NameKey, iter_best_matches, normalize_text
 

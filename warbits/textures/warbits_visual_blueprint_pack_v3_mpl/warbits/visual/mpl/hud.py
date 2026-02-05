@@ -1,11 +1,8 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, Tuple
-
 import time
-
-import numpy as np
+from dataclasses import dataclass
+from typing import Any, Optional, Tuple
 
 
 @dataclass
@@ -28,7 +25,14 @@ def update_fps(hud: HUDState, *, now: Optional[float] = None, smooth: float = 0.
     return hud.fps_smooth
 
 
-def draw_hud_text(ax, text: str, *, xy: Tuple[float, float] = (0.02, 0.98), color=(0.22, 1.0, 0.08, 1.0), fontsize: int = 10):
+def draw_hud_text(
+    ax: Any,
+    text: str,
+    *,
+    xy: Tuple[float, float] = (0.02, 0.98),
+    color: Tuple[float, float, float, float] = (0.22, 1.0, 0.08, 1.0),
+    fontsize: int = 10,
+) -> Any:
     """Draw overlay text in axes-normalized coordinates.
 
     Matplotlib 3D has no true HUD layer; `text2D` is the cleanest option.
@@ -37,7 +41,9 @@ def draw_hud_text(ax, text: str, *, xy: Tuple[float, float] = (0.02, 0.98), colo
     return ax.text2D(xy[0], xy[1], text, transform=ax.transAxes, color=color, fontsize=fontsize, va="top")
 
 
-def format_basic_hud(*, fps: float, sim_t: float, player_alt_m: Optional[float] = None, player_speed_mps: Optional[float] = None) -> str:
+def format_basic_hud(
+    *, fps: float, sim_t: float, player_alt_m: Optional[float] = None, player_speed_mps: Optional[float] = None
+) -> str:
     parts = [f"FPS {fps:6.1f}", f"t {sim_t:7.2f}s"]
     if player_alt_m is not None:
         parts.append(f"ALT {player_alt_m:7.0f} m")

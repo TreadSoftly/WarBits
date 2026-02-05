@@ -1,11 +1,15 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Iterable, List, Optional, Sequence, Tuple
+from typing import Tuple
 
 import numpy as np
+from numpy.typing import NDArray
 
 from .mesh_io import MeshData
+
+FloatArray = NDArray[np.float_]
+IntArray = NDArray[np.int_]
 
 
 @dataclass(frozen=True)
@@ -19,7 +23,7 @@ class WireframeExtractParams:
     seed: int = 1337
 
 
-def _face_normals(vertices: np.ndarray, faces: np.ndarray) -> np.ndarray:
+def _face_normals(vertices: FloatArray, faces: IntArray) -> FloatArray:
     v0 = vertices[faces[:, 0]]
     v1 = vertices[faces[:, 1]]
     v2 = vertices[faces[:, 2]]
@@ -33,7 +37,7 @@ def _face_normals(vertices: np.ndarray, faces: np.ndarray) -> np.ndarray:
 def extract_wireframe_edges(
     mesh: MeshData,
     params: WireframeExtractParams | None = None,
-) -> List[Tuple[int, int]]:
+) -> list[Tuple[int, int]]:
     """Extract wireframe edges (as vertex index pairs) from a mesh.
 
     Strategy:
@@ -58,7 +62,7 @@ def extract_wireframe_edges(
     normals = _face_normals(V, F)
 
     # Build edge -> faces adjacency using a dict (deterministic if we sort at end).
-    edge_faces: dict[Tuple[int, int], List[int]] = {}
+    edge_faces: dict[Tuple[int, int], list[int]] = {}
     for fi, tri in enumerate(F):
         a, b, c = int(tri[0]), int(tri[1]), int(tri[2])
         edges = [(a, b), (b, c), (c, a)]
@@ -67,8 +71,8 @@ def extract_wireframe_edges(
                 u, v = v, u
             edge_faces.setdefault((u, v), []).append(fi)
 
-    boundary: List[Tuple[int, int]] = []
-    feature: List[Tuple[int, int]] = []
+    boundary: list[Tuple[int, int]] = []
+    feature: list[Tuple[int, int]] = []
     all_edges = sorted(edge_faces.keys())
 
     for e in all_edges:
@@ -89,7 +93,7 @@ def extract_wireframe_edges(
     # Candidate is boundary ∪ feature
     cand_set = set(boundary)
     cand_set.update(feature)
-    candidates = list(cand_set)
+    candidates: list[Tuple[int, int]] = list(cand_set)
 
     # Add some ribs: sample from non-candidate edges.
     rng = np.random.default_rng(int(params.seed))
@@ -101,7 +105,7 @@ def extract_wireframe_edges(
                 # deterministic selection: shuffle using RNG
                 idx = np.arange(len(others))
                 rng.shuffle(idx)
-                add = [others[i] for i in idx[:k]]
+                add: list[Tuple[int, int]] = [others[i] for i in idx[:k]]
                 candidates.extend(add)
 
     # Decimate/expand to within [min_edges, max_edges] based on edge length.

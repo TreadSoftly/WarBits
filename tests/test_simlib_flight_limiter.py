@@ -1,4 +1,3 @@
-import math
 import unittest
 
 import numpy as np
@@ -30,7 +29,7 @@ class TestSimlibFlightLimiter(unittest.TestCase):
         ang = angle_between(dir_cur, dir_out)
 
         self.assertLessEqual(ang, dbg["turn_max_angle_rad"] + 1e-6)
-        self.assertAlmostEqual(np.linalg.norm(v_out), 200.0, places=6)
+        self.assertAlmostEqual(float(np.linalg.norm(v_out)), 200.0, places=6)
 
     def test_speed_accel_limit(self) -> None:
         perf = AircraftPerformance(min_speed_mps=0.0, max_accel_mps2=10.0, max_g=5.0, max_bank_deg=60.0)

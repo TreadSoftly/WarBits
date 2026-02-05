@@ -13,16 +13,7 @@ import numpy as np
 from .layout import DEFAULT_LAYOUT, HudLayout
 from .projector import ScreenProjector
 from .targeting import lead_solution_simple
-from .types import (
-    HudBox,
-    HudCircle,
-    HudContext,
-    HudDrawList,
-    HudLine,
-    HudText,
-    HudTheme,
-    TargetTrack,
-)
+from .types import HudBox, HudCircle, HudContext, HudDrawList, HudLine, HudPrimitive, HudText, HudTheme, TargetTrack
 
 
 @dataclass
@@ -31,7 +22,7 @@ class HudBuilder:
     layout: HudLayout = DEFAULT_LAYOUT
 
     def build(self, ctx: HudContext, projector: ScreenProjector) -> HudDrawList:
-        prims = []
+        prims: list[HudPrimitive] = []
 
         # --- Basic telemetry (War Thunder-ish) ---
         prims.append(
@@ -85,7 +76,7 @@ class HudBuilder:
 
         return HudDrawList(primitives=tuple(prims))
 
-    def _crosshair(self):
+    def _crosshair(self) -> list[HudLine]:
         c = 0.0
         half = self.layout.crosshair_half
         gap = self.layout.crosshair_gap
@@ -98,7 +89,7 @@ class HudBuilder:
             HudLine(a=(0.0, c + gap), b=(0.0, c + half), width_px=w),
         ]
 
-    def _horizon(self, ctx: HudContext):
+    def _horizon(self, ctx: HudContext) -> list[HudLine]:
         # Very light-weight pitch cue based on camera forward vector.
         fwd = ctx.camera.forward
         fwd = fwd / (np.linalg.norm(fwd) + 1e-9)
@@ -119,7 +110,7 @@ class HudBuilder:
             )
         ]
 
-    def _target_box(self, ctx: HudContext, projector: ScreenProjector, tgt: TargetTrack):
+    def _target_box(self, ctx: HudContext, projector: ScreenProjector, tgt: TargetTrack) -> list[HudPrimitive]:
         ndc = projector.project_ndc(tgt.position_m)
         if ndc is None:
             return []
@@ -140,7 +131,7 @@ class HudBuilder:
             ),
         ]
 
-    def _lead_pipper(self, ctx: HudContext, projector: ScreenProjector, tgt: TargetTrack):
+    def _lead_pipper(self, ctx: HudContext, projector: ScreenProjector, tgt: TargetTrack) -> list[HudPrimitive]:
         w = ctx.weapon
         if w.weapon_family not in ("gun", "rocket", "missile"):
             return []
@@ -196,15 +187,43 @@ def _snap_ndc(p: Tuple[float, float], pixel_snap: int) -> Tuple[float, float]:
     return (float(x), float(y))
 
 
-def _pixel_snap_primitive(p, pixel_snap: int):
+def _pixel_snap_primitive(p: HudPrimitive, pixel_snap: int) -> HudPrimitive:
     from .types import HudBox, HudCircle, HudLine, HudText
 
     if isinstance(p, HudLine):
-        return HudLine(a=_snap_ndc(p.a, pixel_snap), b=_snap_ndc(p.b, pixel_snap), color_key=p.color_key, width_px=p.width_px, dashed=p.dashed, alpha=p.alpha)
+        return HudLine(
+            a=_snap_ndc(p.a, pixel_snap),
+            b=_snap_ndc(p.b, pixel_snap),
+            color_key=p.color_key,
+            width_px=p.width_px,
+            dashed=p.dashed,
+            alpha=p.alpha,
+        )
     if isinstance(p, HudCircle):
-        return HudCircle(center=_snap_ndc(p.center, pixel_snap), radius=p.radius, color_key=p.color_key, width_px=p.width_px, dashed=p.dashed, alpha=p.alpha)
+        return HudCircle(
+            center=_snap_ndc(p.center, pixel_snap),
+            radius=p.radius,
+            color_key=p.color_key,
+            width_px=p.width_px,
+            dashed=p.dashed,
+            alpha=p.alpha,
+        )
     if isinstance(p, HudBox):
-        return HudBox(center=_snap_ndc(p.center, pixel_snap), half_extents=p.half_extents, color_key=p.color_key, width_px=p.width_px, alpha=p.alpha)
-    if isinstance(p, HudText):
-        return HudText(pos=_snap_ndc(p.pos, pixel_snap), text=p.text, color_key=p.color_key, size_px=p.size_px, align=p.align, valign=p.valign, alpha=p.alpha)
+        return HudBox(
+            center=_snap_ndc(p.center, pixel_snap),
+            half_extents=p.half_extents,
+            color_key=p.color_key,
+            width_px=p.width_px,
+            alpha=p.alpha,
+        )
+    if isinstance(p, HudText):  # type: ignore[reportUnnecessaryIsInstance]
+        return HudText(
+            pos=_snap_ndc(p.pos, pixel_snap),
+            text=p.text,
+            color_key=p.color_key,
+            size_px=p.size_px,
+            align=p.align,
+            valign=p.valign,
+            alpha=p.alpha,
+        )
     return p

@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Optional, Tuple
+from typing import Any
 
 from .imports import require_panda3d
 
@@ -32,15 +32,15 @@ class PixelatePipeline:
 
     """
 
-    def __init__(self, base, config: PixelateConfig):
+    def __init__(self, base: Any, config: PixelateConfig):
         self._p3d, _ = require_panda3d()
         self.base = base
         self.config = config
 
-        self.buffer = None
-        self.tex = None
-        self.card_np = None
-        self.cam_np = None
+        self.buffer: Any | None = None
+        self.tex: Any | None = None
+        self.card_np: Any | None = None
+        self.cam_np: Any | None = None
 
     def enable(self) -> None:
         p3d = self._p3d
@@ -92,4 +92,3 @@ class PixelatePipeline:
         self.tex = None
         # Re-enable default camera
         self.base.cam.node().setActive(True)
-

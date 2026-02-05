@@ -1,14 +1,14 @@
 from __future__ import annotations
 
 import dataclasses
-from typing import Dict, List, Optional, Sequence, Tuple
+from typing import Dict, List, Sequence, Tuple, cast
 
-from .directives import MissionDirective, SetFlagDirective
+from .directives import MissionDirective
 from .objectives import Objective, ObjectiveStatus
+from .scoring import ScoreModel
+from .timeline import Timeline
 from .triggers import Trigger
 from .types import WorldView
-from .timeline import Timeline
-from .scoring import ScoreModel
 
 
 @dataclasses.dataclass(frozen=True)
@@ -33,10 +33,10 @@ class MissionDirector:
       ui.show_messages(result.directives)
     """
 
-    objectives: List[Objective] = dataclasses.field(default_factory=list)
-    triggers: List[Trigger] = dataclasses.field(default_factory=list)
+    objectives: List[Objective] = dataclasses.field(default_factory=lambda: cast(List[Objective], []))
+    triggers: List[Trigger] = dataclasses.field(default_factory=lambda: cast(List[Trigger], []))
     timeline: Timeline = dataclasses.field(default_factory=Timeline)
-    flags: Dict[str, object] = dataclasses.field(default_factory=dict)
+    flags: Dict[str, object] = dataclasses.field(default_factory=lambda: cast(Dict[str, object], {}))
     score_model: ScoreModel = dataclasses.field(default_factory=ScoreModel)
     active: bool = True
 
@@ -59,7 +59,12 @@ class MissionDirector:
 
     def tick(self, world: WorldView, sim_events: Sequence[object]) -> MissionTickResult:
         if not self.active:
-            return MissionTickResult(directives=tuple(), flags=dict(self.flags), objective_status=self._status_map(), score=float(self.score_model.score))
+            return MissionTickResult(
+                directives=tuple(),
+                flags=dict(self.flags),
+                objective_status=self._status_map(),
+                score=float(self.score_model.score),
+            )
 
         directives: List[MissionDirective] = []
 

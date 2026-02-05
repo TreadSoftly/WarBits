@@ -1,9 +1,10 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Iterable, Optional, Tuple
+from typing import Tuple
 
 import numpy as np
+from numpy.typing import NDArray
 
 
 @dataclass(frozen=True)
@@ -97,7 +98,7 @@ class TrailRingBuffer:
             return slot
         return int(self._slot[idx])
 
-    def ingest(self, ids: np.ndarray, positions_xyz: np.ndarray) -> None:
+    def ingest(self, ids: NDArray[np.int_], positions_xyz: NDArray[np.float_]) -> None:
         """Ingest positions for arbitrary integer ids.
 
         Parameters
@@ -122,7 +123,7 @@ class TrailRingBuffer:
             self._hist[slot, w] = positions_xyz[i].astype(np.float32, copy=False)
             self._write[slot] = (w + 1) % self.params.history_len
 
-    def ingest_direct(self, slots: np.ndarray, positions_xyz: np.ndarray) -> None:
+    def ingest_direct(self, slots: NDArray[np.int_], positions_xyz: NDArray[np.float_]) -> None:
         """Fast path: directly write positions into known slot indices.
 
         This assumes:
@@ -150,7 +151,7 @@ class TrailRingBuffer:
             self._hist[slot, w] = positions_xyz[i].astype(np.float32, copy=False)
             self._write[slot] = (w + 1) % self.params.history_len
 
-    def build_segments(self) -> Tuple[np.ndarray, np.ndarray]:
+    def build_segments(self) -> Tuple[NDArray[np.float_], NDArray[np.float_]]:
         """Build line segments and alpha per segment.
 
         Returns

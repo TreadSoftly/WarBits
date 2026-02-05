@@ -2,7 +2,8 @@ from __future__ import annotations
 
 import dataclasses
 import enum
-from typing import Callable, List, Optional, Sequence
+from collections.abc import Sequence as SequenceABC
+from typing import Callable, Optional
 
 from .context import AIContext
 
@@ -58,7 +59,7 @@ class Action(Node):
 
 @dataclasses.dataclass
 class Sequence(Node):
-    children: Sequence[Node]
+    children: SequenceABC[Node]
     memory: bool = True
     _idx: int = 0
 
@@ -93,7 +94,7 @@ class Sequence(Node):
 
 @dataclasses.dataclass
 class Selector(Node):
-    children: Sequence[Node]
+    children: SequenceABC[Node]
     memory: bool = True
     _idx: int = 0
 
@@ -130,7 +131,7 @@ class Selector(Node):
 class RandomSelector(Node):
     """Selector that evaluates children in a deterministic shuffled order each tick."""
 
-    children: Sequence[Node]
+    children: SequenceABC[Node]
     memory: bool = False
 
     def tick(self, ctx: AIContext) -> Status:
@@ -168,7 +169,7 @@ class Parallel(Node):
     - children are not reset automatically; caller can reset tree on mode changes.
     """
 
-    children: Sequence[Node]
+    children: SequenceABC[Node]
     success_threshold: Optional[int] = None
     failure_threshold: Optional[int] = None
 
@@ -332,7 +333,6 @@ class Timeout(Node):
         return st
 
     def reset(self) -> None:
-        ctx_key = f"timeout.{self.id}.start_time"
         # can't access ctx here; rely on caller to clear blackboard if needed
         self.child.reset()
 

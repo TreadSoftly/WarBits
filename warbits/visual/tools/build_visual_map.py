@@ -17,7 +17,7 @@ import argparse
 import json
 from pathlib import Path
 from types import SimpleNamespace
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Mapping, Optional, cast
 
 from warbits.visual.blueprint_db import BlueprintDB
 from warbits.visual.mapping.build_map import build_visual_map
@@ -71,12 +71,16 @@ def _load_store_from_json_dir(data_dir: Path):
 def _as_id_dict(obj: Any, id_key: str) -> Dict[str, Any]:
     if isinstance(obj, dict):
         # already keyed
-        return {str(k): v for k, v in obj.items()}
+        obj_map = cast(Mapping[object, object], obj)
+        return {str(k): v for k, v in obj_map.items()}
     if isinstance(obj, list):
         out: Dict[str, Any] = {}
-        for row in obj:
-            if isinstance(row, dict) and id_key in row:
-                out[str(row[id_key])] = row
+        for row in cast(list[object], obj):
+            if not isinstance(row, dict):
+                continue
+            row_map = cast(Mapping[str, Any], row)
+            if id_key in row_map:
+                out[str(row_map[id_key])] = dict(row_map)
         return out
     return {}
 
@@ -88,7 +92,9 @@ def main(argv: Optional[list[str]] = None) -> int:
     ap.add_argument("--overrides", type=str, default=None, help="Path to visual overrides JSON/JSONL")
     ap.add_argument("--out", type=str, default="warbits/visual/assets/visual_map.json", help="Output JSON path")
     ap.add_argument("--out-jsonl", type=str, default=None, help="Optional JSONL output path")
-    ap.add_argument("--kind", type=str, default="all", choices=["all", "vehicle", "weapon"], help="Which entity kinds to map")
+    ap.add_argument(
+        "--kind", type=str, default="all", choices=["all", "vehicle", "weapon"], help="Which entity kinds to map"
+    )
     args = ap.parse_args(argv)
 
     data_dir = Path(args.data_dir)

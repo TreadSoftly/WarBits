@@ -1,22 +1,22 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Dict, Optional, Tuple
+from typing import Any, Dict, Tuple
 
 import numpy as np
+from numpy.typing import NDArray
 
 try:
-    import trimesh
+    import trimesh  # type: ignore[import-not-found]
 except Exception:  # pragma: no cover
     trimesh = None  # type: ignore
 
+NDArrayInt = NDArray[np.int32]
 
-def require_trimesh() -> "trimesh":
+
+def require_trimesh() -> Any:
     if trimesh is None:
-        raise ImportError(
-            "trimesh is required for visual blueprint ingestion. "
-            "Install with: pip install trimesh"
-        )
+        raise ImportError("trimesh is required for visual blueprint ingestion. " "Install with: pip install trimesh")
     return trimesh
 
 
@@ -32,13 +32,13 @@ class LODSpec:
 
 
 def extract_wireframe_edges(
-    mesh: "trimesh.Trimesh",
+    mesh: Any,
     feature_angle_deg: float = 30.0,
     max_edges: int = 8000,
     sample_rate: float = 1.0,
     include_boundary: bool = True,
     rng_seed: int = 1234,
-) -> np.ndarray:
+) -> NDArrayInt:
     """Extract an edge list suitable for a 'wireframe' outline look.
 
     Strategy:
@@ -50,7 +50,7 @@ def extract_wireframe_edges(
     -------
     edges: (M,2) int32
     """
-    tm = require_trimesh()  # ensures trimesh import
+    require_trimesh()  # ensures trimesh import
     if not hasattr(mesh, "faces") or mesh.faces is None:
         raise ValueError("mesh must have faces")
 
@@ -107,13 +107,13 @@ def extract_wireframe_edges(
 
 
 def generate_rib_edges(
-    mesh: "trimesh.Trimesh",
+    mesh: Any,
     axis: int = 0,
     slices: int = 8,
     thickness_frac: float = 0.03,
     rng_seed: int = 1234,
     max_edges: int = 1500,
-) -> np.ndarray:
+) -> NDArrayInt:
     """Generate synthetic 'rib' edges to create internal structure hints.
 
     This is a stylistic tool: it does not try to be an engineering-accurate frame.
@@ -143,7 +143,7 @@ def generate_rib_edges(
     # slice positions avoid the extreme ends
     positions = np.linspace(mn + span * 0.1, mx - span * 0.1, int(slices))
 
-    edges_out = []
+    edges_out: list[tuple[int, int]] = []
     rng = np.random.default_rng(int(rng_seed))
 
     for s in positions:
@@ -184,12 +184,12 @@ def generate_rib_edges(
 
 
 def extract_lod_edge_sets(
-    mesh: "trimesh.Trimesh",
+    mesh: Any,
     lods: Tuple[LODSpec, ...],
     rng_seed: int = 1234,
-) -> Dict[str, np.ndarray]:
+) -> Dict[str, NDArrayInt]:
     """Extract multiple LOD edge sets from a mesh."""
-    out: Dict[str, np.ndarray] = {}
+    out: Dict[str, NDArrayInt] = {}
     for i, spec in enumerate(lods):
         edges = extract_wireframe_edges(
             mesh,

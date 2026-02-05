@@ -1,15 +1,16 @@
 from __future__ import annotations
 
 import math
-from typing import Dict, Optional, Tuple
+from typing import Dict, Optional, Tuple, TypeAlias
 
 import numpy as np
+from numpy.typing import NDArray
 
 from ..math3d import safe_unit
 from .kinematics import slerp_dir
 from .types import FlightLimits
 
-Vec3 = np.ndarray
+Vec3: TypeAlias = NDArray[np.float64]
 
 
 def limit_velocity_vector(
@@ -49,7 +50,9 @@ def limit_velocity_vector(
     speed_des = float(np.linalg.norm(v_des))
 
     # Pick directions (robust to near-zero speed)
-    dir_cur = safe_unit(v_cur) if speed_cur > eps else safe_unit(v_des if speed_des > eps else np.array([1.0, 0.0, 0.0]))
+    dir_cur = (
+        safe_unit(v_cur) if speed_cur > eps else safe_unit(v_des if speed_des > eps else np.array([1.0, 0.0, 0.0]))
+    )
     dir_des = safe_unit(v_des) if speed_des > eps else dir_cur
 
     debug: Dict[str, float] = {}

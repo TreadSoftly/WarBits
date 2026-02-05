@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Optional, Tuple
+from typing import Any, Optional, Protocol
 
 from .imports import require_panda3d
 
@@ -12,6 +12,17 @@ class PixelateConfig:
     height: int = 360
     # Nearest-neighbor sampling gives the pixel vibe.
     nearest: bool = True
+
+
+class _PandaBase(Protocol):
+    win: Any
+    cam: Any
+    camera: Any
+    render2d: Any
+    graphicsEngine: Any
+
+    def makeCamera(self, buffer: Any) -> Any:
+        ...
 
 
 class PixelatePipeline:
@@ -32,15 +43,15 @@ class PixelatePipeline:
 
     """
 
-    def __init__(self, base, config: PixelateConfig):
+    def __init__(self, base: _PandaBase, config: PixelateConfig):
         self._p3d, _ = require_panda3d()
         self.base = base
         self.config = config
 
-        self.buffer = None
-        self.tex = None
-        self.card_np = None
-        self.cam_np = None
+        self.buffer: Optional[Any] = None
+        self.tex: Optional[Any] = None
+        self.card_np: Optional[Any] = None
+        self.cam_np: Optional[Any] = None
 
     def enable(self) -> None:
         p3d = self._p3d
@@ -92,4 +103,3 @@ class PixelatePipeline:
         self.tex = None
         # Re-enable default camera
         self.base.cam.node().setActive(True)
-

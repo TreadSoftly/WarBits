@@ -2,12 +2,15 @@ from __future__ import annotations
 
 import dataclasses
 import enum
-from typing import Dict, Iterable, List, Optional, Sequence, Tuple
+from typing import List, Optional, Sequence, Tuple, TypeAlias
 
 import numpy as np
+from numpy.typing import NDArray
 
-from .types import Pose, Team, WorldView
-from .directives import HUDMessageDirective, MissionDirective, SetFlagDirective
+from .directives import HUDMessageDirective, MissionDirective
+from .types import WorldView
+
+FloatArray: TypeAlias = NDArray[np.float64]
 
 
 class ObjectiveStatus(enum.Enum):
@@ -103,7 +106,7 @@ class SurviveObjective(Objective):
 @dataclasses.dataclass
 class ReachZoneObjective(Objective):
     entity_id: str = ""
-    center_m: np.ndarray = dataclasses.field(default_factory=lambda: np.zeros(3, dtype=np.float64))
+    center_m: FloatArray = dataclasses.field(default_factory=lambda: np.zeros(3, dtype=np.float64))
     radius_m: float = 500.0
     success_message: str = "Zone reached."
     failure_time_limit_s: Optional[float] = None
@@ -124,7 +127,9 @@ class ReachZoneObjective(Objective):
 
         if not world.is_alive(self.entity_id):
             self.status = ObjectiveStatus.FAILURE
-            directives.append(HUDMessageDirective(f"Objective failed: {self.entity_id} destroyed", level="error", ttl_s=6.0))
+            directives.append(
+                HUDMessageDirective(f"Objective failed: {self.entity_id} destroyed", level="error", ttl_s=6.0)
+            )
             return directives
 
         pose = world.get_pose(self.entity_id)
@@ -137,7 +142,9 @@ class ReachZoneObjective(Objective):
         if self.failure_time_limit_s is not None:
             if (float(snap.time_s) - float(self.start_time_s)) >= float(self.failure_time_limit_s):
                 self.status = ObjectiveStatus.FAILURE
-                directives.append(HUDMessageDirective("Objective failed: time limit exceeded", level="error", ttl_s=6.0))
+                directives.append(
+                    HUDMessageDirective("Objective failed: time limit exceeded", level="error", ttl_s=6.0)
+                )
                 return directives
 
         return directives
@@ -188,7 +195,6 @@ class CompositeObjective(Objective):
         for c in self.children:
             directives.extend(c.update(world, sim_events))
 
-        done = [c for c in self.children if c.is_done()]
         if not self.children:
             self.status = ObjectiveStatus.SUCCESS
             return directives

@@ -11,9 +11,9 @@ def test_registry_edges_for_distance():
         blueprint_id="vehicle:test",
         kind="vehicle",
         repr="wire3d",
-        vertices_m=[(0.0,0.0,0.0),(1.0,0.0,0.0),(0.0,1.0,0.0)],
-        edges=[(0,1),(1,2)],
-        lod_edges={"lod0":[(0,1),(1,2)], "lod2":[(0,1)]},
+        vertices_m=[(0.0, 0.0, 0.0), (1.0, 0.0, 0.0), (0.0, 1.0, 0.0)],
+        edges=[(0, 1), (1, 2)],
+        lod_edges={"lod0": ((0, 1), (1, 2)), "lod2": ((0, 1),)},
         tags=[],
         meta={},
     )

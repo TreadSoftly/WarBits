@@ -2,12 +2,11 @@ from __future__ import annotations
 
 import dataclasses
 import math
-from typing import Callable, Dict, List, Optional, Sequence, Tuple
+from typing import Callable, List, Optional, Sequence, Tuple
 
 import numpy as np
 
 from .context import AIContext
-from .rng import DeterministicRNG
 
 
 @dataclasses.dataclass(frozen=True)

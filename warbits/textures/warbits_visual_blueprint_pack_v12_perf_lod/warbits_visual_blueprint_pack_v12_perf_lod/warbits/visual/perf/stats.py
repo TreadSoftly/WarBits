@@ -13,6 +13,10 @@ def _now_ns() -> int:
     return time.perf_counter_ns()
 
 
+def ns_to_ms(ns: float | int) -> float:
+    return float(ns) / 1e6
+
+
 @dataclass(frozen=True)
 class VisualFrameTimings:
     """Immutable per-frame timings.
@@ -26,6 +30,13 @@ class VisualFrameTimings:
     @property
     def ns_total(self) -> int:
         return int(sum(self.ns_by_stage))
+
+    def ns(self, stage: VisualStage) -> int:
+        return int(self.ns_by_stage[int(stage)])
+
+    @property
+    def total_ns(self) -> int:
+        return self.ns_total
 
     def ms_by_stage(self) -> List[float]:
         return [ns / 1e6 for ns in self.ns_by_stage]

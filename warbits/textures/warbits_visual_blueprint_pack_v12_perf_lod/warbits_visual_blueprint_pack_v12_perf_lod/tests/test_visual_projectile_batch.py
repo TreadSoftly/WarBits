@@ -4,7 +4,7 @@ from warbits.visual.batch import ProjectileSegmentBatch
 
 
 def test_projectile_segment_batch_shapes():
-    b = ProjectileSegmentBatch(max_projectiles=8)
+    b = ProjectileSegmentBatch(max_segments=8)
 
     prev = np.zeros((5, 3), dtype=np.float32)
     curr = np.ones((5, 3), dtype=np.float32)
@@ -17,7 +17,7 @@ def test_projectile_segment_batch_shapes():
 
 
 def test_projectile_batch_clamps_to_max():
-    b = ProjectileSegmentBatch(max_projectiles=2)
+    b = ProjectileSegmentBatch(max_segments=2)
     prev = np.zeros((5, 3), dtype=np.float32)
     curr = np.ones((5, 3), dtype=np.float32)
     seg = b.update(prev, curr)

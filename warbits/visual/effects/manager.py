@@ -1,9 +1,10 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Dict, Iterable, List, Optional, Sequence, Tuple
+from typing import Any, Dict, Iterable, Mapping, Optional
 
 import numpy as np
+from numpy.typing import NDArray
 
 from .bursts import BurstParams, BurstPool
 from .config import FxConfig
@@ -16,9 +17,27 @@ from .types import FxFrameData, FxLayerBatch
 class DefaultTrailFamilies:
     """Common trail family parameter presets."""
 
-    tracers: TrailParams = TrailParams(max_objects=2048, history_len=4, fade_pow=1.2)
-    contrails: TrailParams = TrailParams(max_objects=256, history_len=32, fade_pow=1.6)
-    smoke: TrailParams = TrailParams(max_objects=512, history_len=24, fade_pow=1.8)
+    tracers: TrailParams = TrailParams(max_objects=2048, history_len=4)
+    contrails: TrailParams = TrailParams(max_objects=256, history_len=32)
+    smoke: TrailParams = TrailParams(max_objects=512, history_len=24)
+
+
+def _float_or_none(value: Any) -> Optional[float]:
+    if value is None:
+        return None
+    try:
+        return float(value)
+    except (TypeError, ValueError):
+        return None
+
+
+def _int_or_none(value: Any) -> Optional[int]:
+    if value is None:
+        return None
+    try:
+        return int(value)
+    except (TypeError, ValueError):
+        return None
 
 
 class FxManager:
@@ -64,14 +83,14 @@ class FxManager:
 
         self._explosions = ExplosionPool(explosion_params or ExplosionParams(
             max_explosions=cfg.max_explosions,
-            lifetime_frames=cfg.explosion_life_frames,
+            lifetime_frames=cfg.explosion_lifetime_frames,
             max_radius_m=cfg.explosion_max_radius_m,
         ))
 
         self._bursts = BurstPool(burst_params or BurstParams(
             max_bursts=cfg.max_impacts,
-            lifetime_frames=cfg.impact_life_frames,
-            max_radius_m=cfg.impact_max_radius_m,
+            lifetime_frames=cfg.impact_lifetime_frames,
+            radius_m=cfg.impact_radius_m,
         ))
 
     # --------------------
@@ -80,26 +99,26 @@ class FxManager:
     def update_trail(
         self,
         family: str,
-        ids: np.ndarray,
-        positions_xyz: np.ndarray,
+        ids: NDArray[np.int_],
+        positions_xyz: NDArray[np.float_],
         *,
         frame_idx: int,
     ) -> None:
         if family not in self._trails:
             raise KeyError(f"Unknown trail family: {family!r}. Known: {sorted(self._trails)}")
-        self._trails[family].ingest(ids, positions_xyz, frame_idx=frame_idx)
+        self._trails[family].ingest(ids, positions_xyz)
 
     def clear_trail(self, family: str, *, frame_idx: int) -> None:
         if family not in self._trails:
             return
-        self._trails[family].clear(frame_idx=frame_idx)
+        self._trails[family].reset()
 
     # --------------------
     # Impulses
     # --------------------
     def spawn_explosion(
         self,
-        center_xyz: np.ndarray,
+        center_xyz: NDArray[np.float_],
         *,
         frame_idx: int,
         radius_m: Optional[float] = None,
@@ -109,19 +128,20 @@ class FxManager:
 
     def spawn_impact_burst(
         self,
-        center_xyz: np.ndarray,
+        center_xyz: NDArray[np.float_],
         *,
         frame_idx: int,
-        normal_xyz: Optional[np.ndarray] = None,
+        normal_xyz: Optional[NDArray[np.float_]] = None,
         radius_m: Optional[float] = None,
         life_frames: Optional[int] = None,
     ) -> None:
-        self._bursts.spawn(center_xyz, frame_idx=frame_idx, normal_xyz=normal_xyz, max_radius_m=radius_m, lifetime_frames=life_frames)
+        _ = normal_xyz
+        self._bursts.spawn(center_xyz, frame_idx=frame_idx, radius_m=radius_m, lifetime_frames=life_frames)
 
     # --------------------
     # Event ingestion (optional helper)
     # --------------------
-    def ingest_event_dicts(self, events: Iterable[dict], *, frame_idx: int) -> None:
+    def ingest_event_dicts(self, events: Iterable[Mapping[str, Any]], *, frame_idx: int) -> None:
         """Best-effort helper to spawn FX from lightweight event dicts.
 
         Supported shapes (examples)
@@ -132,7 +152,7 @@ class FxManager:
         Unknown events are ignored.
         """
         for e in events:
-            et = (e.get("type") or e.get("kind") or "").lower()
+            et = str(e.get("type") or e.get("kind") or "").lower()
             pos = e.get("pos") or e.get("position") or e.get("center")
             if pos is None:
                 continue
@@ -143,8 +163,8 @@ class FxManager:
                 self.spawn_explosion(
                     center,
                     frame_idx=frame_idx,
-                    radius_m=e.get("radius"),
-                    life_frames=e.get("life"),
+                    radius_m=_float_or_none(e.get("radius")),
+                    life_frames=_int_or_none(e.get("life")),
                 )
             elif et in {"impact", "hit", "burst"}:
                 normal = e.get("normal")
@@ -153,8 +173,8 @@ class FxManager:
                     center,
                     frame_idx=frame_idx,
                     normal_xyz=n,
-                    radius_m=e.get("radius"),
-                    life_frames=e.get("life"),
+                    radius_m=_float_or_none(e.get("radius")),
+                    life_frames=_int_or_none(e.get("life")),
                 )
 
     # --------------------
@@ -165,7 +185,7 @@ class FxManager:
         layers: Dict[str, FxLayerBatch] = {}
 
         # Trails
-        tracer_segs, tracer_alpha = self._trails["tracers"].build_segments(frame_idx=frame_idx)
+        tracer_segs, tracer_alpha = self._trails["tracers"].build_segments()
         if tracer_segs.shape[0] > self.cfg.max_tracer_segments:
             # Decimate deterministically: take every k-th segment.
             k = int(np.ceil(tracer_segs.shape[0] / self.cfg.max_tracer_segments))
@@ -173,14 +193,14 @@ class FxManager:
             tracer_alpha = tracer_alpha[::k]
         layers["tracers"] = FxLayerBatch(tracer_segs, tracer_alpha)
 
-        contrail_segs, contrail_alpha = self._trails["contrails"].build_segments(frame_idx=frame_idx)
+        contrail_segs, contrail_alpha = self._trails["contrails"].build_segments()
         if contrail_segs.shape[0] > self.cfg.max_contrail_segments:
             k = int(np.ceil(contrail_segs.shape[0] / self.cfg.max_contrail_segments))
             contrail_segs = contrail_segs[::k]
             contrail_alpha = contrail_alpha[::k]
         layers["contrails"] = FxLayerBatch(contrail_segs, contrail_alpha)
 
-        smoke_segs, smoke_alpha = self._trails["smoke"].build_segments(frame_idx=frame_idx)
+        smoke_segs, smoke_alpha = self._trails["smoke"].build_segments()
         if smoke_segs.shape[0] > self.cfg.max_smoke_segments:
             k = int(np.ceil(smoke_segs.shape[0] / self.cfg.max_smoke_segments))
             smoke_segs = smoke_segs[::k]

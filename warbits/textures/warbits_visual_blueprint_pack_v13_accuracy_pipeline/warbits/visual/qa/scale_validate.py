@@ -4,11 +4,13 @@ import json
 import math
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple, Union
+from typing import Any, Dict, Iterable, Optional, Tuple, TypeAlias, Union, cast
 
 import numpy as np
+from numpy.typing import NDArray
 
 PathLike = Union[str, Path]
+FloatArray: TypeAlias = NDArray[np.float64]
 
 
 @dataclass(frozen=True)
@@ -24,8 +26,8 @@ class ScaleValidationResult:
     data_dir: Optional[str] = None
     checked: int = 0
     compared: int = 0
-    warnings: List[str] = field(default_factory=list)
-    errors: List[str] = field(default_factory=list)
+    warnings: list[str] = field(default_factory=lambda: cast(list[str], []))
+    errors: list[str] = field(default_factory=lambda: cast(list[str], []))
 
     @property
     def ok(self) -> bool:
@@ -50,27 +52,33 @@ def _iter_jsonl(path: PathLike) -> Iterable[Tuple[int, Dict[str, Any]]]:
             line = line.strip()
             if not line:
                 continue
-            yield i, json.loads(line)
+            rec = json.loads(line)
+            if isinstance(rec, dict):
+                yield i, cast(Dict[str, Any], rec)
 
 
-def _coerce_vec3_list(obj: Any) -> Optional[np.ndarray]:
+def _coerce_vec3_list(obj: Any) -> Optional[FloatArray]:
     if obj is None:
         return None
     if not isinstance(obj, list):
         return None
-    out: List[List[float]] = []
-    for row in obj:
-        if not isinstance(row, list) or len(row) != 3:
+    out: list[list[float]] = []
+    rows = cast(list[object], obj)
+    for row in rows:
+        if not isinstance(row, list):
             return None
-        if not all(_is_finite_number(v) for v in row):
+        row_seq = cast(list[Any], row)
+        if len(row_seq) != 3:
             return None
-        out.append([float(row[0]), float(row[1]), float(row[2])])
+        if not all(_is_finite_number(v) for v in row_seq):
+            return None
+        out.append([float(row_seq[0]), float(row_seq[1]), float(row_seq[2])])
     if not out:
         return None
     return np.asarray(out, dtype=np.float64)
 
 
-def _bbox_dims(vertices_m: np.ndarray) -> Tuple[float, float, float]:
+def _bbox_dims(vertices_m: FloatArray) -> Tuple[float, float, float]:
     lo = vertices_m.min(axis=0)
     hi = vertices_m.max(axis=0)
     d = hi - lo
@@ -85,7 +93,7 @@ def _extract_target_dims_from_record(rec: Dict[str, Any]) -> TargetDims:
         "height_m": ["height_m", "height", "overall_height_m", "overall_height"],
     }
 
-    def pick(keys: List[str]) -> Optional[float]:
+    def pick(keys: list[str]) -> Optional[float]:
         for k in keys:
             if k in rec and _is_finite_number(rec[k]):
                 v = float(rec[k])
@@ -108,16 +116,22 @@ def _iter_entity_records(data_dir: Path) -> Iterable[Tuple[str, Dict[str, Any]]]
     def from_json_file(path: Path, id_key: str) -> Iterable[Tuple[str, Dict[str, Any]]]:
         obj = _read_json(path)
         if isinstance(obj, list):
-            for rec in obj:
-                if isinstance(rec, dict) and id_key in rec and isinstance(rec[id_key], str):
-                    yield rec[id_key], rec
+            rows = cast(list[object], obj)
+            for rec in rows:
+                if isinstance(rec, dict):
+                    rec_map = cast(Dict[str, Any], rec)
+                    if id_key in rec_map and isinstance(rec_map[id_key], str):
+                        yield rec_map[id_key], rec_map
         elif isinstance(obj, dict):
             # Sometimes it’s a mapping of id -> record.
-            for k, v in obj.items():
-                if isinstance(k, str) and isinstance(v, dict):
+            obj_map = cast(Dict[str, Any], obj)
+            for k, v in obj_map.items():
+                if isinstance(v, dict):
+                    v_map = cast(Dict[str, Any], v)
                     # Prefer explicit id_key if present; else use dict key.
-                    eid = v.get(id_key) if isinstance(v.get(id_key), str) else k
-                    yield eid, v
+                    raw_id = v_map.get(id_key)
+                    eid = raw_id if isinstance(raw_id, str) else k
+                    yield eid, v_map
 
     file_specs = [
         ("vehicles.json", "vehicle_id"),
@@ -209,5 +223,5 @@ def validate_blueprint_scale(
 
 
 # Back-compat alias: some scripts refer to this plural form.
-def validate_blueprints_scale(*args, **kwargs):
+def validate_blueprints_scale(*args: Any, **kwargs: Any) -> ScaleValidationResult:
     return validate_blueprint_scale(*args, **kwargs)

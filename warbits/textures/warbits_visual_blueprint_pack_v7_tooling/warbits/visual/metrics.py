@@ -10,13 +10,13 @@ Used for:
 
 from __future__ import annotations
 
+import math
 from dataclasses import dataclass
 from typing import Dict, Sequence, Tuple
 
-import math
+from warbits.visual.blueprint_schema import Blueprint, Vec3
 
-from .blueprint_schema import Blueprint, Vec3
-from .budgets import normalize_lod_name, select_edges_for_lod
+from .budgets import normalize_lod_name, select_edges_for_lod  # type: ignore[reportUnknownVariableType]
 
 
 @dataclass(frozen=True)

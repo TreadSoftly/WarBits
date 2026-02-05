@@ -4,9 +4,10 @@ from dataclasses import dataclass
 from typing import Optional, Tuple
 
 import numpy as np
+from numpy.typing import NDArray
 
 
-def make_unit_sphere_segments(lat_steps: int = 6, lon_steps: int = 12) -> np.ndarray:
+def make_unit_sphere_segments(lat_steps: int = 6, lon_steps: int = 12) -> NDArray[np.float_]:
     """Precompute wireframe sphere segments on a unit sphere.
 
     Returns
@@ -23,7 +24,7 @@ def make_unit_sphere_segments(lat_steps: int = 6, lon_steps: int = 12) -> np.nda
     lat_steps = max(3, int(lat_steps))
     lon_steps = max(6, int(lon_steps))
 
-    segs = []
+    segs: list[NDArray[np.float_]] = []
 
     # Latitude circles excluding the poles.
     for i in range(1, lat_steps):
@@ -35,7 +36,7 @@ def make_unit_sphere_segments(lat_steps: int = 6, lon_steps: int = 12) -> np.nda
         y = r * np.sin(t)
         pts = np.stack([x, y, np.full_like(x, z)], axis=1)
         for j in range(lon_steps):
-            segs.append([pts[j], pts[j + 1]])
+            segs.append(np.stack([pts[j], pts[j + 1]], axis=0))
 
     # Longitude circles.
     for j in range(lon_steps):
@@ -46,7 +47,7 @@ def make_unit_sphere_segments(lat_steps: int = 6, lon_steps: int = 12) -> np.nda
         z = np.cos(t)
         pts = np.stack([x, y, z], axis=1)
         for k in range(len(t) - 1):
-            segs.append([pts[k], pts[k + 1]])
+            segs.append(np.stack([pts[k], pts[k + 1]], axis=0))
 
     seg = np.asarray(segs, dtype=np.float32)
     return seg
@@ -81,7 +82,7 @@ class ExplosionPool:
         if params.max_explosions <= 0:
             raise ValueError("max_explosions must be > 0")
         self.params = params
-        self._unit = make_unit_sphere_segments(params.sphere_lat_steps, params.sphere_lon_steps)
+        self._unit: NDArray[np.float_] = make_unit_sphere_segments(params.sphere_lat_steps, params.sphere_lon_steps)
         self._segs_per = int(self._unit.shape[0])
 
         self._centers = np.zeros((params.max_explosions, 3), dtype=np.float32)
@@ -99,7 +100,7 @@ class ExplosionPool:
 
     def spawn(
         self,
-        center_xyz_m: np.ndarray,
+        center_xyz_m: NDArray[np.float_],
         *,
         frame_idx: int,
         max_radius_m: Optional[float] = None,
@@ -122,7 +123,7 @@ class ExplosionPool:
         else:
             self._life[slot] = int(self.params.lifetime_frames)
 
-    def build_segments(self, *, frame_idx: int) -> Tuple[np.ndarray, np.ndarray]:
+    def build_segments(self, *, frame_idx: int) -> Tuple[NDArray[np.float_], NDArray[np.float_]]:
         """Build segments for all active explosions at this frame."""
         alive = np.nonzero(self._alive)[0]
         if len(alive) == 0:
@@ -150,9 +151,9 @@ class ExplosionPool:
 
             t = max(0.0, min(1.0, age / max(1, life - 1)))
             # Expand quickly, then slow (keeps it punchy without being huge).
-            radius = float(self._radius[slot]) * (0.25 + 0.75 * (t ** 0.6))
+            radius = float(self._radius[slot]) * (0.25 + 0.75 * (t**0.6))
             # Fade toward the end.
-            a = 1.0 - (t ** 1.6)
+            a = 1.0 - (t**1.6)
 
             seg = unit * radius
             seg = seg + self._centers[slot]

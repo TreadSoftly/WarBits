@@ -1,12 +1,9 @@
 from __future__ import annotations
 
 import argparse
-import json
 import re
 from pathlib import Path
-from typing import Dict, Iterable, List, Tuple
-
-import numpy as np
+from typing import Dict, List
 
 from ..blueprint_db import write_blueprints_jsonl
 from ..blueprint_schema import BlueprintKind, BlueprintRecord
@@ -97,7 +94,12 @@ def main() -> None:
     ap = argparse.ArgumentParser(description="Build Visual Blueprint DB (JSONL) from OBJ/GLB assets.")
     ap.add_argument("--input", required=True, help="Input file or directory containing OBJ/GLB/GLTF assets.")
     ap.add_argument("--out", required=True, help="Output JSONL path (blueprints.jsonl).")
-    ap.add_argument("--kind", default="vehicle", choices=["vehicle","weapon","sensor","effect","terrain_prop"], help="Blueprint kind.")
+    ap.add_argument(
+        "--kind",
+        default="vehicle",
+        choices=["vehicle", "weapon", "sensor", "effect", "terrain_prop"],
+        help="Blueprint kind.",
+    )
     ap.add_argument("--id-prefix", default="", help="Optional prefix added after kind:, before slug.")
     ap.add_argument("--crease", type=float, default=35.0, help="Crease angle deg for feature edges.")
     ap.add_argument("--max-edges", type=int, default=5000, help="Max edges to keep per blueprint.")

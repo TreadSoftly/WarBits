@@ -1,4 +1,5 @@
 from types import SimpleNamespace
+from typing import Any, cast
 
 from warbits.visual.mapping.build_map import build_visual_map
 
@@ -13,10 +14,10 @@ def test_build_visual_map_smoke():
         },
     )
 
-    vm = build_visual_map(store, blueprint_db=None, overrides=None)
+    vm = build_visual_map(store=store, blueprints=None, overrides=None)
 
     assert vm.get("vehicle", "F-15C") is not None
     assert vm.get("weapon", "AIM-9L") is not None
 
-    b_vehicle = vm.get("vehicle", "F-15C")
+    b_vehicle = cast(Any, vm.get("vehicle", "F-15C"))
     assert b_vehicle.blueprint_id.startswith("proc:")

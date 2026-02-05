@@ -28,37 +28,39 @@ Design notes:
 
 from __future__ import annotations
 
+import argparse
 import json
-from dataclasses import asdict
 from pathlib import Path
-from typing import Optional, Sequence
+from typing import Any, Mapping, Optional, Sequence, cast
 
 
 def _read_json(path: str) -> object:
     return json.loads(Path(path).read_text(encoding="utf-8"))
 
 
-def _as_id_dict(obj: object, id_key: str) -> dict[str, dict]:
+def _as_id_dict(obj: object, id_key: str) -> dict[str, dict[str, object]]:
     """Coerce JSON list/dict into an id->record dict."""
     if isinstance(obj, dict):
         # Either already id->rec, or wrapped.
-        if all(isinstance(v, dict) for v in obj.values()):
-            return {str(k): dict(v) for k, v in obj.items()}
-        # Maybe has "items".
-        if "items" in obj and isinstance(obj["items"], list):
-            obj = obj["items"]
+        obj_map = cast(Mapping[object, object], obj)
+        if all(isinstance(v, dict) for v in obj_map.values()):
+            return {str(k): dict(cast(Mapping[str, object], v)) for k, v in obj_map.items()}
+            # Maybe has "items".
+            if "items" in obj and isinstance(obj["items"], list):
+                obj = cast(list[object], obj["items"])
         else:
             return {}
 
     if isinstance(obj, list):
-        out: dict[str, dict] = {}
-        for rec in obj:
+        out: dict[str, dict[str, object]] = {}
+        for rec in cast(list[object], obj):
             if not isinstance(rec, dict):
                 continue
-            rid = rec.get(id_key) or rec.get("id") or rec.get("name")
+            rec_map = cast(Mapping[str, object], rec)
+            rid = rec_map.get(id_key) or rec_map.get("id") or rec_map.get("name")
             if rid is None:
                 continue
-            out[str(rid)] = dict(rec)
+            out[str(rid)] = dict(rec_map)
         return out
 
     return {}
@@ -82,21 +84,21 @@ def _load_store_from_json_dir(data_dir: str):
     weapons = _as_id_dict(_read_json(str(weapons_path)), id_key="weapon_id") if weapons_path.exists() else {}
 
     class _Store:
-        def __init__(self, vehicles: dict[str, dict], weapons: dict[str, dict]):
+        def __init__(self, vehicles: dict[str, dict[str, object]], weapons: dict[str, dict[str, object]]):
             self.vehicles = vehicles
             self.weapons = weapons
 
-        def get_vehicle(self, vehicle_id: str):
+        def get_vehicle(self, vehicle_id: str) -> dict[str, object]:
             return self.vehicles[vehicle_id]
 
-        def get_weapon(self, weapon_id: str):
+        def get_weapon(self, weapon_id: str) -> dict[str, object]:
             return self.weapons[weapon_id]
 
     return _Store(vehicles, weapons)
 
 
-def cmd_atlas(args) -> int:
-    from .atlas import load_blueprints, render_atlas
+def cmd_atlas(args: argparse.Namespace) -> int:
+    from warbits.visual.tools.atlas import load_blueprints, render_atlas
 
     bps = load_blueprints(args.db)
     render_atlas(
@@ -112,8 +114,8 @@ def cmd_atlas(args) -> int:
     return 0
 
 
-def cmd_report(args) -> int:
-    from .report import build_report, write_report
+def cmd_report(args: argparse.Namespace) -> int:
+    from warbits.visual.tools.report import build_report, write_report
 
     rep = build_report(args.db, lod=args.lod)
     write_report(rep, args.out)
@@ -125,16 +127,16 @@ def cmd_report(args) -> int:
     return 0
 
 
-def cmd_validate(args) -> int:
-    from ..blueprint_db import read_blueprints_jsonl
-    from ..budgets import DEFAULT_BUDGETS, check_budget, normalize_lod_name
-    from ..metrics import compute_metrics
+def cmd_validate(args: argparse.Namespace) -> int:
+    from warbits.visual.blueprint_db import read_blueprints_jsonl
+    from warbits.visual.budgets import DEFAULT_BUDGETS, check_budget, normalize_lod_name
+    from warbits.visual.metrics import compute_metrics
 
-    lod = normalize_lod_name(args.lod)
+    lod = normalize_lod_name(str(args.lod))
 
-    bps = read_blueprints_jsonl(args.db)
+    bps = read_blueprints_jsonl(str(args.db))
 
-    failures = []
+    failures: list[tuple[Any, Any, Any]] = []
     for bp in bps:
         chk = check_budget(bp, lod=lod, budgets=DEFAULT_BUDGETS)
         if not chk.ok:
@@ -158,58 +160,59 @@ def cmd_validate(args) -> int:
     return 2
 
 
-def cmd_map(args) -> int:
-    from ..blueprint_db import BlueprintDB
-    from ..mapping import build_visual_map
+def cmd_map(args: argparse.Namespace) -> int:
+    from warbits.visual.blueprint_db import BlueprintDB
+    from warbits.visual.mapping import build_visual_map
+    from warbits.visual.mapping.overrides import load_overrides
 
-    store = _load_store_from_json_dir(args.data_dir)
+    store = _load_store_from_json_dir(str(args.data_dir))
 
-    db = BlueprintDB()
+    db = BlueprintDB.empty()
     if args.db:
-        db = BlueprintDB.from_jsonl(args.db)
+        db = BlueprintDB.load_jsonl(Path(args.db))
 
-    vm = build_visual_map(
-        store,
-        blueprint_db=db,
-        overrides_path=args.overrides,
-    )
+    overrides = load_overrides(args.overrides) if args.overrides else None
+
+    vm = build_visual_map(store=store, blueprints=db, overrides=overrides)
 
     out_path = Path(args.out)
     out_path.parent.mkdir(parents=True, exist_ok=True)
-    out_path.write_text(vm.to_json(indent=2), encoding="utf-8")
+    vm.write_json(out_path)
 
     if args.out_jsonl:
         out_jsonl = Path(args.out_jsonl)
         out_jsonl.parent.mkdir(parents=True, exist_ok=True)
-        vm.write_jsonl(str(out_jsonl))
+        vm.write_jsonl(out_jsonl)
 
     print("VisualMap written:", args.out)
     if args.out_jsonl:
         print("VisualMap JSONL written:", args.out_jsonl)
 
     # Coverage summary
-    counts = vm.counts_by_kind()
+    counts: dict[str, int] = {}
+    for (kind, _eid), _binding in vm.bindings.items():
+        counts[kind] = counts.get(kind, 0) + 1
     for kind, n in sorted(counts.items()):
         print(f"- {kind}: {n}")
 
     return 0
 
 
-def cmd_suggest(args) -> int:
-    from ..blueprint_db import BlueprintDB
-    from ..mapping import best_matches
+def cmd_suggest(args: argparse.Namespace) -> int:
+    from warbits.visual.blueprint_db import BlueprintDB
+    from warbits.visual.mapping import best_matches
 
-    store = _load_store_from_json_dir(args.data_dir)
-    db = BlueprintDB.from_jsonl(args.db)
+    store = _load_store_from_json_dir(str(args.data_dir))
+    db = BlueprintDB.load_jsonl(Path(args.db))
 
     vehicle_ids = sorted(getattr(store, "vehicles", {}).keys()) if hasattr(store, "vehicles") else []
     weapon_ids = sorted(getattr(store, "weapons", {}).keys()) if hasattr(store, "weapons") else []
 
-    blueprint_ids = sorted(db.blueprints.keys())
+    blueprint_ids = sorted(db.ids())
 
-    suggestions = []
+    suggestions: list[dict[str, object]] = []
     for kind, ids in [("vehicle", vehicle_ids), ("weapon", weapon_ids)]:
-        sugs = best_matches(ids, blueprint_ids, threshold=args.threshold, top_k=args.top_k)
+        sugs = best_matches(ids, blueprint_ids, min_score=args.threshold, top_k=args.top_k)
         for s in sugs:
             suggestions.append(
                 {
@@ -217,8 +220,6 @@ def cmd_suggest(args) -> int:
                     "entity_id": s.entity_id,
                     "blueprint_id": s.blueprint_id,
                     "score": s.score,
-                    "entity_tokens": s.entity_tokens,
-                    "blueprint_tokens": s.blueprint_tokens,
                 }
             )
 
@@ -286,4 +287,5 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
 
 
 if __name__ == "__main__":
+    raise SystemExit(main())
     raise SystemExit(main())

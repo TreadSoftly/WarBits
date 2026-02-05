@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Iterable, List
+from typing import List
 
 from .stages import VisualStage
 from .stats import VisualFrameTimings
@@ -62,8 +62,14 @@ class VisualBudget:
         check("total", timings.ms_total, self.total_ms)
         return out
 
+    def check(self, timings: VisualFrameTimings) -> List[str]:
+        return self.violations(timings)
+
     def assert_within_budget(self, timings: VisualFrameTimings) -> None:
         v = self.violations(timings)
         if v:
             msg = "\n".join(v)
             raise AssertionError(f"Visual budget violated:\n{msg}")
+
+
+BudgetViolation = AssertionError

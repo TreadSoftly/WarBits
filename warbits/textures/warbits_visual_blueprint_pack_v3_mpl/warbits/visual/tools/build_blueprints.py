@@ -28,16 +28,17 @@ from __future__ import annotations
 
 import argparse
 import json
-import os
 from pathlib import Path
-from typing import Dict, Iterable, Iterator, List, Optional, Sequence, Tuple
+from typing import Any, Dict, Iterator, List, Optional, Sequence
 
 import numpy as np
+from numpy.typing import NDArray
 
 from ..blueprint_schema import Blueprint
-from ..blueprint_db import BlueprintDB
-from ..mesh_io import load_any_mesh, iter_scene_meshes, scene_to_merged_mesh
-from ..wireframe_extract import EdgeSpec, extract_lod_edge_sets
+from ..mesh_io import iter_scene_meshes, load_any_mesh, scene_to_merged_mesh
+from ..wireframe_extract import LODSpec, extract_lod_edge_sets
+
+NDArrayFloat = NDArray[np.float64]
 
 
 SUPPORTED_EXTS = {".glb", ".gltf", ".obj", ".ply", ".stl"}
@@ -52,7 +53,7 @@ def _iter_files(root: Path) -> Iterator[Path]:
             yield p
 
 
-def _default_specs_for_preset(preset: str) -> List[EdgeSpec]:
+def _default_specs_for_preset(preset: str) -> List[LODSpec]:
     p = (preset or "generic").lower().strip()
 
     # These defaults aim for:
@@ -61,150 +62,120 @@ def _default_specs_for_preset(preset: str) -> List[EdgeSpec]:
     # - A capped number of edges for FPS
     if p in ("aircraft", "jet", "helicopter"):
         return [
-            EdgeSpec(
+            LODSpec(
                 name="base",
-                keep_hard_edges=True,
-                include_all_edges=False,
-                include_ribs=False,
-                hard_edge_angle_deg=25.0,
-                vertex_merge_eps=0.01,
-                vertex_quantization=0.0,
+                feature_angle_deg=25.0,
                 max_edges=4500,
-                seed=7,
+                sample_rate=1.0,
+                include_boundary=True,
+                include_ribs=False,
             ),
-            EdgeSpec(
+            LODSpec(
                 name="lod0",
-                keep_hard_edges=True,
-                include_all_edges=False,
-                include_ribs=True,
-                rib_slices=14,
-                hard_edge_angle_deg=28.0,
-                vertex_merge_eps=0.01,
-                vertex_quantization=0.0,
+                feature_angle_deg=28.0,
                 max_edges=9000,
-                seed=7,
-            ),
-            EdgeSpec(
-                name="lod1",
-                keep_hard_edges=True,
-                include_all_edges=False,
+                sample_rate=1.0,
+                include_boundary=True,
                 include_ribs=True,
-                rib_slices=8,
-                hard_edge_angle_deg=30.0,
-                vertex_merge_eps=0.01,
-                vertex_quantization=0.0,
+                ribs_slices=14,
+            ),
+            LODSpec(
+                name="lod1",
+                feature_angle_deg=30.0,
                 max_edges=5500,
-                seed=7,
+                sample_rate=1.0,
+                include_boundary=True,
+                include_ribs=True,
+                ribs_slices=8,
             ),
         ]
 
     if p in ("ground", "tank", "apc", "ifv", "spaa", "sam"):
         return [
-            EdgeSpec(
+            LODSpec(
                 name="base",
-                keep_hard_edges=True,
-                include_all_edges=False,
-                include_ribs=False,
-                hard_edge_angle_deg=35.0,
-                vertex_merge_eps=0.01,
-                vertex_quantization=0.0,
+                feature_angle_deg=35.0,
                 max_edges=4200,
-                seed=7,
+                sample_rate=1.0,
+                include_boundary=True,
+                include_ribs=False,
             ),
-            EdgeSpec(
+            LODSpec(
                 name="lod0",
-                keep_hard_edges=True,
-                include_all_edges=False,
-                include_ribs=True,
-                rib_slices=10,
-                hard_edge_angle_deg=40.0,
-                vertex_merge_eps=0.01,
-                vertex_quantization=0.0,
+                feature_angle_deg=40.0,
                 max_edges=8000,
-                seed=7,
-            ),
-            EdgeSpec(
-                name="lod1",
-                keep_hard_edges=True,
-                include_all_edges=False,
+                sample_rate=1.0,
+                include_boundary=True,
                 include_ribs=True,
-                rib_slices=6,
-                hard_edge_angle_deg=45.0,
-                vertex_merge_eps=0.01,
-                vertex_quantization=0.0,
+                ribs_slices=10,
+            ),
+            LODSpec(
+                name="lod1",
+                feature_angle_deg=45.0,
                 max_edges=5200,
-                seed=7,
+                sample_rate=1.0,
+                include_boundary=True,
+                include_ribs=True,
+                ribs_slices=6,
             ),
         ]
 
     # Weapons / missiles / bombs:
     if p in ("weapon", "missile", "rocket", "bomb", "shell"):
         return [
-            EdgeSpec(
+            LODSpec(
                 name="base",
-                keep_hard_edges=True,
-                include_all_edges=False,
-                include_ribs=False,
-                hard_edge_angle_deg=25.0,
-                vertex_merge_eps=0.005,
-                vertex_quantization=0.0,
+                feature_angle_deg=25.0,
                 max_edges=2200,
-                seed=7,
+                sample_rate=1.0,
+                include_boundary=True,
+                include_ribs=False,
             ),
-            EdgeSpec(
+            LODSpec(
                 name="lod0",
-                keep_hard_edges=True,
-                include_all_edges=False,
-                include_ribs=True,
-                rib_slices=10,
-                hard_edge_angle_deg=30.0,
-                vertex_merge_eps=0.005,
-                vertex_quantization=0.0,
+                feature_angle_deg=30.0,
                 max_edges=3600,
-                seed=7,
+                sample_rate=1.0,
+                include_boundary=True,
+                include_ribs=True,
+                ribs_slices=10,
             ),
         ]
 
     # Generic fallback
     return [
-        EdgeSpec(
+        LODSpec(
             name="base",
-            keep_hard_edges=True,
-            include_all_edges=False,
-            include_ribs=False,
-            hard_edge_angle_deg=30.0,
-            vertex_merge_eps=0.01,
-            vertex_quantization=0.0,
+            feature_angle_deg=30.0,
             max_edges=4000,
-            seed=7,
+            sample_rate=1.0,
+            include_boundary=True,
+            include_ribs=False,
         ),
-        EdgeSpec(
+        LODSpec(
             name="lod0",
-            keep_hard_edges=True,
-            include_all_edges=False,
-            include_ribs=True,
-            rib_slices=10,
-            hard_edge_angle_deg=35.0,
-            vertex_merge_eps=0.01,
-            vertex_quantization=0.0,
+            feature_angle_deg=35.0,
             max_edges=7000,
-            seed=7,
+            sample_rate=1.0,
+            include_boundary=True,
+            include_ribs=True,
+            ribs_slices=10,
         ),
     ]
 
 
-def _anchors_from_vertices(V: np.ndarray) -> Dict[str, List[float]]:
+def _anchors_from_vertices(verts: NDArrayFloat) -> Dict[str, List[float]]:
     """Compute generic anchors from bbox. This is a good default for attachments."""
-    V = np.asarray(V, dtype=float)
-    if V.ndim != 2 or V.shape[1] != 3:
+    verts_arr = np.asarray(verts, dtype=float)
+    if verts_arr.ndim != 2 or verts_arr.shape[1] != 3:
         raise ValueError("V must be (N,3)")
-    mins = V.min(axis=0)
-    maxs = V.max(axis=0)
+    mins = verts_arr.min(axis=0)
+    maxs = verts_arr.max(axis=0)
     ctr = 0.5 * (mins + maxs)
 
     # WarBits convention (recommended):
     # x forward, y left, z up
-    anchors = {
+    anchors: Dict[str, List[float]] = {
         "center": ctr.tolist(),
         "nose": [float(maxs[0]), float(ctr[1]), float(ctr[2])],
         "tail": [float(mins[0]), float(ctr[1]), float(ctr[2])],
@@ -233,13 +204,13 @@ def build_blueprints_from_path(
     preset: str,
     id_prefix: str = "",
 ) -> List[Blueprint]:
-    specs = _default_specs_for_preset(preset)
+    specs = tuple(_default_specs_for_preset(preset))
     out: List[Blueprint] = []
 
     for fp in _iter_files(in_path):
         obj = load_any_mesh(fp, force_scene=True)
         # trimesh returns Scene for multi-mesh; merge unless user wants separate
-        meshes = []
+        meshes: list[tuple[str, Any]] = []
         if hasattr(obj, "geometry"):
             # Scene
             for name, mesh in iter_scene_meshes(obj):
@@ -257,7 +228,8 @@ def build_blueprints_from_path(
             meshes = [(fp.stem, mesh)]
 
         for name, mesh in meshes:
-            V, lod_sets = extract_lod_edge_sets(mesh, specs)
+            lod_sets = extract_lod_edge_sets(mesh, specs)
+            V = np.asarray(mesh.vertices, dtype=float)
 
             base_edges = lod_sets.get("base")
             if base_edges is None:
@@ -265,21 +237,22 @@ def build_blueprints_from_path(
                 any_name = next(iter(lod_sets.keys()))
                 base_edges = lod_sets[any_name]
 
-            lod_edges = {k: v.tolist() for k, v in lod_sets.items() if k != "base" and v is not None}
+            lod_edges = {k: v.tolist() for k, v in lod_sets.items() if k != "base"}
 
             bp = Blueprint(
-                id=_record_id_for_path(fp, prefix=id_prefix),
+                blueprint_id=_record_id_for_path(fp, prefix=id_prefix),
                 kind=kind,
-                source=str(fp),
-                units="m",
-                vertices=V.tolist(),
-                edges=base_edges.tolist(),
-                lod_edges=lod_edges,
-                anchors=_anchors_from_vertices(V),
+                repr="wire3d",
+                vertices_m=[(float(x), float(y), float(z)) for x, y, z in V],
+                edges=[(int(a), int(b)) for a, b in base_edges],
+                lod_edges={k: [(int(a), int(b)) for a, b in e] for k, e in lod_edges.items()},
+                tags=[_record_id_for_path(fp)],
                 meta={
+                    "source_path": str(fp),
                     "preset": preset,
                     "mesh_name": str(name),
                     "src_ext": fp.suffix.lower(),
+                    "anchors": _anchors_from_vertices(V),
                     "edge_counts": {k: int(v.shape[0]) for k, v in lod_sets.items()},
                 },
             )
@@ -314,7 +287,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     # Append or overwrite? For now: overwrite.
     with out_path.open("w", encoding="utf-8") as f:
         for bp in blueprints:
-            f.write(json.dumps(bp.to_json(), ensure_ascii=False) + "\n")
+            f.write(json.dumps(bp.to_json_obj(), ensure_ascii=False) + "\n")
 
     print(f"Wrote {len(blueprints)} blueprints -> {out_path}")
     return 0

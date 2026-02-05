@@ -2,31 +2,29 @@ from __future__ import annotations
 
 import dataclasses
 import json
-from typing import Any, Dict, List, Optional, Sequence, Tuple
+from typing import Any, Dict, List, TypeAlias, cast
 
 import numpy as np
+from numpy.typing import NDArray
 
 from .director import MissionDirector
 from .objectives import (
     CompositeObjective,
     DestroyEntitiesObjective,
+    Objective,
     ReachZoneObjective,
     SurviveObjective,
     TimeLimitObjective,
-    Objective,
 )
-from .triggers import (
-    EnterZoneTrigger,
-    EventCountTrigger,
-    FlagTrigger,
-    TimeTrigger,
-    Trigger,
-)
+from .triggers import EnterZoneTrigger, EventCountTrigger, FlagTrigger, TimeTrigger, Trigger
+
+FloatArray: TypeAlias = NDArray[np.float64]
 
 
 @dataclasses.dataclass(frozen=True)
 class MissionSpec:
     """JSON-serializable mission specification."""
+
     name: str
     objectives: List[Dict[str, Any]]
     triggers: List[Dict[str, Any]]
@@ -46,7 +44,7 @@ def load_mission_spec(path: str) -> MissionSpec:
     return MissionSpec.from_dict(d)
 
 
-def _vec3(x: Any) -> np.ndarray:
+def _vec3(x: Any) -> FloatArray:
     a = np.asarray(x, dtype=np.float64).reshape(3)
     return a
 
@@ -74,7 +72,8 @@ def compile_objective(d: Dict[str, Any]) -> Objective:
             failure_message=str(d.get("failure_message", "Destroyed.")),
         )
     if typ == "reach_zone":
-        return ReachZoneObjective(
+        rz_cls = cast(Any, ReachZoneObjective)
+        return rz_cls(
             id=oid,
             title=title,
             entity_id=str(d.get("entity_id", "")),

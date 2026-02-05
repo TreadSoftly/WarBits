@@ -1,23 +1,28 @@
 from __future__ import annotations
 
+import json
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Optional, Sequence, Union
-import json
 
 from .blueprint_db import BlueprintDB
 from .blueprint_schema import Blueprint
 from .procedural.aircraft import JetParams, build_jet_blueprint
 from .procedural.ground import TankParams, build_tank_blueprint
 from .procedural.ordnance import (
-    MissileParams, RocketParams, BombParams,
-    build_missile_blueprint, build_rocket_blueprint, build_bomb_blueprint,
+    BombParams,
+    MissileParams,
+    RocketParams,
+    build_bomb_blueprint,
+    build_missile_blueprint,
+    build_rocket_blueprint,
 )
 
 
 @dataclass(frozen=True)
 class DefaultBlueprintIds:
     """Canonical IDs for built-in procedural prototypes."""
+
     jet: str = "proc:aircraft:jet_generic"
     tank: str = "proc:ground:tank_generic"
     missile: str = "proc:ordnance:missile_generic"
@@ -43,7 +48,7 @@ def load_blueprints_jsonl(db: BlueprintDB, path: Union[str, Path]) -> int:
             line = line.strip()
             if not line:
                 continue
-            bp = Blueprint.from_json(json.loads(line))
+            bp = Blueprint.from_json_obj(json.loads(line))
             _db_put(db, bp)
             count += 1
     return count
@@ -65,7 +70,11 @@ def build_default_blueprint_db(
         _db_put(db, build_rocket_blueprint(ids.rocket, RocketParams(), tags=["default", "generic"]))
         _db_put(db, build_bomb_blueprint(ids.bomb, BombParams(), tags=["default", "generic"]))
 
-    for p in (extra_blueprints_jsonl or []):
+    for p in extra_blueprints_jsonl or []:
+        load_blueprints_jsonl(db, p)
+
+    return db
+    for p in extra_blueprints_jsonl or []:
         load_blueprints_jsonl(db, p)
 
     return db

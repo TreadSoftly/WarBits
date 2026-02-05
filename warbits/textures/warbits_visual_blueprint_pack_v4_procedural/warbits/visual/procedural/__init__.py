@@ -10,8 +10,33 @@ Design goals:
 - Not a CAD model: this is a readable tactical wireframe language.
 """
 
+from .aircraft import JetParams  # type: ignore[reportUnknownVariableType]
+from .aircraft import build_jet_blueprint  # type: ignore[reportUnknownVariableType]
+from .aircraft import jet_params_from_spec  # type: ignore[reportUnknownVariableType]
 from .dimensions import Dimensions, dims_from_mapping
-from .aircraft import JetParams, build_jet_blueprint, jet_params_from_spec
-from .ground import TankParams, build_tank_blueprint, tank_params_from_spec
-from .ordnance import MissileParams, BombParams, RocketParams
-from .ordnance import build_missile_blueprint, build_bomb_blueprint, build_rocket_blueprint
+from .ground import TankParams  # type: ignore[reportUnknownVariableType]
+from .ground import build_tank_blueprint  # type: ignore[reportUnknownVariableType]
+from .ground import tank_params_from_spec  # type: ignore[reportUnknownVariableType]
+from .ordnance import BombParams  # type: ignore[reportUnknownVariableType]
+from .ordnance import MissileParams  # type: ignore[reportUnknownVariableType]
+from .ordnance import RocketParams  # type: ignore[reportUnknownVariableType]
+from .ordnance import build_bomb_blueprint  # type: ignore[reportUnknownVariableType]
+from .ordnance import build_missile_blueprint  # type: ignore[reportUnknownVariableType]
+from .ordnance import build_rocket_blueprint  # type: ignore[reportUnknownVariableType]
+
+__all__ = [
+    "Dimensions",
+    "dims_from_mapping",
+    "JetParams",
+    "build_jet_blueprint",
+    "jet_params_from_spec",
+    "TankParams",
+    "build_tank_blueprint",
+    "tank_params_from_spec",
+    "MissileParams",
+    "BombParams",
+    "RocketParams",
+    "build_missile_blueprint",
+    "build_bomb_blueprint",
+    "build_rocket_blueprint",
+]

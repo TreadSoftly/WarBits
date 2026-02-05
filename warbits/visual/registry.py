@@ -2,15 +2,15 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Dict, List, Optional, Sequence, Tuple, cast
+from typing import Dict, List, Optional, Sequence, Tuple
 
 import numpy as np
 import numpy.typing as npt
 
+from .anchors import AnchorDB, AnchorMap, compute_default_anchors, merge_anchor_maps
 from .blueprint_db import BlueprintDB
 from .blueprint_schema import Blueprint
 from .lod import LODPolicy
-from .anchors import AnchorDB, AnchorMap, compute_default_anchors, merge_anchor_maps
 
 NDArrayF = npt.NDArray[np.float64]
 NDArrayI = npt.NDArray[np.int32]
@@ -111,10 +111,10 @@ class VisualRegistry:
         if bp.repr != "wire3d":
             return None
 
-        v = cast(NDArrayF, np.asarray(bp.vertices_m, dtype=np.float64))
+        v: NDArrayF = np.asarray(bp.vertices_m, dtype=np.float64)
         edges_by_lod: Dict[str, NDArrayI] = {}
         for lod_name, edges in bp.edges_by_lod.items():
-            edges_by_lod[lod_name] = cast(NDArrayI, np.asarray(edges, dtype=np.int32))
+            edges_by_lod[lod_name] = np.asarray(edges, dtype=np.int32)
 
         if not edges_by_lod:
             return None
@@ -222,4 +222,5 @@ class VisualRegistry:
 
 
 # Backwards/ergonomic alias
+BlueprintRegistry = VisualRegistry
 BlueprintRegistry = VisualRegistry

@@ -1,23 +1,38 @@
 from __future__ import annotations
 
+import importlib
 from dataclasses import dataclass
-from typing import Dict, Optional, Tuple
+from types import ModuleType
+from typing import Dict, Protocol, Tuple
 
 import numpy as np
+from numpy.typing import NDArray
+
+from .mesh_io import MeshData
 
 try:
-    import trimesh
+    _trimesh = importlib.import_module("trimesh")
 except Exception:  # pragma: no cover
-    trimesh = None  # type: ignore
+    _trimesh = None
 
 
-def require_trimesh() -> "trimesh":
-    if trimesh is None:
+class TrimeshLike(Protocol):
+    faces: NDArray[np.int_] | None
+    vertices: NDArray[np.float64]
+    face_adjacency_edges: NDArray[np.int_]
+    face_adjacency_angles: NDArray[np.float_]
+    face_adjacency: NDArray[np.int_]
+    edges_unique: NDArray[np.int_]
+    edges_unique_inverse: NDArray[np.int_]
+
+
+def require_trimesh() -> ModuleType:
+    if _trimesh is None:
         raise ImportError(
             "trimesh is required for visual blueprint ingestion. "
             "Install with: pip install trimesh"
         )
-    return trimesh
+    return _trimesh
 
 
 @dataclass(frozen=True)
@@ -31,14 +46,26 @@ class LODSpec:
     ribs_slices: int = 0
 
 
+@dataclass(frozen=True)
+class WireframeExtractParams:
+    """Parameters for extracting a view-independent wireframe from a triangle mesh."""
+
+    crease_angle_deg: float = 35.0
+    max_edges: int = 5000
+    min_edges: int = 400
+    extra_rib_fraction: float = 0.03  # add a few extra edges for detail
+    seed: int = 1337
+
+
 def extract_wireframe_edges(
-    mesh: "trimesh.Trimesh",
+    mesh: TrimeshLike | MeshData,
     feature_angle_deg: float = 30.0,
     max_edges: int = 8000,
     sample_rate: float = 1.0,
     include_boundary: bool = True,
     rng_seed: int = 1234,
-) -> np.ndarray:
+    params: WireframeExtractParams | None = None,
+) -> NDArray[np.int_] | list[tuple[int, int]]:
     """Extract an edge list suitable for a 'wireframe' outline look.
 
     Strategy:
@@ -50,7 +77,15 @@ def extract_wireframe_edges(
     -------
     edges: (M,2) int32
     """
-    tm = require_trimesh()  # ensures trimesh import
+    if params is not None:
+        if isinstance(mesh, MeshData):
+            return _extract_wireframe_edges_meshdata(mesh, params)
+        raise TypeError("params is only supported for MeshData inputs")
+
+    if isinstance(mesh, MeshData):
+        raise TypeError("MeshData inputs require params")
+
+    require_trimesh()  # ensures trimesh import
     if not hasattr(mesh, "faces") or mesh.faces is None:
         raise ValueError("mesh must have faces")
 
@@ -106,14 +141,105 @@ def extract_wireframe_edges(
     return edges.astype(np.int32)
 
 
+def _extract_wireframe_edges_meshdata(
+    mesh: MeshData,
+    params: WireframeExtractParams,
+) -> list[tuple[int, int]]:
+    """Extract wireframe edges for MeshData using a deterministic heuristic."""
+    v = mesh.vertices
+    f = mesh.faces
+    if len(v) == 0 or len(f) == 0:
+        return []
+
+    crease = np.deg2rad(float(params.crease_angle_deg))
+    normals = _face_normals(v, f)
+
+    edge_faces: dict[tuple[int, int], list[int]] = {}
+    for fi, tri in enumerate(f):
+        a, b, c = int(tri[0]), int(tri[1]), int(tri[2])
+        edges = [(a, b), (b, c), (c, a)]
+        for u, w in edges:
+            if u > w:
+                u, w = w, u
+            edge_faces.setdefault((u, w), []).append(fi)
+
+    boundary: list[tuple[int, int]] = []
+    feature: list[tuple[int, int]] = []
+    all_edges: list[tuple[int, int]] = sorted(edge_faces.keys())
+
+    for e in all_edges:
+        faces = edge_faces[e]
+        if len(faces) == 1:
+            boundary.append(e)
+        elif len(faces) == 2:
+            n1 = normals[faces[0]]
+            n2 = normals[faces[1]]
+            dot = float(np.clip(np.dot(n1, n2), -1.0, 1.0))
+            ang = float(np.arccos(dot))
+            if ang >= crease:
+                feature.append(e)
+        else:
+            feature.append(e)
+
+    cand_set = set(boundary)
+    cand_set.update(feature)
+    candidates: list[tuple[int, int]] = list(cand_set)
+
+    rng = np.random.default_rng(int(params.seed))
+    if params.extra_rib_fraction > 0.0:
+        others: list[tuple[int, int]] = [e for e in all_edges if e not in cand_set]
+        if others:
+            k = int(max(0, round(len(all_edges) * float(params.extra_rib_fraction))))
+            if k > 0:
+                idx = np.arange(len(others))
+                rng.shuffle(idx)
+                add: list[tuple[int, int]] = [others[i] for i in idx[:k]]
+                candidates.extend(add)
+
+    max_edges = int(params.max_edges)
+    min_edges = int(params.min_edges)
+
+    if len(candidates) == 0:
+        candidates = all_edges
+
+    def edge_len(e: tuple[int, int]) -> float:
+        a, b = e
+        return float(np.linalg.norm(v[b] - v[a]))
+
+    lens = np.array([edge_len(e) for e in candidates], dtype=np.float64)
+    order = np.argsort(-lens)
+    if len(candidates) > max_edges:
+        keep_idx = order[:max_edges]
+        candidates = [candidates[int(i)] for i in keep_idx]
+    elif len(candidates) < min_edges and len(all_edges) > len(candidates):
+        extra: list[tuple[int, int]] = [e for e in all_edges if e not in set(candidates)]
+        extra_lens = np.array([edge_len(e) for e in extra], dtype=np.float64)
+        extra_order = np.argsort(-extra_lens)
+        need = min_edges - len(candidates)
+        add: list[tuple[int, int]] = [extra[int(i)] for i in extra_order[:need]]
+        candidates.extend(add)
+
+    return sorted(set(candidates))
+
+
+def _face_normals(vertices: NDArray[np.float_], faces: NDArray[np.int_]) -> NDArray[np.float_]:
+    v0 = vertices[faces[:, 0]]
+    v1 = vertices[faces[:, 1]]
+    v2 = vertices[faces[:, 2]]
+    n = np.cross(v1 - v0, v2 - v0)
+    lens = np.linalg.norm(n, axis=1)
+    lens = np.where(lens < 1e-12, 1.0, lens)
+    return n / lens[:, None]
+
+
 def generate_rib_edges(
-    mesh: "trimesh.Trimesh",
+    mesh: TrimeshLike,
     axis: int = 0,
     slices: int = 8,
     thickness_frac: float = 0.03,
     rng_seed: int = 1234,
     max_edges: int = 1500,
-) -> np.ndarray:
+) -> NDArray[np.int_]:
     """Generate synthetic 'rib' edges to create internal structure hints.
 
     This is a stylistic tool: it does not try to be an engineering-accurate frame.
@@ -143,7 +269,7 @@ def generate_rib_edges(
     # slice positions avoid the extreme ends
     positions = np.linspace(mn + span * 0.1, mx - span * 0.1, int(slices))
 
-    edges_out = []
+    edges_out: list[tuple[int, int]] = []
     rng = np.random.default_rng(int(rng_seed))
 
     for s in positions:
@@ -184,12 +310,12 @@ def generate_rib_edges(
 
 
 def extract_lod_edge_sets(
-    mesh: "trimesh.Trimesh",
+    mesh: TrimeshLike,
     lods: Tuple[LODSpec, ...],
     rng_seed: int = 1234,
-) -> Dict[str, np.ndarray]:
+) -> Dict[str, NDArray[np.int_]]:
     """Extract multiple LOD edge sets from a mesh."""
-    out: Dict[str, np.ndarray] = {}
+    out: Dict[str, NDArray[np.int_]] = {}
     for i, spec in enumerate(lods):
         edges = extract_wireframe_edges(
             mesh,
@@ -221,5 +347,6 @@ def extract_lod_edge_sets(
                     idx = rng.choice(len(edges), size=int(spec.max_edges), replace=False)
                     edges = edges[idx]
 
-        out[spec.name] = edges.astype(np.int32)
+        edges_arr = edges if isinstance(edges, np.ndarray) else np.asarray(edges, dtype=np.int32)
+        out[spec.name] = edges_arr.astype(np.int32)
     return out

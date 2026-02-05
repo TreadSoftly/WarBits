@@ -10,10 +10,10 @@ This is NOT a full profiler replacement.
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
-from typing import Dict, Iterator, Optional
 import time
 from contextlib import contextmanager
+from dataclasses import dataclass, field
+from typing import Dict, Iterator, Optional, cast
 
 
 @dataclass
@@ -44,14 +44,14 @@ class RunningStat:
 
     @property
     def std(self) -> float:
-        return self.variance ** 0.5
+        return self.variance**0.5
 
 
 @dataclass
 class FrameProfiler:
     """Collect per-section timing stats."""
 
-    stats_ms: Dict[str, RunningStat] = field(default_factory=dict)
+    stats_ms: Dict[str, RunningStat] = field(default_factory=lambda: cast(Dict[str, RunningStat], {}))
     _t0: float = field(default=0.0, init=False)
     _active_section: Optional[str] = field(default=None, init=False)
 

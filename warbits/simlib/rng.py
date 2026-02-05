@@ -21,7 +21,7 @@ from __future__ import annotations
 
 import hashlib
 from dataclasses import dataclass, field
-from typing import Any, Iterable, Optional
+from typing import Any, Iterable, Optional, cast
 
 import numpy as np
 
@@ -86,13 +86,25 @@ class DeterministicRNG:
         return self._gen.normal(loc, scale, size=size)
 
     def integers(self, low: int, high: Optional[int] = None, *, size: Optional[int | tuple[int, ...]] = None) -> Any:
-        return self._gen.integers(low, high=high, size=size)
+        gen = cast(Any, self._gen)
+        return gen.integers(low, high=high, size=size)
 
-    def choice(self, a: int | Iterable[Any], *, size: Optional[int | tuple[int, ...]] = None, replace: bool = True, p: Any = None) -> Any:
-        return self._gen.choice(a, size=size, replace=replace, p=p)
+    def choice(
+        self,
+        a: int | Iterable[Any],
+        *,
+        size: Optional[int | tuple[int, ...]] = None,
+        replace: bool = True,
+        p: Any = None,
+    ) -> Any:
+        gen = cast(Any, self._gen)
+        if size is None:
+            return gen.choice(a, replace=replace, p=p)
+        return gen.choice(a, size=size, replace=replace, p=p)
 
     def shuffle_inplace(self, x: Any) -> None:
         self._gen.shuffle(x)
 
     def random_u64(self) -> int:
-        return int(self._gen.integers(0, 2**64, dtype=np.uint64))
+        gen = cast(Any, self._gen)
+        return int(gen.integers(0, 2**64, dtype=np.uint64))

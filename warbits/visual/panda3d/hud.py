@@ -13,11 +13,15 @@ Safe to import without Panda3D installed.
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Optional, Tuple
+from typing import Any, Optional, Protocol, Tuple, cast
 
 from .imports import require_panda3d
 
 RGBA = Tuple[float, float, float, float]
+
+
+class _PandaBase(Protocol):
+    aspect2d: Any
 
 
 @dataclass(frozen=True)
@@ -38,19 +42,22 @@ def _fmt(name: str, value: float, unit: str = "") -> str:
 class BasicHUD:
     """A lightweight HUD: left block, right block, center reticle."""
 
-    def __init__(self, base, style: HudStyle = HudStyle()):
+    def __init__(self, base: "_PandaBase", style: HudStyle = HudStyle()):
         self.base = base
         self.style = style
 
-        p3d = require_panda3d()
+        require_panda3d()
         from direct.gui.OnscreenText import OnscreenText  # type: ignore
         from panda3d.core import TextNode  # type: ignore
 
-        self._OnscreenText = OnscreenText
-        self._TextNode = TextNode
+        OnscreenText = cast(Any, OnscreenText)
+        TextNode = cast(Any, TextNode)
+
+        self._OnscreenText: Any = OnscreenText
+        self._TextNode: Any = TextNode
 
         # Left info block (top-left)
-        self.left = OnscreenText(
+        self.left: Any = OnscreenText(
             text="",
             pos=(-1.0 + style.margin, 1.0 - style.margin),
             scale=style.text_scale,
@@ -63,7 +70,7 @@ class BasicHUD:
         self.left.setDepthWrite(False)
 
         # Right info block (top-right)
-        self.right = OnscreenText(
+        self.right: Any = OnscreenText(
             text="",
             pos=(1.0 - style.margin, 1.0 - style.margin),
             scale=style.text_scale,
@@ -76,17 +83,20 @@ class BasicHUD:
         self.right.setDepthWrite(False)
 
         # Center reticle: simple crosshair built from LineSegs
-        self.reticle_np = self._build_reticle()
+        self.reticle_np: Any = self._build_reticle()
 
         self._left_cache: str = ""
         self._right_cache: str = ""
 
-    def _build_reticle(self):
-        p3d = require_panda3d()
+    def _build_reticle(self) -> Any:
+        require_panda3d()
         from panda3d.core import LineSegs, NodePath  # type: ignore
 
+        LineSegs = cast(Any, LineSegs)
+        NodePath = cast(Any, NodePath)
+
         s = float(self.style.reticle_size)
-        ls = LineSegs()
+        ls: Any = LineSegs()
         ls.setThickness(float(self.style.reticle_thickness))
         ls.setColor(*self.style.text_rgba)
 
@@ -98,7 +108,7 @@ class BasicHUD:
         ls.moveTo(0.0, -s, 0.0)
         ls.drawTo(0.0, s, 0.0)
 
-        np_node = NodePath(ls.create())
+        np_node: Any = NodePath(ls.create())
         np_node.reparentTo(self.base.aspect2d)
         np_node.setBin("fixed", 60)
         np_node.setDepthTest(False)
@@ -133,7 +143,7 @@ class BasicHUD:
         )
 
         # Right block: FPS + misc.
-        right_lines = []
+        right_lines: list[str] = []
         if fps is not None:
             right_lines.append(_fmt("FPS", fps, ""))
 

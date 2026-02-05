@@ -2,16 +2,17 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple
+from typing import Any, Optional, cast
 
 import numpy as np
+from numpy.typing import NDArray
 
 
 @dataclass(frozen=True)
 class MeshData:
     name: str
-    vertices: np.ndarray  # (N,3) float64
-    faces: np.ndarray     # (M,3) int64, triangles
+    vertices: NDArray[np.float_]  # (N,3) float64
+    faces: NDArray[np.int_]  # (M,3) int64, triangles
 
 
 def read_obj_mesh(path: str | Path) -> MeshData:
@@ -26,8 +27,8 @@ def read_obj_mesh(path: str | Path) -> MeshData:
     if len(objs) == 1:
         return next(iter(objs.values()))
     # combine
-    verts = []
-    faces = []
+    verts: list[NDArray[np.float_]] = []
+    faces: list[NDArray[np.int_]] = []
     v_base = 0
     for m in objs.values():
         verts.append(m.vertices)
@@ -38,7 +39,7 @@ def read_obj_mesh(path: str | Path) -> MeshData:
     return MeshData(name="__combined__", vertices=V, faces=F)
 
 
-def read_obj_objects(path: str | Path) -> Dict[str, MeshData]:
+def read_obj_objects(path: str | Path) -> dict[str, MeshData]:
     """Read an OBJ and split meshes by `o <name>` (or `g <name>` if no `o`).
 
     - Triangulates polygons.
@@ -47,15 +48,16 @@ def read_obj_objects(path: str | Path) -> Dict[str, MeshData]:
     - Compacts each mesh to only used vertices.
     """
     p = Path(path)
-    vertices: List[List[float]] = []
-    objects_faces: Dict[str, List[List[int]]] = {}
+    vertices: list[list[float]] = []
+    objects_faces: dict[str, list[list[int]]] = {}
     current: Optional[str] = None
 
-    def ensure_current():
+    def ensure_current() -> str:
         nonlocal current
         if current is None:
             current = "__default__"
         objects_faces.setdefault(current, [])
+        return current
 
     with p.open("r", encoding="utf-8", errors="ignore") as f:
         for raw in f:
@@ -77,9 +79,9 @@ def read_obj_objects(path: str | Path) -> Dict[str, MeshData]:
                     vertices.append([float(parts[1]), float(parts[2]), float(parts[3])])
                 continue
             if line.startswith("f "):
-                ensure_current()
+                curr = ensure_current()
                 toks = line.split()[1:]
-                idx: List[int] = []
+                idx: list[int] = []
                 for t in toks:
                     v = int(t.split("/")[0])
                     if v < 0:
@@ -89,7 +91,7 @@ def read_obj_objects(path: str | Path) -> Dict[str, MeshData]:
                 if len(idx) < 3:
                     continue
                 for i in range(1, len(idx) - 1):
-                    objects_faces[current].append([idx[0], idx[i], idx[i + 1]])
+                    objects_faces[curr].append([idx[0], idx[i], idx[i + 1]])
                 continue
 
     if not vertices:
@@ -97,7 +99,7 @@ def read_obj_objects(path: str | Path) -> Dict[str, MeshData]:
 
     V_all = np.asarray(vertices, dtype=np.float64)
 
-    out: Dict[str, MeshData] = {}
+    out: dict[str, MeshData] = {}
     for name, faces_list in objects_faces.items():
         if not faces_list:
             continue
@@ -111,7 +113,7 @@ def read_obj_objects(path: str | Path) -> Dict[str, MeshData]:
     return out
 
 
-def load_gltf_scene_optional(path: str | Path) -> Dict[str, MeshData]:
+def load_gltf_scene_optional(path: str | Path) -> dict[str, MeshData]:
     """Load GLB/GLTF using trimesh if available.
 
     This is optional so the main pipeline can stay lightweight.
@@ -120,23 +122,21 @@ def load_gltf_scene_optional(path: str | Path) -> Dict[str, MeshData]:
     try:
         import trimesh  # type: ignore
     except Exception as e:
-        raise ImportError(
-            "GLTF/GLB loading requires 'trimesh'. Install it or export assets to OBJ."
-        ) from e
+        raise ImportError("GLTF/GLB loading requires 'trimesh'. Install it or export assets to OBJ.") from e
 
-    scene = trimesh.load(str(path), force="scene")
-    out: Dict[str, MeshData] = {}
+    scene = cast(Any, trimesh).load(str(path), force="scene")
+    out: dict[str, MeshData] = {}
     if hasattr(scene, "geometry"):
-        for i, (name, geom) in enumerate(scene.geometry.items()):
+        for i, (name, geom) in enumerate(cast(dict[str, Any], scene.geometry).items()):
             mesh = geom
-            V = np.asarray(mesh.vertices, dtype=np.float64)
-            F = np.asarray(mesh.faces, dtype=np.int64)
+            vertices_arr = np.asarray(mesh.vertices, dtype=np.float64)
+            faces_arr = np.asarray(mesh.faces, dtype=np.int64)
             nm = str(name) if name else f"mesh_{i:03d}"
-            out[nm] = MeshData(name=nm, vertices=V, faces=F)
+            out[nm] = MeshData(name=nm, vertices=vertices_arr, faces=faces_arr)
     else:
         # a single mesh
         mesh = scene
-        V = np.asarray(mesh.vertices, dtype=np.float64)
-        F = np.asarray(mesh.faces, dtype=np.int64)
-        out["__mesh__"] = MeshData(name="__mesh__", vertices=V, faces=F)
+        vertices_arr = np.asarray(mesh.vertices, dtype=np.float64)
+        faces_arr = np.asarray(mesh.faces, dtype=np.int64)
+        out["__mesh__"] = MeshData(name="__mesh__", vertices=vertices_arr, faces=faces_arr)
     return out

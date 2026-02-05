@@ -16,56 +16,44 @@ from __future__ import annotations
 
 # Core schema / DB
 try:
-    from .blueprint_schema import (
-        Blueprint,
-        BlueprintGroup,
-        BlueprintStyle,
-        Edge,
-        Meta,
-        Node,
-    )
-    from .blueprint_db import BlueprintDB
-    from .blueprint_lod import LODPolicy, select_edge_mask
-    from .blueprint_transform import Transform3D, apply_transform
-    from .registry import BlueprintRegistry
-    from .mesh_io import load_mesh
-    from .wireframe_extract import extract_wireframe
+    from warbits.visual.blueprint_db import BlueprintDB, read_blueprints_jsonl, write_blueprints_jsonl
+    from warbits.visual.blueprint_schema import Blueprint, BlueprintKind, BlueprintRecord, Edge, Outline2D, Vec2, Vec3
+    from warbits.visual.lod import CameraModel, LODLevel, LODPolicy, projected_radius_px
+    from warbits.visual.mesh_io import load_any_mesh
+    from warbits.visual.registry import VisualRegistry
+    from warbits.visual.transform import build_segments, transform_vertices
+    from warbits.visual.wireframe_extract import extract_wireframe_edges
 except Exception:  # pragma: no cover
     # Partial installs are allowed while iterating.
     pass
 
-# Budgets / metrics (added later)
-try:
-    from .budgets import VisualBudgets
-    from .metrics import VisualMetrics
-except Exception:  # pragma: no cover
-    pass
-
 # Mapping layer
 try:
-    from .mapping import VisualBinding, VisualMap, build_visual_map, resolve_visual_binding
+    from warbits.visual.mapping import VisualBinding, VisualMap, build_visual_map, resolve_visual_binding
 except Exception:  # pragma: no cover
     pass
 
 __all__ = [
     # schema/db
     "Blueprint",
-    "BlueprintGroup",
-    "BlueprintStyle",
-    "Node",
     "Edge",
-    "Meta",
+    "Vec2",
+    "Vec3",
+    "Outline2D",
+    "BlueprintKind",
+    "BlueprintRecord",
     "BlueprintDB",
-    "BlueprintRegistry",
-    "Transform3D",
-    "apply_transform",
+    "read_blueprints_jsonl",
+    "write_blueprints_jsonl",
+    "VisualRegistry",
+    "build_segments",
+    "transform_vertices",
+    "LODLevel",
+    "CameraModel",
+    "projected_radius_px",
     "LODPolicy",
-    "select_edge_mask",
-    "load_mesh",
-    "extract_wireframe",
-    # budgets
-    "VisualBudgets",
-    "VisualMetrics",
+    "load_any_mesh",
+    "extract_wireframe_edges",
     # mapping
     "VisualBinding",
     "VisualMap",

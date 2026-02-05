@@ -18,20 +18,35 @@ Panda3D is only required at runtime when constructing nodes.
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Iterable, Optional, Tuple
+from typing import TYPE_CHECKING, Any, Optional, Protocol, Tuple
 
 import numpy as np
+import numpy.typing as npt
 
-from .imports import is_panda3d_available, require_panda3d
+from .imports import require_panda3d
 from .line_batch import DynamicLineBatch
 from .style import WireframeP3DStyle
 
 if TYPE_CHECKING:  # pragma: no cover
-    # Only for type checkers; we avoid importing Panda3D at import time.
-    from panda3d.core import NodePath  # type: ignore
+    class NodePath(Protocol):
+        def reparentTo(self, parent: "NodePath") -> None: ...
+        def show(self) -> None: ...
+        def hide(self) -> None: ...
+        def removeNode(self) -> None: ...
+        def setTwoSided(self, flag: bool) -> None: ...
+        def setTransparency(self, attrib: Any) -> None: ...
+
+    class _LineBatchLike(Protocol):
+        nodepath: NodePath
+        def update_segments(self, segments_world: "_F32Arr") -> None: ...
+else:
+    NodePath = Any  # type: ignore[assignment]
+    _LineBatchLike = Any  # type: ignore[assignment]
 
 
 RGBA = Tuple[float, float, float, float]
+_FloatArr = npt.NDArray[np.floating[Any]]
+_F32Arr = npt.NDArray[np.float32]
 
 
 @dataclass(frozen=True)
@@ -44,7 +59,7 @@ class HeightfieldSpec:
     z_scale: multiplier applied to heights (default 1.0)
     """
 
-    heights: np.ndarray
+    heights: _FloatArr
     x0: float
     y0: float
     dx: float
@@ -72,14 +87,7 @@ class TerrainStyle:
     grid_depth_test: bool = True
 
 
-def _safe_norm(v: np.ndarray, eps: float = 1e-9) -> np.ndarray:
-    n = float(np.linalg.norm(v))
-    if n < eps:
-        return np.array([0.0, 0.0, 1.0], dtype=np.float32)
-    return (v / n).astype(np.float32)
-
-
-def compute_vertex_normals(heights: np.ndarray, dx: float, dy: float) -> np.ndarray:
+def compute_vertex_normals(heights: _FloatArr, dx: float, dy: float) -> _F32Arr:
     """Approximate per-vertex normals from a heightfield.
 
     Returns: normals (ny, nx, 3) float32, unit length.
@@ -101,8 +109,8 @@ def compute_vertex_normals(heights: np.ndarray, dx: float, dy: float) -> np.ndar
 
 
 def compute_height_shaded_colors(
-    heights: np.ndarray, base_rgba: RGBA, strength: float
-) -> np.ndarray:
+    heights: _FloatArr, base_rgba: RGBA, strength: float
+) -> _F32Arr:
     """Return per-vertex RGBA colors (ny, nx, 4) based on altitude.
 
     This is intentionally subtle: it's there to make terrain readable without
@@ -124,7 +132,7 @@ def compute_height_shaded_colors(
     return np.stack([r, g, b, a], axis=-1).astype(np.float32)
 
 
-def build_wire_grid_segments(spec: HeightfieldSpec, stride: int) -> np.ndarray:
+def build_wire_grid_segments(spec: HeightfieldSpec, stride: int) -> _F32Arr:
     """Build line segments for a sparse wire grid overlay.
 
     Returns segments shaped (N, 2, 3), dtype float32, in world coordinates.
@@ -137,7 +145,7 @@ def build_wire_grid_segments(spec: HeightfieldSpec, stride: int) -> np.ndarray:
     xs = spec.x0 + np.arange(nx, dtype=np.float32) * float(spec.dx)
     ys = spec.y0 + np.arange(ny, dtype=np.float32) * float(spec.dy)
 
-    segs: list[np.ndarray] = []
+    segs: list[_F32Arr] = []
 
     # Rows (constant y, varying x)
     for j in range(0, ny, stride):
@@ -166,7 +174,7 @@ def build_static_heightfield_node(
     *,
     style: TerrainStyle = TerrainStyle(),
     name: str = "terrain",
-):
+) -> "NodePath":
     """Build a static terrain surface as a Panda3D node.
 
     Returns: NodePath (requires Panda3D).
@@ -176,7 +184,7 @@ def build_static_heightfield_node(
     - Build once at startup
     - Suitable for very high FPS with reasonable grid sizes.
     """
-    p3d = require_panda3d()
+    p3d, _ = require_panda3d()
 
     heights = np.asarray(spec.heights, dtype=np.float32) * float(spec.z_scale)
     ny, nx = heights.shape
@@ -243,7 +251,7 @@ class P3DTerrain:
 
     def __init__(
         self,
-        parent,
+        parent: "NodePath",
         spec: HeightfieldSpec,
         *,
         style: TerrainStyle = TerrainStyle(),
@@ -256,18 +264,22 @@ class P3DTerrain:
         self.surface = build_static_heightfield_node(spec, style=style, name=surface_name)
         self.surface.reparentTo(parent)
 
-        self.grid: Optional[DynamicLineBatch] = None
+        self.grid: Optional[_LineBatchLike] = None
         if style.grid_enabled:
             segs = build_wire_grid_segments(spec, stride=style.grid_stride)
 
             line_style = WireframeP3DStyle(
-                line_rgba=style.grid_rgba,
-                thickness=float(style.grid_thickness),
-                antialias=bool(style.grid_antialias),
-                depth_test=bool(style.grid_depth_test),
-                additive=False,
+                color=style.grid_rgba,
+                line_thickness=float(style.grid_thickness),
+                additive_blend=False,
+                unlit=True,
+                overlay=not bool(style.grid_depth_test),
             )
-            self.grid = DynamicLineBatch(int(segs.shape[0]), style=line_style, name=grid_name)
+            self.grid = DynamicLineBatch(
+                max_segments=int(segs.shape[0]),
+                style=line_style,
+                name=grid_name,
+            )
             self.grid.nodepath.reparentTo(parent)
             self.grid.update_segments(segs)
 

@@ -14,7 +14,7 @@ from __future__ import annotations
 
 from collections import Counter
 from pathlib import Path
-from typing import Dict, List, Mapping, Optional, Sequence
+from typing import Any, Dict, List, Mapping, Optional, Sequence, cast
 
 import json
 
@@ -23,15 +23,15 @@ from ..budgets import DEFAULT_BUDGETS, check_budget, infer_budget_kind, normaliz
 from ..metrics import compute_metrics
 
 
-def build_report(db_path: str | Path, *, lod: str = "lod0") -> Dict[str, object]:
+def build_report(db_path: str | Path, *, lod: str = "lod0") -> Dict[str, Any]:
     lod = normalize_lod_name(lod)
     blueprints = read_blueprints_jsonl(str(db_path))
 
-    per_kind = Counter()
-    per_tag = Counter()
+    per_kind: Counter[str] = Counter()
+    per_tag: Counter[str] = Counter()
 
-    items: List[Dict[str, object]] = []
-    failures: List[Dict[str, object]] = []
+    items: List[Dict[str, Any]] = []
+    failures: List[Dict[str, Any]] = []
 
     for bp in blueprints:
         per_kind[bp.kind] += 1
@@ -41,7 +41,7 @@ def build_report(db_path: str | Path, *, lod: str = "lod0") -> Dict[str, object]
         m = compute_metrics(bp, lod=lod)
         b = check_budget(bp, lod=lod, budgets=DEFAULT_BUDGETS)
 
-        rec = {
+        rec: Dict[str, Any] = {
             "blueprint_id": bp.blueprint_id,
             "kind": bp.kind,
             "budget_kind": infer_budget_kind(bp),
@@ -60,7 +60,7 @@ def build_report(db_path: str | Path, *, lod: str = "lod0") -> Dict[str, object]
     # Sort worst offenders first by edges, then vertices
     failures.sort(key=lambda r: (-(r["metrics"]["edges"]), -(r["metrics"]["vertices"])))
 
-    summary = {
+    summary: Dict[str, Any] = {
         "blueprints_total": len(blueprints),
         "by_kind": dict(per_kind),
         "top_tags": dict(per_tag.most_common(30)),
@@ -74,7 +74,7 @@ def build_report(db_path: str | Path, *, lod: str = "lod0") -> Dict[str, object]
     }
 
 
-def write_report(report: Mapping[str, object], out_path: str | Path) -> Path:
+def write_report(report: Mapping[str, Any], out_path: str | Path) -> Path:
     out_path = Path(out_path)
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(report, indent=2, sort_keys=True), encoding="utf-8")
@@ -84,7 +84,7 @@ def write_report(report: Mapping[str, object], out_path: str | Path) -> Path:
 def main(argv: Optional[Sequence[str]] = None) -> int:
     import argparse
 
-    p = argparse.ArgumentParser(description="Generate blueprint metrics/budget report")    
+    p = argparse.ArgumentParser(description="Generate blueprint metrics/budget report")
     p.add_argument("--db", required=True, help="Path to blueprints.jsonl")
     p.add_argument("--out", required=True, help="Output JSON path")
     p.add_argument("--lod", default="lod0", help="lod0/lod1/lod2/lod3 (aliases: near/mid/far)")
@@ -93,7 +93,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     report = build_report(args.db, lod=args.lod)
     write_report(report, args.out)
 
-    summary = report["summary"]
+    summary = cast(Dict[str, Any], report["summary"])
     print("Blueprint report written:", args.out)
     print("Total blueprints:", summary["blueprints_total"])
     print("Budget failures:", summary["budget_failures"])

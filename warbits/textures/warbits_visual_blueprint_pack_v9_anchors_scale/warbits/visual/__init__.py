@@ -19,5 +19,23 @@ except Exception:  # pragma: no cover
 
 # Always-available core helpers
 from .anchors import AnchorDB, AnchorRecord, compute_default_anchors
-from .scale_fit import TargetDims, compute_uniform_scale, compute_nonuniform_scale, compute_nonuniform_scale as compute_scale_xyz
-from .attach import Pose, AttachmentSpec, attach_child_pose
+from .attach import AttachmentSpec, Pose, attach_child_pose
+from .scale_fit import TargetDims
+from .scale_fit import compute_nonuniform_scale
+from .scale_fit import compute_nonuniform_scale as compute_scale_xyz
+from .scale_fit import compute_uniform_scale
+
+__all__ = [
+    "LODPolicy",
+    "VisualRegistry",
+    "AnchorDB",
+    "AnchorRecord",
+    "compute_default_anchors",
+    "TargetDims",
+    "compute_uniform_scale",
+    "compute_nonuniform_scale",
+    "compute_scale_xyz",
+    "Pose",
+    "AttachmentSpec",
+    "attach_child_pose",
+]

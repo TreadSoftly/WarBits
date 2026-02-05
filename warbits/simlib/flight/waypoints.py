@@ -1,13 +1,14 @@
 from __future__ import annotations
 
 import math
-from typing import List, Optional, Sequence
+from typing import List, Optional, Sequence, TypeAlias
 
 import numpy as np
+from numpy.typing import NDArray
 
 from .types import Waypoint, WaypointNavigator
 
-Vec3 = np.ndarray
+Vec3: TypeAlias = NDArray[np.float64]
 
 
 def make_circle_waypoints(

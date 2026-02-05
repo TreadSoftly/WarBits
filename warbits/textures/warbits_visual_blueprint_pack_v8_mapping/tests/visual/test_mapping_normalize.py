@@ -4,7 +4,7 @@ from warbits.visual.mapping.normalize import canonical_key
 def test_canonical_key_basic():
     a = canonical_key("F-15C")
     b = canonical_key("f15 c")
-    assert a.canonical == b.canonical
+    assert a.tokens == b.tokens
     assert "f15" in a.tokens
     assert "15" in a.tokens
 

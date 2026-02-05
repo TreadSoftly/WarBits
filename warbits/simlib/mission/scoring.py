@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import dataclasses
-from typing import Dict, List, Optional, Sequence
+from typing import List, Sequence, cast
 
 from .types import WorldView
 
@@ -21,7 +21,7 @@ class ScoreModel:
     """
 
     score: float = 0.0
-    history: List[ScoreEvent] = dataclasses.field(default_factory=list)
+    history: List[ScoreEvent] = dataclasses.field(default_factory=lambda: cast(List[ScoreEvent], []))
 
     def add(self, time_s: float, points: float, reason: str) -> None:
         self.score += float(points)

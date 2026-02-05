@@ -1,6 +1,5 @@
-import math
-
-from warbits.visual.lod import CameraModel, LODPolicy, LODLevel, projected_radius_px
+from warbits.visual.lod import (CameraModel, LODLevel, LODPolicy,
+                                projected_radius_px)
 
 
 def test_projected_radius_px_basic():
@@ -24,4 +23,5 @@ def test_lod_policy_ordering():
     assert policy.select(distance_m=1500.0, projected_px=10.0) == LODLevel.LOW
 
     # Tiny / far -> ICON
+    assert policy.select(distance_m=30000.0, projected_px=1.0) == LODLevel.ICON
     assert policy.select(distance_m=30000.0, projected_px=1.0) == LODLevel.ICON

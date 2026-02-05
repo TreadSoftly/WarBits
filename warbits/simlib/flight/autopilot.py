@@ -2,15 +2,16 @@ from __future__ import annotations
 
 import math
 from dataclasses import dataclass, field
-from typing import Dict, Optional
+from typing import Dict, TypeAlias, cast
 
 import numpy as np
+from numpy.typing import NDArray
 
 from ..math3d import safe_unit
 from .kinematics import signed_angle_2d
 from .types import FlightLimits, Waypoint, WaypointNavigator
 
-Vec3 = np.ndarray
+Vec3: TypeAlias = NDArray[np.float64]
 
 
 @dataclass(frozen=True)
@@ -23,8 +24,8 @@ class L1Config:
     We’re using a simplified version tuned for deterministic gameplay / sim.
     """
 
-    period_s: float = 20.0        # larger = gentler turns
-    damping: float = 0.75         # typical ~0.7–0.9
+    period_s: float = 20.0  # larger = gentler turns
+    damping: float = 0.75  # typical ~0.7–0.9
     min_distance_m: float = 50.0  # prevents division blowups at low speed
 
     def l1_distance_m(self, speed_mps: float) -> float:
@@ -41,7 +42,7 @@ class AutopilotCommand:
 
     target_speed_mps: float
     target_direction_unit: Vec3  # unit vector
-    debug: Dict[str, float] = field(default_factory=dict)
+    debug: Dict[str, float] = field(default_factory=lambda: cast(Dict[str, float], {}))
 
     def __post_init__(self) -> None:
         d = safe_unit(self.target_direction_unit)
@@ -85,9 +86,12 @@ class L1Autopilot:
         if pos.shape != (3,) or vel.shape != (3,):
             raise ValueError("position_m and velocity_mps must be shape (3,).")
 
-        speed = float(np.linalg.norm(vel))
         # Desired speed: waypoint override -> autopilot cruise -> limits caps
-        desired_speed = float(waypoint.desired_speed_mps) if waypoint.desired_speed_mps is not None else float(self.cruise_speed_mps)
+        desired_speed = (
+            float(waypoint.desired_speed_mps)
+            if waypoint.desired_speed_mps is not None
+            else float(self.cruise_speed_mps)
+        )
         desired_speed = max(desired_speed, limits.min_speed_mps)
         if limits.max_speed_mps is not None:
             desired_speed = min(desired_speed, float(limits.max_speed_mps))
@@ -141,7 +145,9 @@ class L1Autopilot:
 
         # Vertical guidance: simple P controller on altitude error into a vz request.
         alt_err = float(waypoint.position_m[2] - pos[2])
-        vz_cmd = alt_err * float(self.altitude_gain) * desired_speed  # scale by speed for “stronger response” at higher speed
+        vz_cmd = (
+            alt_err * float(self.altitude_gain) * desired_speed
+        )  # scale by speed for “stronger response” at higher speed
 
         if limits.max_climb_rate_mps is not None:
             vz_cmd = min(vz_cmd, float(limits.max_climb_rate_mps))

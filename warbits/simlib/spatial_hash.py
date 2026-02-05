@@ -11,13 +11,15 @@ Notes on determinism:
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
-from typing import Dict, Iterable, List, Set, Tuple
-
 import math
+from dataclasses import dataclass, field
+from typing import Iterable
+
+Cell = tuple[int, int, int]
 
 
-Cell = Tuple[int, int, int]
+def _empty_cells() -> dict[Cell, list[int]]:
+    return {}
 
 
 def _cell_index(x: float, cell_size: float) -> int:
@@ -27,7 +29,7 @@ def _cell_index(x: float, cell_size: float) -> int:
 @dataclass
 class SpatialHash3D:
     cell_size: float
-    _cells: Dict[Cell, List[int]] = field(default_factory=dict)
+    _cells: dict[Cell, list[int]] = field(default_factory=_empty_cells)
 
     def clear(self) -> None:
         self._cells.clear()
@@ -42,7 +44,7 @@ class SpatialHash3D:
         for oid, (x, y, z) in zip(obj_ids, positions_xyz):
             self.insert(int(oid), float(x), float(y), float(z))
 
-    def query_radius(self, x: float, y: float, z: float, radius: float) -> List[int]:
+    def query_radius(self, x: float, y: float, z: float, radius: float) -> list[int]:
         """Return candidate ids within radius based on grid neighborhood (not exact distance)."""
         if radius < 0:
             return []
@@ -51,7 +53,7 @@ class SpatialHash3D:
         cz = _cell_index(z, self.cell_size)
         r_cells = int(math.ceil(radius / self.cell_size))
 
-        candidates: List[int] = []
+        candidates: list[int] = []
         # Sort keys deterministically by iterating ranges in deterministic order.
         for ix in range(cx - r_cells, cx + r_cells + 1):
             for iy in range(cy - r_cells, cy + r_cells + 1):
@@ -61,8 +63,8 @@ class SpatialHash3D:
                         candidates.extend(self._cells[key])
 
         # Deduplicate while keeping a stable order (first occurrence wins)
-        seen: Set[int] = set()
-        out: List[int] = []
+        seen: set[int] = set()
+        out: list[int] = []
         for cid in candidates:
             if cid not in seen:
                 seen.add(cid)

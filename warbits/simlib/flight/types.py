@@ -1,11 +1,12 @@
 from __future__ import annotations
 
-from dataclasses import dataclass, field
-from typing import Optional, Sequence
+from dataclasses import dataclass
+from typing import Optional, Sequence, TypeAlias
 
 import numpy as np
+from numpy.typing import NDArray
 
-Vec3 = np.ndarray
+Vec3: TypeAlias = NDArray[np.float64]
 
 
 @dataclass(frozen=True)
@@ -22,7 +23,7 @@ class AircraftPerformance:
     mass_kg: Optional[float] = None
     wing_area_m2: Optional[float] = None
     cl_max: Optional[float] = None  # max lift coefficient before stall
-    cd0: Optional[float] = None     # parasite drag coefficient (optional)
+    cd0: Optional[float] = None  # parasite drag coefficient (optional)
     k_induced: Optional[float] = None  # induced drag factor (optional)
 
     max_thrust_N: Optional[float] = None
@@ -179,4 +180,5 @@ class WaypointNavigator:
         return False
 
     def is_final(self) -> bool:
+        return (not self.loop) and (self.index == len(self.waypoints) - 1)
         return (not self.loop) and (self.index == len(self.waypoints) - 1)

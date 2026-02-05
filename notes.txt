@@ -1,6 +1,0 @@
-camera views, follow bomb when droped as default or follow main aircraft or follow missle when shot or press (key) to follow (bomb or missle) except
-
-instruments and guages accurate connected to data and updated through live data feed from Simulation
-
-optional analysis mode, repeat mode, etc,
-- analysis mode would show hitboxes, trajectories displayed as highlighted flight path arrows or other things that make better sense, g forces, etc

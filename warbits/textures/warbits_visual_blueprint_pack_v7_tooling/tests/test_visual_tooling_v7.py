@@ -1,8 +1,8 @@
 from pathlib import Path
 
 from warbits.visual.blueprint_schema import Blueprint
-from warbits.visual.metrics import compute_metrics
 from warbits.visual.budgets import check_budget
+from warbits.visual.metrics import compute_metrics
 from warbits.visual.tools.atlas import render_atlas
 
 
@@ -10,18 +10,27 @@ def _make_tiny_blueprint(blueprint_id: str = "unit_test::cube", edges_multiplier
     # Simple cube-ish wireframe
     verts = [
         (-1.0, -1.0, -1.0),
-        ( 1.0, -1.0, -1.0),
-        ( 1.0,  1.0, -1.0),
-        (-1.0,  1.0, -1.0),
-        (-1.0, -1.0,  1.0),
-        ( 1.0, -1.0,  1.0),
-        ( 1.0,  1.0,  1.0),
-        (-1.0,  1.0,  1.0),
+        (1.0, -1.0, -1.0),
+        (1.0, 1.0, -1.0),
+        (-1.0, 1.0, -1.0),
+        (-1.0, -1.0, 1.0),
+        (1.0, -1.0, 1.0),
+        (1.0, 1.0, 1.0),
+        (-1.0, 1.0, 1.0),
     ]
     base_edges = [
-        (0,1),(1,2),(2,3),(3,0),
-        (4,5),(5,6),(6,7),(7,4),
-        (0,4),(1,5),(2,6),(3,7),
+        (0, 1),
+        (1, 2),
+        (2, 3),
+        (3, 0),
+        (4, 5),
+        (5, 6),
+        (6, 7),
+        (7, 4),
+        (0, 4),
+        (1, 5),
+        (2, 6),
+        (3, 7),
     ]
     edges = base_edges * max(1, edges_multiplier)
 
@@ -32,9 +41,9 @@ def _make_tiny_blueprint(blueprint_id: str = "unit_test::cube", edges_multiplier
         vertices_m=verts,
         edges=edges,
         lod_edges={
-            "lod0": edges,
-            "lod1": base_edges,
-            "lod2": [(0,1),(1,2),(2,3),(3,0)],  # silhouette only
+            "lod0": tuple(edges),
+            "lod1": tuple(base_edges),
+            "lod2": ((0, 1), (1, 2), (2, 3), (3, 0)),  # silhouette only
         },
         outline2d=None,
         tags=["aircraft"],

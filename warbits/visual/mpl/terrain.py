@@ -1,12 +1,19 @@
 from __future__ import annotations
 
-from typing import Tuple
+import importlib
+from typing import Any, Tuple
 
 import numpy as np
-from mpl_toolkits.mplot3d.art3d import Line3DCollection
+from numpy.typing import NDArray
 
 
-def terrain_wire_segments(X: np.ndarray, Y: np.ndarray, Z: np.ndarray, *, stride: int = 4) -> np.ndarray:
+def terrain_wire_segments(
+    x: NDArray[np.float_],
+    y: NDArray[np.float_],
+    z: NDArray[np.float_],
+    *,
+    stride: int = 4,
+) -> NDArray[np.float_]:
     """Build wireframe line segments for a heightfield grid.
 
     This avoids `ax.plot_wireframe`, which creates many Line3D objects and can be slow.
@@ -17,9 +24,9 @@ def terrain_wire_segments(X: np.ndarray, Y: np.ndarray, Z: np.ndarray, *, stride
     Returns:
         segments: (M, 2, 3) float array
     """
-    X = np.asarray(X, dtype=float)
-    Y = np.asarray(Y, dtype=float)
-    Z = np.asarray(Z, dtype=float)
+    X = np.asarray(x, dtype=float)
+    Y = np.asarray(y, dtype=float)
+    Z = np.asarray(z, dtype=float)
 
     if X.shape != Y.shape or X.shape != Z.shape or X.ndim != 2:
         raise ValueError("X, Y, Z must be same-shape 2D arrays")
@@ -68,16 +75,17 @@ def terrain_wire_segments(X: np.ndarray, Y: np.ndarray, Z: np.ndarray, *, stride
 
 
 def add_terrain_wire(
-    ax,
-    X: np.ndarray,
-    Y: np.ndarray,
-    Z: np.ndarray,
+    ax: Any,
+    X: NDArray[np.float_],
+    Y: NDArray[np.float_],
+    Z: NDArray[np.float_],
     *,
-    color=(0.11, 0.37, 0.13, 0.35),
+    color: Tuple[float, float, float, float] = (0.11, 0.37, 0.13, 0.35),
     lw: float = 0.6,
     alpha: float = 0.35,
     stride: int = 4,
-) -> Line3DCollection:
+) -> Any:
+    Line3DCollection = importlib.import_module("mpl_toolkits.mplot3d.art3d").Line3DCollection
     segs = terrain_wire_segments(X, Y, Z, stride=stride)
     lc = Line3DCollection(segs, colors=[color], linewidths=lw, alpha=alpha)
     ax.add_collection3d(lc)

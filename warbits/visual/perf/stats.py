@@ -13,6 +13,10 @@ def _now_ns() -> int:
     return time.perf_counter_ns()
 
 
+def ns_to_ms(ns: float | int) -> float:
+    return float(ns) / 1e6
+
+
 @dataclass(frozen=True)
 class VisualFrameTimings:
     """Immutable per-frame timings.

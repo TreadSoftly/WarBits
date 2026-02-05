@@ -1,7 +1,9 @@
-from warbits.visual.perf import VisualPerf, VisualStage, VisualBudget
+from pytest import MonkeyPatch
+
+from warbits.visual.perf import VisualBudget, VisualPerf, VisualStage
 
 
-def test_visual_perf_accumulates(monkeypatch):
+def test_visual_perf_accumulates(monkeypatch: MonkeyPatch) -> None:
     # Fake perf_counter_ns with deterministic times.
     t = {"v": 0}
 
@@ -21,12 +23,12 @@ def test_visual_perf_accumulates(monkeypatch):
     perf.stop(VisualStage.HUD)
     timings = perf.end_frame()
 
-    assert timings.ns(VisualStage.TERRAIN) > 0
-    assert timings.ns(VisualStage.HUD) > 0
-    assert timings.total_ns >= timings.ns(VisualStage.TERRAIN)
+    assert timings.ns_by_stage[int(VisualStage.TERRAIN)] > 0
+    assert timings.ns_by_stage[int(VisualStage.HUD)] > 0
+    assert timings.ns_total >= timings.ns_by_stage[int(VisualStage.TERRAIN)]
 
 
-def test_visual_budget_flags():
+def test_visual_budget_flags() -> None:
     budget = VisualBudget(
         terrain_ms=0.1,
         entities_ms=0.1,
@@ -44,6 +46,6 @@ def test_visual_budget_flags():
         pass
     timings = perf.end_frame()
 
-    violations = budget.check(timings)
+    violations = budget.violations(timings)
     # We can't guarantee exact violation count, but total will likely exceed 0.5ms on most machines.
     assert isinstance(violations, list)

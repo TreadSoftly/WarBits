@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import argparse
 import json
-import sys
 from dataclasses import asdict, is_dataclass
 from pathlib import Path
 from typing import Any, Dict, Optional
@@ -10,10 +9,10 @@ from typing import Any, Dict, Optional
 from warbits.visual.qa.anchors_validate import validate_anchors_jsonl
 from warbits.visual.qa.budget_validate import BudgetSpec, validate_blueprints_budgets
 from warbits.visual.qa.coverage import build_coverage_report
-from warbits.visual.qa.provenance import check_provenance
-from warbits.visual.qa.schema_validate import validate_blueprints_jsonl
-from warbits.visual.qa.scale_validate import validate_blueprints_scale
 from warbits.visual.qa.perf_scenes import run_default_perfreg
+from warbits.visual.qa.provenance import check_provenance
+from warbits.visual.qa.scale_validate import validate_blueprints_scale
+from warbits.visual.qa.schema_validate import validate_blueprints_jsonl
 
 
 def _jsonable(obj: Any) -> Any:
@@ -21,7 +20,7 @@ def _jsonable(obj: Any) -> Any:
         return None
     if hasattr(obj, "to_json") and callable(getattr(obj, "to_json")):
         return obj.to_json()
-    if is_dataclass(obj):
+    if is_dataclass(obj) and not isinstance(obj, type):
         return asdict(obj)
     return obj
 
@@ -47,13 +46,18 @@ def cmd_validate(args: argparse.Namespace) -> int:
     scale_res = None
     if args.data_dir:
         scale_res = validate_blueprints_scale(
-            blueprints_jsonl_path=args.blueprints,
+            args.blueprints,
             data_dir=args.data_dir,
-            tolerance_frac=args.scale_tol,
-            max_examples=args.max_examples,
+            tol_rel=args.scale_tol,
+            strict=args.strict,
         )
 
-    ok = schema_res.ok and (anchors_res is None or anchors_res.ok) and budgets_res.ok and (scale_res is None or scale_res.ok)
+    ok = (
+        schema_res.ok
+        and (anchors_res is None or anchors_res.ok)
+        and budgets_res.ok
+        and (scale_res is None or scale_res.ok)
+    )
 
     report: Dict[str, Any] = {
         "ok": ok,
@@ -202,4 +206,5 @@ def main(argv: Optional[list[str]] = None) -> int:
 
 
 if __name__ == "__main__":
+    raise SystemExit(main())
     raise SystemExit(main())

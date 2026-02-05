@@ -21,18 +21,19 @@ All distances are meters, angles are radians/degrees as named.
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
-from typing import Callable, Dict, Iterable, List, Optional, Sequence
-
 import math
+from dataclasses import dataclass, field
+from typing import Callable, Dict, List, Optional, Sequence, TypeAlias, cast
+
 import numpy as np
+from numpy.typing import NDArray
 
 from .math3d import angle_between, safe_unit
 from .rng import DeterministicRNG
 from .units import deg_to_rad
 
-
-LOSFunc = Callable[[np.ndarray, np.ndarray], bool]
+FloatArray: TypeAlias = NDArray[np.float64]
+LOSFunc = Callable[[FloatArray, FloatArray], bool]
 
 
 @dataclass(frozen=True)
@@ -67,7 +68,7 @@ class SensorSpec:
 class SensorState:
     last_scan_t: float = -1e9
     # Track memory can live here later (track IDs, last seen, etc.)
-    track_memory: Dict[str, float] = field(default_factory=dict)
+    track_memory: Dict[str, float] = field(default_factory=lambda: cast(Dict[str, float], {}))
 
 
 @dataclass(frozen=True)
@@ -96,9 +97,9 @@ def scan(
     state: SensorState,
     *,
     own_id: str,
-    own_pos: np.ndarray,
-    own_forward: np.ndarray,
-    targets: Sequence[tuple[str, np.ndarray]],  # (target_id, target_pos)
+    own_pos: FloatArray,
+    own_forward: FloatArray,
+    targets: Sequence[tuple[str, FloatArray]],  # (target_id, target_pos)
     time_s: float,
     rng: Optional[DeterministicRNG] = None,
     los_fn: Optional[LOSFunc] = None,

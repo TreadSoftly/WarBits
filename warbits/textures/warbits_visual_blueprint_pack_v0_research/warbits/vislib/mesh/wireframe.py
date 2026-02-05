@@ -1,18 +1,17 @@
 from __future__ import annotations
 
-from collections import defaultdict
-from dataclasses import dataclass
-from typing import Dict, Iterable, List, Tuple
-
 import math
+from collections import defaultdict
+from typing import Iterable
 
-Vec3 = Tuple[float, float, float]
-Edge = Tuple[int, int]
-Face = Tuple[int, int, int]  # triangles only here
+Vec3 = tuple[float, float, float]
+Edge = tuple[int, int]
+Face = tuple[int, int, int]  # triangles only here
 
-def edges_from_faces(faces: Iterable[Tuple[int, ...]]) -> List[Edge]:
+
+def edges_from_faces(faces: Iterable[tuple[int, ...]]) -> list[Edge]:
     """Return unique undirected edges from faces."""
-    es = set()
+    es: set[Edge] = set()
     for f in faces:
         if len(f) < 3:
             continue
@@ -26,8 +25,10 @@ def edges_from_faces(faces: Iterable[Tuple[int, ...]]) -> List[Edge]:
             es.add((a, b))
     return sorted(es)
 
+
 def _sub(a: Vec3, b: Vec3) -> Vec3:
     return (a[0] - b[0], a[1] - b[1], a[2] - b[2])
+
 
 def _cross(a: Vec3, b: Vec3) -> Vec3:
     return (
@@ -36,11 +37,14 @@ def _cross(a: Vec3, b: Vec3) -> Vec3:
         a[0] * b[1] - a[1] * b[0],
     )
 
+
 def _dot(a: Vec3, b: Vec3) -> float:
     return a[0] * b[0] + a[1] * b[1] + a[2] * b[2]
 
+
 def _norm(a: Vec3) -> float:
     return math.sqrt(_dot(a, a))
+
 
 def _unit(a: Vec3) -> Vec3:
     n = _norm(a)
@@ -48,20 +52,22 @@ def _unit(a: Vec3) -> Vec3:
         return (0.0, 0.0, 0.0)
     return (a[0] / n, a[1] / n, a[2] / n)
 
-def face_normal(vertices: List[Vec3], tri: Face) -> Vec3:
+
+def face_normal(vertices: list[Vec3], tri: Face) -> Vec3:
     a, b, c = tri
     ab = _sub(vertices[b], vertices[a])
     ac = _sub(vertices[c], vertices[a])
     n = _cross(ab, ac)
     return _unit(n)
 
+
 def feature_edges(
-    vertices: List[Vec3],
-    faces_tris: List[Face],
+    vertices: list[Vec3],
+    faces_tris: list[Face],
     *,
     crease_angle_deg: float = 35.0,
     include_boundaries: bool = True,
-) -> List[Edge]:
+) -> list[Edge]:
     """Extract 'feature edges' from a triangle mesh.
 
     An edge is included if:
@@ -75,7 +81,7 @@ def feature_edges(
     cos_thresh = math.cos(math.radians(crease_angle_deg))
 
     # map edge -> adjacent face normals
-    adj: Dict[Edge, List[Vec3]] = defaultdict(list)
+    adj: dict[Edge, list[Vec3]] = defaultdict(list)
 
     for tri in faces_tris:
         n = face_normal(vertices, tri)
@@ -86,7 +92,7 @@ def feature_edges(
                 u, v = v, u
             adj[(u, v)].append(n)
 
-    out: List[Edge] = []
+    out: list[Edge] = []
     for e, normals in adj.items():
         if len(normals) == 1:
             if include_boundaries:

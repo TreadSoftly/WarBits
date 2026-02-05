@@ -10,20 +10,22 @@ from __future__ import annotations
 import argparse
 import math
 import sys
-from typing import Tuple
+from typing import Any, Optional, Sequence, cast
 
-import numpy as np
-import matplotlib
 import matplotlib.pyplot as plt
 
-from ..registry import BlueprintRegistry
-from ..lod import LODPolicy
 from ..blueprint_db import BlueprintDB
-from ..mpl.style import apply_mpl_dark_theme, neon_green_style
-from ..mpl.blueprint_layer import BlueprintInstance, MPLBlueprintLayer, rot_from_yaw_pitch_roll
+from ..lod import LODPolicy
+from ..mpl import blueprint_layer as mpl_blueprint_layer  # type: ignore[reportUnknownVariableType]
+from ..mpl.style import apply_mpl_dark_theme, neon_green_style  # type: ignore[reportUnknownVariableType]
+from ..registry import BlueprintRegistry
+
+BlueprintInstance = cast(Any, mpl_blueprint_layer.BlueprintInstance)
+MPLBlueprintLayer = cast(Any, mpl_blueprint_layer.MPLBlueprintLayer)
+rot_from_yaw_pitch_roll: Any = mpl_blueprint_layer.rot_from_yaw_pitch_roll  # type: ignore[reportUnknownVariableType]
 
 
-def _parse_args(argv):
+def _parse_args(argv: Sequence[str]) -> argparse.Namespace:
     ap = argparse.ArgumentParser()
     ap.add_argument("--db", required=True, help="Path to a visual blueprints JSONL file")
     ap.add_argument("--id", required=True, help="Blueprint id to preview")
@@ -36,15 +38,19 @@ def _parse_args(argv):
     return ap.parse_args(argv)
 
 
-def main(argv=None) -> int:
+def main(argv: Optional[Sequence[str]] = None) -> int:
     args = _parse_args(sys.argv[1:] if argv is None else argv)
 
     db = BlueprintDB.load_jsonl(args.db)
-    registry = BlueprintRegistry(db, lod_policy=LODPolicy([(800.0, "lod0"), (2400.0, "lod1")], default="lod2"))
+    registry = BlueprintRegistry(
+        db,
+        lod_policy=LODPolicy(thresholds_m=(800.0, 2400.0), lod_names=("lod0", "lod1", "lod2")),
+    )
 
-    fig = plt.figure(figsize=(10, 7))
+    plt_any = cast(Any, plt)
+    fig = plt_any.figure(figsize=(10, 7))
     ax = fig.add_subplot(111, projection="3d")
-    apply_mpl_dark_theme(fig, ax)
+    cast(Any, apply_mpl_dark_theme)(fig, ax)
     ax.view_init(elev=args.elev, azim=args.azim)
 
     d = float(args.dist)
@@ -54,7 +60,7 @@ def main(argv=None) -> int:
 
     layer = MPLBlueprintLayer(ax, registry, style=neon_green_style(), enable_detail=True)
 
-    def render_frame(theta: float):
+    def render_frame(theta: float) -> None:
         R = rot_from_yaw_pitch_roll(theta, 0.0, 0.0)
         inst = BlueprintInstance(blueprint_id=args.id, position_m=(0.0, 0.0, 0.0), rotation_mat=R, role="friendly")
         layer.update([inst], camera_pos=(0.0, 0.0, 0.0))
@@ -71,13 +77,14 @@ def main(argv=None) -> int:
         # interactive spin animation
         import matplotlib.animation as animation
 
-        def _update(i):
+        def _update(i: int) -> list[Any]:
             theta = 2.0 * math.pi * (i / 240.0)
             render_frame(theta)
             return []
 
-        ani = animation.FuncAnimation(fig, _update, frames=args.frames, interval=33, blit=False)
-        plt.show()
+        ani_any = cast(Any, animation)
+        _ = ani_any.FuncAnimation(fig, _update, frames=args.frames, interval=33, blit=False)
+        plt_any.show()
         return 0
 
     render_frame(0.0)
@@ -87,9 +94,12 @@ def main(argv=None) -> int:
         print(f"Saved: {args.save}")
         return 0
 
-    plt.show()
+    plt_any.show()
     return 0
 
+
+if __name__ == "__main__":
+    raise SystemExit(main())
 
 if __name__ == "__main__":
     raise SystemExit(main())

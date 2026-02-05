@@ -2,32 +2,35 @@ from __future__ import annotations
 
 import argparse
 from pathlib import Path
-from typing import List, Tuple
+from typing import Any, List, Tuple, TypeAlias, cast
 
+import matplotlib.pyplot as plt  # type: ignore
 import numpy as np
-import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d.art3d import Line3DCollection
+from mpl_toolkits.mplot3d.art3d import Line3DCollection  # type: ignore
+from numpy.typing import NDArray
 
 from ..blueprint_db import read_blueprints_jsonl
 
+FloatArray: TypeAlias = NDArray[np.float64]
 
-def _terrain(n: int = 70, scale: float = 60.0, height: float = 4.0) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
+
+def _terrain(n: int = 70, scale: float = 60.0, height: float = 4.0) -> Tuple[FloatArray, FloatArray, FloatArray]:
     x = np.linspace(-scale, scale, n)
     y = np.linspace(-scale, scale, n)
     X, Y = np.meshgrid(x, y)
     Z = (
-        0.55*np.sin(X/6.5) * np.cos(Y/7.0)
-        + 0.35*np.sin((X+Y)/9.0)
-        + 0.25*np.cos((X-1.7*Y)/11.0)
+        0.55 * np.sin(X / 6.5) * np.cos(Y / 7.0) + 0.35 * np.sin((X + Y) / 9.0) + 0.25 * np.cos((X - 1.7 * Y) / 11.0)
     ) * height
     return X, Y, Z
 
 
-def _add_edges(ax, V: np.ndarray, edges: List[Tuple[int,int]], color: str = "#39FF14", lw: float = 1.4, alpha: float = 1.0):
-    segs = []
-    for a,b in edges:
+def _add_edges(
+    ax: Any, V: FloatArray, edges: List[Tuple[int, int]], color: str = "#39FF14", lw: float = 1.4, alpha: float = 1.0
+):
+    segs: list[Any] = []
+    for a, b in edges:
         segs.append([V[a], V[b]])
-    lc = Line3DCollection(segs, colors=color, linewidths=lw, alpha=alpha)
+    lc = Line3DCollection(cast(Any, segs), colors=color, linewidths=lw, alpha=alpha)
     ax.add_collection3d(lc)
 
 
@@ -54,13 +57,13 @@ def main() -> None:
     V = np.asarray(rec.vertices_m, dtype=float)
     edges = rec.edges
 
-    fig = plt.figure(figsize=(10,7))
-    ax = fig.add_subplot(111, projection="3d")
+    fig = cast(Any, plt).figure(figsize=(10, 7))
+    ax: Any = fig.add_subplot(111, projection="3d")
     fig.patch.set_facecolor("black")
     ax.set_facecolor("black")
 
     if not args.no_terrain:
-        X,Y,Z = _terrain()
+        X, Y, Z = _terrain()
         ax.plot_wireframe(X, Y, Z, rstride=4, cstride=4, linewidth=0.6, alpha=0.22)
 
     _add_edges(ax, V, edges, lw=1.6, alpha=1.0)
@@ -68,18 +71,18 @@ def main() -> None:
     # Fit camera
     mn = V.min(axis=0)
     mx = V.max(axis=0)
-    ctr = 0.5*(mn+mx)
-    span = float(np.max(mx-mn) + 1e-6)
+    ctr = 0.5 * (mn + mx)
+    span = float(np.max(mx - mn) + 1e-6)
     pad = span * 1.5
-    ax.set_xlim(ctr[0]-pad, ctr[0]+pad)
-    ax.set_ylim(ctr[1]-pad, ctr[1]+pad)
-    ax.set_zlim(ctr[2]-pad*0.5, ctr[2]+pad*0.8)
+    ax.set_xlim(ctr[0] - pad, ctr[0] + pad)
+    ax.set_ylim(ctr[1] - pad, ctr[1] + pad)
+    ax.set_zlim(ctr[2] - pad * 0.5, ctr[2] + pad * 0.8)
 
     ax.view_init(elev=float(args.elev), azim=float(args.azim))
     ax.set_axis_off()
 
-    plt.tight_layout()
-    plt.show()
+    cast(Any, plt).tight_layout()
+    cast(Any, plt).show()
 
 
 if __name__ == "__main__":

@@ -4,7 +4,7 @@ from dataclasses import dataclass
 from typing import Dict, Optional
 
 import numpy as np
-
+from numpy.typing import NDArray
 
 FxLayerName = str
 
@@ -13,8 +13,8 @@ FxLayerName = str
 class FxLayerBatch:
     """One line layer (segments + per-segment alpha)."""
 
-    segments: np.ndarray  # (N,2,3) float32
-    alpha: np.ndarray  # (N,) float32
+    segments: NDArray[np.float_]  # (N,2,3) float32
+    alpha: NDArray[np.float_]  # (N,) float32
 
 
 @dataclass

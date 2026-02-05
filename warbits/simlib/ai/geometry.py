@@ -2,16 +2,19 @@ from __future__ import annotations
 
 import dataclasses
 import math
-from typing import Optional, Tuple
+from typing import Optional, TypeAlias
 
 import numpy as np
+from numpy.typing import NDArray
+
+Vec3: TypeAlias = NDArray[np.float64]
 
 
-def norm(v: np.ndarray) -> float:
+def norm(v: Vec3) -> float:
     return float(np.linalg.norm(v))
 
 
-def unit(v: np.ndarray, eps: float = 1e-12) -> np.ndarray:
+def unit(v: Vec3, eps: float = 1e-12) -> Vec3:
     v = np.asarray(v, dtype=np.float64).reshape(3)
     n = norm(v)
     if n < eps:
@@ -24,9 +27,9 @@ def clamp(x: float, lo: float, hi: float) -> float:
 
 
 def compute_lead_time(
-    shooter_pos_m: np.ndarray,
-    target_pos_m: np.ndarray,
-    target_vel_mps: np.ndarray,
+    shooter_pos_m: Vec3,
+    target_pos_m: Vec3,
+    target_vel_mps: Vec3,
     projectile_speed_mps: float,
     max_time_s: float = 30.0,
 ) -> Optional[float]:
@@ -76,19 +79,21 @@ def compute_lead_time(
 
 
 def compute_lead_point(
-    shooter_pos_m: np.ndarray,
-    target_pos_m: np.ndarray,
-    target_vel_mps: np.ndarray,
+    shooter_pos_m: Vec3,
+    target_pos_m: Vec3,
+    target_vel_mps: Vec3,
     projectile_speed_mps: float,
     max_time_s: float = 30.0,
-) -> Optional[np.ndarray]:
+) -> Optional[Vec3]:
     t = compute_lead_time(shooter_pos_m, target_pos_m, target_vel_mps, projectile_speed_mps, max_time_s=max_time_s)
     if t is None:
         return None
-    return np.asarray(target_pos_m, dtype=np.float64).reshape(3) + np.asarray(target_vel_mps, dtype=np.float64).reshape(3) * float(t)
+    return np.asarray(target_pos_m, dtype=np.float64).reshape(3) + np.asarray(target_vel_mps, dtype=np.float64).reshape(
+        3
+    ) * float(t)
 
 
-def angle_between_rad(a: np.ndarray, b: np.ndarray, eps: float = 1e-12) -> float:
+def angle_between_rad(a: Vec3, b: Vec3, eps: float = 1e-12) -> float:
     ua = unit(a, eps=eps)
     ub = unit(b, eps=eps)
     d = clamp(float(np.dot(ua, ub)), -1.0, 1.0)
@@ -97,17 +102,17 @@ def angle_between_rad(a: np.ndarray, b: np.ndarray, eps: float = 1e-12) -> float
 
 @dataclasses.dataclass(frozen=True)
 class GunSolution:
-    aim_dir_unit: np.ndarray  # unit vector
+    aim_dir_unit: Vec3  # unit vector
     time_to_impact_s: float
-    lead_point_m: np.ndarray
+    lead_point_m: Vec3
     angle_off_boresight_rad: float
 
 
 def compute_gun_solution(
-    shooter_pos_m: np.ndarray,
-    shooter_forward_unit: np.ndarray,
-    target_pos_m: np.ndarray,
-    target_vel_mps: np.ndarray,
+    shooter_pos_m: Vec3,
+    shooter_forward_unit: Vec3,
+    target_pos_m: Vec3,
+    target_vel_mps: Vec3,
     muzzle_speed_mps: float,
     max_time_s: float = 10.0,
 ) -> Optional[GunSolution]:

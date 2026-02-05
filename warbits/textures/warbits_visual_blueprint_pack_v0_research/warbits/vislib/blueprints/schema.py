@@ -1,10 +1,26 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import Any, Dict, Iterable, List, Literal, Optional, Tuple
+from typing import Any, Iterable, Literal, Optional, cast
 
 EntityKind = Literal["aircraft", "ground", "weapon", "effect"]
 SourceKind = Literal["procedural", "mesh", "silhouette_hull"]
+
+
+def _empty_metadata() -> dict[str, Any]:
+    return {}
+
+
+def _dict_any(value: Any) -> dict[str, Any]:
+    if isinstance(value, dict):
+        return cast(dict[str, Any], value)
+    return {}
+
+
+def _as_vec3(values: Iterable[float]) -> tuple[float, float, float]:
+    coords = list(values)
+    return (float(coords[0]), float(coords[1]), float(coords[2]))
+
 
 @dataclass(frozen=True)
 class BlueprintSource:
@@ -14,13 +30,13 @@ class BlueprintSource:
     # Human-friendly source name (e.g., "FlightGear", "BlendSwap", "Wikimedia").
     name: str
     # URL(s) or file paths to the raw source.
-    refs: Tuple[str, ...] = ()
+    refs: tuple[str, ...] = ()
     # License identifier string (e.g., "CC0-1.0", "CC-BY-4.0", "GPL-2.0-or-later").
     license_id: str = "UNKNOWN"
     # Optional attribution text required by license.
     attribution: str = ""
 
-    def to_json(self) -> Dict[str, Any]:
+    def to_json(self) -> dict[str, Any]:
         return {
             "kind": self.kind,
             "name": self.name,
@@ -30,7 +46,7 @@ class BlueprintSource:
         }
 
     @staticmethod
-    def from_json(d: Dict[str, Any]) -> "BlueprintSource":
+    def from_json(d: dict[str, Any]) -> "BlueprintSource":
         return BlueprintSource(
             kind=d["kind"],
             name=d.get("name", ""),
@@ -38,6 +54,7 @@ class BlueprintSource:
             license_id=d.get("license_id", "UNKNOWN"),
             attribution=d.get("attribution", ""),
         )
+
 
 @dataclass
 class WireframeMesh:
@@ -51,10 +68,10 @@ class WireframeMesh:
     Units: meters
     """
 
-    vertices_m: List[Tuple[float, float, float]]
-    edges: List[Tuple[int, int]]
+    vertices_m: list[tuple[float, float, float]]
+    edges: list[tuple[int, int]]
     # Optional group labels for style (e.g., silhouette vs ribs).
-    edge_groups: Optional[List[str]] = None
+    edge_groups: Optional[list[str]] = None
 
     def validate(self) -> None:
         if not self.vertices_m:
@@ -68,7 +85,7 @@ class WireframeMesh:
         if self.edge_groups is not None and len(self.edge_groups) != len(self.edges):
             raise ValueError("edge_groups length must match edges length.")
 
-    def to_json(self) -> Dict[str, Any]:
+    def to_json(self) -> dict[str, Any]:
         return {
             "vertices_m": [list(v) for v in self.vertices_m],
             "edges": [list(e) for e in self.edges],
@@ -76,12 +93,13 @@ class WireframeMesh:
         }
 
     @staticmethod
-    def from_json(d: Dict[str, Any]) -> "WireframeMesh":
+    def from_json(d: dict[str, Any]) -> "WireframeMesh":
         return WireframeMesh(
-            vertices_m=[tuple(map(float, v)) for v in d["vertices_m"]],
+            vertices_m=[_as_vec3(v) for v in d["vertices_m"]],
             edges=[(int(e[0]), int(e[1])) for e in d["edges"]],
             edge_groups=d.get("edge_groups"),
         )
+
 
 @dataclass
 class VisualBlueprint:
@@ -98,22 +116,20 @@ class VisualBlueprint:
     wireframe: Optional[WireframeMesh] = None
 
     # Option C: procedural params (archetype)
-    procedural: Dict[str, Any] = field(default_factory=dict)
+    procedural: dict[str, Any] = field(default_factory=_empty_metadata)
 
     # Metadata for search/filtering (nation, era, role, etc.)
-    tags: Dict[str, Any] = field(default_factory=dict)
+    tags: dict[str, Any] = field(default_factory=_empty_metadata)
 
     def validate(self) -> None:
         if not self.entity_id:
             raise ValueError("VisualBlueprint.entity_id is required.")
         if self.compiled_ref is None and self.wireframe is None and not self.procedural:
-            raise ValueError(
-                "VisualBlueprint must have compiled_ref, wireframe, or procedural params."
-            )
+            raise ValueError("VisualBlueprint must have compiled_ref, wireframe, or procedural params.")
         if self.wireframe is not None:
             self.wireframe.validate()
 
-    def to_json(self) -> Dict[str, Any]:
+    def to_json(self) -> dict[str, Any]:
         return {
             "entity_id": self.entity_id,
             "kind": self.kind,
@@ -125,7 +141,7 @@ class VisualBlueprint:
         }
 
     @staticmethod
-    def from_json(d: Dict[str, Any]) -> "VisualBlueprint":
+    def from_json(d: dict[str, Any]) -> "VisualBlueprint":
         wf = d.get("wireframe")
         return VisualBlueprint(
             entity_id=d["entity_id"],
@@ -133,6 +149,6 @@ class VisualBlueprint:
             source=BlueprintSource.from_json(d["source"]),
             compiled_ref=d.get("compiled_ref"),
             wireframe=None if wf is None else WireframeMesh.from_json(wf),
-            procedural=d.get("procedural", {}) or {},
-            tags=d.get("tags", {}) or {},
+            procedural=_dict_any(d.get("procedural")),
+            tags=_dict_any(d.get("tags")),
         )

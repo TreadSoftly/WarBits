@@ -13,14 +13,19 @@ Human override always wins.
 
 from __future__ import annotations
 
-from dataclasses import replace
-from typing import Any, Mapping, Optional, Sequence, TYPE_CHECKING
+from typing import TYPE_CHECKING, Any, Mapping, Optional, cast
 
 if TYPE_CHECKING:  # pragma: no cover
     from warbits.visual.blueprint_db import BlueprintDB
 
 from warbits.visual.mapping.derive import derive_procedural_binding
 from warbits.visual.mapping.types import VisualBinding
+
+
+def _dict_or_empty(value: Any) -> dict[str, Any]:
+    if isinstance(value, Mapping):
+        return dict(cast(Mapping[str, Any], value))
+    return {}
 
 
 def _candidate_blueprint_ids(entity_kind: str, entity_id: str) -> list[str]:
@@ -57,22 +62,26 @@ def resolve_visual_binding(
     # 1) Human override.
     override_key = f"{entity_kind}:{entity_id}"
     if overrides:
-        ov = None
-        if override_key in overrides:
-            ov = overrides[override_key]
+        ov: Mapping[str, Any] | None = None
+        ov_direct = overrides.get(override_key)
+        if isinstance(ov_direct, Mapping):
+            ov = cast(Mapping[str, Any], ov_direct)
         else:
             ov_kind = overrides.get(entity_kind)
-            if isinstance(ov_kind, dict) and entity_id in ov_kind:
-                ov = ov_kind[entity_id]
+            if isinstance(ov_kind, Mapping):
+                ov_kind_map = cast(Mapping[str, Any], ov_kind)
+                ov_nested = ov_kind_map.get(entity_id)
+                if isinstance(ov_nested, Mapping):
+                    ov = cast(Mapping[str, Any], ov_nested)
 
-        if isinstance(ov, dict):
+        if ov is not None:
             b = VisualBinding(
                 blueprint_id=str(ov.get("blueprint_id") or ov.get("blueprint") or ""),
                 source=str(ov.get("source") or "override"),
-                params=dict(ov.get("params") or {}),
+                params=_dict_or_empty(ov.get("params")),
                 scale=float(ov.get("scale") or 1.0),
                 style=str(ov.get("style") or default_style),
-                lod=dict(ov.get("lod") or {}),
+                lod=_dict_or_empty(ov.get("lod")),
                 meta={"override": True},
             )
             if b.blueprint_id:
@@ -93,7 +102,8 @@ def resolve_visual_binding(
                 )
 
     # 3) Procedural fallback.
-    template_key, params = derive_procedural_binding(spec)
+    template_key, params_raw = derive_procedural_binding(spec)
+    params = _dict_or_empty(params_raw)
     return VisualBinding(
         blueprint_id=template_key,
         source="procedural",

@@ -14,9 +14,9 @@ Tune them after profiling on your target hardware.
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Dict, Mapping, Optional, Sequence, Tuple
+from typing import Dict, Mapping, Sequence, Tuple
 
-from .blueprint_schema import Blueprint, Edge
+from warbits.visual.blueprint_schema import Blueprint, Edge
 
 
 @dataclass(frozen=True)
@@ -125,8 +125,10 @@ def check_budget(
     kind = infer_budget_kind(bp)
     kind_budgets = budgets.get(kind) or budgets["vehicle"]
     budget = kind_budgets.get(lod) or kind_budgets.get("lod0")  # default to lod0 if unknown
+    if budget is None:
+        return BudgetCheckResult.pass_()
 
-    reasons = []
+    reasons: list[str] = []
 
     edges = select_edges_for_lod(bp, lod)
     v_count = len(bp.vertices_m)

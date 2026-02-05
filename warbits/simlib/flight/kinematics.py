@@ -1,13 +1,14 @@
 from __future__ import annotations
 
 import math
-from typing import Tuple
+from typing import Tuple, TypeAlias
 
 import numpy as np
+from numpy.typing import NDArray
 
 from ..math3d import angle_between, safe_unit
 
-Vec3 = np.ndarray
+Vec3: TypeAlias = NDArray[np.float64]
 
 
 def slerp_dir(u: Vec3, v: Vec3, t: float) -> Vec3:
@@ -93,7 +94,7 @@ def direction_from_yaw_pitch(yaw_rad: float, pitch_rad: float) -> Vec3:
     return safe_unit(np.array([cp * cy, cp * sy, sp], dtype=float))
 
 
-def signed_angle_2d(a: np.ndarray, b: np.ndarray) -> float:
+def signed_angle_2d(a: Vec3, b: Vec3) -> float:
     """Signed angle from vector a to b in 2D (radians), in range [-pi, +pi]."""
     a_hat = safe_unit(np.array([a[0], a[1], 0.0], dtype=float))
     b_hat = safe_unit(np.array([b[0], b[1], 0.0], dtype=float))

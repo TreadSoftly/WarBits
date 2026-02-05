@@ -3,15 +3,18 @@ from __future__ import annotations
 import argparse
 import sys
 from pathlib import Path
-from typing import Optional, Tuple, List
+from typing import List, Optional
 
 import numpy as np
+from numpy.typing import NDArray
 
-from ..blueprint_db import BlueprintDB
-from ..anchors import AnchorDB, AnchorRecord, compute_default_anchors, merge_anchor_maps
+from warbits.visual.anchors import AnchorDB, AnchorRecord, compute_default_anchors, merge_anchor_maps
+from warbits.visual.blueprint_db import BlueprintDB
+
+NDArrayFloat = NDArray[np.float64]
 
 
-def _parse_vec3(s: str) -> np.ndarray:
+def _parse_vec3(s: str) -> NDArrayFloat:
     parts = [p.strip() for p in s.replace(",", " ").split()]
     if len(parts) != 3:
         raise ValueError("Expected 3 numbers, like '1 2 3' or '1,2,3'")
@@ -28,7 +31,7 @@ def cmd_build(args: argparse.Namespace) -> int:
 
     out = AnchorDB()
 
-    for bid in sorted(db.keys()):
+    for bid in sorted(db.ids()):
         bp = db.get(bid)
         if bp is None:
             continue
@@ -37,7 +40,7 @@ def cmd_build(args: argparse.Namespace) -> int:
             blueprint_id=bid,
             vertices_m=np.asarray(bp.vertices_m, dtype=float),
             kind_hint=None,
-            meta_kind=getattr(bp.meta, "kind", None),
+            meta_kind=bp.meta.get("kind"),
         )
 
         rec_old = existing.get(bid)
@@ -69,7 +72,7 @@ def cmd_show(args: argparse.Namespace) -> int:
         blueprint_id=bid,
         vertices_m=np.asarray(bp.vertices_m, dtype=float),
         kind_hint=rec.kind_hint if rec else None,
-        meta_kind=getattr(bp.meta, "kind", None),
+        meta_kind=bp.meta.get("kind"),
     )
     if rec:
         anchors = merge_anchor_maps(defaults, rec.anchors)
@@ -172,4 +175,5 @@ def main(argv: Optional[List[str]] = None) -> int:
 
 
 if __name__ == "__main__":
+    raise SystemExit(main())
     raise SystemExit(main())

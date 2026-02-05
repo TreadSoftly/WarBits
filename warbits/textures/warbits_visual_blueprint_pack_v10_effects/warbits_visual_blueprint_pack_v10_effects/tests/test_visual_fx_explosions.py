@@ -12,17 +12,22 @@ def test_unit_sphere_segments_shape_and_bounds():
 
 
 def test_explosion_pool_emits_and_expires():
-    params = ExplosionParams(max_explosions=4, lifetime_frames=10, max_radius_m=50.0, lat_steps=3, lon_steps=6)
+    params = ExplosionParams(
+        max_explosions=4, lifetime_frames=10, max_radius_m=50.0, sphere_lat_steps=3, sphere_lon_steps=6
+    )
     pool = ExplosionPool(params)
 
-    pool.spawn(center=(0, 0, 0), frame_idx=0, max_radius_m=20.0, lifetime_frames=5)
-    seg0, a0 = pool.emit_segments(frame_idx=0)
+    pool.spawn(
+        center_xyz_m=np.array([0.0, 0.0, 0.0], dtype=np.float32), frame_idx=0, max_radius_m=20.0, lifetime_frames=5
+    )
+    seg0, a0 = pool.build_segments(frame_idx=0)
     assert seg0.shape[1:] == (2, 3)
     assert len(seg0) == len(a0)
     assert len(seg0) > 0
     assert np.all(a0 >= 0.0) and np.all(a0 <= 1.0)
 
     # Past lifetime
-    seg_dead, a_dead = pool.emit_segments(frame_idx=10)
+    seg_dead, a_dead = pool.build_segments(frame_idx=10)
     assert len(seg_dead) == 0
+    assert len(a_dead) == 0
     assert len(a_dead) == 0
