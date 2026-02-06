@@ -875,3 +875,7 @@ Plan:
 warbits/tools/benchmark_renderers.py
 Plan:
 - Benchmark Matplotlib vs Panda3D with fixed scenario; print avg frame time.
+
+## 2026-02-06 Coordination Note
+- See `docs/AI_LIVE_TRACKER.md` and `docs/ai_live_tracker.yaml` for cross-AI status.
+- STL branch research handoff: `docs/ai_sync/codex_status_2026-02-06.md`.

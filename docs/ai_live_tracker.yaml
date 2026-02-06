@@ -1,0 +1,126 @@
+meta:
+  project: WarBits / WarBytes
+  updated_at: '2026-02-05'
+  baseline:
+    warbits_v1_tag: ''
+    warbits_v1_commit: ''
+    notes: Matplotlib primitives baseline (no STL).
+  branches:
+    mpl_stl_branch:
+      name: mpl-stl
+      tag: ''
+      commit: ''
+      notes: Matplotlib + STL visuals (Codex-owned).
+    warbytes_p3d:
+      name: warbytes
+      tag: ''
+      commit: ''
+      notes: Panda3D GPU renderer (future).
+tasks:
+  - id: P0-W0-01
+    priority: P0
+    workstream: W0
+    title: 'Entry point health check: `warbits` runs clean on fresh venv'
+    owner: codex
+    status: todo
+    evidence: ''
+    notes: ''
+  - id: P0-W6-01
+    priority: P0
+    workstream: W6
+    title: Headless bench harness exists and runs N frames deterministically
+    owner: codex
+    status: todo
+    evidence: ''
+    notes: ''
+  - id: P0-W1-01
+    priority: P0
+    workstream: W1
+    title: Stage timers (sim/terrain/entities/projectiles/camera/draw) logged to JSONL
+    owner: codex
+    status: todo
+    evidence: ''
+    notes: ''
+  - id: P0-W1-02
+    priority: P0
+    workstream: W1
+    title: Artist budget logger enabled; verifies no per-frame artist churn
+    owner: codex
+    status: todo
+    evidence: ''
+    notes: ''
+  - id: P0-W1-03
+    priority: P0
+    workstream: W1
+    title: Matplotlib 3D scatter sizing guard (no _sizes3d list indexing crash)
+    owner: codex
+    status: todo
+    evidence: ''
+    notes: ''
+  - id: P0-W3-01
+    priority: P0
+    workstream: W3
+    title: Terrain regen counters + provenance logged (profile/seed/LOD/step)
+    owner: codex
+    status: todo
+    evidence: ''
+    notes: ''
+  - id: P1-W2-01
+    priority: P1
+    workstream: W2
+    title: Camera mode TOPDOWN_TRACK implemented + default; no flips; minimal movement
+    owner: codex
+    status: todo
+    evidence: ''
+    notes: ''
+  - id: P1-W5-01
+    priority: P1
+    workstream: W5
+    title: Target selection model + next/prev cycling + selected-target highlight
+    owner: codex
+    status: todo
+    evidence: ''
+    notes: ''
+  - id: P1-W4-01
+    priority: P1
+    workstream: W4
+    title: Weapon scheduling robust to skipped frames (<=frame not ==frame)
+    owner: codex
+    status: todo
+    evidence: ''
+    notes: ''
+  - id: P1-W3-02
+    priority: P1
+    workstream: W3
+    title: 'Terrain: physics grid separated from render grid; render decimation does
+      not affect collisions'
+    owner: codex
+    status: todo
+    evidence: ''
+    notes: ''
+  - id: P2-W8-01
+    priority: P2
+    workstream: W8
+    title: 'Renderer seam: sim produces events/state; renderer consumes only; no sim
+      mutation in renderer'
+    owner: codex
+    status: todo
+    evidence: ''
+    notes: ''
+  - id: P2-W8-02
+    priority: P2
+    workstream: W8
+    title: Typed events + JSONL event log (shots/impacts/explosions/parachute)
+    owner: codex
+    status: todo
+    evidence: ''
+    notes: ''
+  - id: P2-W7-01
+    priority: P2
+    workstream: W7
+    title: 'Matplotlib STL guardrails: trimesh decimation (no Nth-face), caching,
+      batching'
+    owner: codex
+    status: todo
+    evidence: ''
+    notes: ''

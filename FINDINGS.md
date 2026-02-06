@@ -158,3 +158,8 @@
 - The loop controller re-enters celebration/dogfight/ground modes based on `_bogies.is_alive`, `_ground.has_live_targets`, and pending bogies, and each mode switch resets interpolation and loop ticks. Mode toggles can happen mid-frame when enemies respawn or victory ends, forcing repeated `_reset_interpolation` calls and tick re-initialization that may spike allocations or camera resets; logging loop-mode transitions, `_reset_interpolation` invocations, and tick rearm counts will surface this churn. 【F:warbits/scene/animation.py†L1580-L1668】
 - During loop holds, `_pingpong_loop_frame` is invoked for both dogfight and ground bounds. Whenever a loop wraps, `_decision_director.rearm` is called again, potentially reallocating decision state and re-triggering VFX in quick succession if bounds are narrow. Instrument wrap frequency, rearm counts, and active loop spans so FPS drops from rapid rewind/decision churn can be attributed instead of misdiagnosed as render-only. 【F:warbits/scene/animation.py†L1669-L1740】
 - Celebration holds reuse the final victory slice with a countdown and can force an early animation end (`force_end`) while leaving the simulation tick at the victory frame. Tracking celebration tick counts, forced-end triggers, and remaining celebration frames will clarify whether celebration gating or early stops are stealing frame budget or causing mismatched terrain/camera state. 【F:warbits/scene/animation.py†L1715-L1739】
+
+## 2026-02-06 Codex Handoff
+- New coordination note: `docs/ai_sync/codex_status_2026-02-06.md`.
+- Summary of STL-branch research + issue index highlights for the pure Matplotlib repo.
+- No STL code changes are pushed here.
